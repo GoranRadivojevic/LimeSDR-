@@ -61,7 +61,6 @@ namespace PowerSDR
         float[] resamp_out_buf_r;
         public int inputBufferSize = 2048;
         public int outputBufferSize = 2048;
-        public int decimation = 0;
         public int interpolation = 0;
         double RXsampleRate = 768000.0;
         double TXsampleRate = 768000.0;
@@ -920,30 +919,7 @@ namespace PowerSDR
                 {
                     LMS_RecvStream(_streamRX_0, input_data, _frameLength, ref rx_meta, SampleTimeoutMs);
 
-                    /*j = 0;
-
-                    for (int i = 0; i < _frameLength; i++)
-                    {
-                        in_l[j] = input_data[i];
-                        in_r[j] = input_data[i + 1];
-                        j++;
-                        i++;
-                    }
-
-                    baseBandDecimator.Process(in_l, in_r, (int)_frameLength);
-
-                    j = 0;
-
-                    for (int i = 0; i < _frameLength; i++)
-                    {
-                        input_data[i] = in_l[j];
-                        input_data[i + 1] = in_r[j];
-                        j+=2;
-                        i++;
-                    }*/
-
-                    //if(!mox)
-                        ExchangeSamples_RX0(0, input_data, output_data, (int)_frameLength);
+                    ExchangeSamples_RX0(0, input_data, output_data, (int)_frameLength);
 
                     //LMS_RecvStream(_streamRX_1, input_data_1, _frameLength, ref rx_meta_1, SampleTimeoutMs);
                     //ExchangeSamples_RX1(1, input_data_1, output_data_1, (int)_frameLength);
