@@ -59,7 +59,6 @@ namespace PowerSDR
         float[] out_buf_r;
         float[] resamp_out_buf_l;
         float[] resamp_out_buf_r;
-        private const int MaxDecimationFactor = 1024;
         public int inputBufferSize = 2048;
         public int outputBufferSize = 2048;
         public int decimation = 0;
@@ -265,34 +264,6 @@ namespace PowerSDR
 
                 Debug.Write(ex.ToString());
                 return false;
-            }
-        }
-
-        public int GetDecimationStageCount(double inputSampleRate)
-        {
-            try
-            {
-                if (inputSampleRate <= 48000.0)
-                {
-                    return 0;
-                }
-
-                int result = MaxDecimationFactor;
-                while (inputSampleRate < (48000.0 * result) && result > 0)
-                {
-                    result /= 2;
-                }
-
-                return (int)Math.Log(result, 2.0);
-            }
-            catch (Exception ex)
-            {
-                if (debug && !console.ConsoleClosing)
-                    console.Invoke(new DebugCallbackFunction(console.DebugCallback),
-                        "GetDecimationStageCount error: \n" + ex.ToString());
-
-                Debug.Write(ex.ToString());
-                return -1;
             }
         }
 
@@ -892,8 +863,6 @@ namespace PowerSDR
         LMS7Parameter LNA_gain = new LMS7Parameter();
         LMS7Parameter CMIX_BYP_RXTSP = new LMS7Parameter();
         LMS7Parameter CMIX_BYP_TXTSP = new LMS7Parameter();
-
-        public Decimator.IQDecimator baseBandDecimator;
         double LPFBW = 1500000.0;
 
         uint band_Filter = 0;
