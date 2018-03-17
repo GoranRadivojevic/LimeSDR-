@@ -80,12 +80,9 @@ namespace PowerSDR
         public static float[] average_buffer;					// Averaged display data buffer for Panadapter
         public static float[] average_waterfall_buffer;  		// Averaged display data buffer for Waterfall
         public static float[] peak_buffer;						// Peak hold display data buffer
-        public static Mutex display_data_mutex = new Mutex();
 
         public static int server_W = 1024;                       // for Server screen width
         public static int client_W = 1024;                       // for Client screen width
-        public static byte[] server_display_data;
-        public static byte[] client_display_data;
         private static System.Drawing.Font swr_font = new System.Drawing.Font("Arial", 14, FontStyle.Bold);
         public static string panadapter_img = "";
 
@@ -788,12 +785,6 @@ namespace PowerSDR
                     current_waterfall_data[i] = -200.0f;
                     waterfall_display_data[i] = -200.0f;
                 }
-
-                if (display_data_mutex == null)
-                    display_data_mutex = new Mutex();
-
-                server_display_data = new byte[server_W];
-                client_display_data = new byte[client_W];
             }
             catch (Exception ex)
             {
@@ -823,10 +814,6 @@ namespace PowerSDR
                 current_scope_data = null;
                 current_waterfall_data = null;
                 waterfall_display_data = null;
-                if (display_data_mutex != null)
-                    display_data_mutex = null;
-                server_display_data = null;
-                client_display_data = null;
             }
             catch (Exception ex)
             {
@@ -1463,7 +1450,7 @@ namespace PowerSDR
                             // get new data
                             fixed (void* rptr = &new_display_data[0])
                             fixed (void* wptr = &current_display_data[0])
-                                Win32.memcpy(wptr, rptr, BUFFER_SIZE * sizeof(float));
+                                Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
                         }
 
                         data_ready = false;
@@ -1621,7 +1608,7 @@ namespace PowerSDR
                             // get new data
                             fixed (void* rptr = &new_waterfall_data[0])
                             fixed (void* wptr = &current_waterfall_data[0])
-                                Win32.memcpy(wptr, rptr, BUFFER_SIZE * sizeof(float));
+                                Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
                         }
                     }
 
@@ -1683,7 +1670,7 @@ namespace PowerSDR
                             int total_size = bitmapData.Stride * bitmapData.Height;		// find buffer size
                             Win32.memcpy(bitmapData.Scan0.ToPointer(),
                                 new IntPtr((int)bitmapData.Scan0 + bitmapData.Stride).ToPointer(),
-                                total_size - bitmapData.Stride);
+                                (uint)(total_size - bitmapData.Stride));
 
                             row = (byte*)(bitmapData.Scan0.ToInt32() + total_size - bitmapData.Stride);
                         }
@@ -1693,7 +1680,7 @@ namespace PowerSDR
                             int total_size = bitmapData.Stride * bitmapData.Height;		// find buffer size
                             Win32.memcpy(new IntPtr((int)bitmapData.Scan0 + bitmapData.Stride).ToPointer(),
                                 bitmapData.Scan0.ToPointer(),
-                                total_size - bitmapData.Stride);
+                                (uint)(total_size - bitmapData.Stride));
 
                             row = (byte*)(bitmapData.Scan0.ToInt32());
                         }
@@ -2383,7 +2370,7 @@ namespace PowerSDR
                 // get new data
                 fixed (void* rptr = &new_display_data[0])
                 fixed (void* wptr = &current_display_data[0])
-                    Win32.memcpy(wptr, rptr, BUFFER_SIZE * sizeof(float));
+                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
 
                 data_ready = false;
             }
@@ -2425,7 +2412,7 @@ namespace PowerSDR
                 // get new data
                 fixed (void* rptr = &new_display_data[0])
                 fixed (void* wptr = &current_display_data[0])
-                    Win32.memcpy(wptr, rptr, BUFFER_SIZE * sizeof(float));
+                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
 
                 data_ready = false;
             }
@@ -2492,7 +2479,7 @@ namespace PowerSDR
                 // get new data
                 fixed (void* rptr = &new_display_data[0])
                 fixed (void* wptr = &current_display_data[0])
-                    Win32.memcpy(wptr, rptr, BUFFER_SIZE * sizeof(float));
+                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
 
                 data_ready = false;
             }
@@ -2878,7 +2865,7 @@ namespace PowerSDR
                 // get new data
                 fixed (void* rptr = &new_display_data[0])
                 fixed (void* wptr = &current_display_data[0])
-                    Win32.memcpy(wptr, rptr, BUFFER_SIZE * sizeof(float));
+                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
 
                 data_ready = false;
             }

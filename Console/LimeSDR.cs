@@ -43,7 +43,7 @@ namespace PowerSDR
     {
         #region variables
 
-        public unsafe delegate void SamplesAvailableDelegate(int thread, float *in_data, float *out_data, int len);
+        public unsafe delegate void SamplesAvailableDelegate(int thread, float *in_l, float* in_r, float *out_data, int len);
         public Console console;
         public bool connected = false;
         public delegate void AudioCallbackFunction(float* in_l, float* in_r, float* out_l, float* out_r, int count);
@@ -122,14 +122,16 @@ namespace PowerSDR
             }
         }
 
-        private unsafe void LimeDevice_SamplesAvailable_RX0(int thread, float *input_samples, float *output_samples, int length)
+        private unsafe void LimeDevice_SamplesAvailable_RX0(int thread, float *input_left, float* input_right, 
+            float *output_samples, int length)
         {
-            _callback(thread, input_samples, output_samples, length);
+            _callback(thread, input_left, input_right, output_samples, length);
         }
 
-        private unsafe void LimeDevice_SamplesAvailable_RX1(int thread, float* input_samples, float* output_samples, int length)
+        private unsafe void LimeDevice_SamplesAvailable_RX1(int thread, float* input_left, float* input_right,
+            float* output_samples, int length)
         {
-            _callback(thread, input_samples, output_samples, length);
+            _callback(thread, input_left, input_right, output_samples, length);
         }
 
         #endregion
@@ -217,7 +219,6 @@ namespace PowerSDR
                 {
                     Close();
                     Open();
-                    decimation = 4;
                     device.Antenna_RX0 = (uint)RXantenna;
                     device.Antenna_TX0 = (uint)TXantenna;
                     device.RX0_centerFrequency = RX0_center_freq;
@@ -236,7 +237,9 @@ namespace PowerSDR
                     device.bufferIn_L = new float[inputBufferSize * 8];
                     device.bufferIn_R = new float[inputBufferSize * 8];
                     device.bufferOut = new float[inputBufferSize * 8];
-                    device.bufferIn_1 = new float[inputBufferSize * 8];
+                    device.bufferEmpty = new float[inputBufferSize * 8];
+                    device.bufferIn_Left = new float[inputBufferSize * 8];
+                    device.bufferIn_Right = new float[inputBufferSize * 8];
                     device.bufferOut_1 = new float[inputBufferSize * 8];
                     device._frameLength = (uint)inputBufferSize;
 
@@ -270,7 +273,7 @@ namespace PowerSDR
         {
             if (device != null)
             {
-                if (freq < 48 * 1e6 && RX0_center_freq >= 48 * 1e6 && device.isStreaming)
+                if (freq < 30 * 1e6 && RX0_center_freq >= 30 * 1e6 && device.isStreaming)
                 {
                     Stop();
                     Thread.Sleep(200);
@@ -283,7 +286,7 @@ namespace PowerSDR
                     device.RX0_Frequency = freq;
                     device.TX0_Frequency = freq;
                 }
-                else if (freq > 48 * 1e6 && RX0_center_freq <= 48 * 1e6 && device.isStreaming)
+                else if (freq > 30 * 1e6 && RX0_center_freq <= 30 * 1e6 && device.isStreaming)
                 {
                     Stop();
                     Thread.Sleep(200);
@@ -647,81 +650,81 @@ namespace PowerSDR
     {
         #region Dll import
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetDeviceList", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetDeviceList", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_GetDeviceList(string dev_list);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_Open", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_Open", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_Open(out IntPtr device, string info, string args);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_Close", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_Close", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_Close(IntPtr device);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_Disconnect", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_Disconnect", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_Disconnect(IntPtr device);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_IsOpen", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_IsOpen", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool LMS_IsOpen(IntPtr device, int port);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_Init", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_Init", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_Init(IntPtr device);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_EnableChannel", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_EnableChannel", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_EnableChannel(IntPtr device, bool dir_tx, uint chan, bool enabled);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetLOFrequency", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetLOFrequency", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_SetLOFrequency(IntPtr device, bool dir_tx, uint chan, double frequency);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetLOFrequency", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetLOFrequency", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_GetLOFrequency(IntPtr device, bool dir_tx, uint chan, ref double frequency);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetNCOFrequency", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetNCOFrequency", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern int LMS_SetNCOFrequency(IntPtr device, bool dir_tx, uint chan, double* frequency, 
             double pho);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetNCOFrequency", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetNCOFrequency", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern int LMS_GetNCOFrequency(IntPtr device, bool dir_tx, uint chan, double* frequency, 
             double* pho);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetNCOIndex", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetNCOIndex", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_SetNCOIndex(IntPtr device, bool dir_tx, uint chan, int index, bool downconv);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetNCOIndex", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetNCOIndex", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_GetNCOIndex(IntPtr device, bool dir_tx, uint chan);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetNCOPhase", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetNCOPhase", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_SetNCOPhase(IntPtr device, bool dir_tx, uint chan, double phase, double fcw);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetNCOPhase", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetNCOPhase", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_GetNCOPhase(IntPtr device, bool dir_tx, uint chan, ref double phase, ref double fcw);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetSampleRateDir", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetSampleRateDir", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_SetSampleRateDir(IntPtr device, bool dir_tx, double rate, uint oversample);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetSampleRate", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetSampleRate", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_SetSampleRate(IntPtr device, double rate, uint oversample);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetSampleRate", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetSampleRate", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_GetSampleRate(IntPtr device, bool dir_tx, uint chan, ref double host_Hz,
             ref double rf_Hz);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetupStream", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetupStream", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern int LMS_SetupStream(IntPtr dev, IntPtr stream);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_StartStream", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_StartStream", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern int LMS_StartStream(IntPtr stream);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_StopStream", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_StopStream", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern int LMS_StopStream(IntPtr stream);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_RecvStream", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_RecvStream", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern int LMS_RecvStream(IntPtr stream, void* samples, uint sample_count,
             ref lms_stream_meta_t meta, uint timeout_ms);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SendStream", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SendStream", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern int LMS_SendStream(IntPtr stream, void* samples, uint sample_count,
             ref lms_stream_meta_t meta, uint timeout_ms);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetLastErrorMessage", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetLastErrorMessage", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LMS_GetLastErrorMessage();
 
         public static string limesdr_strerror()
@@ -732,87 +735,87 @@ namespace PowerSDR
             return String.Empty;
         }
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetAntenna", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetAntenna", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern int LMS_SetAntenna(IntPtr device, bool dir_tx, uint chan, uint index);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetTestSignal", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetTestSignal", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern int LMS_SetTestSignal(IntPtr device, bool dir_tx, uint chan, lms_testsig_t sig, 
             Int16 dc_i, Int16 dc_q);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_WriteParam", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_WriteParam", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_WriteParam(IntPtr device, LMS7Parameter param, UInt16 val);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_ReadParam", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_ReadParam", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_ReadParam(IntPtr device, LMS7Parameter param, ushort* val);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetGaindB", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetGaindB", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_SetGaindB(IntPtr device, bool dir_tx, uint chan, uint gain);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetGaindB", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetGaindB", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GetGaindB(IntPtr device, bool dir_tx, uint chan, uint* gain);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetNormalizedGain", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetNormalizedGain", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LMS_SetNormalizedGain(IntPtr device, bool dir_tx, uint chan, float gain);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetNormalizedGain", CallingConvention = CallingConvention.Cdecl)]
-        public unsafe static extern int LMS_GetNormalizedGain(IntPtr device, bool dir_tx, uint chan, float* gain);
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetNormalizedGain", CallingConvention = CallingConvention.Cdecl)]
+        public unsafe static extern int LMS_GetNormalizedGain(IntPtr device, bool dir_tx, uint chan, double* gain);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetChipTemperature", CallingConvention = CallingConvention.Cdecl)]
-        public unsafe static extern int LMS_GetChipTemperature(IntPtr dev, uint ind, float* temp);
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetChipTemperature", CallingConvention = CallingConvention.Cdecl)]
+        public unsafe static extern int LMS_GetChipTemperature(IntPtr dev, uint ind, double* temp);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetLPFBW", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetLPFBW", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_SetLPFBW(IntPtr device, bool dir_tx, uint chan, double bandwidth);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetLPFBW", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetLPFBW", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GetLPFBW(IntPtr device, bool dir_tx, uint chan, double* bandwidth);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetLPFBWRange", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetLPFBWRange", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GetLPFBWRange(IntPtr device, bool dir_tx, uint chan, lms_range_t* range);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetLPF", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetLPF", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_SetLPF(IntPtr device, bool dir_tx, uint chan, bool enable);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetGFIRLPF", CallingConvention = CallingConvention.Cdecl)]
-        public unsafe static extern int LMS_SetGFIRLPF(IntPtr device, bool dir_tx, uint chan, bool enable, float bandwidth);
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetGFIRLPF", CallingConvention = CallingConvention.Cdecl)]
+        public unsafe static extern int LMS_SetGFIRLPF(IntPtr device, bool dir_tx, uint chan, bool enable, double bandwidth);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_WriteFPGAReg", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_WriteFPGAReg", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_WriteFPGAReg(IntPtr device, UInt32 address, UInt16 val);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_ReadFPGAReg", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_ReadFPGAReg", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_ReadFPGAReg(IntPtr device, UInt32 address, UInt16* val);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_SetGFIRCoeff", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_SetGFIRCoeff", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_SetGFIRCoeff(IntPtr device, bool dir_tx, uint chan, IntPtr filt,
-            float* coef, uint count);
+            double* coef, uint count);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetGFIRCoeff", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetGFIRCoeff", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GetGFIRCoeff(IntPtr device, bool dir_tx, uint chan, IntPtr filt,
-            float* coef);
+            double* coef);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GetAntennaBW", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetAntennaBW", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GetAntennaBW(IntPtr device, bool dir_tx, uint chan, uint path,
             lms_range_t* range);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_Reset", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_Reset", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_Reset(IntPtr device);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GPIOWrite", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GPIOWrite", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GPIOWrite(IntPtr device, uint *buffer, uint length);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GPIODirWrite", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GPIODirWrite", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GPIODirWrite(IntPtr device, uint* buffer, uint length);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GPIORead", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GPIORead", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GPIORead(IntPtr device, uint* buffer, uint length);
 
-        [DllImport("LimeSuite", EntryPoint = "LMS_GPIODirRead", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GPIODirRead", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GPIODirRead(IntPtr device, uint* buffer, uint length);
 
         #endregion
 
         #region variable
 
-        public unsafe delegate void ExchangeSamplesDelegate(int thread, float* input_samples, 
+        public unsafe delegate void ExchangeSamplesDelegate(int thread, float* input_left, float* input_right,
             float* output_samples, int length);
         private uint SampleTimeoutMs = 1000;
         private IntPtr _device = IntPtr.Zero;
@@ -847,7 +850,9 @@ namespace PowerSDR
         public float[] bufferIn_L;
         public float[] bufferIn_R;
         public float[] bufferOut;
-        public float[] bufferIn_1;
+        public float[] bufferEmpty;
+        public float[] bufferIn_Left;
+        public float[] bufferIn_Right;
         public float[] bufferOut_1;
 
         public const bool LMS_CH_TX = true;
@@ -865,12 +870,16 @@ namespace PowerSDR
         double LPFBW = 1500000.0;
 
         uint band_Filter = 0;
+        unsafe public void* resampPtrIn_l;
+        unsafe public void* resampPtrIn_r;
+        unsafe public void* resampPtrOut_l;
+        unsafe public void* resampPtrOut_r;
 
         #endregion
 
         #region properties
 
-        private bool mox = false;
+        volatile private bool mox = false;
         public unsafe bool MOX
         {
             get { return mox; }
@@ -897,44 +906,70 @@ namespace PowerSDR
 
         private unsafe void ReceiveSamples_sync()
         {
-            int j = 0;
-            lms_stream_meta_t rx_meta = new lms_stream_meta_t();
-            //lms_stream_meta_t rx_meta_1 = new lms_stream_meta_t();
-            lms_stream_meta_t tx_meta = new lms_stream_meta_t();
-            //lms_stream_meta_t tx_meta_1 = new lms_stream_meta_t();
-
-            //fixed (float* in_l = &bufferIn_L[0])
-            //fixed (float* in_r = &bufferIn_R[0])
-            fixed (float* input_data = &bufferIn_0[0])
-            fixed (float* output_data = &bufferOut[0])
-            //fixed (float* input_data_1 = &bufferIn_1[0])
-            //fixed (float* output_data_1 = &bufferOut_1[0])
+            try
             {
-                rx_meta.timestamp = 0;
-                rx_meta.flushPartialPacket = true;
-                //rx_meta_1.timestamp = 0;
-                //rx_meta_1.flushPartialPacket = true;
+                int j = 0, count = (int)_frameLength;
+                int outsamps;
+                lms_stream_meta_t rx_meta = new lms_stream_meta_t();
+                //lms_stream_meta_t rx_meta_1 = new lms_stream_meta_t();
+                lms_stream_meta_t tx_meta = new lms_stream_meta_t();
+                //lms_stream_meta_t tx_meta_1 = new lms_stream_meta_t();
 
-                while (isStreaming)
+                fixed (float* in_l = &bufferIn_L[0])
+                fixed (float* in_r = &bufferIn_R[0])
+                fixed (float* input_data = &bufferIn_0[0])
+                fixed (float* output_data = &bufferOut[0])
+                fixed (float* empty_data = &bufferEmpty[0])
+                //fixed (float* res_inl_ptr = &bufferIn_Left[0])
+                //fixed (float* res_inr_ptr = &bufferIn_Right[0])
                 {
-                    LMS_RecvStream(_streamRX_0, input_data, _frameLength, ref rx_meta, SampleTimeoutMs);
+                    rx_meta.timestamp = 0;
+                    rx_meta.flushPartialPacket = true;
+                    //rx_meta_1.timestamp = 0;
+                    //rx_meta_1.flushPartialPacket = true;
+                    tx_meta.flushPartialPacket = true;
+                    tx_meta.timestamp = 0;
 
-                    ExchangeSamples_RX0(0, input_data, output_data, (int)_frameLength);
-
-                    //LMS_RecvStream(_streamRX_1, input_data_1, _frameLength, ref rx_meta_1, SampleTimeoutMs);
-                    //ExchangeSamples_RX1(1, input_data_1, output_data_1, (int)_frameLength);
-
-                    if (mox)
+                    while (isStreaming)
                     {
-                        //ExchangeSamples(input_data_1, output_data_1, (int)_frameLength * 2);
-                        tx_meta.timestamp = rx_meta.timestamp;
-                        tx_meta.flushPartialPacket = true;
-                        //tx_meta_1.timestamp = rx_meta.timestamp;
-                        //tx_meta_1.flushPartialPacket = true;
-                        LMS_SendStream(_streamTX_0, output_data, _frameLength, ref tx_meta, SampleTimeoutMs);
-                        //LMS_SendStream(_streamTX_1, output_data_1, _frameLength, ref tx_meta_1, SampleTimeoutMs);
+                        count = LMS_RecvStream(_streamRX_0, input_data, _frameLength, ref rx_meta, SampleTimeoutMs);
+                        j = 0;
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            bufferIn_L[j] = input_data[i * 2];
+                            bufferIn_R[j] = input_data[i * 2 + 1];
+                            j++;
+                            //i++;
+                        }
+
+                        //DttSP.DoResamplerF(in_l, res_inl_ptr, count, &outsamps, resampPtrIn_l);
+                        //DttSP.DoResamplerF(in_r, res_inr_ptr, count, &outsamps, resampPtrIn_r);
+
+                        ExchangeSamples_RX0(0, in_l, in_r, output_data, (int)_frameLength);
+
+                        //LMS_RecvStream(_streamRX_1, input_data_1, _frameLength, ref rx_meta_1, SampleTimeoutMs);
+                        //ExchangeSamples_RX1(1, input_data_1, output_data_1, (int)_frameLength);
+
+                        if (mox)
+                        {
+                            //ExchangeSamples(input_data_1, output_data_1, (int)_frameLength * 2);
+                            //tx_meta.timestamp = rx_meta.timestamp;
+                            //tx_meta_1.timestamp = rx_meta.timestamp;
+                            //tx_meta_1.flushPartialPacket = true;
+                            LMS_SendStream(_streamTX_0, output_data, _frameLength, ref tx_meta, SampleTimeoutMs);
+                            //LMS_SendStream(_streamTX_1, output_data_1, _frameLength, ref tx_meta_1, SampleTimeoutMs);
+                        }
+                        /*else
+                        {
+                            LMS_SendStream(_streamTX_0, empty_data, (uint)count, ref tx_meta, SampleTimeoutMs);
+                        }*/
                     }
                 }
+            }
+            catch(Exception ex)
+            {
+                Debug.Write(ex.ToString());
             }
         }
 
@@ -1092,283 +1127,313 @@ namespace PowerSDR
 
         public unsafe bool Start(double lpfbw, double RXsr, double TXsr)
         {
-            LPFBW = lpfbw;
-            RXsampleRate = RXsr;
-            TXsampleRate = TXsr;
 
-            if (LMS_GetDeviceList(null) < 1)
+            try
             {
-                throw new Exception("Cannot found LimeSDR device. Is the device locked somewhere?");
+                LPFBW = lpfbw;
+                RXsampleRate = RXsr;
+                TXsampleRate = TXsr;
+                //resampPtrIn_l = DttSP.NewResamplerF((int)RXsampleRate, (int)RXsampleRate / 2);
+                //resampPtrIn_r = DttSP.NewResamplerF((int)RXsampleRate, (int)RXsampleRate / 2);
+
+                if (LMS_GetDeviceList(null) < 1)
+                {
+                    throw new Exception("Cannot found LimeSDR device. Is the device locked somewhere?");
+                }
+
+                if (LMS_Open(out _device, null, null) != 0)
+                {
+                    throw new ApplicationException("Cannot open LimeSDR device. Is the device locked somewhere?");
+                    return false;
+                }
+
+                LMS_Init(_device);
+
+                uint[] buffer = new uint[1];
+                buffer[0] = 0x1f;               // 0-5 output GPIO (band filters, mox)
+
+                fixed (uint* buf = &buffer[0])
+                    if (LMS_GPIODirWrite(_device, buf, 1) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+
+                buffer[0] = 0xe0;               // 6-7-8 input GPIO (PTT, keyer dot, dash)
+                fixed (uint* buf = &buffer[0])
+                    if (LMS_GPIODirRead(_device, buf, 1) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+
+                if (LMS_EnableChannel(_device, LMS_CH_RX, RX_channel, true) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                /*if (LMS_EnableChannel(_device, LMS_CH_RX, RX1_channel, true) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }*/
+
+                if (LMS_EnableChannel(_device, LMS_CH_TX, TX0_channel, true) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                /*if (LMS_EnableChannel(_device, LMS_CH_TX, TX1_channel, true) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }*/
+
+                if (LMS_SetAntenna(_device, LMS_CH_RX, RX_channel, RX0_ant) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                /*if (LMS_SetAntenna(_device, LMS_CH_RX, RX1_channel, RX1_ant) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }*/
+
+                if (LMS_SetAntenna(_device, LMS_CH_TX, TX0_channel, TX0_ant) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                if (LMS_SetSampleRate(_device, RXSampleRate, 32) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                /*if (TXSampleRate <= 384000)
+                {
+                    if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 32) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+                }
+                else if (TXSampleRate > 32000000)
+                {
+                    if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 0) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+                }
+                else if (TXSampleRate > 16000000)
+                {
+                    if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 16) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+                }
+                else
+                {
+                    if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 32) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+                }
+
+                if (RXSampleRate < 384000)
+                {
+                    if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 32) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+                }
+                else
+                {
+                    if (RXsampleRate > 32000000)
+                    {
+                        if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 0) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
+                    }
+                    else if (RXsampleRate > 16000000)
+                    {
+                        if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 4) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
+                    }
+                    else if (RXsampleRate > 8000000)
+                    {
+                        if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 8) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
+                    }
+                    else if (RXsampleRate > 4000000)
+                    {
+                        if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 16) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
+                    }
+                    else if (RXsampleRate > 2000000)
+                    {
+                        if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 32) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
+                    }
+                    else
+                    {
+                        if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 32) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
+                    }
+                }*/
+
+                RX0_Frequency = (long)RX0_centerFrequency;
+                //RX1_Frequency = (long)RX1_centerFrequency;
+                TX0_Frequency = (long)TX0_centerFrequency;
+                //TX1_Frequency = (long)TX1_centerFrequency;
+
+                RX0_gain = RX0_gain;
+                TX0_gain = TX0_gain;
+                //RX1_gain = rx1_gain;
+                //TX1_gain = tx1_gain;
+
+                if (RX0_centerFrequency >= 30 * 1e6)
+                {
+                    if (RXSampleRate < 1.5 * 1e6)
+                    {
+                        if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, 1500000.0) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
+                    }
+                    else
+                    {
+                        if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, RXSampleRate + RXSampleRate * 0.2) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
+                    }
+                }
+                else
+                {
+                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, LPFBW) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+                }
+
+                /*if (RX1_centerFrequency >= 30 * 1e6)
+                {
+                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX1_channel, 1500000.0) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+                }
+                else
+                {
+                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX1_channel, 60000000.0) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+                }*/
+
+                lms_stream_t streamRX = new lms_stream_t();
+                streamRX.handle = 0;
+                streamRX.channel = RX_channel;                 //channel number
+                streamRX.fifoSize = 1024 * 1024;                  //fifo size in samples
+                streamRX.throughputVsLatency = 0.5f;            //optimize for max throughput
+                streamRX.isTx = false;                          //RX channel
+                streamRX.dataFmt = dataFmt.LMS_FMT_F32;
+                _streamRX_0 = Marshal.AllocHGlobal(Marshal.SizeOf(streamRX));
+
+                Marshal.StructureToPtr(streamRX, _streamRX_0, false);
+
+                if (LMS_SetupStream(_device, _streamRX_0) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                lms_stream_t streamTX = new lms_stream_t();
+                streamTX.handle = 0;
+                streamTX.channel = TX0_channel;                 //channel number
+                streamTX.fifoSize = 1024 * 1024;                  //fifo size in samples
+                streamTX.throughputVsLatency = 0.5f;            //optimize for max throughput
+                streamTX.isTx = true;                           //TX channel
+                streamTX.dataFmt = dataFmt.LMS_FMT_F32;
+                _streamTX_0 = Marshal.AllocHGlobal(Marshal.SizeOf(streamTX));
+
+                Marshal.StructureToPtr(streamTX, _streamTX_0, false);
+
+                if (LMS_SetupStream(_device, _streamTX_0) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                /*lms_stream_t streamRX_1 = new lms_stream_t();
+                streamRX_1.handle = 0;
+                streamRX_1.channel = RX1_channel;                 //channel number
+                streamRX_1.fifoSize = 16 * 1024;                  //fifo size in samples
+                streamRX_1.throughputVsLatency = 0.1f;            //optimize for max throughput
+                streamRX_1.isTx = false;                          //RX channel
+                streamRX_1.dataFmt = dataFmt.LMS_FMT_F32;
+                _streamRX_1 = Marshal.AllocHGlobal(Marshal.SizeOf(streamRX_1));
+
+                Marshal.StructureToPtr(streamRX_1, _streamRX_1, false);
+
+                if (LMS_SetupStream(_device, _streamRX_1) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                lms_stream_t streamTX_1 = new lms_stream_t();
+                streamTX_1.handle = 0;
+                streamTX_1.channel = TX1_channel;                 //channel number
+                streamTX_1.fifoSize = 16 * 1024;                  //fifo size in samples
+                streamTX_1.throughputVsLatency = 0.1f;            //optimize for max throughput
+                streamTX_1.isTx = true;                           //TX channel
+                streamTX_1.dataFmt = dataFmt.LMS_FMT_F32;
+                _streamTX_1 = Marshal.AllocHGlobal(Marshal.SizeOf(streamTX_1));
+
+                Marshal.StructureToPtr(streamTX_1, _streamTX_1, false);
+
+                if (LMS_SetupStream(_device, _streamTX_1) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }*/
+
+                if (LMS_StartStream(_streamRX_0) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                if (LMS_StartStream(_streamTX_0) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                /*if (LMS_StartStream(_streamRX_1) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+
+                if (LMS_StartStream(_streamTX_1) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }*/
+
+                _sampleThread = new Thread(ReceiveSamples_sync);
+                _sampleThread.Name = "limesdr_samples_rx";
+                _sampleThread.Priority = ThreadPriority.Highest;
+                isStreaming = true;
+                _sampleThread.Start();
+
+                return true;
             }
-
-            if (LMS_Open(out _device, null, null) != 0)
+            catch(Exception ex)
             {
-                throw new ApplicationException("Cannot open LimeSDR device. Is the device locked somewhere?");
+                Debug.Write(ex.ToString());
                 return false;
             }
-
-            LMS_Init(_device);
-
-            uint[] buffer = new uint[1];
-            buffer[0] = 0x1f;               // 0-5 output GPIO (band filters, mox)
-
-            fixed (uint* buf = &buffer[0])
-                if (LMS_GPIODirWrite(_device, buf, 1) != 0)
-                {
-                    throw new ApplicationException(limesdr_strerror());
-                }
-
-            buffer[0] = 0xc0;               // 7-8 input GPIO (keyer dot, dash)
-            fixed (uint* buf = &buffer[0])
-                if (LMS_GPIODirRead(_device, buf, 1) != 0)
-                {
-                    throw new ApplicationException(limesdr_strerror());
-                }
-
-            if (LMS_EnableChannel(_device, LMS_CH_RX, RX_channel, true) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            /*if (LMS_EnableChannel(_device, LMS_CH_RX, RX1_channel, true) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }*/
-
-            if (LMS_EnableChannel(_device, LMS_CH_TX, TX0_channel, true) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            /*if (LMS_EnableChannel(_device, LMS_CH_TX, TX1_channel, true) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }*/
-
-            if (LMS_SetAntenna(_device, LMS_CH_RX, RX_channel, RX0_ant) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            /*if (LMS_SetAntenna(_device, LMS_CH_RX, RX1_channel, RX1_ant) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }*/
-
-            if (LMS_SetAntenna(_device, LMS_CH_TX, TX0_channel, TX0_ant) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            if (TXSampleRate <= 384000)
-            {
-                if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 32) != 0)
-                {
-                    throw new ApplicationException(limesdr_strerror());
-                }
-            }
-            else
-            {
-                if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 32) != 0)
-                {
-                    throw new ApplicationException(limesdr_strerror());
-                }
-            }
-
-            if (RXSampleRate < 384000)
-            {
-                if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 32) != 0)
-                {
-                    throw new ApplicationException(limesdr_strerror());
-                }
-            }
-            else
-            {
-                if (RXsampleRate > 32000000)
-                {
-                    if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 0) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }
-                }
-                else if (RXsampleRate > 16000000)
-                {
-                    if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 4) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }
-                }
-                else if (RXsampleRate > 8000000)
-                {
-                    if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 8) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }
-                }
-                else if (RXsampleRate > 4000000)
-                {
-                    if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 16) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }
-                }
-                else if (RXsampleRate > 2000000)
-                {
-                    if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 32) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }
-                }
-                else
-                {
-                    if (LMS_SetSampleRateDir(_device, LMS_CH_RX, RXSampleRate, 32) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }
-                }
-            }
-
-            RX0_Frequency = (long)RX0_centerFrequency;
-            //RX1_Frequency = (long)RX1_centerFrequency;
-            TX0_Frequency = (long)TX0_centerFrequency;
-            //TX1_Frequency = (long)TX1_centerFrequency;
-
-            RX0_gain = RX0_gain;
-            TX0_gain = TX0_gain;
-            //RX1_gain = rx1_gain;
-            //TX1_gain = tx1_gain;
-
-            if (RX0_centerFrequency >= 48 * 1e6)
-            {
-                if (RXSampleRate < 1.5 * 1e6)
-                {
-                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, 1500000.0) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }
-                }
-                else
-                {
-                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, RXSampleRate + RXSampleRate * 0.2) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }
-                }
-            }
-            else
-            {
-                if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, LPFBW) != 0)
-                {
-                    throw new ApplicationException(limesdr_strerror());
-                }
-            }
-
-            /*if (RX1_centerFrequency >= 48 * 1e6)
-            {
-                if (LMS_SetLPFBW(_device, LMS_CH_RX, RX1_channel, 1500000.0) != 0)
-                {
-                    throw new ApplicationException(limesdr_strerror());
-                }
-            }
-            else
-            {
-                if (LMS_SetLPFBW(_device, LMS_CH_RX, RX1_channel, 60000000.0) != 0)
-                {
-                    throw new ApplicationException(limesdr_strerror());
-                }
-            }*/
-
-            lms_stream_t streamRX = new lms_stream_t();
-            streamRX.handle = 0;
-            streamRX.channel = RX_channel;                 //channel number
-            streamRX.fifoSize = 1024 * 1024;                  //fifo size in samples
-            streamRX.throughputVsLatency = 0.5f;            //optimize for max throughput
-            streamRX.isTx = false;                          //RX channel
-            streamRX.dataFmt = dataFmt.LMS_FMT_F32;
-            _streamRX_0 = Marshal.AllocHGlobal(Marshal.SizeOf(streamRX));
-
-            Marshal.StructureToPtr(streamRX, _streamRX_0, false);
-
-            if (LMS_SetupStream(_device, _streamRX_0) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            lms_stream_t streamTX = new lms_stream_t();
-            streamTX.handle = 0;
-            streamTX.channel = TX0_channel;                 //channel number
-            streamTX.fifoSize = 1024 * 1024;                  //fifo size in samples
-            streamTX.throughputVsLatency = 0.5f;            //optimize for max throughput
-            streamTX.isTx = true;                           //TX channel
-            streamTX.dataFmt = dataFmt.LMS_FMT_F32;
-            _streamTX_0 = Marshal.AllocHGlobal(Marshal.SizeOf(streamTX));
-
-            Marshal.StructureToPtr(streamTX, _streamTX_0, false);
-
-            if (LMS_SetupStream(_device, _streamTX_0) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            /*lms_stream_t streamRX_1 = new lms_stream_t();
-            streamRX_1.handle = 0;
-            streamRX_1.channel = RX1_channel;                 //channel number
-            streamRX_1.fifoSize = 16 * 1024;                  //fifo size in samples
-            streamRX_1.throughputVsLatency = 0.1f;            //optimize for max throughput
-            streamRX_1.isTx = false;                          //RX channel
-            streamRX_1.dataFmt = dataFmt.LMS_FMT_F32;
-            _streamRX_1 = Marshal.AllocHGlobal(Marshal.SizeOf(streamRX_1));
-
-            Marshal.StructureToPtr(streamRX_1, _streamRX_1, false);
-
-            if (LMS_SetupStream(_device, _streamRX_1) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            lms_stream_t streamTX_1 = new lms_stream_t();
-            streamTX_1.handle = 0;
-            streamTX_1.channel = TX1_channel;                 //channel number
-            streamTX_1.fifoSize = 16 * 1024;                  //fifo size in samples
-            streamTX_1.throughputVsLatency = 0.1f;            //optimize for max throughput
-            streamTX_1.isTx = true;                           //TX channel
-            streamTX_1.dataFmt = dataFmt.LMS_FMT_F32;
-            _streamTX_1 = Marshal.AllocHGlobal(Marshal.SizeOf(streamTX_1));
-
-            Marshal.StructureToPtr(streamTX_1, _streamTX_1, false);
-
-            if (LMS_SetupStream(_device, _streamTX_1) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }*/
-
-            if (LMS_StartStream(_streamRX_0) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            if (LMS_StartStream(_streamTX_0) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            /*if (LMS_StartStream(_streamRX_1) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }
-
-            if (LMS_StartStream(_streamTX_1) != 0)
-            {
-                throw new ApplicationException(limesdr_strerror());
-            }*/
-
-            _sampleThread = new Thread(ReceiveSamples_sync);
-            _sampleThread.Name = "limesdr_samples_rx";
-            _sampleThread.Priority = ThreadPriority.Highest;
-            isStreaming = true;
-            _sampleThread.Start();
-
-            return true;
         }
 
         public unsafe long RX0_Frequency
@@ -1391,7 +1456,7 @@ namespace PowerSDR
 
                 if (_device != IntPtr.Zero)
                 {
-                    if (value >= 48 * 1e6)
+                    if (value >= 30 * 1e6)
                     {
                         if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 15, true) != 0)   // 0.0 NCO
                         {
@@ -1410,7 +1475,7 @@ namespace PowerSDR
                     }
                     else
                     {
-                        if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, 48.0 * 1e6) != 0)
+                        if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, 30.0 * 1e6) != 0)
                         {
                             throw new ApplicationException(limesdr_strerror());
                         }
@@ -1421,7 +1486,7 @@ namespace PowerSDR
                         fixed (double* freq = &losc_freq[0])
                         fixed (double* pho_ptr = &pho[0])
                         {
-                            losc_freq[0] = 48.0 * 1e6 - RX0_centerFrequency;
+                            losc_freq[0] = 30.0 * 1e6 - RX0_centerFrequency;
                             losc_freq[15] = 0.0;
 
                             if (LMS_SetNCOFrequency(_device, LMS_CH_RX, RX_channel, freq, 0.0) != 0)
@@ -1464,7 +1529,7 @@ namespace PowerSDR
             {
                 RX1_centerFrequency = value;
 
-                if (value >= 48 * 1e6)
+                if (value >= 30 * 1e6)
                 {
                     if (_device != IntPtr.Zero)
                     {
@@ -1481,7 +1546,7 @@ namespace PowerSDR
                 }
                 else
                 {
-                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, 48.0 * 1e6) != 0)
+                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, 30.0 * 1e6) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1492,7 +1557,7 @@ namespace PowerSDR
                     fixed (double* freq = &losc_freq[0])
                     fixed (double* pho_ptr = &pho[0])
                     {
-                        losc_freq[0] = 48.0 * 1e6 - RX1_centerFrequency;
+                        losc_freq[0] = 30.0 * 1e6 - RX1_centerFrequency;
                         losc_freq[15] = 0.0;
 
                         if (LMS_SetNCOFrequency(_device, LMS_CH_RX, RX_channel, freq, 0.0) != 0)
@@ -1534,7 +1599,7 @@ namespace PowerSDR
             {
                 TX0_centerFrequency = value;
 
-                if (value >= 48 * 1e6)
+                if (value >= 30 * 1e6)
                 {
                     if (_device != IntPtr.Zero)
                     {
@@ -1551,7 +1616,7 @@ namespace PowerSDR
                 }
                 else
                 {
-                    if (LMS_SetLOFrequency(_device, LMS_CH_TX, TX0_channel, 48.0 * 1e6) != 0)
+                    if (LMS_SetLOFrequency(_device, LMS_CH_TX, TX0_channel, 30.0 * 1e6) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1562,7 +1627,7 @@ namespace PowerSDR
                     fixed (double* freq = &losc_freq[0])
                     fixed (double* pho_ptr = &pho[0])
                     {
-                        losc_freq[0] = 48.0 * 1e6 - TX0_centerFrequency;
+                        losc_freq[0] = 30.0 * 1e6 - TX0_centerFrequency;
                         losc_freq[15] = 0.0;
 
                         if (LMS_SetNCOFrequency(_device, LMS_CH_TX, TX0_channel, freq, 0.0) != 0)
@@ -1599,7 +1664,7 @@ namespace PowerSDR
             {
                 TX1_centerFrequency = value;
 
-                if (value >= 48 * 1e6)
+                if (value >= 30 * 1e6)
                 {
                     if (_device != IntPtr.Zero)
                     {
@@ -1616,7 +1681,7 @@ namespace PowerSDR
                 }
                 else
                 {
-                    if (LMS_SetLOFrequency(_device, LMS_CH_TX, TX1_channel, 48.0 * 1e6) != 0)
+                    if (LMS_SetLOFrequency(_device, LMS_CH_TX, TX1_channel, 30.0 * 1e6) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1627,7 +1692,7 @@ namespace PowerSDR
                     fixed (double* freq = &losc_freq[0])
                     fixed (double* pho_ptr = &pho[0])
                     {
-                        losc_freq[0] = 48.0 * 1e6 - TX1_centerFrequency;
+                        losc_freq[0] = 30.0 * 1e6 - TX1_centerFrequency;
                         losc_freq[15] = 0.0;
 
                         if (LMS_SetNCOFrequency(_device, LMS_CH_TX, TX1_channel, freq, 0.0) != 0)
@@ -1959,6 +2024,53 @@ namespace PowerSDR
             {
                 Debug.Write(ex.ToString());
                 return 255;
+            }
+        }
+
+        public unsafe bool ReadPTT()
+        {
+            try
+            {
+                uint[] buffer = new uint[1];
+
+                fixed (uint* buf = &buffer[0])
+                    if (LMS_GPIORead(_device, buf, 1) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+
+                uint ptt = buffer[0] & 0x20;
+
+                if (ptt == 0x00)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex.ToString());
+                return false;
+            }
+        }
+
+        public unsafe double ReadTemperature()
+        {
+            try
+            {
+                double[] buffer = new double[10];
+
+                fixed (double* buf = &buffer[0])
+                    if (LMS_GetChipTemperature(_device, 0, buf) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+
+                return buffer[0];
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex.ToString());
+                return 0.0;
             }
         }
     }

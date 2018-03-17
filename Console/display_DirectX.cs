@@ -3713,7 +3713,7 @@ namespace PowerSDR
                     // get new data
                     fixed (void* rptr = &new_display_data[0])
                     fixed (void* wptr = &current_display_data[0])
-                        Win32.memcpy(wptr, rptr, BUFFER_SIZE * sizeof(float));
+                        Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
 
                     data_ready = false;
                 }

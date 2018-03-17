@@ -71,7 +71,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <StartWithIE>true</StartWithIE>
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
-    <StartWorkingDirectory>e:\Projekti\PowerSDR express\bin\Debug\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Projekti\LimeSDR--master\bin\Debug\</StartWorkingDirectory>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <EnableSQLServerDebugging>false</EnableSQLServerDebugging>
     <StartArguments>
@@ -81,11 +81,11 @@
     <StartWithIE>true</StartWithIE>
     <RemoteDebugEnabled>true</RemoteDebugEnabled>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <StartWorkingDirectory>F:\PowerSDR express\bin\Debug x64\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Projekti\LimeSDR--master\bin\Debug x64\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <StartAction>Project</StartAction>
-    <StartWorkingDirectory>e:\Projekti\PowerSDR express\bin\Release_new\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Projekti\LimeSDR--master\bin\Release\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>

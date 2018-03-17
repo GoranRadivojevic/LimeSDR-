@@ -414,8 +414,6 @@ namespace PowerSDR
         private static float[] ctcss_outl = new float[2048];
         private static float[] ctcss_outr = new float[2048];
 
-        unsafe private static void* resampServerPtrIn_l;
-        unsafe private static void* resampServerPtrIn_r;
         unsafe public static void* resampPtrIn_l;
         unsafe public static void* resampPtrIn_r;
         unsafe public static void* resampPtrOut_l;
@@ -1831,7 +1829,7 @@ namespace PowerSDR
 
         unsafe private static void CopyBuffer(float* inbuf, float* outbuf, int samples)
         {
-            Win32.memcpy(outbuf, inbuf, samples * sizeof(float));
+            Win32.memcpy(outbuf, inbuf, (uint)(samples * sizeof(float)));
         }
 
         unsafe public static void ScaleBuffer(float* inbuf, float* outbuf, int samples, float scale)
@@ -2114,7 +2112,8 @@ namespace PowerSDR
         {
             try
             {
-                int buf_size = Math.Max(4097, console.RXBlockSize * 2 + 2);
+                int lcm = 61440000;
+                int buf_size = Math.Max(4097, console.RXBlockSize * 8 + 2);
 
                 rb_vacOUT_l = new RingBufferFloat(buf_size);
                 rb_vacOUT_l.Restart(buf_size);
@@ -2130,19 +2129,47 @@ namespace PowerSDR
 
                 if (sample_rateVAC != RXsample_rate)
                 {
+                    switch (RXsample_rate)
+                    {
+                        case 192000:
+                        case 384000:
+                        case 768000:
+                        case 1536000:
+                            lcm = 61440000;
+                            break;
+
+                        case 3072000:
+                        case 6144000:
+                        case 12288000:
+                            lcm = 92160000;
+                            break;
+                        case 24576000:
+                        case 49152000:
+                            lcm = 98304000;
+                            break;
+
+                        case 2304000:
+                            lcm = 73728000;
+                            break;
+
+                        default:
+                            lcm = 61440000;
+                            break;
+                    }
+
                     vac_RXresample = true;
 
                     res_inl = new float[2 * buf_size];
                     res_inr = new float[2 * buf_size];
 
-                    resampPtrIn_l = DttSP.NewResamplerF(sample_rateVAC, RXsample_rate);
-                    resampPtrIn_r = DttSP.NewResamplerF(sample_rateVAC, RXsample_rate);
+                    resampPtrIn_l = DttSP.NewResamplerF_LimeSDR(lcm, sample_rateVAC, RXsample_rate);
+                    resampPtrIn_r = DttSP.NewResamplerF_LimeSDR(lcm, sample_rateVAC, RXsample_rate);
 
                     res_outl = new float[buf_size];
                     res_outr = new float[buf_size];
 
-                    resampPtrOut_l = DttSP.NewResamplerF(RXsample_rate, sample_rateVAC);
-                    resampPtrOut_r = DttSP.NewResamplerF(RXsample_rate, sample_rateVAC);
+                    resampPtrOut_l = DttSP.NewResamplerF_LimeSDR(lcm, RXsample_rate, sample_rateVAC);
+                    resampPtrOut_r = DttSP.NewResamplerF_LimeSDR(lcm, RXsample_rate, sample_rateVAC);
                 }
                 else
                 {
@@ -3225,22 +3252,22 @@ namespace PowerSDR
         static float[] out_buf_l;
         static float[] out_buf_r;
 
-        unsafe public static void LimeSDR_Callback_RX0(int thread, float* input, float* output, int frameCount)
+        unsafe public static void LimeSDR_Callback_RX0(int thread, float* in_l_ptr1, float* in_r_ptr1, float* output, int frameCount)
         {
             try
             {
 #if(WIN64)
-                Int64* array_ptr = (Int64*)input;
+                /*Int64* array_ptr = (Int64*)input;
                 float* in_l_ptr1 = (float*)array_ptr[0];
                 float* in_r_ptr1 = (float*)array_ptr[1];
                 double* VAC_in = (double*)input;
                 array_ptr = (Int64*)output;
                 float* out_l_ptr1 = (float*)array_ptr[1];
-                float* out_r_ptr1 = (float*)array_ptr[0];
+                float* out_r_ptr1 = (float*)array_ptr[0];*/
 #endif
 
 #if(WIN32)
-                int j=0;
+                /*int j=0;
 
                 for (int i = 0; i < frameCount; i++)
                 {
@@ -3248,10 +3275,10 @@ namespace PowerSDR
                     buf_r[j] = input[i * 2 + 1];
                     j++;
                     //i++;
-                }
+                }*/
 #endif
-                fixed (float* in_l_ptr1 = &buf_l[0])
-                fixed (float* in_r_ptr1 = &buf_r[0])
+                //fixed (float* in_l_ptr1 = &buf_l[0])
+                //fixed (float* in_r_ptr1 = &buf_r[0])
                 fixed (float* out_l_ptr1 = &out_buf_l[0])
                 fixed (float* out_r_ptr1 = &out_buf_r[0])
                 {
@@ -4025,13 +4052,13 @@ namespace PowerSDR
             try
             {
 #if(WIN64)
-                Int64* array_ptr = (Int64*)input;
+                /*Int64* array_ptr = (Int64*)input;
                 float* in_l_ptr1 = (float*)array_ptr[0];
                 float* in_r_ptr1 = (float*)array_ptr[1];
                 double* VAC_in = (double*)input;
                 array_ptr = (Int64*)output;
                 float* out_l_ptr1 = (float*)array_ptr[1];
-                float* out_r_ptr1 = (float*)array_ptr[0];
+                float* out_r_ptr1 = (float*)array_ptr[0];*/
 #endif
 
 #if(WIN32)

@@ -1075,6 +1075,7 @@ namespace PowerSDR
 
                 radGenModelLimeSDR_CheckedChanged(this, EventArgs.Empty);
                 comboSpectrumSize_SelectedIndexChanged(this, EventArgs.Empty);
+                udDisplayWaterfallAvgTime_ValueChanged(this, EventArgs.Empty);
 
                 ReloadSkins();
             }
@@ -3008,6 +3009,7 @@ namespace PowerSDR
             this.chkAlwaysOnTop.Size = new System.Drawing.Size(136, 16);
             this.chkAlwaysOnTop.TabIndex = 12;
             this.chkAlwaysOnTop.Text = "Automatic focus";
+            this.chkAlwaysOnTop.Checked = true;
             this.toolTip1.SetToolTip(this.chkAlwaysOnTop, "Automatic focus for sliders and display");
             this.chkAlwaysOnTop.CheckedChanged += new System.EventHandler(this.chkAlwaysOnTop_CheckedChanged);
             // 
@@ -3050,6 +3052,7 @@ namespace PowerSDR
             "384000",
             "768000",
             "1536000",
+            "2304000",
             "3072000",
             "6144000",
             "12288000",
@@ -3274,10 +3277,13 @@ namespace PowerSDR
             this.comboRXSampleRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboRXSampleRate.DropDownWidth = 64;
             this.comboRXSampleRate.Items.AddRange(new object[] {
+            "48000",
+            "96000",
             "192000",
             "384000",
             "768000",
             "1536000",
+            "2304000",
             "3072000",
             "6144000",
             "12288000",
@@ -13731,6 +13737,7 @@ namespace PowerSDR
             "384000",
             "768000",
             "1536000",
+            "2304000",
             "3072000",
             "6144000",
             "12288000",
@@ -14025,6 +14032,7 @@ namespace PowerSDR
             "384000",
             "768000",
             "1536000",
+            "2304000",
             "3072000",
             "6144000",
             "12288000",
@@ -17738,7 +17746,7 @@ namespace PowerSDR
             set { display_contrast = value; }
         }
 
-        private bool fast_focus = false;
+        private bool fast_focus = true;
         public bool FastFocus
         {
             get { return fast_focus; }
@@ -19405,7 +19413,7 @@ namespace PowerSDR
 
 		private void udDisplayAVGTime_ValueChanged(object sender, System.EventArgs e)
 		{
-			double buffer_time = double.Parse(comboRXBuffer.Text) / (double)console.SampleRate2;
+			double buffer_time = double.Parse(comboRXBuffer.Text.Replace(",", "."), CultureInfo.InvariantCulture) / (double)console.SampleRate2;
 			int buffersToAvg = (int)((float)udDisplayAVGTime.Value * 0.001 / buffer_time);
 			buffersToAvg = Math.Max(2, buffersToAvg);
 			Display_GDI.DisplayAvgBlocks = buffersToAvg;
@@ -22141,7 +22149,7 @@ namespace PowerSDR
 
         private void udDisplayWaterfallAvgTime_ValueChanged(object sender, EventArgs e)
         {
-            double buffer_time = double.Parse(comboRXBuffer.Text) / (double)console.SampleRate2;
+            double buffer_time = double.Parse(comboRXBuffer.Text.Replace(",", "."), CultureInfo.InvariantCulture) / (double)console.SampleRate2;
             int buffersToAvg = (int)((float)udDisplayWaterfallAvgTime.Value * 0.001 / buffer_time);
             buffersToAvg = Math.Max(2, buffersToAvg);
             Display_GDI.WaterfallAvgBlocks = buffersToAvg;
@@ -23581,7 +23589,7 @@ namespace PowerSDR
             try
             {
                 comboRXSampleRate.Text = comboLimeSDR_RXSampleRate.Text;
-                console.limeSDR.SetRXSampleRate(double.Parse(comboLimeSDR_RXSampleRate.Text));
+                console.limeSDR.SetRXSampleRate(double.Parse(comboLimeSDR_RXSampleRate.Text.Replace(",", "."), CultureInfo.InvariantCulture));
 
                 /*int inputBufferSize = (int)(console.AudioLatency2 * console.limeSDR.device.SampleRate / 1000);
                 int stageCount = console.limeSDR.GetDecimationStageCount(console.limeSDR.device.SampleRate);
@@ -23631,7 +23639,7 @@ namespace PowerSDR
             try
             {
                 comboTXSampleRate.Text = comboLimeSDR_TXSampleRate.Text;
-                console.limeSDR.SetTXSampleRate(double.Parse(comboLimeSDR_TXSampleRate.Text));
+                console.limeSDR.SetTXSampleRate(double.Parse(comboLimeSDR_TXSampleRate.Text.Replace(",", "."), CultureInfo.InvariantCulture));
             }
             catch (Exception ex)
             {
@@ -23764,8 +23772,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_TX0.Checked)
                 {
-                    console.limeSDR.SetTXChannel(0);
-                    console.TX_channel = 0;
+                    console.limeSDR.SetTXChannel(1);
+                    console.TX_channel = 1;
                 }
             }
             catch (Exception ex)
@@ -23780,8 +23788,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_TX1.Checked)
                 {
-                    console.limeSDR.SetTXChannel(1);
-                    console.TX_channel = 1;
+                    console.limeSDR.SetTXChannel(2);
+                    console.TX_channel = 2;
                 }
             }
             catch (Exception ex)

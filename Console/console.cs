@@ -481,10 +481,10 @@ namespace PowerSDR
         private Button btnHidden;
 
 #if(WIN32)
-        const string LimeSDR_version = " BETA YT7PWR 32bit";
+        const string LimeSDR_version = "LimeSDR# v0.2 BETA YT7PWR 32bit";
 #endif
 #if(WIN64)
-        const string LimeSDR_version = " YT7PWR  64bit";
+        const string LimeSDR_version = "LimeSDR# v0.2 BETA YT7PWR 64bit";
 #endif
 
         #region DLL import
@@ -498,7 +498,6 @@ namespace PowerSDR
 
         public bool CalibrationInProgress = false;
         private bool calibration_running = false;
-        //public Mutex display_mutex = new Mutex();
         public AutoResetEvent network_event;
         ManagementEventWatcher eventWatcher;
         public Skin skin;
@@ -552,7 +551,6 @@ namespace PowerSDR
         private Thread sql_update_thread;					// polls the RX signal strength
         private Thread vox_update_thread;					// polls the mic input
         private Thread noise_gate_update_thread;			// polls the mic input during TX
-        private Thread network_thread;                      // thread for net_device
         private Thread wbir_thread;
         private Thread MemoryZap_thread;                    // memory zapping thread
         public About AboutForm;
@@ -698,6 +696,7 @@ namespace PowerSDR
         public int TX_channel = 0;
         public int RX_channel = 0;
         public int SpectrumSize = 4096;
+        public delegate void CrossThreadCallback(string text);
 
         #endregion
 
@@ -7289,7 +7288,7 @@ namespace PowerSDR
 
         private void InitConsole()      // changes yt7pwr
         {
-            this.Text += LimeSDR_version;
+            this.Text = LimeSDR_version;
             WinVer = WindowsVersion.WindowsXP;      // default
             OSInfo = System.Environment.OSVersion;
 
@@ -8276,11 +8275,11 @@ namespace PowerSDR
                         }
 
                         if (s.StartsWith("txtLOSCnew"))
-                            loscFreq = double.Parse(vals[1]);
+                            loscFreq = double.Parse(vals[1].Replace(",", "."), CultureInfo.InvariantCulture);
                         else if (s.StartsWith("txtVFOAnew"))
-                            vfoAFreq = double.Parse(vals[1]);
+                            vfoAFreq = double.Parse(vals[1].Replace(",", "."), CultureInfo.InvariantCulture);
                         else if (s.StartsWith("txtVFOBnew"))
-                            vfoBFreq = double.Parse(vals[1]);
+                            vfoBFreq = double.Parse(vals[1].Replace(",", "."), CultureInfo.InvariantCulture);
                     }
                     else if (s.StartsWith("tb"))
                     {
@@ -12727,7 +12726,7 @@ namespace PowerSDR
             get { return current_model; }
             set
             {
-                double losc_freq = double.Parse(txtLOSCnew.Text);
+                double losc_freq = double.Parse(txtLOSCnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                 Model saved_model = current_model;
                 current_model = value;
                 Display_GDI.CurrentModel = value;
@@ -16570,7 +16569,8 @@ namespace PowerSDR
                                             {
                                                 fixed (float* ptr = &Display_DirectX.new_display_data[0])
                                                     DttSP.GetPanadapter(0, ptr);
-                                                Array.Copy(Display_DirectX.new_display_data, Display_DirectX.new_waterfall_data, SpectrumSize);
+                                                Array.Copy(Display_DirectX.new_display_data, Display_DirectX.new_waterfall_data,
+                                                    SpectrumSize);
                                                 Display_DirectX.WaterfallDataReady = true;
                                             }
                                         }
@@ -17641,82 +17641,183 @@ namespace PowerSDR
         private static HiPerfTimer vox_timer = new HiPerfTimer();
         private void PollPTT()  // changes yt7pwr
         {
-            bool mic_ptt = false;
-            bool keyer_ptt = false;
-            bool tune_ptt = false;
-            bool local_cat_ptt = false;
-            byte loop_dll_ptt = 0;
-            bool MultiPSK_ptt = false;
-            int[] ptt_tmp = new int[1];
-
-            while (PowerOn)
+            try
             {
-                if (!manual_mox && !disable_ptt && !ConsoleClosing)
+                bool mic_ptt = false;
+                bool keyer_ptt = false;
+                bool tune_ptt = false;
+                bool local_cat_ptt = false;
+                byte loop_dll_ptt = 0;
+                bool MultiPSK_ptt = false;
+                int[] ptt_tmp = new int[1];
+                int temperature_check = 0;
+
+                while (PowerOn)
                 {
-                    switch (current_model)
+                    if (!manual_mox && !disable_ptt && !ConsoleClosing)
                     {
-                        case (Model.LimeSDR):
-                            {
-                                //mic_ptt = g6.MOX;
-                            }
-                            break;
-                        default:
-                            {
-                                mic_ptt = Keyer.KeyerPTT;
-                            }
-                            break;
-                    }
-
-                    if (current_model == Model.LimeSDR)
-                    {
-                        keyer_ptt = DttSP.KeyerPlaying();
-                    }
-                    else if (current_model == Model.MiniLimeSDR)
-                    {
-                        //keyer_ptt = (DttSP.KeyerPlaying() || g59.MOX);
-
-                        //if (ExtATU_present)
-                            //tune_ptt = g59.TUNE;
-                    }
-                    else
-                        keyer_ptt = DttSP.KeyerPlaying();
-
-                    bool cw_ptt = (CWSemiBreakInEnabled && keyer_ptt) | Keyer.KeyerPTT | Keyer.MemoryPTT;
-                    bool vox_ptt = Audio.VOXActive;
-
-                    if (PTTBitBangEnabled && serialPTT != null)
-                        local_cat_ptt = serialPTT.isPTT();
-
-                    if (cw_ptt) break_in_timer.Start();
-
-                    if (!chkMOX.Checked)
-                    {
-                        if (tune_ptt && !chkTUN.Checked)
+                        switch (current_model)
                         {
-                            current_ptt_mode = PTTMode.ATU_TUNE;
-                            chkTUN.Checked = true;
-                        }
-                        else if (local_cat_ptt || cat_ptt)
-                        {
-                            current_ptt_mode = PTTMode.CAT;
-                            Keyer.PTTBitBangEnabled = true;
-                            if (chkVFOSplit.Checked)
-                            {
-                                if (current_dsp_mode_subRX == DSPMode.CWL ||
-                                    current_dsp_mode_subRX == DSPMode.CWU)
+                            case (Model.LimeSDR):
                                 {
-                                    chkMOX.Checked = true;
+                                    mic_ptt = limeSDR.device.ReadPTT();
+                                }
+                                break;
+                            default:
+                                {
+                                    mic_ptt = Keyer.KeyerPTT;
+                                }
+                                break;
+                        }
 
-                                    if (!chkMOX.Checked)
+                        if (current_model == Model.LimeSDR)
+                        {
+                            keyer_ptt = DttSP.KeyerPlaying();
+                        }
+                        else if (current_model == Model.MiniLimeSDR)
+                        {
+                            //keyer_ptt = (DttSP.KeyerPlaying() || g59.MOX);
+
+                            //if (ExtATU_present)
+                            //tune_ptt = g59.TUNE;
+                        }
+                        else
+                            keyer_ptt = DttSP.KeyerPlaying();
+
+                        bool cw_ptt = (CWSemiBreakInEnabled && keyer_ptt) | Keyer.KeyerPTT | Keyer.MemoryPTT;
+                        bool vox_ptt = Audio.VOXActive;
+
+                        if (PTTBitBangEnabled && serialPTT != null)
+                            local_cat_ptt = serialPTT.isPTT();
+
+                        if (cw_ptt)
+                            break_in_timer.Start();
+
+                        if (!chkMOX.Checked)
+                        {
+                            if (tune_ptt && !chkTUN.Checked)
+                            {
+                                current_ptt_mode = PTTMode.ATU_TUNE;
+                                chkTUN.Checked = true;
+                            }
+                            else if (local_cat_ptt || cat_ptt)
+                            {
+                                current_ptt_mode = PTTMode.CAT;
+                                Keyer.PTTBitBangEnabled = true;
+                                if (chkVFOSplit.Checked)
+                                {
+                                    if (current_dsp_mode_subRX == DSPMode.CWL ||
+                                        current_dsp_mode_subRX == DSPMode.CWU)
                                     {
-                                        chkPower.Checked = false;
-                                        return;
+                                        chkMOX.Checked = true;
+
+                                        if (!chkMOX.Checked)
+                                        {
+                                            chkPower.Checked = false;
+                                            return;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chkMOX.Checked = true;
+
+                                        if (!chkMOX.Checked)
+                                        {
+                                            chkPower.Checked = false;
+                                            return;
+                                        }
                                     }
                                 }
                                 else
                                 {
-                                    chkMOX.Checked = true;
+                                    if (current_dsp_mode == DSPMode.CWL ||
+                                        current_dsp_mode == DSPMode.CWU)
+                                    {
+                                        chkMOX.Checked = true;
+                                        if (!chkMOX.Checked)
+                                        {
+                                            chkPower.Checked = false;
+                                            return;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chkMOX.Checked = true;
+                                        if (!chkMOX.Checked)
+                                        {
+                                            chkPower.Checked = false;
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                            if (chkVFOSplit.Checked)
+                            {
+                                if ((current_dsp_mode_subRX == DSPMode.CWL ||
+                                    current_dsp_mode_subRX == DSPMode.CWU) && cw_ptt)
+                                {
+                                    if ((Keyer.PrimaryConnPort == "USB" ||
+                                        Keyer.PrimaryConnPort == "NET") &&
+                                        Keyer.SecondaryConnPort == "None" &&
+                                        !cw_semi_break_in_enabled)
+                                    {
+                                        // do nothing
+                                    }
+                                    else
+                                    {
+                                        current_ptt_mode = PTTMode.CW;
+                                        chkMOX.Checked = true;
+                                        if (!chkMOX.Checked)
+                                        {
+                                            chkPower.Checked = false;
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if ((current_dsp_mode == DSPMode.CWL ||
+                                    current_dsp_mode == DSPMode.CWU) && cw_ptt)
+                                {
+                                    if ((Keyer.PrimaryConnPort == "USB" ||
+                                        Keyer.PrimaryConnPort == "NET") &&
+                                        Keyer.SecondaryConnPort == "None" &&
+                                        !cw_semi_break_in_enabled)
+                                    {
+                                        // do nothing
+                                    }
+                                    else
+                                    {
+                                        if (cw_ptt)
+                                            current_ptt_mode = PTTMode.CW;
+                                        else if (mic_ptt)
+                                            current_ptt_mode = PTTMode.MIC;
 
+                                        chkMOX.Checked = true;
+
+                                        if (!chkMOX.Checked)
+                                        {
+                                            chkPower.Checked = false;
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (chkVFOSplit.Checked)
+                            {
+                                if ((current_dsp_mode_subRX == DSPMode.LSB ||
+                                current_dsp_mode_subRX == DSPMode.USB ||
+                                current_dsp_mode_subRX == DSPMode.DSB ||
+                                current_dsp_mode_subRX == DSPMode.AM ||
+                                current_dsp_mode_subRX == DSPMode.SAM ||
+                                current_dsp_mode_subRX == DSPMode.DIGU ||
+                                current_dsp_mode_subRX == DSPMode.DIGL ||
+                                current_dsp_mode_subRX == DSPMode.FMN) && mic_ptt)
+                                {
+                                    current_ptt_mode = PTTMode.MIC;
+                                    chkMOX.Checked = true;
                                     if (!chkMOX.Checked)
                                     {
                                         chkPower.Checked = false;
@@ -17726,18 +17827,16 @@ namespace PowerSDR
                             }
                             else
                             {
-                                if (current_dsp_mode == DSPMode.CWL ||
-                                    current_dsp_mode == DSPMode.CWU)
+                                if ((current_dsp_mode == DSPMode.LSB ||
+                                    current_dsp_mode == DSPMode.USB ||
+                                    current_dsp_mode == DSPMode.DSB ||
+                                    current_dsp_mode == DSPMode.AM ||
+                                    current_dsp_mode == DSPMode.SAM ||
+                                    current_dsp_mode == DSPMode.DIGU ||
+                                    current_dsp_mode == DSPMode.DIGL ||
+                                    current_dsp_mode == DSPMode.FMN) && mic_ptt)
                                 {
-                                    chkMOX.Checked = true;
-                                    if (!chkMOX.Checked)
-                                    {
-                                        chkPower.Checked = false;
-                                        return;
-                                    }
-                                }
-                                else
-                                {
+                                    current_ptt_mode = PTTMode.MIC;
                                     chkMOX.Checked = true;
                                     if (!chkMOX.Checked)
                                     {
@@ -17746,22 +17845,59 @@ namespace PowerSDR
                                     }
                                 }
                             }
-                        }
-                        if (chkVFOSplit.Checked)
-                        {
-                            if ((current_dsp_mode_subRX == DSPMode.CWL ||
-                                current_dsp_mode_subRX == DSPMode.CWU) && cw_ptt)
+
+                            if (chkVFOSplit.Checked)
                             {
-                                if ((Keyer.PrimaryConnPort == "USB" ||
-                                    Keyer.PrimaryConnPort == "NET") &&
-                                    Keyer.SecondaryConnPort == "None" &&
-                                    !cw_semi_break_in_enabled)
+                                if ((current_dsp_mode_subRX == DSPMode.LSB ||
+                                    current_dsp_mode_subRX == DSPMode.USB ||
+                                    current_dsp_mode_subRX == DSPMode.DSB ||
+                                    current_dsp_mode_subRX == DSPMode.AM ||
+                                    current_dsp_mode_subRX == DSPMode.SAM ||
+                                    current_dsp_mode_subRX == DSPMode.DIGU ||
+                                    current_dsp_mode_subRX == DSPMode.DIGL ||
+                                    current_dsp_mode_subRX == DSPMode.FMN) &&
+                                    vox_ptt)
                                 {
-                                    // do nothing
+                                    current_ptt_mode = PTTMode.VOX;
+                                    vox_timer.Start();
+                                    chkMOX.Checked = true;
+                                    if (!chkMOX.Checked)
+                                    {
+                                        chkPower.Checked = false;
+                                        return;
+                                    }
                                 }
-                                else
+                            }
+                            else
+                            {
+                                if ((current_dsp_mode == DSPMode.LSB ||
+                                    current_dsp_mode == DSPMode.USB ||
+                                    current_dsp_mode == DSPMode.DSB ||
+                                    current_dsp_mode == DSPMode.AM ||
+                                    current_dsp_mode == DSPMode.SAM ||
+                                    current_dsp_mode == DSPMode.DIGU ||
+                                    current_dsp_mode == DSPMode.DIGL ||
+                                    current_dsp_mode == DSPMode.FMN) &&
+                                    vox_ptt)
                                 {
-                                    current_ptt_mode = PTTMode.CW;
+                                    current_ptt_mode = PTTMode.VOX;
+                                    vox_timer.Start();
+                                    chkMOX.Checked = true;
+                                    if (!chkMOX.Checked)
+                                    {
+                                        chkPower.Checked = false;
+                                        return;
+                                    }
+                                }
+                            }
+
+                            if (loop_dll_ptt == 1)
+                            {
+                                if (current_dsp_mode == DSPMode.USB ||
+                                    current_dsp_mode == DSPMode.DIGU
+                                    )
+                                {
+                                    current_ptt_mode = PTTMode.LOOP_DLL;
                                     chkMOX.Checked = true;
                                     if (!chkMOX.Checked)
                                     {
@@ -17773,247 +17909,139 @@ namespace PowerSDR
                         }
                         else
                         {
-                            if ((current_dsp_mode == DSPMode.CWL ||
-                                current_dsp_mode == DSPMode.CWU) && cw_ptt)
+                            switch (current_ptt_mode)
                             {
-                                if ((Keyer.PrimaryConnPort == "USB" ||
-                                    Keyer.PrimaryConnPort == "NET") &&
-                                    Keyer.SecondaryConnPort == "None" &&
-                                    !cw_semi_break_in_enabled)
-                                {
-                                    // do nothing
-                                }
-                                else
-                                {
-                                    if (cw_ptt)
-                                        current_ptt_mode = PTTMode.CW;
-                                    else if (mic_ptt)
-                                        current_ptt_mode = PTTMode.MIC;
-                                    chkMOX.Checked = true;
-                                    if (!chkMOX.Checked)
+                                case PTTMode.ATU_TUNE:
+                                    if (!tune_ptt)
+                                        chkTUN.Checked = false;
+                                    break;
+                                case PTTMode.LOOP_DLL:
+                                    if (loop_dll_ptt != 1)
+                                        chkMOX.Checked = false;
+                                    break;
+                                case PTTMode.CAT:
+                                    if (!local_cat_ptt && !cat_ptt)
                                     {
-                                        chkPower.Checked = false;
-                                        return;
+                                        Keyer.PTTBitBangEnabled = false;
+                                        chkMOX.Checked = false;
                                     }
-                                }
-                            }
-                        }
-
-                        if (chkVFOSplit.Checked)
-                        {
-                            if ((current_dsp_mode_subRX == DSPMode.LSB ||
-                            current_dsp_mode_subRX == DSPMode.USB ||
-                            current_dsp_mode_subRX == DSPMode.DSB ||
-                            current_dsp_mode_subRX == DSPMode.AM ||
-                            current_dsp_mode_subRX == DSPMode.SAM ||
-                            current_dsp_mode_subRX == DSPMode.DIGU ||
-                            current_dsp_mode_subRX == DSPMode.DIGL ||
-                            current_dsp_mode_subRX == DSPMode.FMN) && mic_ptt)
-                            {
-                                current_ptt_mode = PTTMode.MIC;
-                                chkMOX.Checked = true;
-                                if (!chkMOX.Checked)
-                                {
-                                    chkPower.Checked = false;
-                                    return;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if ((current_dsp_mode == DSPMode.LSB ||
-                                current_dsp_mode == DSPMode.USB ||
-                                current_dsp_mode == DSPMode.DSB ||
-                                current_dsp_mode == DSPMode.AM ||
-                                current_dsp_mode == DSPMode.SAM ||
-                                current_dsp_mode == DSPMode.DIGU ||
-                                current_dsp_mode == DSPMode.DIGL ||
-                                current_dsp_mode == DSPMode.FMN) && mic_ptt)
-                            {
-                                current_ptt_mode = PTTMode.MIC;
-                                chkMOX.Checked = true;
-                                if (!chkMOX.Checked)
-                                {
-                                    chkPower.Checked = false;
-                                    return;
-                                }
-                            }
-                        }
-
-                        if (chkVFOSplit.Checked)
-                        {
-                            if ((current_dsp_mode_subRX == DSPMode.LSB ||
-                                current_dsp_mode_subRX == DSPMode.USB ||
-                                current_dsp_mode_subRX == DSPMode.DSB ||
-                                current_dsp_mode_subRX == DSPMode.AM ||
-                                current_dsp_mode_subRX == DSPMode.SAM ||
-                                current_dsp_mode_subRX == DSPMode.DIGU ||
-                                current_dsp_mode_subRX == DSPMode.DIGL ||
-                                current_dsp_mode_subRX == DSPMode.FMN) &&
-                                vox_ptt)
-                            {
-                                current_ptt_mode = PTTMode.VOX;
-                                vox_timer.Start();
-                                chkMOX.Checked = true;
-                                if (!chkMOX.Checked)
-                                {
-                                    chkPower.Checked = false;
-                                    return;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if ((current_dsp_mode == DSPMode.LSB ||
-                                current_dsp_mode == DSPMode.USB ||
-                                current_dsp_mode == DSPMode.DSB ||
-                                current_dsp_mode == DSPMode.AM ||
-                                current_dsp_mode == DSPMode.SAM ||
-                                current_dsp_mode == DSPMode.DIGU ||
-                                current_dsp_mode == DSPMode.DIGL ||
-                                current_dsp_mode == DSPMode.FMN) &&
-                                vox_ptt)
-                            {
-                                current_ptt_mode = PTTMode.VOX;
-                                vox_timer.Start();
-                                chkMOX.Checked = true;
-                                if (!chkMOX.Checked)
-                                {
-                                    chkPower.Checked = false;
-                                    return;
-                                }
-                            }
-                        }
-
-                        if (loop_dll_ptt == 1)
-                        {
-                            if (current_dsp_mode == DSPMode.USB ||
-                                current_dsp_mode == DSPMode.DIGU
-                                )
-                            {
-                                current_ptt_mode = PTTMode.LOOP_DLL;
-                                chkMOX.Checked = true;
-                                if (!chkMOX.Checked)
-                                {
-                                    chkPower.Checked = false;
-                                    return;
-                                }
+                                    break;
+                                case PTTMode.MIC:
+                                    if (!mic_ptt)
+                                        chkMOX.Checked = false;
+                                    break;
+                                case PTTMode.CW:
+                                    if (!cw_ptt)
+                                    {
+                                        if (cw_semi_break_in_enabled)
+                                        {
+                                            break_in_timer.Stop();
+                                            if (break_in_timer.DurationMsec > break_in_delay)
+                                            {
+                                                chkMOX.Checked = false;
+                                                if (!CWXForm.running)
+                                                {
+                                                    btnCWX1.Checked = false;
+                                                    btnCWX2.Checked = false;
+                                                    btnCWX3.Checked = false;
+                                                    btnCWX4.Checked = false;
+                                                    btnCWX5.Checked = false;
+                                                    btnCWX6.Checked = false;
+                                                    btnCWX7.Checked = false;
+                                                    btnCWX8.Checked = false;
+                                                    btnCWX9.Checked = false;
+                                                    btnCWX10.Checked = false;
+                                                    btnCWX11.Checked = false;
+                                                    btnCWX12.Checked = false;
+                                                    btnCWX1.BackColor = SystemColors.Control;
+                                                    btnCWX2.BackColor = SystemColors.Control;
+                                                    btnCWX3.BackColor = SystemColors.Control;
+                                                    btnCWX4.BackColor = SystemColors.Control;
+                                                    btnCWX5.BackColor = SystemColors.Control;
+                                                    btnCWX6.BackColor = SystemColors.Control;
+                                                    btnCWX7.BackColor = SystemColors.Control;
+                                                    btnCWX8.BackColor = SystemColors.Control;
+                                                    btnCWX9.BackColor = SystemColors.Control;
+                                                    btnCWX10.BackColor = SystemColors.Control;
+                                                    btnCWX11.BackColor = SystemColors.Control;
+                                                    btnCWX12.BackColor = SystemColors.Control;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            break_in_timer.Stop();
+                                            if (break_in_timer.DurationMsec > 43)
+                                            {
+                                                chkMOX.Checked = false;
+                                                if (!CWXForm.running)
+                                                {
+                                                    btnCWX1.Checked = false;
+                                                    btnCWX2.Checked = false;
+                                                    btnCWX3.Checked = false;
+                                                    btnCWX4.Checked = false;
+                                                    btnCWX5.Checked = false;
+                                                    btnCWX6.Checked = false;
+                                                    btnCWX7.Checked = false;
+                                                    btnCWX8.Checked = false;
+                                                    btnCWX9.Checked = false;
+                                                    btnCWX10.Checked = false;
+                                                    btnCWX11.Checked = false;
+                                                    btnCWX12.Checked = false;
+                                                    btnCWX1.BackColor = SystemColors.Control;
+                                                    btnCWX2.BackColor = SystemColors.Control;
+                                                    btnCWX3.BackColor = SystemColors.Control;
+                                                    btnCWX4.BackColor = SystemColors.Control;
+                                                    btnCWX5.BackColor = SystemColors.Control;
+                                                    btnCWX6.BackColor = SystemColors.Control;
+                                                    btnCWX7.BackColor = SystemColors.Control;
+                                                    btnCWX8.BackColor = SystemColors.Control;
+                                                    btnCWX9.BackColor = SystemColors.Control;
+                                                    btnCWX10.BackColor = SystemColors.Control;
+                                                    btnCWX11.BackColor = SystemColors.Control;
+                                                    btnCWX12.BackColor = SystemColors.Control;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case PTTMode.VOX:
+                                    if (!vox_ptt)
+                                    {
+                                        vox_timer.Stop();
+                                        if (vox_timer.DurationMsec > vox_hang_time)
+                                            chkMOX.Checked = false;
+                                    }
+                                    else vox_timer.Start();
+                                    break;
                             }
                         }
                     }
-                    else
+
+                    Thread.Sleep(1);
+                    temperature_check++;
+
+                    if (temperature_check >= 1000)
                     {
-                        switch (current_ptt_mode)
-                        {
-                            case PTTMode.ATU_TUNE:
-                                if (!tune_ptt)
-                                    chkTUN.Checked = false;
-                                break;
-                            case PTTMode.LOOP_DLL:
-                                if (loop_dll_ptt != 1)
-                                    chkMOX.Checked = false;
-                                break;
-                            case PTTMode.CAT:
-                                if (!local_cat_ptt && !cat_ptt)
-                                {
-                                    Keyer.PTTBitBangEnabled = false;
-                                    chkMOX.Checked = false;
-                                }
-                                break;
-                            case PTTMode.MIC:
-                                if (!mic_ptt)
-                                    chkMOX.Checked = false;
-                                break;
-                            case PTTMode.CW:
-                                if (!cw_ptt)
-                                {
-                                    if (cw_semi_break_in_enabled)
-                                    {
-                                        break_in_timer.Stop();
-                                        if (break_in_timer.DurationMsec > break_in_delay)
-                                        {
-                                            chkMOX.Checked = false;
-                                            if (!CWXForm.running)
-                                            {
-                                                btnCWX1.Checked = false;
-                                                btnCWX2.Checked = false;
-                                                btnCWX3.Checked = false;
-                                                btnCWX4.Checked = false;
-                                                btnCWX5.Checked = false;
-                                                btnCWX6.Checked = false;
-                                                btnCWX7.Checked = false;
-                                                btnCWX8.Checked = false;
-                                                btnCWX9.Checked = false;
-                                                btnCWX10.Checked = false;
-                                                btnCWX11.Checked = false;
-                                                btnCWX12.Checked = false;
-                                                btnCWX1.BackColor = SystemColors.Control;
-                                                btnCWX2.BackColor = SystemColors.Control;
-                                                btnCWX3.BackColor = SystemColors.Control;
-                                                btnCWX4.BackColor = SystemColors.Control;
-                                                btnCWX5.BackColor = SystemColors.Control;
-                                                btnCWX6.BackColor = SystemColors.Control;
-                                                btnCWX7.BackColor = SystemColors.Control;
-                                                btnCWX8.BackColor = SystemColors.Control;
-                                                btnCWX9.BackColor = SystemColors.Control;
-                                                btnCWX10.BackColor = SystemColors.Control;
-                                                btnCWX11.BackColor = SystemColors.Control;
-                                                btnCWX12.BackColor = SystemColors.Control;
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        break_in_timer.Stop();
-                                        if (break_in_timer.DurationMsec > 43)
-                                        {
-                                            chkMOX.Checked = false;
-                                            if (!CWXForm.running)
-                                            {
-                                                btnCWX1.Checked = false;
-                                                btnCWX2.Checked = false;
-                                                btnCWX3.Checked = false;
-                                                btnCWX4.Checked = false;
-                                                btnCWX5.Checked = false;
-                                                btnCWX6.Checked = false;
-                                                btnCWX7.Checked = false;
-                                                btnCWX8.Checked = false;
-                                                btnCWX9.Checked = false;
-                                                btnCWX10.Checked = false;
-                                                btnCWX11.Checked = false;
-                                                btnCWX12.Checked = false;
-                                                btnCWX1.BackColor = SystemColors.Control;
-                                                btnCWX2.BackColor = SystemColors.Control;
-                                                btnCWX3.BackColor = SystemColors.Control;
-                                                btnCWX4.BackColor = SystemColors.Control;
-                                                btnCWX5.BackColor = SystemColors.Control;
-                                                btnCWX6.BackColor = SystemColors.Control;
-                                                btnCWX7.BackColor = SystemColors.Control;
-                                                btnCWX8.BackColor = SystemColors.Control;
-                                                btnCWX9.BackColor = SystemColors.Control;
-                                                btnCWX10.BackColor = SystemColors.Control;
-                                                btnCWX11.BackColor = SystemColors.Control;
-                                                btnCWX12.BackColor = SystemColors.Control;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;
-                            case PTTMode.VOX:
-                                if (!vox_ptt)
-                                {
-                                    vox_timer.Stop();
-                                    if (vox_timer.DurationMsec > vox_hang_time)
-                                        chkMOX.Checked = false;
-                                }
-                                else vox_timer.Start();
-                                break;
-                        }
+                        temperature_check = 0;
+                        double temperature = limeSDR.device.ReadTemperature();
+                        string Text = LimeSDR_version + "  LMS7002 temperature: " + temperature.ToString("f1") + "C";
+                        this.Invoke(new CrossThreadCallback(Show_LimeSDR_temperature), Text);
                     }
                 }
-
-                Thread.Sleep(1);
             }
+            catch(Exception ex)
+            {
+                Debug.Write(ex.ToString());
+            }
+        }
+
+        void Show_LimeSDR_temperature(string text)
+        {
+            if(this.InvokeRequired)
+                this.BeginInvoke(new CrossThreadCallback(Show_LimeSDR_temperature), text);
+
+            this.Text = text;
         }
 
         private double SWRScale(double ref_pow)
@@ -18949,85 +18977,85 @@ namespace PowerSDR
 
                 if (e.KeyCode == key_tune_up_1)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq += 1.0;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_down_1)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq -= 1.0;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_up_2)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq += 0.1;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_down_2)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq -= 0.1;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_up_3)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq += 0.01;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_down_3)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq -= 0.01;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_up_4)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq += 0.001;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_down_4)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq -= 0.001;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_up_5)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq += 0.0001;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_down_5)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq -= 0.0001;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_up_6)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq += 0.00001;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_down_6)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq -= 0.00001;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_up_7)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq += 0.000001;
                     VFOAFreq = freq;
                 }
                 else if (e.KeyCode == key_tune_down_7)
                 {
-                    double freq = Double.Parse(txtVFOAnew.Text);
+                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                     freq -= 0.000001;
                     VFOAFreq = freq;
                 }
@@ -19551,9 +19579,6 @@ namespace PowerSDR
                     meter_data_ready = false;
 
                     Display_GDI.DataReady = false;
-
-                    if (Display_GDI.display_data_mutex == null)
-                        Display_GDI.display_data_mutex = new Mutex();
 #if(DirectX)
                     Display_DirectX.DataReady = false;
 #endif
@@ -19690,18 +19715,10 @@ namespace PowerSDR
                         vox_update_thread.Start();
                     }
 
-                    if (poll_ptt_thread == null || !poll_ptt_thread.IsAlive)
-                    {
-                        poll_ptt_thread = new Thread(new ThreadStart(PollPTT));
-                        poll_ptt_thread.Name = "Poll PTT Thread";
-                        poll_ptt_thread.Priority = ThreadPriority.Normal;
-                        poll_ptt_thread.IsBackground = true;
-                        poll_ptt_thread.Start();
-                    }
-
                     pause_multimeter_thread = false;
 
                     wbir_run = true;
+
                     if (wbir_thread == null || !wbir_thread.IsAlive)
                     {
                         wbir_thread = new Thread(new ThreadStart(WBIR_thread));
@@ -19738,8 +19755,8 @@ namespace PowerSDR
                             //SetupForm.comboLimeSDR_SampleRate.Text = (string)sample_rate1.ToString();
 
                             if (limeSDR.Start(Audio.LimeSDR_Callback_RX0, int.Parse(SetupForm.comboLimeSDR_BufferSize.Text), RX_antenna,
-                                TX_antenna, RX_channel, TX_channel, double.Parse(SetupForm.comboLimeSDR_LPFBW.Text.Replace("MHz", "")),
-                                (double)RXsample_rate, (double)TXsample_rate))
+                                TX_antenna, RX_channel, TX_channel, double.Parse(SetupForm.comboLimeSDR_LPFBW.Text.Replace("MHz", ""),
+                                CultureInfo.InvariantCulture), (double)RXsample_rate, (double)TXsample_rate))
                             {
                                 CurrentBandFilter = current_band_filter;
                                 btnUSB.BackColor = Color.Green;
@@ -19784,10 +19801,21 @@ namespace PowerSDR
                     }
 
                     pause_DisplayThread = false;
+
+                    if (poll_ptt_thread == null || !poll_ptt_thread.IsAlive)
+                    {
+                        poll_ptt_thread = new Thread(new ThreadStart(PollPTT));
+                        poll_ptt_thread.Name = "Poll PTT Thread";
+                        poll_ptt_thread.Priority = ThreadPriority.Normal;
+                        poll_ptt_thread.IsBackground = true;
+                        poll_ptt_thread.Start();
+                    }
                 }
                 ////////////////////////////////////// OFF /////////////////////////////////////////////////////////
                 else
                 {
+                    PowerOn = false;
+
                     if (Audio.wave_record)
                     {
                         chkRecordWav.Checked = false;
@@ -19813,7 +19841,6 @@ namespace PowerSDR
                             break;
                     }
 
-                    PowerOn = false;
                     Audio.VAC_callback_return = 2;      // abort VAC callback
                     Audio.callback_return = 2;          // abort audio callback
                     //Thread.Sleep(100);
@@ -19860,14 +19887,6 @@ namespace PowerSDR
                         chkRecordWav.Checked = false;
 
                     Audio.StopAudio1();
-
-                    Display_GDI.display_data_mutex.Close();
-                    Display_GDI.display_data_mutex = null;
-
-                    if (network_thread != null)
-                        network_thread.Abort();
-
-                    network_thread = null;
 
                     //if (multimeter_thread != null)
                     //multimeter_thread.Abort();
@@ -22376,7 +22395,7 @@ namespace PowerSDR
                             if (!vfob_split_extended && vfo_sinc && chkEnableSubRX.Checked &&
                                 (freq >= min_freq || freq <= max_freq))
                             {
-                                freq = double.Parse(txtVFOBnew.Text);
+                                freq = double.Parse(txtVFOBnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                                 freq += mult * numberToMove;
                                 if (freq > max_freq)
                                     freq = max_freq;
@@ -22391,7 +22410,7 @@ namespace PowerSDR
                             else if (vfob_split_extended && vfo_sinc &&
                                 chkEnableSubRX.Checked)
                             {
-                                freq = double.Parse(txtVFOBnew.Text);
+                                freq = double.Parse(txtVFOBnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                                 freq += mult * numberToMove;
                                 vfob_lock = true;
                                 VFOBFreq = freq;
@@ -22718,7 +22737,7 @@ namespace PowerSDR
                                 }
                                 else
                                 {
-                                    double freq = Double.Parse(txtVFOAnew.Text);
+                                    double freq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                                     double mult = wheel_tune_list[wheel_tune_index];
                                     if (shift_down && mult >= 0.000009) mult /= 10;
 
@@ -24277,7 +24296,7 @@ namespace PowerSDR
                 {
                     memory = false;
                     vfoA_drag = false;
-                    VFOAFreq = Double.Parse(txtVFOAnew.Text);
+                    VFOAFreq = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                 }
                 if (vfob_drag == true && chkEnableSubRX.Checked)
                 {
@@ -30031,7 +30050,7 @@ namespace PowerSDR
                             x += vfoB_char_width;
                         }
                         else
-                            x -= vfoB_char_space;
+                            x -= Math.Abs(vfoB_char_space);
 
                         digit_index++;
                     }
@@ -30096,7 +30115,7 @@ namespace PowerSDR
                         x += losc_char_width;
                     }
                     else
-                        x -= losc_char_space;
+                        x -= Math.Abs(losc_char_space);
 
                     digit_index++;
                 }
@@ -30194,7 +30213,8 @@ namespace PowerSDR
                 }
                 else
                 {
-                    double tmp_vfoA = Double.Parse(txtVFOAnew.Text);
+                    double tmp_vfoA = Double.Parse(txtVFOAnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
+
                     if (tmp_vfoA > 0.0 && tmp_vfoA < 500000.0)
                     {
                         if (tmp_vfoA >= MinFreq && tmp_vfoA <= MaxFreq)
@@ -30222,7 +30242,7 @@ namespace PowerSDR
                     return;
                 }
 
-                double freq = Double.Parse(txtVFOBnew.Text);
+                double freq = Double.Parse(txtVFOBnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                 if (freq > MinFreq && freq < MaxFreq)
                     VFOBFreq = freq;
                 else
@@ -30246,11 +30266,11 @@ namespace PowerSDR
                 if (txtLOSCnew.Text == "." || txtLOSCnew.Text == "")
                 {
                     LOSCFreq = saved_losc_freq;
-                    loscfreq = Double.Parse(txtLOSCnew.Text);
+                    loscfreq = Double.Parse(txtLOSCnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
                 }
                 else
                 {
-                    loscfreq = Double.Parse(txtLOSCnew.Text);
+                    loscfreq = Double.Parse(txtLOSCnew.Text.Replace(",", "."), CultureInfo.InvariantCulture);
 
                     if (loscfreq > 0.0 && loscfreq < 500000.0)
                         LOSCFreq = loscfreq;

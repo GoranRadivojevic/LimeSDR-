@@ -1,0 +1,42 @@
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.About.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.Console.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.cwedit.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.CWX.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.EQForm.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.FilterForm.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\System.Windows.Forms.ButtonTS.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.Progress.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.Properties.Resources.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.Setup.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\Splash_Screen.Splash.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.WaveControl.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.WaveOptions.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.ClusterSetup.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.DebugForm.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.Invoke.SMeter2.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.Invoke.SMeter1.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.VoiceMessages.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.XTRV.resources
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.csproj.GenerateResource.cache
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.csproj.CoreCompileInputs.cache
+C:\bin\Debug\LimeSDR#.exe.config
+C:\bin\Debug\LimeSDR#.exe.manifest
+C:\bin\Debug\LimeSDR#.application
+C:\bin\Debug\LimeSDR#.exe
+C:\bin\Debug\LimeSDR#.pdb
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\LimeSDR#.exe.manifest
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\LimeSDR#.application
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.csproj.CopyComplete
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\LimeSDR#.exe
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\LimeSDR#.pdb
+C:\Projekti\LimeSDR--master\bin\Debug\LimeSDR#.exe.config
+C:\Projekti\LimeSDR--master\bin\Debug\LimeSDR#.exe.manifest
+C:\Projekti\LimeSDR--master\bin\Debug\LimeSDR#.application
+C:\Projekti\LimeSDR--master\bin\Debug\LimeSDR#.exe
+C:\Projekti\LimeSDR--master\bin\Debug\LimeSDR#.pdb
+C:\Projekti\LimeSDR--master\bin\Debug x64\LimeSDR#.exe.config
+C:\Projekti\LimeSDR--master\bin\Debug x64\LimeSDR#.exe.manifest
+C:\Projekti\LimeSDR--master\bin\Debug x64\LimeSDR#.application
+C:\Projekti\LimeSDR--master\bin\Debug x64\LimeSDR#.exe
+C:\Projekti\LimeSDR--master\bin\Debug x64\LimeSDR#.pdb
+C:\Projekti\LimeSDR--master\Console\obj\x86\Debug\PowerSDR.csprojResolveAssemblyReference.cache

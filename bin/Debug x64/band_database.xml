@@ -1,0 +1,7033 @@
+<?xml version="1.0" standalone="yes"?>
+<Data>
+  <xs:schema id="Data" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="Data" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="IARU1BandText">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Low" type="xs:double" minOccurs="0" />
+                <xs:element name="High" type="xs:double" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="TX" type="xs:boolean" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="IARU2BandText">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Low" type="xs:double" minOccurs="0" />
+                <xs:element name="High" type="xs:double" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="TX" type="xs:boolean" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="IARU3BandText">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Low" type="xs:double" minOccurs="0" />
+                <xs:element name="High" type="xs:double" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="TX" type="xs:boolean" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="BandLimits">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Low" type="xs:double" minOccurs="0" />
+                <xs:element name="High" type="xs:double" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="LimeSDRBandFilters">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Low" type="xs:double" minOccurs="0" />
+                <xs:element name="High" type="xs:double" minOccurs="0" />
+                <xs:element name="Filter" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <IARU1BandText>
+    <Low>0.1357</Low>
+    <High>0.135999</High>
+    <Name>Trans atlantic window</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>0.136</Low>
+    <High>0.137399</High>
+    <Name>CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>0.1374</Low>
+    <High>0.137599</High>
+    <Name>Digital modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>0.1376</Low>
+    <High>0.1378</High>
+    <Name>Very slow telegraphy</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>0.415</Low>
+    <High>0.524999</High>
+    <Name>600m band</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.8</Low>
+    <High>1.809999</High>
+    <Name>160M CW/Digital Modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.81</Low>
+    <High>1.81</High>
+    <Name>160M CW QRP</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.810001</Low>
+    <High>1.836599</High>
+    <Name>160M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.8366</Low>
+    <High>1.8366</High>
+    <Name>160M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.836601</Low>
+    <High>1.837999</High>
+    <Name>160M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.838</Low>
+    <High>1.838</High>
+    <Name>160M JT65HF</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.838001</Low>
+    <High>1.842999</High>
+    <Name>160M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.843</Low>
+    <High>1.909999</High>
+    <Name>160M SSB/SSTV/Wide Band</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.91</Low>
+    <High>1.91</High>
+    <Name>160M SSB QRP</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.910001</Low>
+    <High>1.994999</High>
+    <Name>160M SSB/SSTV/Wide Band</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1.995</Low>
+    <High>1.999999</High>
+    <Name>160M Experimental</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.5</Low>
+    <High>3.524999</High>
+    <Name>80M Extra CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.525</Low>
+    <High>3.575999</High>
+    <Name>80M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.576</Low>
+    <High>3.576</High>
+    <Name>80M JT65HF</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.576001</Low>
+    <High>3.579999</High>
+    <Name>80M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.58</Low>
+    <High>3.589999</High>
+    <Name>80M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.59</Low>
+    <High>3.59</High>
+    <Name>80M RTTY DX</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.590001</Low>
+    <High>3.592599</High>
+    <Name>80M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.5926</Low>
+    <High>3.5926</High>
+    <Name>80M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.592601</Low>
+    <High>3.599999</High>
+    <Name>80M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.6</Low>
+    <High>3.699999</High>
+    <Name>75M Extra SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.7</Low>
+    <High>3.789999</High>
+    <Name>75M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.79</Low>
+    <High>3.799999</High>
+    <Name>75M Ext/Adv DX Window</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.8</Low>
+    <High>3.844999</High>
+    <Name>75M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.845</Low>
+    <High>3.845</High>
+    <Name>75M SSTV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.845001</Low>
+    <High>3.884999</High>
+    <Name>75M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.885</Low>
+    <High>3.885</High>
+    <Name>75M AM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.885001</Low>
+    <High>3.999999</High>
+    <Name>75M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5.2872</Low>
+    <High>5.2872</High>
+    <Name>60M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5.3305</Low>
+    <High>5.3305</High>
+    <Name>60M Channel 1</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5.3465</Low>
+    <High>5.3465</High>
+    <Name>60M Channel 2</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5.357</Low>
+    <High>5.357</High>
+    <Name>60M Channel 3</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5.3715</Low>
+    <High>5.3715</High>
+    <Name>60M Channel 4</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5.4035</Low>
+    <High>5.4035</High>
+    <Name>60M Channel 5</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7</Low>
+    <High>7.024999</High>
+    <Name>40M Extra CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.025</Low>
+    <High>7.038599</High>
+    <Name>40M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.0386</Low>
+    <High>7.0386</High>
+    <Name>40M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.038601</Low>
+    <High>7.039999</High>
+    <Name>40M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.04</Low>
+    <High>7.04</High>
+    <Name>40M RTTY DX</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.040001</Low>
+    <High>7.075999</High>
+    <Name>40M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.076</Low>
+    <High>7.076</High>
+    <Name>40M JT65HF</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.076001</Low>
+    <High>7.099999</High>
+    <Name>40M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.1</Low>
+    <High>7.124999</High>
+    <Name>40M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.125</Low>
+    <High>7.170999</High>
+    <Name>40M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.171</Low>
+    <High>7.171</High>
+    <Name>40M SSTV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.171001</Low>
+    <High>7.174999</High>
+    <Name>40M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.175</Low>
+    <High>7.289999</High>
+    <Name>40M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.29</Low>
+    <High>7.29</High>
+    <Name>40M AM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.290001</Low>
+    <High>7.299999</High>
+    <Name>40M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>10.1</Low>
+    <High>10.129999</High>
+    <Name>30M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>10.13</Low>
+    <High>10.138699</High>
+    <Name>30M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>10.1387</Low>
+    <High>10.1387</High>
+    <Name>30M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>10.138701</Low>
+    <High>10.139999</High>
+    <Name>30M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>10.14</Low>
+    <High>10.149999</High>
+    <Name>30M Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14</Low>
+    <High>14.024999</High>
+    <Name>20M Extra CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.025</Low>
+    <High>14.069999</High>
+    <Name>20M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.07</Low>
+    <High>14.07</High>
+    <Name>20M PSK</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.070001</Low>
+    <High>14.075999</High>
+    <Name>20M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.076</Low>
+    <High>14.076</High>
+    <Name>20M JT65HF</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.076001</Low>
+    <High>14.094999</High>
+    <Name>20M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.095</Low>
+    <High>14.095599</High>
+    <Name>20M Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.0956</Low>
+    <High>14.0956</High>
+    <Name>20M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.095601</Low>
+    <High>14.099499</High>
+    <Name>20M Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.0995</Low>
+    <High>14.099999</High>
+    <Name>20M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.1</Low>
+    <High>14.1</High>
+    <Name>20M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.100001</Low>
+    <High>14.100499</High>
+    <Name>20M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.1005</Low>
+    <High>14.111999</High>
+    <Name>20M Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.112</Low>
+    <High>14.149999</High>
+    <Name>20M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.15</Low>
+    <High>14.174999</High>
+    <Name>20M Extra SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.175</Low>
+    <High>14.224999</High>
+    <Name>20M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.225</Low>
+    <High>14.229999</High>
+    <Name>20M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.23</Low>
+    <High>14.23</High>
+    <Name>20M SSTV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.230001</Low>
+    <High>14.285999</High>
+    <Name>20M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.286</Low>
+    <High>14.286</High>
+    <Name>20M AM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>14.286001</Low>
+    <High>14.349999</High>
+    <Name>20M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>18.068</Low>
+    <High>18.099999</High>
+    <Name>17M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>18.1</Low>
+    <High>18.104599</High>
+    <Name>17M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>18.1046</Low>
+    <High>18.1046</High>
+    <Name>17M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>18.104601</Low>
+    <High>18.104999</High>
+    <Name>17M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>18.105</Low>
+    <High>18.109999</High>
+    <Name>17M Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>18.11</Low>
+    <High>18.11</High>
+    <Name>17M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>18.110001</Low>
+    <High>18.167999</High>
+    <Name>17M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21</Low>
+    <High>21.024999</High>
+    <Name>15M Extra CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.025</Low>
+    <High>21.069999</High>
+    <Name>15M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.07</Low>
+    <High>21.07</High>
+    <Name>15M PSK</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.070001</Low>
+    <High>21.075999</High>
+    <Name>15M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.076</Low>
+    <High>21.076</High>
+    <Name>15M JT65HF</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.076001</Low>
+    <High>21.094599</High>
+    <Name>15M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.0946</Low>
+    <High>21.0946</High>
+    <Name>15M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.094601</Low>
+    <High>21.099999</High>
+    <Name>15M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.1</Low>
+    <High>21.109999</High>
+    <Name>15M Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.11</Low>
+    <High>21.149999</High>
+    <Name>15M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.15</Low>
+    <High>21.15</High>
+    <Name>15M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.150001</Low>
+    <High>21.199999</High>
+    <Name>15M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.2</Low>
+    <High>21.224999</High>
+    <Name>15M Extra SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.225</Low>
+    <High>21.274999</High>
+    <Name>15M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.275</Low>
+    <High>21.339999</High>
+    <Name>15M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.34</Low>
+    <High>21.34</High>
+    <Name>15M SSTV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.340001</Low>
+    <High>21.449999</High>
+    <Name>15M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24.89</Low>
+    <High>24.919999</High>
+    <Name>12M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24.92</Low>
+    <High>24.924599</High>
+    <Name>12M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24.9246</Low>
+    <High>24.9246</High>
+    <Name>12M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24.924601</Low>
+    <High>24.924999</High>
+    <Name>12M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24.925</Low>
+    <High>24.929999</High>
+    <Name>12M Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24.93</Low>
+    <High>24.93</High>
+    <Name>12M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24.930001</Low>
+    <High>24.989999</High>
+    <Name>12M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28</Low>
+    <High>28.069999</High>
+    <Name>10M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.07</Low>
+    <High>28.07</High>
+    <Name>10M PSK</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.070001</Low>
+    <High>28.075999</High>
+    <Name>10M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.076</Low>
+    <High>28.076</High>
+    <Name>10M JT65HF</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.076001</Low>
+    <High>28.124599</High>
+    <Name>10M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.1246</Low>
+    <High>28.1246</High>
+    <Name>10M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.124601</Low>
+    <High>28.149999</High>
+    <Name>10M RTTY</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.15</Low>
+    <High>28.199999</High>
+    <Name>10M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.2</Low>
+    <High>28.2</High>
+    <Name>10M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.200001</Low>
+    <High>28.299999</High>
+    <Name>10M Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.3</Low>
+    <High>28.679999</High>
+    <Name>10M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.68</Low>
+    <High>28.68</High>
+    <Name>10M SSTV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>28.680001</Low>
+    <High>28.999999</High>
+    <Name>10M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>29</Low>
+    <High>29.199999</High>
+    <Name>10M AM</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>29.2</Low>
+    <High>29.299999</High>
+    <Name>10M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>29.3</Low>
+    <High>29.509999</High>
+    <Name>10M Satellite Downlinks</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>29.51</Low>
+    <High>29.519999</High>
+    <Name>10M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>29.52</Low>
+    <High>29.589999</High>
+    <Name>10M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>29.59</Low>
+    <High>29.599999</High>
+    <Name>10M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>29.6</Low>
+    <High>29.6</High>
+    <Name>10M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>29.600001</Low>
+    <High>29.609999</High>
+    <Name>10M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>29.61</Low>
+    <High>29.699999</High>
+    <Name>10M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50</Low>
+    <High>50.059999</High>
+    <Name>6M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.06</Low>
+    <High>50.079999</High>
+    <Name>6M Beacon Sub-Band</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.08</Low>
+    <High>50.099999</High>
+    <Name>6M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.1</Low>
+    <High>50.124999</High>
+    <Name>6M DX Window</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.125</Low>
+    <High>50.125</High>
+    <Name>6M Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.125001</Low>
+    <High>50.292999</High>
+    <Name>6M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.293</Low>
+    <High>50.293</High>
+    <Name>6M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.293001</Low>
+    <High>50.299999</High>
+    <Name>6M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.3</Low>
+    <High>50.599999</High>
+    <Name>6M All Modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.6</Low>
+    <High>50.619999</High>
+    <Name>6M Non Voice</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.62</Low>
+    <High>50.62</High>
+    <Name>6M Digital Packet Calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.620001</Low>
+    <High>50.799999</High>
+    <Name>6M Non Voice</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>50.8</Low>
+    <High>50.999999</High>
+    <Name>6M RC</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>51</Low>
+    <High>51.099999</High>
+    <Name>6M Pacific DX Window</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>51.1</Low>
+    <High>51.119999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>51.12</Low>
+    <High>51.179999</High>
+    <Name>6M Digital Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>51.18</Low>
+    <High>51.479999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>51.48</Low>
+    <High>51.619999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>51.62</Low>
+    <High>51.679999</High>
+    <Name>6M Digital Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>51.68</Low>
+    <High>51.979999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>51.98</Low>
+    <High>51.999999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52</Low>
+    <High>52.019999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.02</Low>
+    <High>52.02</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.020001</Low>
+    <High>52.039999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.04</Low>
+    <High>52.04</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.040001</Low>
+    <High>52.479999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.48</Low>
+    <High>52.499999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.5</Low>
+    <High>52.524999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.525</Low>
+    <High>52.525</High>
+    <Name>6M Primary FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.525001</Low>
+    <High>52.539999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.54</Low>
+    <High>52.54</High>
+    <Name>6M Secondary FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.540001</Low>
+    <High>52.979999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>52.98</Low>
+    <High>52.999999</High>
+    <Name>6M Deadbands</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53</Low>
+    <High>53</High>
+    <Name>6M Remote Base FM Spx</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.000001</Low>
+    <High>53.019999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.02</Low>
+    <High>53.02</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.020001</Low>
+    <High>53.479999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.48</Low>
+    <High>53.499999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.5</Low>
+    <High>53.519999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.52</Low>
+    <High>53.52</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.520001</Low>
+    <High>53.899999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.9</Low>
+    <High>53.9</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.90001</Low>
+    <High>53.979999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>53.98</Low>
+    <High>53.999999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70</Low>
+    <High>70.089999</High>
+    <Name>4M CW Telegraphy</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.09</Low>
+    <High>70.090499</High>
+    <Name>4M CW/Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.0905</Low>
+    <High>70.091499</High>
+    <Name>4M WSPR beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.0915</Low>
+    <High>70.099999</High>
+    <Name>4M CW/Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.1</Low>
+    <High>70.184999</High>
+    <Name>4M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.185</Low>
+    <High>70.199999</High>
+    <Name>4M Cross band calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.2</Low>
+    <High>70.249999</High>
+    <Name>4M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.25</Low>
+    <High>70.25</High>
+    <Name>4M MS calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.250001</Low>
+    <High>70.259999</High>
+    <Name>4M All modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.26</Low>
+    <High>70.26</High>
+    <Name>4M AM/FM calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.260001</Low>
+    <High>70.269999</High>
+    <Name>4M All modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.27</Low>
+    <High>70.27</High>
+    <Name>4M MGM activity centre</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.270001</Low>
+    <High>70.299999</High>
+    <Name>4M All modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.3</Low>
+    <High>70.3</High>
+    <Name>4M RTTY/FAX</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.300001</Low>
+    <High>70.311499</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.3125</Low>
+    <High>70.3125</High>
+    <Name>4M Digital</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.312501</Low>
+    <High>70.324999</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.325</Low>
+    <High>70.325</High>
+    <Name>4M Digital</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.322501</Low>
+    <High>70.449999</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.45</Low>
+    <High>70.45</High>
+    <Name>4M FM calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.450001</Low>
+    <High>70.487499</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.4875</Low>
+    <High>70.4875</High>
+    <Name>4M Digital</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>70.487501</Low>
+    <High>70.499999</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144</Low>
+    <High>144.099999</High>
+    <Name>2M CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.1</Low>
+    <High>144.199999</High>
+    <Name>2M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.2</Low>
+    <High>144.2</High>
+    <Name>2M MS Calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.200001</Low>
+    <High>144.274999</High>
+    <Name>2M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.275</Low>
+    <High>144.299999</High>
+    <Name>2M SSB Center</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.3</Low>
+    <High>144.399999</High>
+    <Name>2M SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.4</Low>
+    <High>144.487999</High>
+    <Name>2M Satellite</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.488</Low>
+    <High>144.488</High>
+    <Name>2M WSPR</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.488001</Low>
+    <High>144.499999</High>
+    <Name>2M Satellite</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.5</Low>
+    <High>144.599999</High>
+    <Name>2M Linear Translator Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.6</Low>
+    <High>144.899999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>144.9</Low>
+    <High>145.199999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>145.2</Low>
+    <High>145.499999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>145.5</Low>
+    <High>145.799999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>145.8</Low>
+    <High>145.999999</High>
+    <Name>2M Satellite</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>146</Low>
+    <High>146.399999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>146.4</Low>
+    <High>146.609999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>146.61</Low>
+    <High>147.389999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>147.39</Low>
+    <High>147.599999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>147.6</Low>
+    <High>147.999999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>222</Low>
+    <High>222.024999</High>
+    <Name>1.25M EME/Weak Signal</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>222.025</Low>
+    <High>222.049999</High>
+    <Name>1.25M Weak Signal</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>222.05</Low>
+    <High>222.059999</High>
+    <Name>1.25M Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>222.06</Low>
+    <High>222.099999</High>
+    <Name>1.25M Weak Signal</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>222.1</Low>
+    <High>222.1</High>
+    <Name>1.25M SSB/CW Calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>222.100001</Low>
+    <High>222.149999</High>
+    <Name>1.25M Weak Signal CW/SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>222.15</Low>
+    <High>222.249999</High>
+    <Name>1.25M Local Option</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>222.25</Low>
+    <High>223.38</High>
+    <Name>1.25M FM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>222.380001</Low>
+    <High>223.399999</High>
+    <Name>1.25M General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>223.4</Low>
+    <High>223.519999</High>
+    <Name>1.25M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>223.52</Low>
+    <High>223.639999</High>
+    <Name>1.25M Digital/Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>223.64</Low>
+    <High>223.7</High>
+    <Name>1.25M Links/Control</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>223.700001</Low>
+    <High>223.709999</High>
+    <Name>1.25M General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>223.71</Low>
+    <High>223.849999</High>
+    <Name>1.25M Local Option</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>223.85</Low>
+    <High>224.98</High>
+    <Name>1.25M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>420</Low>
+    <High>425.999999</High>
+    <Name>70CM ATV Repeater</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>426</Low>
+    <High>431.999999</High>
+    <Name>70CM ATV Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>432</Low>
+    <High>432.069999</High>
+    <Name>70CM EME</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>432.07</Low>
+    <High>432.099999</High>
+    <Name>70CM Weak Signal CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>432.1</Low>
+    <High>432.1</High>
+    <Name>70CM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>432.100001</Low>
+    <High>432.299999</High>
+    <Name>70CM Mixed Mode Weak Signal</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>432.3</Low>
+    <High>432.399999</High>
+    <Name>70CM Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>432.4</Low>
+    <High>432.999999</High>
+    <Name>70CM Mixed Mode Weak Signal</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>433</Low>
+    <High>434.999999</High>
+    <Name>70CM Auxillary/Repeater Links</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>435</Low>
+    <High>437.999999</High>
+    <Name>70CM Satellite Only</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>438</Low>
+    <High>441.999999</High>
+    <Name>70CM ATV Repeater</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>442</Low>
+    <High>444.999999</High>
+    <Name>70CM Local Repeaters</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>445</Low>
+    <High>445.999999</High>
+    <Name>70CM Local Option</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>446</Low>
+    <High>446</High>
+    <Name>70CM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>446.000001</Low>
+    <High>446.999999</High>
+    <Name>70CM Local Option</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>447</Low>
+    <High>450</High>
+    <Name>70CM Local Repeaters</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>902</Low>
+    <High>902.099999</High>
+    <Name>33CM Weak Signal SSTV/FAX/ACSSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>902.1</Low>
+    <High>902.1</High>
+    <Name>33CM Weak Signal Calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>902.100001</Low>
+    <High>902.799999</High>
+    <Name>33CM Weak Signal SSTV/FAX/ACSSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>902.8</Low>
+    <High>902.999999</High>
+    <Name>33CM Weak Signal EME/CW</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>903</Low>
+    <High>903.099999</High>
+    <Name>33CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>903.1</Low>
+    <High>903.1</High>
+    <Name>33CM Alternate Calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>903.100001</Low>
+    <High>905.999999</High>
+    <Name>33CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>906</Low>
+    <High>908.999999</High>
+    <Name>33CM FM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>909</Low>
+    <High>914.999999</High>
+    <Name>33CM ATV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>915</Low>
+    <High>917.999999</High>
+    <Name>33CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>918</Low>
+    <High>920.999999</High>
+    <Name>33CM FM Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>921</Low>
+    <High>926.999999</High>
+    <Name>33CM ATV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>927</Low>
+    <High>928</High>
+    <Name>33CM FM Simplex/Links</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1240</Low>
+    <High>1245.999999</High>
+    <Name>23CM ATV #1</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1246</Low>
+    <High>1251.999999</High>
+    <Name>23CM FMN Point/Links</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1252</Low>
+    <High>1257.999999</High>
+    <Name>23CM ATV #2, Digital Modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1258</Low>
+    <High>1259.999999</High>
+    <Name>23CM FMN Point/Links</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1260</Low>
+    <High>1269.999999</High>
+    <Name>23CM Sat Uplinks/Wideband Exp.</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1270</Low>
+    <High>1275.999999</High>
+    <Name>23CM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1276</Low>
+    <High>1281.999999</High>
+    <Name>23CM ATV #3</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1282</Low>
+    <High>1287.999999</High>
+    <Name>23CM Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1288</Low>
+    <High>1293.999999</High>
+    <Name>23CM Simplex ATV/Wideband Exp.</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1294</Low>
+    <High>1294.499999</High>
+    <Name>23CM Simplex FMN</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1294.5</Low>
+    <High>1294.5</High>
+    <Name>23CM FM Simplex Calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1294.500001</Low>
+    <High>1294.999999</High>
+    <Name>23CM Simplex FMN</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1295</Low>
+    <High>1295.799999</High>
+    <Name>23CM SSTV/FAX/ACSSB/Exp.</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1295.8</Low>
+    <High>1295.999999</High>
+    <Name>23CM EME/CW Expansion</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1296</Low>
+    <High>1296.049999</High>
+    <Name>23CM EME Exclusive</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1296.05</Low>
+    <High>1296.069999</High>
+    <Name>23CM Weak Signal</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1296.07</Low>
+    <High>1296.079999</High>
+    <Name>23CM CW Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1296.08</Low>
+    <High>1296.099999</High>
+    <Name>23CM Weak Signal</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1296.1</Low>
+    <High>1296.1</High>
+    <Name>23CM CW/SSB Calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1296.100001</Low>
+    <High>1296.399999</High>
+    <Name>23CM Weak Signal</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1296.4</Low>
+    <High>1296.599999</High>
+    <Name>23CM X-Band Translator Input</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1296.6</Low>
+    <High>1296.799999</High>
+    <Name>23CM X-Band Translator Output</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1296.8</Low>
+    <High>1296.999999</High>
+    <Name>23CM Experimental Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>1297</Low>
+    <High>1300</High>
+    <Name>23CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2300</Low>
+    <High>2302.999999</High>
+    <Name>2.3GHz High Data Rate</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2303</Low>
+    <High>2303.499999</High>
+    <Name>2.3GHz Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2303.5</Low>
+    <High>2303.8</High>
+    <Name>2.3GHz TTY Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2303.800001</Low>
+    <High>2303.899999</High>
+    <Name>2.3GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2303.9</Low>
+    <High>2303.9</High>
+    <Name>2.3GHz Packet/TTY/CW/EME</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2303.900001</Low>
+    <High>2304.099999</High>
+    <Name>2.3GHz CW/EME</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2304.1</Low>
+    <High>2304.1</High>
+    <Name>2.3GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2304.100001</Low>
+    <High>2304.199999</High>
+    <Name>2.3GHz CW/EME/SSB</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2304.2</Low>
+    <High>2304.299999</High>
+    <Name>2.3GHz SSB/SSTV/FAX/Packet AM/Amtor</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2304.3</Low>
+    <High>2304.319999</High>
+    <Name>2.3GHz Propagation Beacon Network</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2304.32</Low>
+    <High>2304.399999</High>
+    <Name>2.3GHz General Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2304.4</Low>
+    <High>2304.499999</High>
+    <Name>2.3GHz SSB/SSTV/ACSSB/FAX/Packet AM</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2304.5</Low>
+    <High>2304.699999</High>
+    <Name>2.3GHz X-Band Translator Input</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2304.7</Low>
+    <High>2304.899999</High>
+    <Name>2.3GHz X-Band Translator Output</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2304.9</Low>
+    <High>2304.999999</High>
+    <Name>2.3GHz Experimental Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2305</Low>
+    <High>2305.199999</High>
+    <Name>2.3GHz FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2305.2</Low>
+    <High>2305.2</High>
+    <Name>2.3GHz FM Simplex Calling</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2305.200001</Low>
+    <High>2305.999999</High>
+    <Name>2.3GHz FM Simplex</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2306</Low>
+    <High>2308.999999</High>
+    <Name>2.3GHz FM Repeaters</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2309</Low>
+    <High>2310</High>
+    <Name>2.3GHz Control/Aux Links</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2390</Low>
+    <High>2395.999999</High>
+    <Name>2.3GHz Fast-Scan TV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2396</Low>
+    <High>2398.999999</High>
+    <Name>2.3GHz High Rate Data</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2399</Low>
+    <High>2399.499999</High>
+    <Name>2.3GHz Packet</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2399.5</Low>
+    <High>2399.999999</High>
+    <Name>2.3GHz Control/Aux Links</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2400</Low>
+    <High>2402.999999</High>
+    <Name>2.4GHz Satellite</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2403</Low>
+    <High>2407.999999</High>
+    <Name>2.4GHz Satellite High-Rate Data</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2408</Low>
+    <High>2409.999999</High>
+    <Name>2.4GHz Satellite</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2410</Low>
+    <High>2412.999999</High>
+    <Name>2.4GHz FM Repeaters</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2413</Low>
+    <High>2417.999999</High>
+    <Name>2.4GHz High-Rate Data</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2418</Low>
+    <High>2429.999999</High>
+    <Name>2.4GHz Fast-Scan TV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2430</Low>
+    <High>2432.999999</High>
+    <Name>2.4GHz Satellite</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2433</Low>
+    <High>2437.999999</High>
+    <Name>2.4GHz Sat. High-Rate Data</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2438</Low>
+    <High>2450</High>
+    <Name>2.4GHz Wideband FM/FSTV/FMTV</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3456</Low>
+    <High>3456.099999</High>
+    <Name>3.4GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3456.1</Low>
+    <High>3456.1</High>
+    <Name>3.4GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3456.100001</Low>
+    <High>3456.299999</High>
+    <Name>3.4GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3456.3</Low>
+    <High>3456.4</High>
+    <Name>3.4GHz Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5760</Low>
+    <High>5760.099999</High>
+    <Name>5.7GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5760.1</Low>
+    <High>5760.1</High>
+    <Name>5.7GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5760.100001</Low>
+    <High>5760.299999</High>
+    <Name>5.7GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5760.3</Low>
+    <High>5760.4</High>
+    <Name>5.7GHz Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>10368</Low>
+    <High>10368.099999</High>
+    <Name>10GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>10368.1</Low>
+    <High>10368.1</High>
+    <Name>10GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>10368.100001</Low>
+    <High>10368.4</High>
+    <Name>10GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24192</Low>
+    <High>24192.099999</High>
+    <Name>24GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24192.1</Low>
+    <High>24192.1</High>
+    <Name>24GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>24192.100001</Low>
+    <High>24192.4</High>
+    <Name>24GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>47088</Low>
+    <High>47088.099999</High>
+    <Name>47GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>47088.1</Low>
+    <High>47088.1</High>
+    <Name>47GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>47088.100001</Low>
+    <High>47088.4</High>
+    <Name>47GHz General</Name>
+    <TX>true</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2.5</Low>
+    <High>2.5</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5</Low>
+    <High>5</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>10</Low>
+    <High>10</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>15</Low>
+    <High>15</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>20</Low>
+    <High>20</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>0.525</Low>
+    <High>1.71</High>
+    <Name>Broadcast AM Med Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>2.3</Low>
+    <High>2.495</High>
+    <Name>120M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>3.2</Low>
+    <High>3.4</High>
+    <Name>90M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>4.75</Low>
+    <High>4.999999</High>
+    <Name>60M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5.000001</Low>
+    <High>5.06</High>
+    <Name>60M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>5.9</Low>
+    <High>6.2</High>
+    <Name>49M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>7.3</Low>
+    <High>7.35</High>
+    <Name>41M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>9.4</Low>
+    <High>9.9</High>
+    <Name>31M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>11.6</Low>
+    <High>12.1</High>
+    <Name>25M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>13.57</Low>
+    <High>13.87</High>
+    <Name>22M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>15.1</Low>
+    <High>15.8</High>
+    <Name>19M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>17.48</Low>
+    <High>17.9</High>
+    <Name>16M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>18.9</Low>
+    <High>19.02</High>
+    <Name>15M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>21.45</Low>
+    <High>21.85</High>
+    <Name>13M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU1BandText>
+    <Low>25.6</Low>
+    <High>26.1</High>
+    <Name>11M Short Wave</Name>
+    <TX>false</TX>
+  </IARU1BandText>
+  <IARU2BandText>
+    <Low>0.1357</Low>
+    <High>0.135999</High>
+    <Name>Trans atlantic window</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>0.136</Low>
+    <High>0.137399</High>
+    <Name>CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>0.1374</Low>
+    <High>0.137599</High>
+    <Name>Digital modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>0.1376</Low>
+    <High>0.1378</High>
+    <Name>Very slow telegraphy</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>0.415</Low>
+    <High>0.524999</High>
+    <Name>600m band</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.8</Low>
+    <High>1.809999</High>
+    <Name>160M Digital Modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.81</Low>
+    <High>1.811999</High>
+    <Name>160M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.812</Low>
+    <High>1.812</High>
+    <Name>160M CW QRP Center</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.812001</Low>
+    <High>1.829999</High>
+    <Name>160M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.83</Low>
+    <High>1.836599</High>
+    <Name>160M CW DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.8366</Low>
+    <High>1.8366</High>
+    <Name>160M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.836601</Low>
+    <High>1.837999</High>
+    <Name>160M CW DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.838</Low>
+    <High>1.838</High>
+    <Name>160M JT65HF</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.838001</Low>
+    <High>1.839999</High>
+    <Name>160M CW DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.84</Low>
+    <High>1.849999</High>
+    <Name>160M SSB DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.85</Low>
+    <High>1.909999</High>
+    <Name>160M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.91</Low>
+    <High>1.91</High>
+    <Name>160M SSB QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.910001</Low>
+    <High>1.999</High>
+    <Name>160M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1.999001</Low>
+    <High>1.999999</High>
+    <Name>160M Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.5</Low>
+    <High>3.509999</High>
+    <Name>80M CW DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.51</Low>
+    <High>3.554999</High>
+    <Name>80M CW Contest</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.555</Low>
+    <High>3.555</High>
+    <Name>80M CW QRS</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.555001</Low>
+    <High>3.559999</High>
+    <Name>80M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.56</Low>
+    <High>3.56</High>
+    <Name>80M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.560001</Low>
+    <High>3.575999</High>
+    <Name>80M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.576</Low>
+    <High>3.576</High>
+    <Name>80M JT65HF</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.576001</Low>
+    <High>3.579999</High>
+    <Name>80M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.58</Low>
+    <High>3.589999</High>
+    <Name>80M Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.59</Low>
+    <High>3.592599</High>
+    <Name>80M All/Digi narrow</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.5926</Low>
+    <High>3.5926</High>
+    <Name>80M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.592601</Low>
+    <High>3.599999</High>
+    <Name>80M All/Digi narrow</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.6</Low>
+    <High>3.625</High>
+    <Name>80M All/Digi wide</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.625001</Low>
+    <High>3.629999</High>
+    <Name>80M All/SSB contest</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.63</Low>
+    <High>3.63</High>
+    <Name>80M Digital voice</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.630001</Low>
+    <High>3.65</High>
+    <Name>80M All/SSB contest</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.650001</Low>
+    <High>3.689999</High>
+    <Name>80M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.69</Low>
+    <High>3.69</High>
+    <Name>80M SSB QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.690001</Low>
+    <High>3.699999</High>
+    <Name>80M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.7</Low>
+    <High>3.734999</High>
+    <Name>80M All/SSB contest</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.735</Low>
+    <High>3.735</High>
+    <Name>80M Emergency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.735001</Low>
+    <High>3.775</High>
+    <Name>80M All/SSB contest</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.775001</Low>
+    <High>3.779999</High>
+    <Name>80M All/SSB DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.8</Low>
+    <High>3.875</High>
+    <Name>80M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.875001</Low>
+    <High>3.884999</High>
+    <Name>80M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.885</Low>
+    <High>3.885</High>
+    <Name>80M AM center</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.885001</Low>
+    <High>3.894999</High>
+    <Name>80M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.895</Low>
+    <High>3.895</High>
+    <Name>80M Emergency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.895001</Low>
+    <High>3.999999</High>
+    <Name>80M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7</Low>
+    <High>7.024999</High>
+    <Name>40M CW DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.025</Low>
+    <High>7.034999</High>
+    <Name>40M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.035</Low>
+    <High>7.035</High>
+    <Name>40M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.035001</Low>
+    <High>7.037999</High>
+    <Name>40M Digi/Narrow</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.038</Low>
+    <High>7.038599</High>
+    <Name>40M Digi/Narrow/Unattended</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.0386</Low>
+    <High>7.0386</High>
+    <Name>40M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.038601</Low>
+    <High>7.039999</High>
+    <Name>40M All/Digi/Narrow/Unattended</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.04</Low>
+    <High>7.043</High>
+    <Name>40M All/Digi/Unattended</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.043001</Low>
+    <High>7.059999</High>
+    <Name>40M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.076</Low>
+    <High>7.076</High>
+    <Name>40M JT65HF</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.060001</Low>
+    <High>7.089999</High>
+    <Name>40M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.09</Low>
+    <High>7.09</High>
+    <Name>40M SSB QRP center</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.090001</Low>
+    <High>7.1</High>
+    <Name>40M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.100001</Low>
+    <High>7.239999</High>
+    <Name>40M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.24</Low>
+    <High>7.24</High>
+    <Name>40M emergency center 2</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.240001</Low>
+    <High>7.274999</High>
+    <Name>40M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.275</Low>
+    <High>7.275</High>
+    <Name>40M emergency center 3</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.275001</Low>
+    <High>7.284999</High>
+    <Name>40M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.285</Low>
+    <High>7.285</High>
+    <Name>40M SSB QRP center</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.285001</Low>
+    <High>7.289999</High>
+    <Name>40M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.29</Low>
+    <High>7.29</High>
+    <Name>40M AM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.290001</Low>
+    <High>7.299999</High>
+    <Name>40M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10.1</Low>
+    <High>10.115999</High>
+    <Name>30M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10.116</Low>
+    <High>10.116</High>
+    <Name>30M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10.116001</Low>
+    <High>10.129999</High>
+    <Name>30M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10.130001</Low>
+    <High>10.138699</High>
+    <Name>30M All narrow modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10.1387</Low>
+    <High>10.1387</High>
+    <Name>30M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10.138701</Low>
+    <High>10.139999</High>
+    <Name>30M All narrow modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10.14</Low>
+    <High>10.149999</High>
+    <Name>30M All/Digi (no Phone)</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14</Low>
+    <High>14.024999</High>
+    <Name>20M CW DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.025</Low>
+    <High>14.054999</High>
+    <Name>20M CW contest</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.055</Low>
+    <High>14.055</High>
+    <Name>20M CW QRS</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.055001</Low>
+    <High>14.059999</High>
+    <Name>20M CW contest</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.06</Low>
+    <High>14.06</High>
+    <Name>20M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.060001</Low>
+    <High>14.069999</High>
+    <Name>20M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.07</Low>
+    <High>14.07</High>
+    <Name>20M PSK</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.070001</Low>
+    <High>14.075999</High>
+    <Name>20M All/narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.076</Low>
+    <High>14.076</High>
+    <Name>20M JT65HF</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.076001</Low>
+    <High>14.095599</High>
+    <Name>20M All/narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.0956</Low>
+    <High>14.0956</High>
+    <Name>20M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.095601</Low>
+    <High>14.098999</High>
+    <Name>20M All/narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.999</Low>
+    <High>14.101</High>
+    <Name>20M IBP, Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.101001</Low>
+    <High>14.111999</High>
+    <Name>20M All/narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.112</Low>
+    <High>14.129999</High>
+    <Name>20M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.13</Low>
+    <High>14.13</High>
+    <Name>20M Digital voice</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.130001</Low>
+    <High>14.13</High>
+    <Name>20M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.130001</Low>
+    <High>14.189999</High>
+    <Name>20M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.112</Low>
+    <High>14.189999</High>
+    <Name>20M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.19</Low>
+    <High>14.2</High>
+    <Name>20M SSB DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.200001</Low>
+    <High>14.229999</High>
+    <Name>20M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.23</Low>
+    <High>14.23</High>
+    <Name>20M SSTV</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.230001</Low>
+    <High>14.284999</High>
+    <Name>20M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.285</Low>
+    <High>14.285</High>
+    <Name>20M SSB QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.285001</Low>
+    <High>14.285999</High>
+    <Name>20M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.286</Low>
+    <High>14.286</High>
+    <Name>20M AM Calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.286001</Low>
+    <High>14.299999</High>
+    <Name>20M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.3</Low>
+    <High>14.3</High>
+    <Name>20M Global emergency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>14.300001</Low>
+    <High>14.349999</High>
+    <Name>20M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.068</Low>
+    <High>18.085999</High>
+    <Name>17M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.086</Low>
+    <High>18.086</High>
+    <Name>17M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.086001</Low>
+    <High>18.094999</High>
+    <Name>17M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.095</Low>
+    <High>18.104599</High>
+    <Name>17M All narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.1046</Low>
+    <High>18.1046</High>
+    <Name>17M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.104601</Low>
+    <High>18.108999</High>
+    <Name>17M All narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.109</Low>
+    <High>18.110999</High>
+    <Name>17M IBP, Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.111</Low>
+    <High>18.119999</High>
+    <Name>17M All/Digi/unattended</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.12</Low>
+    <High>18.129999</High>
+    <Name>17M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.13</Low>
+    <High>18.13</High>
+    <Name>17M QRP center</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.130001</Low>
+    <High>18.159999</High>
+    <Name>17M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.16</Low>
+    <High>18.16</High>
+    <Name>17M Global emergency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.160001</Low>
+    <High>18.167999</High>
+    <Name>17M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21</Low>
+    <High>21.024999</High>
+    <Name>15M CW DX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.025</Low>
+    <High>21.054999</High>
+    <Name>15M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.055</Low>
+    <High>21.055</High>
+    <Name>15M CW QRS</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.055001</Low>
+    <High>21.059999</High>
+    <Name>15M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.06</Low>
+    <High>21.06</High>
+    <Name>15M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.060001</Low>
+    <High>21.006999</High>
+    <Name>15M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.07</Low>
+    <High>21.07</High>
+    <Name>15M PSK</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.070001</Low>
+    <High>21.075999</High>
+    <Name>15M All narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.076</Low>
+    <High>21.076</High>
+    <Name>15M JT65HF</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.076001</Low>
+    <High>21.094599</High>
+    <Name>15M All narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.0946</Low>
+    <High>21.0946</High>
+    <Name>15M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.094601</Low>
+    <High>21.11</High>
+    <Name>15M All narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.110001</Low>
+    <High>21.12</High>
+    <Name>15M All modes(no SSB)</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.120001</Low>
+    <High>21.148999</High>
+    <Name>15M All narrow modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.149</Low>
+    <High>21.151</High>
+    <Name>15M IBP, Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.151001</Low>
+    <High>21.179999</High>
+    <Name>15M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.18</Low>
+    <High>21.18</High>
+    <Name>15M Digital voice</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.180001</Low>
+    <High>21.284999</High>
+    <Name>15M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.285</Low>
+    <High>21.285</High>
+    <Name>15M SSB QRP center</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.285001</Low>
+    <High>21.339999</High>
+    <Name>15M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.34</Low>
+    <High>21.34</High>
+    <Name>15M SSTV</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.340001</Low>
+    <High>21.359999</High>
+    <Name>15M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.36</Low>
+    <High>21.36</High>
+    <Name>15M Global emergency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.360001</Low>
+    <High>21.449999</High>
+    <Name>15M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.89</Low>
+    <High>24.905999</High>
+    <Name>12M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.906</Low>
+    <High>24.906</High>
+    <Name>12M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.906001</Low>
+    <High>24.914999</High>
+    <Name>12M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.915</Low>
+    <High>24.924599</High>
+    <Name>12M All narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.9246</Low>
+    <High>24.9246</High>
+    <Name>12M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.924601</Low>
+    <High>24.928999</High>
+    <Name>12M All narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.929</Low>
+    <High>24.931</High>
+    <Name>12M IBP, Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.931001</Low>
+    <High>24.939999</High>
+    <Name>12M All modes/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.94</Low>
+    <High>24.949999</High>
+    <Name>12M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.95</Low>
+    <High>24.95</High>
+    <Name>12M SSB QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24.950001</Low>
+    <High>24.989999</High>
+    <Name>12M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28</Low>
+    <High>28.054999</High>
+    <Name>10M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.055</Low>
+    <High>28.055</High>
+    <Name>10M CW QRS</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.055001</Low>
+    <High>28.059999</High>
+    <Name>10M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.06</Low>
+    <High>28.06</High>
+    <Name>10M CW QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.060001</Low>
+    <High>28.069999</High>
+    <Name>10M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.07</Low>
+    <High>28.07</High>
+    <Name>10M PSK</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.070001</Low>
+    <High>28.075999</High>
+    <Name>10M All narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.076</Low>
+    <High>28.076</High>
+    <Name>10M JT65HF</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.076001</Low>
+    <High>28.12</High>
+    <Name>10M All narrow/Digi</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.120001</Low>
+    <High>28.124599</High>
+    <Name>10M Narrow/Digi/unattended</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.1246</Low>
+    <High>28.1246</High>
+    <Name>10M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.124601</Low>
+    <High>28.124999</High>
+    <Name>10M Narrow/Digi/unattended</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.15</Low>
+    <High>28.189999</High>
+    <Name>10M All narrow band modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.19</Low>
+    <High>28.198999</High>
+    <Name>10M Regional time shared Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.199</Low>
+    <High>28.201</High>
+    <Name>10M IBP, Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.201001</Low>
+    <High>28.224599</High>
+    <Name>10M Continuous duty beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.225</Low>
+    <High>28.3</High>
+    <Name>10M All modes, Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.300001</Low>
+    <High>28.32</High>
+    <Name>10M All/Digi/unattended</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.320001</Low>
+    <High>28.329999</High>
+    <Name>10M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.33</Low>
+    <High>28.33</High>
+    <Name>10M Digital voice</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.330001</Low>
+    <High>28.359999</High>
+    <Name>10M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.36</Low>
+    <High>28.36</High>
+    <Name>10M SSB QRP</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.360001</Low>
+    <High>28.679999</High>
+    <Name>10M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.68</Low>
+    <High>28.68</High>
+    <Name>10M SSTV</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>28.680001</Low>
+    <High>28.999999</High>
+    <Name>10M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>29</Low>
+    <High>29.199999</High>
+    <Name>10M All/AM preferred</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>29.2</Low>
+    <High>29.299999</High>
+    <Name>10M All modes wide</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>29.3</Low>
+    <High>29.509999</High>
+    <Name>10M Satellite Downlinks</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>29.51</Low>
+    <High>29.519999</High>
+    <Name>10M Guard band</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>29.52</Low>
+    <High>29.589999</High>
+    <Name>10M FM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>29.59</Low>
+    <High>29.599999</High>
+    <Name>10M FM</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>29.6</Low>
+    <High>29.6</High>
+    <Name>10M FM calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>29.600001</Low>
+    <High>29.619999</High>
+    <Name>10M FM</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>29.62</Low>
+    <High>29.699999</High>
+    <Name>10M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50</Low>
+    <High>50.059999</High>
+    <Name>6M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.06</Low>
+    <High>50.079999</High>
+    <Name>6M Beacon Sub-Band</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.08</Low>
+    <High>50.099999</High>
+    <Name>6M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.1</Low>
+    <High>50.124999</High>
+    <Name>6M DX Window</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.125</Low>
+    <High>50.125</High>
+    <Name>6M Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.125001</Low>
+    <High>50.292999</High>
+    <Name>6M SSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.293</Low>
+    <High>50.293</High>
+    <Name>6M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.293001</Low>
+    <High>50.299999</High>
+    <Name>6M SSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.3</Low>
+    <High>50.599999</High>
+    <Name>6M All Modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.6</Low>
+    <High>50.619999</High>
+    <Name>6M Non Voice</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.62</Low>
+    <High>50.62</High>
+    <Name>6M Digital Packet Calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.620001</Low>
+    <High>50.799999</High>
+    <Name>6M Non Voice</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>50.8</Low>
+    <High>50.999999</High>
+    <Name>6M RC</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>51</Low>
+    <High>51.099999</High>
+    <Name>6M Pacific DX Window</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>51.1</Low>
+    <High>51.119999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>51.12</Low>
+    <High>51.179999</High>
+    <Name>6M Digital Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>51.18</Low>
+    <High>51.479999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>51.48</Low>
+    <High>51.619999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>51.62</Low>
+    <High>51.679999</High>
+    <Name>6M Digital Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>51.68</Low>
+    <High>51.979999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>51.98</Low>
+    <High>51.999999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52</Low>
+    <High>52.019999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.02</Low>
+    <High>52.02</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.020001</Low>
+    <High>52.039999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.04</Low>
+    <High>52.04</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.040001</Low>
+    <High>52.479999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.48</Low>
+    <High>52.499999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.5</Low>
+    <High>52.524999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.525</Low>
+    <High>52.525</High>
+    <Name>6M Primary FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.525001</Low>
+    <High>52.539999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.54</Low>
+    <High>52.54</High>
+    <Name>6M Secondary FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.540001</Low>
+    <High>52.979999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>52.98</Low>
+    <High>52.999999</High>
+    <Name>6M Deadbands</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53</Low>
+    <High>53</High>
+    <Name>6M Remote Base FM Spx</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.000001</Low>
+    <High>53.019999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.02</Low>
+    <High>53.02</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.020001</Low>
+    <High>53.479999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.48</Low>
+    <High>53.499999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.5</Low>
+    <High>53.519999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.52</Low>
+    <High>53.52</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.520001</Low>
+    <High>53.899999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.9</Low>
+    <High>53.9</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.90001</Low>
+    <High>53.979999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>53.98</Low>
+    <High>53.999999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70</Low>
+    <High>70.089999</High>
+    <Name>4M CW Telegraphy</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.09</Low>
+    <High>70.090499</High>
+    <Name>4M CW/Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.0905</Low>
+    <High>70.091499</High>
+    <Name>4M WSPR beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.0915</Low>
+    <High>70.099999</High>
+    <Name>4M CW/Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.1</Low>
+    <High>70.184999</High>
+    <Name>4M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.185</Low>
+    <High>70.199999</High>
+    <Name>4M Cross band calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.2</Low>
+    <High>70.249999</High>
+    <Name>4M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.25</Low>
+    <High>70.25</High>
+    <Name>4M MS calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.250001</Low>
+    <High>70.259999</High>
+    <Name>4M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.26</Low>
+    <High>70.26</High>
+    <Name>4M AM/FM calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.260001</Low>
+    <High>70.269999</High>
+    <Name>4M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.27</Low>
+    <High>70.27</High>
+    <Name>4M MGM activity centre</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.270001</Low>
+    <High>70.299999</High>
+    <Name>4M All modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.3</Low>
+    <High>70.3</High>
+    <Name>4M RTTY/FAX</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.300001</Low>
+    <High>70.311499</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.3125</Low>
+    <High>70.3125</High>
+    <Name>4M Digital</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.312501</Low>
+    <High>70.324999</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.325</Low>
+    <High>70.325</High>
+    <Name>4M Digital</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.322501</Low>
+    <High>70.449999</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.45</Low>
+    <High>70.45</High>
+    <Name>4M FM calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.450001</Low>
+    <High>70.487499</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.4875</Low>
+    <High>70.4875</High>
+    <Name>4M Digital</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>70.487501</Low>
+    <High>70.499999</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144</Low>
+    <High>144.099999</High>
+    <Name>2M CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.1</Low>
+    <High>144.199999</High>
+    <Name>2M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.2</Low>
+    <High>144.2</High>
+    <Name>2M MS Calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.200001</Low>
+    <High>144.274999</High>
+    <Name>2M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.275</Low>
+    <High>144.299999</High>
+    <Name>2M SSB Center</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.3</Low>
+    <High>144.399999</High>
+    <Name>2M SSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.4</Low>
+    <High>144.487999</High>
+    <Name>2M Satellite</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.488</Low>
+    <High>144.488</High>
+    <Name>2M WSPR</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.488001</Low>
+    <High>144.499999</High>
+    <Name>2M Satellite</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.5</Low>
+    <High>144.599999</High>
+    <Name>2M Linear Translator Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.6</Low>
+    <High>144.899999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>144.9</Low>
+    <High>145.199999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>145.2</Low>
+    <High>145.499999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>145.5</Low>
+    <High>145.799999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>145.8</Low>
+    <High>145.999999</High>
+    <Name>2M Satellite</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>146</Low>
+    <High>146.399999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>146.4</Low>
+    <High>146.609999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>146.61</Low>
+    <High>147.389999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>147.39</Low>
+    <High>147.599999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>147.6</Low>
+    <High>147.999999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>222</Low>
+    <High>222.024999</High>
+    <Name>1.25M EME/Weak Signal</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>222.025</Low>
+    <High>222.049999</High>
+    <Name>1.25M Weak Signal</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>222.05</Low>
+    <High>222.059999</High>
+    <Name>1.25M Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>222.06</Low>
+    <High>222.099999</High>
+    <Name>1.25M Weak Signal</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>222.1</Low>
+    <High>222.1</High>
+    <Name>1.25M SSB/CW Calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>222.100001</Low>
+    <High>222.149999</High>
+    <Name>1.25M Weak Signal CW/SSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>222.15</Low>
+    <High>222.249999</High>
+    <Name>1.25M Local Option</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>222.25</Low>
+    <High>223.38</High>
+    <Name>1.25M FM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>222.380001</Low>
+    <High>223.399999</High>
+    <Name>1.25M General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>223.4</Low>
+    <High>223.519999</High>
+    <Name>1.25M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>223.52</Low>
+    <High>223.639999</High>
+    <Name>1.25M Digital/Packet</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>223.64</Low>
+    <High>223.7</High>
+    <Name>1.25M Links/Control</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>223.700001</Low>
+    <High>223.709999</High>
+    <Name>1.25M General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>223.71</Low>
+    <High>223.849999</High>
+    <Name>1.25M Local Option</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>223.85</Low>
+    <High>224.98</High>
+    <Name>1.25M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>420</Low>
+    <High>425.999999</High>
+    <Name>70CM ATV Repeater</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>426</Low>
+    <High>431.999999</High>
+    <Name>70CM ATV Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>432</Low>
+    <High>432.069999</High>
+    <Name>70CM EME</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>432.07</Low>
+    <High>432.099999</High>
+    <Name>70CM Weak Signal CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>432.1</Low>
+    <High>432.1</High>
+    <Name>70CM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>432.100001</Low>
+    <High>432.299999</High>
+    <Name>70CM Mixed Mode Weak Signal</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>432.3</Low>
+    <High>432.399999</High>
+    <Name>70CM Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>432.4</Low>
+    <High>432.999999</High>
+    <Name>70CM Mixed Mode Weak Signal</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>433</Low>
+    <High>434.999999</High>
+    <Name>70CM Auxillary/Repeater Links</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>435</Low>
+    <High>437.999999</High>
+    <Name>70CM Satellite Only</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>438</Low>
+    <High>441.999999</High>
+    <Name>70CM ATV Repeater</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>442</Low>
+    <High>444.999999</High>
+    <Name>70CM Local Repeaters</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>445</Low>
+    <High>445.999999</High>
+    <Name>70CM Local Option</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>446</Low>
+    <High>446</High>
+    <Name>70CM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>446.000001</Low>
+    <High>446.999999</High>
+    <Name>70CM Local Option</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>447</Low>
+    <High>450</High>
+    <Name>70CM Local Repeaters</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>902</Low>
+    <High>902.099999</High>
+    <Name>33CM Weak Signal SSTV/FAX/ACSSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>902.1</Low>
+    <High>902.1</High>
+    <Name>33CM Weak Signal Calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>902.100001</Low>
+    <High>902.799999</High>
+    <Name>33CM Weak Signal SSTV/FAX/ACSSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>902.8</Low>
+    <High>902.999999</High>
+    <Name>33CM Weak Signal EME/CW</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>903</Low>
+    <High>903.099999</High>
+    <Name>33CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>903.1</Low>
+    <High>903.1</High>
+    <Name>33CM Alternate Calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>903.100001</Low>
+    <High>905.999999</High>
+    <Name>33CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>906</Low>
+    <High>908.999999</High>
+    <Name>33CM FM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>909</Low>
+    <High>914.999999</High>
+    <Name>33CM ATV</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>915</Low>
+    <High>917.999999</High>
+    <Name>33CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>918</Low>
+    <High>920.999999</High>
+    <Name>33CM FM Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>921</Low>
+    <High>926.999999</High>
+    <Name>33CM ATV</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>927</Low>
+    <High>928</High>
+    <Name>33CM FM Simplex/Links</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1240</Low>
+    <High>1245.999999</High>
+    <Name>23CM ATV #1</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1246</Low>
+    <High>1251.999999</High>
+    <Name>23CM FMN Point/Links</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1252</Low>
+    <High>1257.999999</High>
+    <Name>23CM ATV #2, Digital Modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1258</Low>
+    <High>1259.999999</High>
+    <Name>23CM FMN Point/Links</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1260</Low>
+    <High>1269.999999</High>
+    <Name>23CM Sat Uplinks/Wideband Exp.</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1270</Low>
+    <High>1275.999999</High>
+    <Name>23CM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1276</Low>
+    <High>1281.999999</High>
+    <Name>23CM ATV #3</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1282</Low>
+    <High>1287.999999</High>
+    <Name>23CM Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1288</Low>
+    <High>1293.999999</High>
+    <Name>23CM Simplex ATV/Wideband Exp.</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1294</Low>
+    <High>1294.499999</High>
+    <Name>23CM Simplex FMN</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1294.5</Low>
+    <High>1294.5</High>
+    <Name>23CM FM Simplex Calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1294.500001</Low>
+    <High>1294.999999</High>
+    <Name>23CM Simplex FMN</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1295</Low>
+    <High>1295.799999</High>
+    <Name>23CM SSTV/FAX/ACSSB/Exp.</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1295.8</Low>
+    <High>1295.999999</High>
+    <Name>23CM EME/CW Expansion</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1296</Low>
+    <High>1296.049999</High>
+    <Name>23CM EME Exclusive</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1296.05</Low>
+    <High>1296.069999</High>
+    <Name>23CM Weak Signal</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1296.07</Low>
+    <High>1296.079999</High>
+    <Name>23CM CW Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1296.08</Low>
+    <High>1296.099999</High>
+    <Name>23CM Weak Signal</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1296.1</Low>
+    <High>1296.1</High>
+    <Name>23CM CW/SSB Calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1296.100001</Low>
+    <High>1296.399999</High>
+    <Name>23CM Weak Signal</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1296.4</Low>
+    <High>1296.599999</High>
+    <Name>23CM X-Band Translator Input</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1296.6</Low>
+    <High>1296.799999</High>
+    <Name>23CM X-Band Translator Output</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1296.8</Low>
+    <High>1296.999999</High>
+    <Name>23CM Experimental Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>1297</Low>
+    <High>1300</High>
+    <Name>23CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2300</Low>
+    <High>2302.999999</High>
+    <Name>2.3GHz High Data Rate</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2303</Low>
+    <High>2303.499999</High>
+    <Name>2.3GHz Packet</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2303.5</Low>
+    <High>2303.8</High>
+    <Name>2.3GHz TTY Packet</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2303.800001</Low>
+    <High>2303.899999</High>
+    <Name>2.3GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2303.9</Low>
+    <High>2303.9</High>
+    <Name>2.3GHz Packet/TTY/CW/EME</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2303.900001</Low>
+    <High>2304.099999</High>
+    <Name>2.3GHz CW/EME</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2304.1</Low>
+    <High>2304.1</High>
+    <Name>2.3GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2304.100001</Low>
+    <High>2304.199999</High>
+    <Name>2.3GHz CW/EME/SSB</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2304.2</Low>
+    <High>2304.299999</High>
+    <Name>2.3GHz SSB/SSTV/FAX/Packet AM/Amtor</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2304.3</Low>
+    <High>2304.319999</High>
+    <Name>2.3GHz Propagation Beacon Network</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2304.32</Low>
+    <High>2304.399999</High>
+    <Name>2.3GHz General Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2304.4</Low>
+    <High>2304.499999</High>
+    <Name>2.3GHz SSB/SSTV/ACSSB/FAX/Packet AM</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2304.5</Low>
+    <High>2304.699999</High>
+    <Name>2.3GHz X-Band Translator Input</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2304.7</Low>
+    <High>2304.899999</High>
+    <Name>2.3GHz X-Band Translator Output</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2304.9</Low>
+    <High>2304.999999</High>
+    <Name>2.3GHz Experimental Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2305</Low>
+    <High>2305.199999</High>
+    <Name>2.3GHz FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2305.2</Low>
+    <High>2305.2</High>
+    <Name>2.3GHz FM Simplex Calling</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2305.200001</Low>
+    <High>2305.999999</High>
+    <Name>2.3GHz FM Simplex</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2306</Low>
+    <High>2308.999999</High>
+    <Name>2.3GHz FM Repeaters</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2309</Low>
+    <High>2310</High>
+    <Name>2.3GHz Control/Aux Links</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2390</Low>
+    <High>2395.999999</High>
+    <Name>2.3GHz Fast-Scan TV</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2396</Low>
+    <High>2398.999999</High>
+    <Name>2.3GHz High Rate Data</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2399</Low>
+    <High>2399.499999</High>
+    <Name>2.3GHz Packet</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2399.5</Low>
+    <High>2399.999999</High>
+    <Name>2.3GHz Control/Aux Links</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2400</Low>
+    <High>2402.999999</High>
+    <Name>2.4GHz Satellite</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2403</Low>
+    <High>2407.999999</High>
+    <Name>2.4GHz Satellite High-Rate Data</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2408</Low>
+    <High>2409.999999</High>
+    <Name>2.4GHz Satellite</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2410</Low>
+    <High>2412.999999</High>
+    <Name>2.4GHz FM Repeaters</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2413</Low>
+    <High>2417.999999</High>
+    <Name>2.4GHz High-Rate Data</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2418</Low>
+    <High>2429.999999</High>
+    <Name>2.4GHz Fast-Scan TV</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2430</Low>
+    <High>2432.999999</High>
+    <Name>2.4GHz Satellite</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2433</Low>
+    <High>2437.999999</High>
+    <Name>2.4GHz Sat. High-Rate Data</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2438</Low>
+    <High>2450</High>
+    <Name>2.4GHz Wideband FM/FSTV/FMTV</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3456</Low>
+    <High>3456.099999</High>
+    <Name>3.4GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3456.1</Low>
+    <High>3456.1</High>
+    <Name>3.4GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3456.100001</Low>
+    <High>3456.299999</High>
+    <Name>3.4GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3456.3</Low>
+    <High>3456.4</High>
+    <Name>3.4GHz Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>5760</Low>
+    <High>5760.099999</High>
+    <Name>5.7GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>5760.1</Low>
+    <High>5760.1</High>
+    <Name>5.7GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>5760.100001</Low>
+    <High>5760.299999</High>
+    <Name>5.7GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>5760.3</Low>
+    <High>5760.4</High>
+    <Name>5.7GHz Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10368</Low>
+    <High>10368.099999</High>
+    <Name>10GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10368.1</Low>
+    <High>10368.1</High>
+    <Name>10GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10368.100001</Low>
+    <High>10368.4</High>
+    <Name>10GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24192</Low>
+    <High>24192.099999</High>
+    <Name>24GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24192.1</Low>
+    <High>24192.1</High>
+    <Name>24GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>24192.100001</Low>
+    <High>24192.4</High>
+    <Name>24GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>47088</Low>
+    <High>47088.099999</High>
+    <Name>47GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>47088.1</Low>
+    <High>47088.1</High>
+    <Name>47GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>47088.100001</Low>
+    <High>47088.4</High>
+    <Name>47GHz General</Name>
+    <TX>true</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2.5</Low>
+    <High>2.5</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>5</Low>
+    <High>5</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>10</Low>
+    <High>10</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>15</Low>
+    <High>15</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>20</Low>
+    <High>20</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>0.525</Low>
+    <High>1.71</High>
+    <Name>Broadcast AM Med Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>2.3</Low>
+    <High>2.495</High>
+    <Name>120M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>3.2</Low>
+    <High>3.4</High>
+    <Name>90M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>4.75</Low>
+    <High>4.999999</High>
+    <Name>60M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>5.000001</Low>
+    <High>5.06</High>
+    <Name>60M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>5.9</Low>
+    <High>6.2</High>
+    <Name>49M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>7.3</Low>
+    <High>7.35</High>
+    <Name>41M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>9.4</Low>
+    <High>9.9</High>
+    <Name>31M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>11.6</Low>
+    <High>12.1</High>
+    <Name>25M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>13.57</Low>
+    <High>13.87</High>
+    <Name>22M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>15.1</Low>
+    <High>15.8</High>
+    <Name>19M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>17.48</Low>
+    <High>17.9</High>
+    <Name>16M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>18.9</Low>
+    <High>19.02</High>
+    <Name>15M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>21.45</Low>
+    <High>21.85</High>
+    <Name>13M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU2BandText>
+    <Low>25.6</Low>
+    <High>26.1</High>
+    <Name>11M Short Wave</Name>
+    <TX>false</TX>
+  </IARU2BandText>
+  <IARU3BandText>
+    <Low>0.1357</Low>
+    <High>0.135999</High>
+    <Name>Trans atlantic window</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>0.136</Low>
+    <High>0.137399</High>
+    <Name>CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>0.1374</Low>
+    <High>0.137599</High>
+    <Name>Digital modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>0.1376</Low>
+    <High>0.1378</High>
+    <Name>Very slow telegraphy</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>0.415</Low>
+    <High>0.524999</High>
+    <Name>600m band</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.8</Low>
+    <High>1.809999</High>
+    <Name>160M CW/Digital Modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.81</Low>
+    <High>1.81</High>
+    <Name>160M CW QRP</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.810001</Low>
+    <High>1.836599</High>
+    <Name>160M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.8366</Low>
+    <High>1.8366</High>
+    <Name>160M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.836601</Low>
+    <High>1.837999</High>
+    <Name>160M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.838</Low>
+    <High>1.838</High>
+    <Name>160M JT65HF</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.838001</Low>
+    <High>1.842999</High>
+    <Name>160M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.843</Low>
+    <High>1.909999</High>
+    <Name>160M SSB/SSTV/Wide Band</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.91</Low>
+    <High>1.91</High>
+    <Name>160M SSB QRP</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.910001</Low>
+    <High>1.994999</High>
+    <Name>160M SSB/SSTV/Wide Band</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1.995</Low>
+    <High>1.999999</High>
+    <Name>160M Experimental</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.5</Low>
+    <High>3.524999</High>
+    <Name>80M Extra CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.525</Low>
+    <High>3.575999</High>
+    <Name>80M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.576</Low>
+    <High>3.576</High>
+    <Name>80M JT65HF</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.576001</Low>
+    <High>3.579999</High>
+    <Name>80M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.58</Low>
+    <High>3.589999</High>
+    <Name>80M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.59</Low>
+    <High>3.59</High>
+    <Name>80M RTTY DX</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.590001</Low>
+    <High>3.592599</High>
+    <Name>80M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.5926</Low>
+    <High>3.5926</High>
+    <Name>80M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.592601</Low>
+    <High>3.599999</High>
+    <Name>80M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.6</Low>
+    <High>3.699999</High>
+    <Name>75M Extra SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.7</Low>
+    <High>3.789999</High>
+    <Name>75M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.79</Low>
+    <High>3.799999</High>
+    <Name>75M Ext/Adv DX Window</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.8</Low>
+    <High>3.844999</High>
+    <Name>75M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.845</Low>
+    <High>3.845</High>
+    <Name>75M SSTV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.845001</Low>
+    <High>3.884999</High>
+    <Name>75M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.885</Low>
+    <High>3.885</High>
+    <Name>75M AM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.885001</Low>
+    <High>3.999999</High>
+    <Name>75M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5.2872</Low>
+    <High>5.2872</High>
+    <Name>60M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5.3305</Low>
+    <High>5.3305</High>
+    <Name>60M Channel 1</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5.3465</Low>
+    <High>5.3465</High>
+    <Name>60M Channel 2</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5.357</Low>
+    <High>5.357</High>
+    <Name>60M Channel 3</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5.3715</Low>
+    <High>5.3715</High>
+    <Name>60M Channel 4</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5.4035</Low>
+    <High>5.4035</High>
+    <Name>60M Channel 5</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7</Low>
+    <High>7.024999</High>
+    <Name>40M Extra CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.025</Low>
+    <High>7.038599</High>
+    <Name>40M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.0386</Low>
+    <High>7.0386</High>
+    <Name>40M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.038601</Low>
+    <High>7.039999</High>
+    <Name>40M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.04</Low>
+    <High>7.04</High>
+    <Name>40M RTTY DX</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.040001</Low>
+    <High>7.075999</High>
+    <Name>40M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.076</Low>
+    <High>7.076</High>
+    <Name>40M JT65HF</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.076001</Low>
+    <High>7.099999</High>
+    <Name>40M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.1</Low>
+    <High>7.124999</High>
+    <Name>40M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.125</Low>
+    <High>7.170999</High>
+    <Name>40M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.171</Low>
+    <High>7.171</High>
+    <Name>40M SSTV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.171001</Low>
+    <High>7.174999</High>
+    <Name>40M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.175</Low>
+    <High>7.289999</High>
+    <Name>40M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.29</Low>
+    <High>7.29</High>
+    <Name>40M AM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.290001</Low>
+    <High>7.299999</High>
+    <Name>40M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>10.1</Low>
+    <High>10.129999</High>
+    <Name>30M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>10.13</Low>
+    <High>10.138699</High>
+    <Name>30M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>10.1387</Low>
+    <High>10.1387</High>
+    <Name>30M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>10.138701</Low>
+    <High>10.139999</High>
+    <Name>30M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>10.14</Low>
+    <High>10.149999</High>
+    <Name>30M Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14</Low>
+    <High>14.024999</High>
+    <Name>20M Extra CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.025</Low>
+    <High>14.069999</High>
+    <Name>20M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.07</Low>
+    <High>14.07</High>
+    <Name>20M PSK</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.070001</Low>
+    <High>14.075999</High>
+    <Name>20M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.076</Low>
+    <High>14.076</High>
+    <Name>20M JT65HF</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.076001</Low>
+    <High>14.094999</High>
+    <Name>20M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.095</Low>
+    <High>14.095599</High>
+    <Name>20M Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.0956</Low>
+    <High>14.0956</High>
+    <Name>20M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.095601</Low>
+    <High>14.099499</High>
+    <Name>20M Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.0995</Low>
+    <High>14.099999</High>
+    <Name>20M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.1</Low>
+    <High>14.1</High>
+    <Name>20M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.100001</Low>
+    <High>14.100499</High>
+    <Name>20M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.1005</Low>
+    <High>14.111999</High>
+    <Name>20M Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.112</Low>
+    <High>14.149999</High>
+    <Name>20M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.15</Low>
+    <High>14.174999</High>
+    <Name>20M Extra SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.175</Low>
+    <High>14.224999</High>
+    <Name>20M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.225</Low>
+    <High>14.229999</High>
+    <Name>20M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.23</Low>
+    <High>14.23</High>
+    <Name>20M SSTV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.230001</Low>
+    <High>14.285999</High>
+    <Name>20M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.286</Low>
+    <High>14.286</High>
+    <Name>20M AM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>14.286001</Low>
+    <High>14.349999</High>
+    <Name>20M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>18.068</Low>
+    <High>18.099999</High>
+    <Name>17M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>18.1</Low>
+    <High>18.104599</High>
+    <Name>17M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>18.1046</Low>
+    <High>18.1046</High>
+    <Name>17M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>18.104601</Low>
+    <High>18.104999</High>
+    <Name>17M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>18.105</Low>
+    <High>18.109999</High>
+    <Name>17M Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>18.11</Low>
+    <High>18.11</High>
+    <Name>17M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>18.110001</Low>
+    <High>18.167999</High>
+    <Name>17M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21</Low>
+    <High>21.024999</High>
+    <Name>15M Extra CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.025</Low>
+    <High>21.069999</High>
+    <Name>15M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.07</Low>
+    <High>21.07</High>
+    <Name>15M PSK</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.070001</Low>
+    <High>21.075999</High>
+    <Name>15M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.076</Low>
+    <High>21.076</High>
+    <Name>15M JT65HF</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.076001</Low>
+    <High>21.094599</High>
+    <Name>15M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.0946</Low>
+    <High>21.0946</High>
+    <Name>15M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.094601</Low>
+    <High>21.099999</High>
+    <Name>15M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.1</Low>
+    <High>21.109999</High>
+    <Name>15M Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.11</Low>
+    <High>21.149999</High>
+    <Name>15M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.15</Low>
+    <High>21.15</High>
+    <Name>15M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.150001</Low>
+    <High>21.199999</High>
+    <Name>15M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.2</Low>
+    <High>21.224999</High>
+    <Name>15M Extra SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.225</Low>
+    <High>21.274999</High>
+    <Name>15M Ext/Adv SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.275</Low>
+    <High>21.339999</High>
+    <Name>15M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.34</Low>
+    <High>21.34</High>
+    <Name>15M SSTV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.340001</Low>
+    <High>21.449999</High>
+    <Name>15M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24.89</Low>
+    <High>24.919999</High>
+    <Name>12M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24.92</Low>
+    <High>24.924599</High>
+    <Name>12M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24.9246</Low>
+    <High>24.9246</High>
+    <Name>12M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24.924601</Low>
+    <High>24.924999</High>
+    <Name>12M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24.925</Low>
+    <High>24.929999</High>
+    <Name>12M Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24.93</Low>
+    <High>24.93</High>
+    <Name>12M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24.930001</Low>
+    <High>24.989999</High>
+    <Name>12M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28</Low>
+    <High>28.069999</High>
+    <Name>10M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.07</Low>
+    <High>28.07</High>
+    <Name>10M PSK</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.070001</Low>
+    <High>28.075999</High>
+    <Name>10M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.076</Low>
+    <High>28.076</High>
+    <Name>10M JT65HF</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.076001</Low>
+    <High>28.124599</High>
+    <Name>10M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.1246</Low>
+    <High>28.1246</High>
+    <Name>10M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.124601</Low>
+    <High>28.149999</High>
+    <Name>10M RTTY</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.15</Low>
+    <High>28.199999</High>
+    <Name>10M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.2</Low>
+    <High>28.2</High>
+    <Name>10M NCDXF Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.200001</Low>
+    <High>28.299999</High>
+    <Name>10M Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.3</Low>
+    <High>28.679999</High>
+    <Name>10M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.68</Low>
+    <High>28.68</High>
+    <Name>10M SSTV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>28.680001</Low>
+    <High>28.999999</High>
+    <Name>10M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>29</Low>
+    <High>29.199999</High>
+    <Name>10M AM</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>29.2</Low>
+    <High>29.299999</High>
+    <Name>10M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>29.3</Low>
+    <High>29.509999</High>
+    <Name>10M Satellite Downlinks</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>29.51</Low>
+    <High>29.519999</High>
+    <Name>10M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>29.52</Low>
+    <High>29.589999</High>
+    <Name>10M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>29.59</Low>
+    <High>29.599999</High>
+    <Name>10M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>29.6</Low>
+    <High>29.6</High>
+    <Name>10M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>29.600001</Low>
+    <High>29.609999</High>
+    <Name>10M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>29.61</Low>
+    <High>29.699999</High>
+    <Name>10M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50</Low>
+    <High>50.059999</High>
+    <Name>6M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.06</Low>
+    <High>50.079999</High>
+    <Name>6M Beacon Sub-Band</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.08</Low>
+    <High>50.099999</High>
+    <Name>6M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.1</Low>
+    <High>50.124999</High>
+    <Name>6M DX Window</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.125</Low>
+    <High>50.125</High>
+    <Name>6M Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.125001</Low>
+    <High>50.292999</High>
+    <Name>6M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.293</Low>
+    <High>50.293</High>
+    <Name>6M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.293001</Low>
+    <High>50.299999</High>
+    <Name>6M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.3</Low>
+    <High>50.599999</High>
+    <Name>6M All Modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.6</Low>
+    <High>50.619999</High>
+    <Name>6M Non Voice</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.62</Low>
+    <High>50.62</High>
+    <Name>6M Digital Packet Calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.620001</Low>
+    <High>50.799999</High>
+    <Name>6M Non Voice</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>50.8</Low>
+    <High>50.999999</High>
+    <Name>6M RC</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>51</Low>
+    <High>51.099999</High>
+    <Name>6M Pacific DX Window</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>51.1</Low>
+    <High>51.119999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>51.12</Low>
+    <High>51.179999</High>
+    <Name>6M Digital Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>51.18</Low>
+    <High>51.479999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>51.48</Low>
+    <High>51.619999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>51.62</Low>
+    <High>51.679999</High>
+    <Name>6M Digital Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>51.68</Low>
+    <High>51.979999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>51.98</Low>
+    <High>51.999999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52</Low>
+    <High>52.019999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.02</Low>
+    <High>52.02</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.020001</Low>
+    <High>52.039999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.04</Low>
+    <High>52.04</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.040001</Low>
+    <High>52.479999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.48</Low>
+    <High>52.499999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.5</Low>
+    <High>52.524999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.525</Low>
+    <High>52.525</High>
+    <Name>6M Primary FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.525001</Low>
+    <High>52.539999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.54</Low>
+    <High>52.54</High>
+    <Name>6M Secondary FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.540001</Low>
+    <High>52.979999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>52.98</Low>
+    <High>52.999999</High>
+    <Name>6M Deadbands</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53</Low>
+    <High>53</High>
+    <Name>6M Remote Base FM Spx</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.000001</Low>
+    <High>53.019999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.02</Low>
+    <High>53.02</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.020001</Low>
+    <High>53.479999</High>
+    <Name>6M Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.48</Low>
+    <High>53.499999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.5</Low>
+    <High>53.519999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.52</Low>
+    <High>53.52</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.520001</Low>
+    <High>53.899999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.9</Low>
+    <High>53.9</High>
+    <Name>6M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.90001</Low>
+    <High>53.979999</High>
+    <Name>6M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>53.98</Low>
+    <High>53.999999</High>
+    <Name>6M Deadband</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70</Low>
+    <High>70.089999</High>
+    <Name>4M CW Telegraphy</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.09</Low>
+    <High>70.090499</High>
+    <Name>4M CW/Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.0905</Low>
+    <High>70.091499</High>
+    <Name>4M WSPR beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.0915</Low>
+    <High>70.099999</High>
+    <Name>4M CW/Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.1</Low>
+    <High>70.184999</High>
+    <Name>4M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.185</Low>
+    <High>70.199999</High>
+    <Name>4M Cross band calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.2</Low>
+    <High>70.249999</High>
+    <Name>4M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.25</Low>
+    <High>70.25</High>
+    <Name>4M MS calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.250001</Low>
+    <High>70.259999</High>
+    <Name>4M All modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.26</Low>
+    <High>70.26</High>
+    <Name>4M AM/FM calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.260001</Low>
+    <High>70.269999</High>
+    <Name>4M All modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.27</Low>
+    <High>70.27</High>
+    <Name>4M MGM activity centre</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.270001</Low>
+    <High>70.299999</High>
+    <Name>4M All modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.3</Low>
+    <High>70.3</High>
+    <Name>4M RTTY/FAX</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.300001</Low>
+    <High>70.311499</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.3125</Low>
+    <High>70.3125</High>
+    <Name>4M Digital</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.312501</Low>
+    <High>70.324999</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.325</Low>
+    <High>70.325</High>
+    <Name>4M Digital</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.322501</Low>
+    <High>70.449999</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.45</Low>
+    <High>70.45</High>
+    <Name>4M FM calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.450001</Low>
+    <High>70.487499</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.4875</Low>
+    <High>70.4875</High>
+    <Name>4M Digital</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>70.487501</Low>
+    <High>70.499999</High>
+    <Name>4M FM 12.5KHz spacing</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144</Low>
+    <High>144.099999</High>
+    <Name>2M CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.1</Low>
+    <High>144.199999</High>
+    <Name>2M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.2</Low>
+    <High>144.2</High>
+    <Name>2M MS Calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.200001</Low>
+    <High>144.274999</High>
+    <Name>2M CW/SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.275</Low>
+    <High>144.299999</High>
+    <Name>2M SSB Center</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.3</Low>
+    <High>144.399999</High>
+    <Name>2M SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.4</Low>
+    <High>144.487999</High>
+    <Name>2M Satellite</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.488</Low>
+    <High>144.488</High>
+    <Name>2M WSPR</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.488001</Low>
+    <High>144.499999</High>
+    <Name>2M Satellite</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.5</Low>
+    <High>144.599999</High>
+    <Name>2M Linear Translator Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.6</Low>
+    <High>144.899999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>144.9</Low>
+    <High>145.199999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>145.2</Low>
+    <High>145.499999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>145.5</Low>
+    <High>145.799999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>145.8</Low>
+    <High>145.999999</High>
+    <Name>2M Satellite</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>146</Low>
+    <High>146.399999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>146.4</Low>
+    <High>146.609999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>146.61</Low>
+    <High>147.389999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>147.39</Low>
+    <High>147.599999</High>
+    <Name>2M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>147.6</Low>
+    <High>147.999999</High>
+    <Name>2M FM Repeater</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>222</Low>
+    <High>222.024999</High>
+    <Name>1.25M EME/Weak Signal</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>222.025</Low>
+    <High>222.049999</High>
+    <Name>1.25M Weak Signal</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>222.05</Low>
+    <High>222.059999</High>
+    <Name>1.25M Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>222.06</Low>
+    <High>222.099999</High>
+    <Name>1.25M Weak Signal</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>222.1</Low>
+    <High>222.1</High>
+    <Name>1.25M SSB/CW Calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>222.100001</Low>
+    <High>222.149999</High>
+    <Name>1.25M Weak Signal CW/SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>222.15</Low>
+    <High>222.249999</High>
+    <Name>1.25M Local Option</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>222.25</Low>
+    <High>223.38</High>
+    <Name>1.25M FM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>222.380001</Low>
+    <High>223.399999</High>
+    <Name>1.25M General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>223.4</Low>
+    <High>223.519999</High>
+    <Name>1.25M FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>223.52</Low>
+    <High>223.639999</High>
+    <Name>1.25M Digital/Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>223.64</Low>
+    <High>223.7</High>
+    <Name>1.25M Links/Control</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>223.700001</Low>
+    <High>223.709999</High>
+    <Name>1.25M General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>223.71</Low>
+    <High>223.849999</High>
+    <Name>1.25M Local Option</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>223.85</Low>
+    <High>224.98</High>
+    <Name>1.25M Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>420</Low>
+    <High>425.999999</High>
+    <Name>70CM ATV Repeater</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>426</Low>
+    <High>431.999999</High>
+    <Name>70CM ATV Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>432</Low>
+    <High>432.069999</High>
+    <Name>70CM EME</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>432.07</Low>
+    <High>432.099999</High>
+    <Name>70CM Weak Signal CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>432.1</Low>
+    <High>432.1</High>
+    <Name>70CM Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>432.100001</Low>
+    <High>432.299999</High>
+    <Name>70CM Mixed Mode Weak Signal</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>432.3</Low>
+    <High>432.399999</High>
+    <Name>70CM Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>432.4</Low>
+    <High>432.999999</High>
+    <Name>70CM Mixed Mode Weak Signal</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>433</Low>
+    <High>434.999999</High>
+    <Name>70CM Auxillary/Repeater Links</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>435</Low>
+    <High>437.999999</High>
+    <Name>70CM Satellite Only</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>438</Low>
+    <High>441.999999</High>
+    <Name>70CM ATV Repeater</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>442</Low>
+    <High>444.999999</High>
+    <Name>70CM Local Repeaters</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>445</Low>
+    <High>445.999999</High>
+    <Name>70CM Local Option</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>446</Low>
+    <High>446</High>
+    <Name>70CM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>446.000001</Low>
+    <High>446.999999</High>
+    <Name>70CM Local Option</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>447</Low>
+    <High>450</High>
+    <Name>70CM Local Repeaters</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>902</Low>
+    <High>902.099999</High>
+    <Name>33CM Weak Signal SSTV/FAX/ACSSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>902.1</Low>
+    <High>902.1</High>
+    <Name>33CM Weak Signal Calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>902.100001</Low>
+    <High>902.799999</High>
+    <Name>33CM Weak Signal SSTV/FAX/ACSSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>902.8</Low>
+    <High>902.999999</High>
+    <Name>33CM Weak Signal EME/CW</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>903</Low>
+    <High>903.099999</High>
+    <Name>33CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>903.1</Low>
+    <High>903.1</High>
+    <Name>33CM Alternate Calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>903.100001</Low>
+    <High>905.999999</High>
+    <Name>33CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>906</Low>
+    <High>908.999999</High>
+    <Name>33CM FM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>909</Low>
+    <High>914.999999</High>
+    <Name>33CM ATV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>915</Low>
+    <High>917.999999</High>
+    <Name>33CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>918</Low>
+    <High>920.999999</High>
+    <Name>33CM FM Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>921</Low>
+    <High>926.999999</High>
+    <Name>33CM ATV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>927</Low>
+    <High>928</High>
+    <Name>33CM FM Simplex/Links</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1240</Low>
+    <High>1245.999999</High>
+    <Name>23CM ATV #1</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1246</Low>
+    <High>1251.999999</High>
+    <Name>23CM FMN Point/Links</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1252</Low>
+    <High>1257.999999</High>
+    <Name>23CM ATV #2, Digital Modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1258</Low>
+    <High>1259.999999</High>
+    <Name>23CM FMN Point/Links</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1260</Low>
+    <High>1269.999999</High>
+    <Name>23CM Sat Uplinks/Wideband Exp.</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1270</Low>
+    <High>1275.999999</High>
+    <Name>23CM Repeater Inputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1276</Low>
+    <High>1281.999999</High>
+    <Name>23CM ATV #3</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1282</Low>
+    <High>1287.999999</High>
+    <Name>23CM Repeater Outputs</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1288</Low>
+    <High>1293.999999</High>
+    <Name>23CM Simplex ATV/Wideband Exp.</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1294</Low>
+    <High>1294.499999</High>
+    <Name>23CM Simplex FMN</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1294.5</Low>
+    <High>1294.5</High>
+    <Name>23CM FM Simplex Calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1294.500001</Low>
+    <High>1294.999999</High>
+    <Name>23CM Simplex FMN</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1295</Low>
+    <High>1295.799999</High>
+    <Name>23CM SSTV/FAX/ACSSB/Exp.</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1295.8</Low>
+    <High>1295.999999</High>
+    <Name>23CM EME/CW Expansion</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1296</Low>
+    <High>1296.049999</High>
+    <Name>23CM EME Exclusive</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1296.05</Low>
+    <High>1296.069999</High>
+    <Name>23CM Weak Signal</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1296.07</Low>
+    <High>1296.079999</High>
+    <Name>23CM CW Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1296.08</Low>
+    <High>1296.099999</High>
+    <Name>23CM Weak Signal</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1296.1</Low>
+    <High>1296.1</High>
+    <Name>23CM CW/SSB Calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1296.100001</Low>
+    <High>1296.399999</High>
+    <Name>23CM Weak Signal</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1296.4</Low>
+    <High>1296.599999</High>
+    <Name>23CM X-Band Translator Input</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1296.6</Low>
+    <High>1296.799999</High>
+    <Name>23CM X-Band Translator Output</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1296.8</Low>
+    <High>1296.999999</High>
+    <Name>23CM Experimental Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>1297</Low>
+    <High>1300</High>
+    <Name>23CM Digital Modes</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2300</Low>
+    <High>2302.999999</High>
+    <Name>2.3GHz High Data Rate</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2303</Low>
+    <High>2303.499999</High>
+    <Name>2.3GHz Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2303.5</Low>
+    <High>2303.8</High>
+    <Name>2.3GHz TTY Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2303.800001</Low>
+    <High>2303.899999</High>
+    <Name>2.3GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2303.9</Low>
+    <High>2303.9</High>
+    <Name>2.3GHz Packet/TTY/CW/EME</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2303.900001</Low>
+    <High>2304.099999</High>
+    <Name>2.3GHz CW/EME</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2304.1</Low>
+    <High>2304.1</High>
+    <Name>2.3GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2304.100001</Low>
+    <High>2304.199999</High>
+    <Name>2.3GHz CW/EME/SSB</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2304.2</Low>
+    <High>2304.299999</High>
+    <Name>2.3GHz SSB/SSTV/FAX/Packet AM/Amtor</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2304.3</Low>
+    <High>2304.319999</High>
+    <Name>2.3GHz Propagation Beacon Network</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2304.32</Low>
+    <High>2304.399999</High>
+    <Name>2.3GHz General Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2304.4</Low>
+    <High>2304.499999</High>
+    <Name>2.3GHz SSB/SSTV/ACSSB/FAX/Packet AM</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2304.5</Low>
+    <High>2304.699999</High>
+    <Name>2.3GHz X-Band Translator Input</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2304.7</Low>
+    <High>2304.899999</High>
+    <Name>2.3GHz X-Band Translator Output</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2304.9</Low>
+    <High>2304.999999</High>
+    <Name>2.3GHz Experimental Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2305</Low>
+    <High>2305.199999</High>
+    <Name>2.3GHz FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2305.2</Low>
+    <High>2305.2</High>
+    <Name>2.3GHz FM Simplex Calling</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2305.200001</Low>
+    <High>2305.999999</High>
+    <Name>2.3GHz FM Simplex</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2306</Low>
+    <High>2308.999999</High>
+    <Name>2.3GHz FM Repeaters</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2309</Low>
+    <High>2310</High>
+    <Name>2.3GHz Control/Aux Links</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2390</Low>
+    <High>2395.999999</High>
+    <Name>2.3GHz Fast-Scan TV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2396</Low>
+    <High>2398.999999</High>
+    <Name>2.3GHz High Rate Data</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2399</Low>
+    <High>2399.499999</High>
+    <Name>2.3GHz Packet</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2399.5</Low>
+    <High>2399.999999</High>
+    <Name>2.3GHz Control/Aux Links</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2400</Low>
+    <High>2402.999999</High>
+    <Name>2.4GHz Satellite</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2403</Low>
+    <High>2407.999999</High>
+    <Name>2.4GHz Satellite High-Rate Data</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2408</Low>
+    <High>2409.999999</High>
+    <Name>2.4GHz Satellite</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2410</Low>
+    <High>2412.999999</High>
+    <Name>2.4GHz FM Repeaters</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2413</Low>
+    <High>2417.999999</High>
+    <Name>2.4GHz High-Rate Data</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2418</Low>
+    <High>2429.999999</High>
+    <Name>2.4GHz Fast-Scan TV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2430</Low>
+    <High>2432.999999</High>
+    <Name>2.4GHz Satellite</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2433</Low>
+    <High>2437.999999</High>
+    <Name>2.4GHz Sat. High-Rate Data</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2438</Low>
+    <High>2450</High>
+    <Name>2.4GHz Wideband FM/FSTV/FMTV</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3456</Low>
+    <High>3456.099999</High>
+    <Name>3.4GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3456.1</Low>
+    <High>3456.1</High>
+    <Name>3.4GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3456.100001</Low>
+    <High>3456.299999</High>
+    <Name>3.4GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3456.3</Low>
+    <High>3456.4</High>
+    <Name>3.4GHz Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5760</Low>
+    <High>5760.099999</High>
+    <Name>5.7GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5760.1</Low>
+    <High>5760.1</High>
+    <Name>5.7GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5760.100001</Low>
+    <High>5760.299999</High>
+    <Name>5.7GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5760.3</Low>
+    <High>5760.4</High>
+    <Name>5.7GHz Propagation Beacons</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>10368</Low>
+    <High>10368.099999</High>
+    <Name>10GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>10368.1</Low>
+    <High>10368.1</High>
+    <Name>10GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>10368.100001</Low>
+    <High>10368.4</High>
+    <Name>10GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24192</Low>
+    <High>24192.099999</High>
+    <Name>24GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24192.1</Low>
+    <High>24192.1</High>
+    <Name>24GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>24192.100001</Low>
+    <High>24192.4</High>
+    <Name>24GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>47088</Low>
+    <High>47088.099999</High>
+    <Name>47GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>47088.1</Low>
+    <High>47088.1</High>
+    <Name>47GHz Calling Frequency</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>47088.100001</Low>
+    <High>47088.4</High>
+    <Name>47GHz General</Name>
+    <TX>true</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2.5</Low>
+    <High>2.5</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5</Low>
+    <High>5</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>10</Low>
+    <High>10</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>15</Low>
+    <High>15</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>20</Low>
+    <High>20</High>
+    <Name>WWV</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>0.525</Low>
+    <High>1.71</High>
+    <Name>Broadcast AM Med Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>2.3</Low>
+    <High>2.495</High>
+    <Name>120M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>3.2</Low>
+    <High>3.4</High>
+    <Name>90M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>4.75</Low>
+    <High>4.999999</High>
+    <Name>60M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5.000001</Low>
+    <High>5.06</High>
+    <Name>60M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>5.9</Low>
+    <High>6.2</High>
+    <Name>49M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>7.3</Low>
+    <High>7.35</High>
+    <Name>41M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>9.4</Low>
+    <High>9.9</High>
+    <Name>31M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>11.6</Low>
+    <High>12.1</High>
+    <Name>25M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>13.57</Low>
+    <High>13.87</High>
+    <Name>22M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>15.1</Low>
+    <High>15.8</High>
+    <Name>19M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>17.48</Low>
+    <High>17.9</High>
+    <Name>16M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>18.9</Low>
+    <High>19.02</High>
+    <Name>15M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>21.45</Low>
+    <High>21.85</High>
+    <Name>13M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <IARU3BandText>
+    <Low>25.6</Low>
+    <High>26.1</High>
+    <Name>11M Short Wave</Name>
+    <TX>false</TX>
+  </IARU3BandText>
+  <BandLimits>
+    <Low>0.1</Low>
+    <High>0.3</High>
+    <Name>B2190M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>0.4</Low>
+    <High>0.6</High>
+    <Name>B600M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>1.8</Low>
+    <High>2</High>
+    <Name>B160M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>2.5</Low>
+    <High>2.5</High>
+    <Name>WWV</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>3.5</Low>
+    <High>4</High>
+    <Name>B80M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>5</Low>
+    <High>5</High>
+    <Name>WWV</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>5.2872</Low>
+    <High>5.2872</High>
+    <Name>B60M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>5.3305</Low>
+    <High>5.3305</High>
+    <Name>B60M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>5.3465</Low>
+    <High>5.3465</High>
+    <Name>B60M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>5.357</Low>
+    <High>5.357</High>
+    <Name>B60M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>5.3715</Low>
+    <High>5.3715</High>
+    <Name>B60M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>5.4035</Low>
+    <High>5.4035</High>
+    <Name>B60M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>7</Low>
+    <High>7.3</High>
+    <Name>B40M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>10</Low>
+    <High>10</High>
+    <Name>WWV</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>10.1</Low>
+    <High>10.15</High>
+    <Name>B30M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>14</Low>
+    <High>14.35</High>
+    <Name>B20M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>15</Low>
+    <High>15</High>
+    <Name>WWV</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>18.068</Low>
+    <High>18.168</High>
+    <Name>B17M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>20</Low>
+    <High>20</High>
+    <Name>WWV</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>21</Low>
+    <High>21.45</High>
+    <Name>B15M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>24.89</Low>
+    <High>24.99</High>
+    <Name>B12M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>28</Low>
+    <High>29.7</High>
+    <Name>B10M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>50</Low>
+    <High>54</High>
+    <Name>B6M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>144</Low>
+    <High>148</High>
+    <Name>B2M</Name>
+  </BandLimits>
+  <BandLimits>
+    <Low>430</Low>
+    <High>440</High>
+    <Name>B07M</Name>
+  </BandLimits>
+  <LimeSDRBandFilters>
+    <Low>0.1</Low>
+    <High>0.3</High>
+    <Filter>B2190M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>0.4</Low>
+    <High>0.6</High>
+    <Filter>B600M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>1</Low>
+    <High>2.75</High>
+    <Filter>B160M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>2.7500001</Low>
+    <High>5.2</High>
+    <Filter>B80M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>5.200001</Low>
+    <High>5.5</High>
+    <Filter>B60M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>5.500001</Low>
+    <High>8.7</High>
+    <Filter>B40M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>8.700001</Low>
+    <High>12.75</High>
+    <Filter>B30M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>12.750001</Low>
+    <High>16.209</High>
+    <Filter>B20M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>16.209001</Low>
+    <High>19.584</High>
+    <Filter>B17M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>19.584001</Low>
+    <High>23.17</High>
+    <Filter>B15M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>23.170001</Low>
+    <High>26.495</High>
+    <Filter>B12M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>26.495001</Low>
+    <High>30</High>
+    <Filter>B10M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>49.9</Low>
+    <High>54.1</High>
+    <Filter>B6M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>144</Low>
+    <High>148</High>
+    <Filter>B2M</Filter>
+  </LimeSDRBandFilters>
+  <LimeSDRBandFilters>
+    <Low>430</Low>
+    <High>440</High>
+    <Filter>B07M</Filter>
+  </LimeSDRBandFilters>
+</Data>

@@ -402,38 +402,38 @@ namespace PowerSDR
 
 		#region Dll Method Definitions
 
-        [DllImport("DttSP.dll", EntryPoint = "ResetRingBuffer")]
+        [DllImport("DttSP.dll", EntryPoint = "ResetRingBuffer", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ResetRB(uint thread);
 
-		[DllImport("DttSP.dll", EntryPoint="Setup_SDR")]
+		[DllImport("DttSP.dll", EntryPoint="Setup_SDR", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SetupSDR(string data_path);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetSPEClen")]
+        [DllImport("DttSP.dll", EntryPoint = "SetSPEClen", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetSpectrumSize(uint thread, int size);
 
-		[DllImport("DttSP.dll", EntryPoint="SetDSPBuflen")]
+		[DllImport("DttSP.dll", EntryPoint="SetDSPBuflen", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void ResizeSDR(uint thread, int DSPsize);
         public static int bufsize = 2048;
 		
-		[DllImport("DttSP.dll", EntryPoint="Destroy_SDR")]
+		[DllImport("DttSP.dll", EntryPoint="Destroy_SDR", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void Exit();
 
-        [DllImport("DttSP.dll", EntryPoint = "AudioReset")]
+        [DllImport("DttSP.dll", EntryPoint = "AudioReset", CallingConvention = CallingConvention.Cdecl)]
         public static extern void AudioReset();
 
-		[DllImport("DttSP.dll", EntryPoint="process_samples_thread")]
+		[DllImport("DttSP.dll", EntryPoint="process_samples_thread", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void ProcessSamplesThread(uint thread);
 
-		[DllImport("DttSP.dll", EntryPoint="cwtimerfired")]
+		[DllImport("DttSP.dll", EntryPoint="cwtimerfired", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void CWTimerFired();
  
-		[DllImport("DttSP.dll", EntryPoint="StartKeyer")]
+		[DllImport("DttSP.dll", EntryPoint="StartKeyer", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void StartKeyer();
 
-		[DllImport("DttSP.dll", EntryPoint="StopKeyer")]
+		[DllImport("DttSP.dll", EntryPoint="StopKeyer", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void StopKeyer();
 
-		[DllImport("DttSP.dll", EntryPoint="CWRingRestart")]
+		[DllImport("DttSP.dll", EntryPoint="CWRingRestart", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void CWRingRestart();
 		///<summary>
 		/// The KeyValue function sends timing data and key depressions and keying selection
@@ -443,459 +443,459 @@ namespace PowerSDR
 		/// <param name="dot">This is a DttSP style boolean (a byte) which asserts dot or not-dot</param>
 		/// <param name="keyprog">This is a DttSP style boolean (a byte) which asserts iambic keyer or not-iambic</param>
 		///
-		[DllImport("DttSP.dll", EntryPoint="key_thread_process")]
+		[DllImport("DttSP.dll", EntryPoint="key_thread_process", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void KeyValue(float del, bool dash, bool dot, bool keyprog);
 
-		[DllImport("DttSP.dll", EntryPoint="NewKeyer")]
+		[DllImport("DttSP.dll", EntryPoint="NewKeyer", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void NewKeyer(float freq, bool iambic, float gain, float ramp,
 			float wpm, float SampleRate);
 
-		[DllImport("DttSP.dll",EntryPoint="SetThreadProcessingMode")]
+		[DllImport("DttSP.dll",EntryPoint="SetThreadProcessingMode", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SetThreadProcessingMode(uint thread, int runmode);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerPerf")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerPerf", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetKeyerPerf(bool hiperf);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerSpeed")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerSpeed", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetKeyerSpeed(float speed);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerFreq")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerFreq", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetKeyerFreq(float freq);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetMonitorFreq")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetMonitorFreq", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetMonitorFreq(float freq);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerSampleRate")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerSampleRate", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetKeyerSampleRate(float freq);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetKeyerRise")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetKeyerRise", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetKeyerRise(float rise);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetKeyerFall")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetKeyerFall", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetKeyerFall(float fall);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerIambic")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerIambic", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetKeyerIambic(bool iambic);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerRevPdl")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerRevPdl", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetKeyerRevPdl(bool revpdl);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerDeBounce")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerDeBounce", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetKeyerDeBounce(int debounce);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerWeight")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerWeight", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetKeyerWeight(int weight);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerResetSize")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerResetSize", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetKeyerResetSize(int size);
 
-		[DllImport("DttSP.dll", EntryPoint="SetKeyerMode")]///
+		[DllImport("DttSP.dll", EntryPoint="SetKeyerMode", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetKeyerMode(int mode);
 
-		[DllImport("DttSP.dll", EntryPoint="KeyerClockFireRelease")]
+		[DllImport("DttSP.dll", EntryPoint="KeyerClockFireRelease", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void KeyerClockFireRelease();
 
-		[DllImport("DttSP.dll", EntryPoint="KeyerPlaying")]
+		[DllImport("DttSP.dll", EntryPoint="KeyerPlaying", CallingConvention = CallingConvention.Cdecl)]
 		[return:MarshalAs(UnmanagedType.I1)]
 		public static extern bool KeyerPlaying();
 
-		[DllImport("DttSP.dll", EntryPoint="KeyerRunning")]
+		[DllImport("DttSP.dll", EntryPoint="KeyerRunning", CallingConvention = CallingConvention.Cdecl)]
 		[return:MarshalAs(UnmanagedType.I1)]
 		public static extern bool KeyerRunning();
 
-		[DllImport("DttSP.dll", EntryPoint="KeyerClockFireWait")]
+		[DllImport("DttSP.dll", EntryPoint="KeyerClockFireWait", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void KeyerClockFireWait();
 
-		[DllImport("DttSP.dll", EntryPoint="KeyerStartedRelease")]
+		[DllImport("DttSP.dll", EntryPoint="KeyerStartedRelease", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void KeyerStartedRelease();
 
-		[DllImport("DttSP.dll", EntryPoint="KeyerStartedWait")]
+		[DllImport("DttSP.dll", EntryPoint="KeyerStartedWait", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void KeyerStartedWait();
 
-		[DllImport("DttSP.dll", EntryPoint="SetWhichKey")]
+		[DllImport("DttSP.dll", EntryPoint="SetWhichKey", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetWhichKey(byte keyselect);
 
-		[DllImport("DttSP.dll", EntryPoint="PollTimerRelease")]
+		[DllImport("DttSP.dll", EntryPoint="PollTimerRelease", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void PollTimerRelease();
 
-		[DllImport("DttSP.dll", EntryPoint="PollTimerWait")]
+		[DllImport("DttSP.dll", EntryPoint="PollTimerWait", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void PollTimerWait();
 
-        [DllImport("DttSP.dll", EntryPoint = "TimerRead")]              // zt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "TimerRead", CallingConvention = CallingConvention.Cdecl)]              // zt7pwr
         public static extern double TimerRead();
 
-		[DllImport("DttSP.dll", EntryPoint="DeleteKeyer")]
+		[DllImport("DttSP.dll", EntryPoint="DeleteKeyer", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void DeleteKeyer();
 
-		[DllImport("DttSP.dll", EntryPoint="sound_thread_keyd")]
+		[DllImport("DttSP.dll", EntryPoint="sound_thread_keyd", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void KeyerSoundThread();
 
-        [DllImport("DttSP.dll", EntryPoint = "monitor_thread_keyd")]        // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "monitor_thread_keyd", CallingConvention = CallingConvention.Cdecl)]        // yt7pwr
         public static extern void KeyerMonitorThread();
 
-		[DllImport("DttSP.dll", EntryPoint="CWtoneExchange")]
+		[DllImport("DttSP.dll", EntryPoint="CWtoneExchange", CallingConvention = CallingConvention.Cdecl)]
         public static extern void CWtoneExchange(float* bufl, float* bufr, int nframes);
 
-        [DllImport("DttSP.dll", EntryPoint = "CWMonitorExchange")]          // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "CWMonitorExchange", CallingConvention = CallingConvention.Cdecl)]          // yt7pwr
         public static extern void CWMonitorExchange(float* bufl, float* bufr, int nframes);
 
-		[DllImport("DttSP.dll", EntryPoint="Audio_Callback")]
+		[DllImport("DttSP.dll", EntryPoint="Audio_Callback", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void ExchangeSamples(int thread, void *input_l, void *input_r, void *output_l, void *output_r, int numsamples);
 
-        [DllImport("DttSP.dll", EntryPoint = "Audio_Input_Callback")]       // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "Audio_Input_Callback", CallingConvention = CallingConvention.Cdecl)]       // yt7pwr
         public static extern void ExchangeInputSamples(int thread, void* input_l, void* input_r, int numsamples);
 
-        [DllImport("DttSP.dll", EntryPoint = "Audio_Output_Callback")]      // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "Audio_Output_Callback", CallingConvention = CallingConvention.Cdecl)]      // yt7pwr
         public static extern void ExchangeOutputSamples(int thread, void* output_l, void* output_r, int numsamples);
 
-		[DllImport("DttSP.dll", EntryPoint="Audio_Callback2")]
+		[DllImport("DttSP.dll", EntryPoint="Audio_Callback2", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ExchangeSamples2(int thread, void* input, void* output, int numsamples);
 
-		[DllImport("DttSP.dll", EntryPoint="SetAudioSize")]///
+		[DllImport("DttSP.dll", EntryPoint="SetAudioSize", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetAudioSize(uint thread, int size);
 
-		[DllImport("DttSP.dll", EntryPoint="SetMode")]///
+		[DllImport("DttSP.dll", EntryPoint="SetMode", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern int SetMode(uint thread, uint subrx, DSPMode m);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetTXMode")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetTXMode", CallingConvention = CallingConvention.Cdecl)]///
         public static extern int SetTXMode(uint thread, DSPMode m);
 
-        [DllImport("DttSP.dll", EntryPoint = "FMreload")]///            // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "FMreload", CallingConvention = CallingConvention.Cdecl)]///            // yt7pwr
         public static extern int FMreload(uint thread, uint subrx, double low, double high, double bandwidth, int wide);
 
-        [DllImport("DttSP.dll", EntryPoint = "FMenableStereo")]///      // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "FMenableStereo", CallingConvention = CallingConvention.Cdecl)]///      // yt7pwr
         public static extern int FMenableStereo(uint thread, uint subrx, int stereo);
 
-        [DllImport("DttSP.dll", EntryPoint = "FMStereoDetected")]///    // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "FMStereoDetected", CallingConvention = CallingConvention.Cdecl)]///    // yt7pwr
         public static extern int FMStereoDetected(uint thread, uint subrx, int stereo);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXFilter")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXFilter", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern int SetRXFilter(uint thread, uint subrx, double low, double high);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetRXStopBandFilter")]  // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "SetRXStopBandFilter", CallingConvention = CallingConvention.Cdecl)]  // yt7pwr
         public static extern int SetRXStopBandFilter(uint thread, uint subrx, double low, double high);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetRXLowPassFilter")]  // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "SetRXLowPassFilter", CallingConvention = CallingConvention.Cdecl)]  // yt7pwr
         public static extern int SetRXLowPassFilter(uint thread, uint subrx, double cut_freq);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetRXHighPassFilter")]  // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "SetRXHighPassFilter", CallingConvention = CallingConvention.Cdecl)]  // yt7pwr
         public static extern int SetRXHighPassFilter(uint thread, uint subrx, double cut_freq);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetRXFilterMode")]  // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "SetRXFilterMode", CallingConvention = CallingConvention.Cdecl)]  // yt7pwr
         public static extern int SetRXFilterMode(uint thread, uint subrx, FilterMode mode);
 	
-		[DllImport("DttSP.dll", EntryPoint="SetTXFilter")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXFilter", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern int SetTXFilter(uint thread, double low, double high);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXOsc")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXOsc", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern int SetTXOsc(uint thread, double freq);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetCTCSSOscFreq")]
+        [DllImport("DttSP.dll", EntryPoint = "SetCTCSSOscFreq", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetCTCSSOscFreq(uint thread, double freq);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetCTCSSOscAmplitude")]
+        [DllImport("DttSP.dll", EntryPoint = "SetCTCSSOscAmplitude", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetCTCSSAmplitude(uint thread, double amplitude);
 
-        [DllImport("DttSP.dll", EntryPoint = "EnableCTCSS")]
+        [DllImport("DttSP.dll", EntryPoint = "EnableCTCSS", CallingConvention = CallingConvention.Cdecl)]
         public static extern int EnableCTCSS(uint thread, bool setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetSampleRate")]
+		[DllImport("DttSP.dll", EntryPoint="SetSampleRate", CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SetSampleRate(uint thread, double sampleRate);
 
-		[DllImport("DttSP.dll", EntryPoint="SetNR")]///
+		[DllImport("DttSP.dll", EntryPoint="SetNR", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetNR(uint thread, uint subrx, bool setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetNRvals")]///
+		[DllImport("DttSP.dll", EntryPoint="SetNRvals", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetNRvals(uint thread, uint subrx, int taps, int delay, double gain, double leak);
 
-		[DllImport("DttSP.dll", EntryPoint="SetANF")]///
+		[DllImport("DttSP.dll", EntryPoint="SetANF", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetANF(uint thread, uint subrx, bool setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetANFvals")]///
+		[DllImport("DttSP.dll", EntryPoint="SetANFvals", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetANFvals(uint thread, uint subrx, int taps, int delay, double gain, double leak);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXAGC")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXAGC", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetRXAGC(uint thread, uint subrx, AGCMode setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXAGCFF")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXAGCFF", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXAGCFF(uint thread, bool setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXAGCFFCompression")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXAGCFFCompression", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXAGCFFCompression(uint thread, double txcompression);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetTXDCBlock")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetTXDCBlock", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetTXDCBlock(uint thread, bool setit);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetRXDCBlock")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetRXDCBlock", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetRXDCBlock(uint thread, uint subrx, bool setit);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetRXDCBlockGain")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetRXDCBlockGain", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetRXDCBlockGain(uint thread, uint subrx, float gain);
 
-		[DllImport("DttSP.dll", EntryPoint="SetDCBlock")]///
+		[DllImport("DttSP.dll", EntryPoint="SetDCBlock", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetDCBlock(uint thread, bool setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXEQ")]
+		[DllImport("DttSP.dll", EntryPoint="SetTXEQ", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SetTXEQ(uint thread, int[] txeq);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetTXFMDeviation")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetTXFMDeviation", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetTXFMDev(uint thread, double deviation);
 
-		[DllImport("DttSP.dll", EntryPoint="SetGrphTXEQcmd")]///
+		[DllImport("DttSP.dll", EntryPoint="SetGrphTXEQcmd", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetGrphTXEQcmd(uint thread, bool state);
 
-		[DllImport("DttSP.dll", EntryPoint="SetGrphTXEQ")]///
+		[DllImport("DttSP.dll", EntryPoint="SetGrphTXEQ", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetGrphTXEQ(uint thread, int[] txeq);
 		
-		[DllImport("DttSP.dll", EntryPoint="SetGrphTXEQ10")]///
+		[DllImport("DttSP.dll", EntryPoint="SetGrphTXEQ10", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetGrphTXEQ10(uint thread, int[] txeq);
 
-		[DllImport("DttSP.dll", EntryPoint="SetGrphRXEQcmd")]///
+		[DllImport("DttSP.dll", EntryPoint="SetGrphRXEQcmd", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetGrphRXEQcmd(uint thread, uint subrx, bool state);
 
-		[DllImport("DttSP.dll", EntryPoint="SetGrphRXEQ")]///
+		[DllImport("DttSP.dll", EntryPoint="SetGrphRXEQ", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetGrphRXEQ(uint thread, uint subrx,int[] rxeq);
 
-		[DllImport("DttSP.dll", EntryPoint="SetGrphRXEQ10")]///
+		[DllImport("DttSP.dll", EntryPoint="SetGrphRXEQ10", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetGrphRXEQ10(uint thread, uint subrx,int[] rxeq);
 
-		[DllImport("DttSP.dll", EntryPoint="SetNotch160")]///
+		[DllImport("DttSP.dll", EntryPoint="SetNotch160", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetNotch160(uint thread, bool state);
 
-		[DllImport("DttSP.dll", EntryPoint="SetNB")]///
+		[DllImport("DttSP.dll", EntryPoint="SetNB", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetNB(uint thread, uint subrx, bool setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetNBvals")]///
+		[DllImport("DttSP.dll", EntryPoint="SetNBvals", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetNBvals(uint thread, uint subrx, double threshold);
 
-        [DllImport("DttSP.dll", EntryPoint = "GetSAMFreq")]///
+        [DllImport("DttSP.dll", EntryPoint = "GetSAMFreq", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void GetSAMFreq(uint thread, uint subrx, float* freq);
 
-        [DllImport("DttSP.dll", EntryPoint = "GetSAMPLLvals")]///
+        [DllImport("DttSP.dll", EntryPoint = "GetSAMPLLvals", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void GetSAMPLLvals(uint thread, uint subrx, float* alpha, float* beta);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetSAMPLLvals")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetSAMPLLvals", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetSAMPLLvals(uint thread, uint subrx, float alpha, float beta);
 
-		[DllImport("DttSP.dll", EntryPoint="SetCorrectIQGain")]///
+		[DllImport("DttSP.dll", EntryPoint="SetCorrectIQGain", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetCorrectIQGain(uint thread, uint subrx, double setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetCorrectIQPhase")]///
+		[DllImport("DttSP.dll", EntryPoint="SetCorrectIQPhase", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetCorrectIQPhase(uint thread, uint subrx, double setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetCorrectTXIQGain")]///
+		[DllImport("DttSP.dll", EntryPoint="SetCorrectTXIQGain", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXIQGain(uint thread, double setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetCorrectTXIQPhase")]///
+		[DllImport("DttSP.dll", EntryPoint="SetCorrectTXIQPhase", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXIQPhase(uint thread, double setit);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetIQSuspended")]                     // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "SetIQSuspended", CallingConvention = CallingConvention.Cdecl)]                     // yt7pwr
         public static extern void SetIQSuspended(uint setit);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetIQFixed")]                         // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "SetIQFixed", CallingConvention = CallingConvention.Cdecl)]                         // yt7pwr
         public static extern void SetIQFixed(uint thread, uint subrx, uint setit, float gain, float phase);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetCorrectIQEnable")]
+        [DllImport("DttSP.dll", EntryPoint = "SetCorrectIQEnable", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetCorrectIQEnable(uint setit);
 
-        [DllImport("DttSP.dll", EntryPoint = "GetCorrectRXIQw")]
+        [DllImport("DttSP.dll", EntryPoint = "GetCorrectRXIQw", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GetCorrectRXIQw(uint thread, uint subrx, float* real, float* imag, uint index);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetCorrectRXIQwReal")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetCorrectRXIQwReal", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetCorrectRXIQwReal(uint thread, uint subrx, float setit, uint index);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetCorrectRXIQwImag")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetCorrectRXIQwImag", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetCorrectRXIQwImag(uint thread, uint subrx, float setit, uint index);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetCorrectRXIQw")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetCorrectRXIQw", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetCorrectRXIQw(uint thread, uint subrx, float real, float imag, uint index);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetCorrectRXIQMu")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetCorrectRXIQMu", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetCorrectIQMu(uint thread, uint subrx, double setit);
 
-        [DllImport("DttSP.dll", EntryPoint = "GetCorrectRXIQMu")]///
+        [DllImport("DttSP.dll", EntryPoint = "GetCorrectRXIQMu", CallingConvention = CallingConvention.Cdecl)]///
         public static extern float GetCorrectIQMu(uint thread, uint subrx);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetCorrectTXIQMu")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetCorrectTXIQMu", CallingConvention = CallingConvention.Cdecl)]///
         public static extern void SetTXIQMu(uint thread, double setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetSDROM")]///
+		[DllImport("DttSP.dll", EntryPoint="SetSDROM", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetSDROM(uint thread, uint subrx, bool setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetSDROMvals")]///
+		[DllImport("DttSP.dll", EntryPoint="SetSDROMvals", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetSDROMvals(uint thread, uint subrx, double threshold);
 
-		[DllImport("DttSP.dll", EntryPoint="SetFixedAGC")]///
+		[DllImport("DttSP.dll", EntryPoint="SetFixedAGC", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetFixedAGC(uint thread, uint subrx, double fixed_agc);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXAGCTop")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXAGCTop", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetRXAGCMaxGain(uint thread, uint subrx, double max_agc);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXAGCAttack")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXAGCAttack", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetRXAGCAttack(uint thread, uint subrx, int attack);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRingBufferOffset")]
+		[DllImport("DttSP.dll", EntryPoint="SetRingBufferOffset", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SetRingBufferOffset(uint thread, int offset);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXAGCDecay")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXAGCDecay", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetRXAGCDecay(uint thread, uint subrx, int decay);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXAGCHang")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXAGCHang", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetRXAGCHang(uint thread, uint subrx, int hang);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXOutputGain")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXOutputGain", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetRXOutputGain(uint thread, uint subrx, double g);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXAGCSlope")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXAGCSlope", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetRXAGCSlope(uint thread, uint subrx, int slope);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXAGCHangThreshold")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXAGCHangThreshold", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetRXAGCHangThreshold(uint thread, uint subrx, int hangthreshold);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXAMCarrierLevel")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXAMCarrierLevel", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXAMCarrierLevel(uint thread, double carrier_level);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXALCBot")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXALCBot", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXALCBot(uint thread, double max_agc);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXALCAttack")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXALCAttack", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXALCAttack(uint thread, int attack);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXALCDecay")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXALCDecay", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXALCDecay(uint thread, int attack);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXALCHang")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXALCHang", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXALCHang(uint thread, int hang);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerTop")]
+		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerTop", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SetTXLevelerMaxGain(uint thread, double max_agc);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerAttack")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerAttack", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXLevelerAttack(uint thread, int attack);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerDecay")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerDecay", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXLevelerDecay(uint thread, int attack);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerHang")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerHang", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXLevelerHang(uint thread, int hang);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerSt")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXLevelerSt", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXLevelerSt(uint thread, bool state);
 
-		[DllImport("DttSP.dll", EntryPoint="SetWindow")]///
+		[DllImport("DttSP.dll", EntryPoint="SetWindow", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetWindow(uint thread, Window windowset);
 
-		[DllImport("DttSP.dll", EntryPoint="SetSpectrumPolyphase")]///
+		[DllImport("DttSP.dll", EntryPoint="SetSpectrumPolyphase", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetSpectrumPolyphase(uint thread, bool state);
 
-		[DllImport("DttSP.dll", EntryPoint="SetBIN")]///
+		[DllImport("DttSP.dll", EntryPoint="SetBIN", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetBIN(uint thread, uint subrx, bool setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetSquelchVal")]///
+		[DllImport("DttSP.dll", EntryPoint="SetSquelchVal", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetSquelchVal(uint thread, uint subrx, float setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetSquelchState")]///
+		[DllImport("DttSP.dll", EntryPoint="SetSquelchState", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetSquelchState(uint thread, uint subrx, bool state);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXSquelchVal")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXSquelchVal", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXSquelchVal(uint thread, float setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXSquelchSt")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXSquelchSt", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXSquelchState(uint thread, bool state);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXCompandSt")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXCompandSt", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXCompandSt(uint thread, bool state);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTXCompand")]///
+		[DllImport("DttSP.dll", EntryPoint="SetTXCompand", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetTXCompand(uint thread, double setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetPWSmode")]///
+		[DllImport("DttSP.dll", EntryPoint="SetPWSmode", CallingConvention = CallingConvention.Cdecl)]///
 		public static extern void SetPWSmode(uint thread, uint subrx, bool setit);
 		public static void SetTXPWSmode(uint thread, bool setit)
 		{
 			SetPWSmode(thread, 0, setit);
 		}
 
-		[DllImport("DttSP.dll", EntryPoint="Process_Spectrum")]
+		[DllImport("DttSP.dll", EntryPoint="Process_Spectrum", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void GetSpectrum(uint thread, float* results);
 
-		[DllImport("DttSP.dll", EntryPoint="Process_ComplexSpectrum")]
+		[DllImport("DttSP.dll", EntryPoint="Process_ComplexSpectrum", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void GetComplexSpectrum(uint thread, float* results);
 
-		[DllImport("DttSP.dll", EntryPoint="Process_Panadapter")]
+		[DllImport("DttSP.dll", EntryPoint="Process_Panadapter", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void GetPanadapter(uint thread, float* results);
 
-		[DllImport("DttSP.dll", EntryPoint="Process_Phase")]
+		[DllImport("DttSP.dll", EntryPoint="Process_Phase", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void GetPhase(uint thread, float* results, int numpoints);
 
-		[DllImport("DttSP.dll", EntryPoint="Process_Scope")]
+		[DllImport("DttSP.dll", EntryPoint="Process_Scope", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void GetScope(uint thread, float* results, int numpoints);
 
-		[DllImport("DttSP.dll", EntryPoint="SetTRX")]
+		[DllImport("DttSP.dll", EntryPoint="SetTRX", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void SetTRX(uint thread, bool trx_on);
 
-		[DllImport("DttSP.dll", EntryPoint="CalculateRXMeter")]
+		[DllImport("DttSP.dll", EntryPoint="CalculateRXMeter", CallingConvention = CallingConvention.Cdecl)]
 		public static extern float CalculateRXMeter(uint thread, uint subrx, MeterType MT);
 
-		[DllImport("DttSP.dll", EntryPoint="CalculateTXMeter")]
+		[DllImport("DttSP.dll", EntryPoint="CalculateTXMeter", CallingConvention = CallingConvention.Cdecl)]
 		public static extern float CalculateTXMeter(uint thread,MeterType MT);
 
-		[DllImport("DttSP.dll", EntryPoint="Release_Update")]
+		[DllImport("DttSP.dll", EntryPoint="Release_Update", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void ReleaseUpdate();
  
-		[DllImport("DttSP.dll", EntryPoint="NewResampler")]
+		[DllImport("DttSP.dll", EntryPoint="NewResampler", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void *NewResampler(int sampin, int sampout);
 
-		[DllImport("DttSP.dll", EntryPoint="DoResampler")]
+		[DllImport("DttSP.dll", EntryPoint="DoResampler", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void DoResampler(float *input, float *output, int numsamps, int *outsamps,void *ptr);
 
-		[DllImport("DttSP.dll", EntryPoint="DelPolyPhaseFIR")]
+		[DllImport("DttSP.dll", EntryPoint="DelPolyPhaseFIR", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void DelResampler(void *ptr);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetResamplerF")]                      // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "SetResamplerF", CallingConvention = CallingConvention.Cdecl)]                      // yt7pwr
         unsafe public static extern void* SetResamplerF(int thread, int subrx, int samplerate_in, int samplerate_out);
 
-        [DllImport("DttSP.dll", EntryPoint = "EnableResamplerF")]                   // yt7pwr
+        [DllImport("DttSP.dll", EntryPoint = "EnableResamplerF", CallingConvention = CallingConvention.Cdecl)]                   // yt7pwr
         unsafe public static extern void* EnableResamplerF(int thread, int subrx, int enable);
 
-		[DllImport("DttSP.dll", EntryPoint="NewResamplerF")]
+		[DllImport("DttSP.dll", EntryPoint="NewResamplerF", CallingConvention = CallingConvention.Cdecl)]
         unsafe public static extern void* NewResamplerF(int interpFactor, int deciFactor);
 
-        [DllImport("DttSP.dll", EntryPoint = "NewResamplerF_LimeSDR")]
-        unsafe public static extern void* NewResamplerF_LimeSDR(int sampin, int sampout);
+        [DllImport("DttSP.dll", EntryPoint = "NewResamplerF_LimeSDR", CallingConvention = CallingConvention.Cdecl)]
+        unsafe public static extern void* NewResamplerF_LimeSDR(int lcm, int sampin, int sampout);
 
-		[DllImport("DttSP.dll", EntryPoint="DoResamplerF")]
+		[DllImport("DttSP.dll", EntryPoint="DoResamplerF", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void DoResamplerF(float *input, float *output, int numsamps, int *outsamps,void *ptr);
 
-		[DllImport("DttSP.dll", EntryPoint="DelPolyPhaseFIRF")]
+		[DllImport("DttSP.dll", EntryPoint="DelPolyPhaseFIRF", CallingConvention = CallingConvention.Cdecl)]
 		unsafe public static extern void DelResamplerF(void *ptr);
 
-		[DllImport("DttSP.dll", EntryPoint="SetThreadNo")]///
+		[DllImport("DttSP.dll", EntryPoint="SetThreadNo", CallingConvention = CallingConvention.Cdecl)]///
 		unsafe public static extern void SetThreadNo(uint threadno);
 
-		[DllImport("DttSP.dll", EntryPoint="SetThreadCom")]///
+		[DllImport("DttSP.dll", EntryPoint="SetThreadCom", CallingConvention = CallingConvention.Cdecl)]///
 		unsafe public static extern void SetThreadCom(uint thread_com);
 
-		[DllImport("DttSP.dll", EntryPoint="SetSubRXSt")]///
+		[DllImport("DttSP.dll", EntryPoint="SetSubRXSt", CallingConvention = CallingConvention.Cdecl)]///
 		unsafe public static extern void SetRXOn(uint thread, uint subrx, bool setit);
 
-		[DllImport("DttSP.dll", EntryPoint="SetRXPan")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXPan", CallingConvention = CallingConvention.Cdecl)]///
 		unsafe public static extern void SetRXPan(uint thread, uint subrx, float pan); // takes values from 0 to 1.0 for L to R.
 
         public static double RXOsc = 0;
-		[DllImport("DttSP.dll", EntryPoint="SetRXOsc")]///
+		[DllImport("DttSP.dll", EntryPoint="SetRXOsc", CallingConvention = CallingConvention.Cdecl)]///
 		unsafe public static extern int SetRXOsc(uint thread, uint subrx, double freq);
 
-		[DllImport("DttSP.dll", EntryPoint = "GetLoopPTT")]
+		[DllImport("DttSP.dll", EntryPoint = "GetLoopPTT", CallingConvention = CallingConvention.Cdecl)]
 		public static extern byte GetLoopPTT(); 
 
-		[DllImport("DttSP.dll", EntryPoint = "GetLoopPresent")]
+		[DllImport("DttSP.dll", EntryPoint = "GetLoopPresent", CallingConvention = CallingConvention.Cdecl)]
 		public static extern byte GetLoopPresent(); 
 
-		[DllImport("DttSP.dll", EntryPoint = "SetLoopEnabled")]
+		[DllImport("DttSP.dll", EntryPoint = "SetLoopEnabled", CallingConvention = CallingConvention.Cdecl)]
 		public static extern byte SetLoopEnabled(int Enabled);
 
-        [DllImport("DttSP.dll", EntryPoint = "SetRXOscPhase")]///
+        [DllImport("DttSP.dll", EntryPoint = "SetRXOscPhase", CallingConvention = CallingConvention.Cdecl)]///
         unsafe public static extern int SetRXOscPhase(double phase);
 
 		#endregion
