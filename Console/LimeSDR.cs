@@ -254,6 +254,7 @@ namespace PowerSDR
                     }
 
                     device.Start(lpfbw * 1e6, RXsr, TXsr);
+                    Audio.VACRBReset = true;
                     return true;
                 }
                 else
@@ -269,51 +270,64 @@ namespace PowerSDR
             }
         }
 
-        public void SetLOSC(Int32 freq)
+        public bool SetLOSC(Int32 freq)
         {
-            if (device != null)
+            try
             {
-                if (freq < 30 * 1e6 && RX0_center_freq >= 30 * 1e6 && device.isStreaming)
+                if (device != null)
                 {
-                    Stop();
-                    Thread.Sleep(200);
-                    Close();
-                    Open();
-                    device.RX0_centerFrequency = freq;
-                    device.TX0_centerFrequency = freq;
-                    Start(_callback, inputBufferSize, RXantenna, TXantenna, RX_channel, TX_channel, LPFBW, RXsampleRate, TXsampleRate);
-                    Thread.Sleep(200);
-                    device.RX0_Frequency = freq;
-                    device.TX0_Frequency = freq;
-                }
-                else if (freq > 30 * 1e6 && RX0_center_freq <= 30 * 1e6 && device.isStreaming)
-                {
-                    Stop();
-                    Thread.Sleep(200);
-                    Close();
-                    Open();
-                    device.RX0_centerFrequency = freq;
-                    device.TX0_centerFrequency = freq;
-                    Start(_callback, inputBufferSize, RXantenna, RX_channel, TX_channel, TXantenna, LPFBW, RXsampleRate, TXsampleRate);
-                    device.RX0_Frequency = freq;
-                    device.TX0_Frequency = freq;
-                }
-                else
-                {
-                    if (device != null && device.isStreaming)
+                    if (freq < 30 * 1e6 && RX0_center_freq >= 30 * 1e6 && device.isStreaming)
                     {
-                        device.RX0_Frequency = freq;
-                        device.TX0_Frequency = freq;
-                    }
-                    else if (device != null)
-                    {
+                        /*Stop();
+                        Thread.Sleep(200);
+                        Close();
+                        Open();
                         device.RX0_centerFrequency = freq;
                         device.TX0_centerFrequency = freq;
+                        Start(_callback, inputBufferSize, RXantenna, TXantenna, RX_channel, TX_channel, LPFBW, RXsampleRate, TXsampleRate);
+                        Thread.Sleep(200);
+                        device.RX0_Frequency = freq;
+                        device.TX0_Frequency = freq;*/
+                        return false;
                     }
-                }
+                    else if (freq > 30 * 1e6 && RX0_center_freq <= 30 * 1e6 && device.isStreaming)
+                    {
+                        /*Stop();
+                        Thread.Sleep(200);
+                        Close();
+                        Open();
+                        device.RX0_centerFrequency = freq;
+                        device.TX0_centerFrequency = freq;
+                        Start(_callback, inputBufferSize, RXantenna, RX_channel, TX_channel, TXantenna, LPFBW, RXsampleRate, TXsampleRate);
+                        device.RX0_Frequency = freq;
+                        device.TX0_Frequency = freq;*/
+                        return false;
+                    }
+                    else
+                    {
+                        if (device != null && device.isStreaming)
+                        {
+                            device.RX0_Frequency = freq;
+                            device.TX0_Frequency = freq;
+                        }
+                        else if (device != null)
+                        {
+                            device.RX0_centerFrequency = freq;
+                            device.TX0_centerFrequency = freq;
+                        }
+                    }
 
-                RX0_center_freq = freq;
-                TX0_center_freq = freq;
+                    RX0_center_freq = freq;
+                    TX0_center_freq = freq;
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch(Exception ex)
+            {
+                Debug.Write(ex.ToString());
+                return false;
             }
         }
 
@@ -1070,13 +1084,14 @@ namespace PowerSDR
                 return;
 
             isStreaming = false;
+            Thread.Sleep(1000);
 
-            if (_sampleThread != null)
+            /*if (_sampleThread != null)
             {
                 if (_sampleThread.ThreadState == System.Threading.ThreadState.Running)
                     _sampleThread.Join();
                 _sampleThread = null;
-            }
+            }*/
 
             LMS_StopStream(_streamRX_0);
             LMS_StopStream(_streamTX_0);
@@ -1127,7 +1142,6 @@ namespace PowerSDR
 
         public unsafe bool Start(double lpfbw, double RXsr, double TXsr)
         {
-
             try
             {
                 LPFBW = lpfbw;
@@ -1200,12 +1214,12 @@ namespace PowerSDR
                     throw new ApplicationException(limesdr_strerror());
                 }
 
-                if (LMS_SetSampleRate(_device, RXSampleRate, 32) != 0)
+                /*if (LMS_SetSampleRate(_device, RXSampleRate, 32) != 0)
                 {
                     throw new ApplicationException(limesdr_strerror());
-                }
+                }*/
 
-                /*if (TXSampleRate <= 384000)
+                if (TXSampleRate <= 384000)
                 {
                     if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 32) != 0)
                     {
@@ -1285,7 +1299,7 @@ namespace PowerSDR
                             throw new ApplicationException(limesdr_strerror());
                         }
                     }
-                }*/
+                }
 
                 RX0_Frequency = (long)RX0_centerFrequency;
                 //RX1_Frequency = (long)RX1_centerFrequency;
@@ -2041,7 +2055,9 @@ namespace PowerSDR
 
                 uint ptt = buffer[0] & 0x20;
 
-                if (ptt == 0x00)
+                if (buffer[0] == 0x00)
+                    return false;
+                else if (ptt == 0x00)
                     return true;
                 else
                     return false;

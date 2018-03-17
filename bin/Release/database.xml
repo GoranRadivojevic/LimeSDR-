@@ -488,14 +488,14 @@
   </BandStack>
   <BandStack>
     <BandName>20M</BandName>
-    <ModeMainRX>CWU</ModeMainRX>
+    <ModeMainRX>USB</ModeMainRX>
     <ModeSubRX>CWU</ModeSubRX>
     <FilterMainRX>F7</FilterMainRX>
     <FilterSubRX>F8</FilterSubRX>
-    <VFOA>14.019</VFOA>
-    <VFOB>14.807999</VFOB>
-    <LOSC>14.04</LOSC>
-    <AF>10</AF>
+    <VFOA>14.2545</VFOA>
+    <VFOB>15.407999</VFOB>
+    <LOSC>14.64</LOSC>
+    <AF>20</AF>
     <RF>80</RF>
     <PWR>8</PWR>
     <SQL1>50</SQL1>
@@ -931,12 +931,12 @@
   <BandStack>
     <BandName>GEN</BandName>
     <ModeMainRX>AM</ModeMainRX>
-    <ModeSubRX>AM</ModeSubRX>
+    <ModeSubRX>CWU</ModeSubRX>
     <FilterMainRX>VAR1</FilterMainRX>
-    <FilterSubRX>F2</FilterSubRX>
-    <VFOA>9.6</VFOA>
-    <VFOB>9.64</VFOB>
-    <LOSC>9.2</LOSC>
+    <FilterSubRX>F8</FilterSubRX>
+    <VFOA>153.632</VFOA>
+    <VFOB>153.632001</VFOB>
+    <LOSC>154.4</LOSC>
     <AF>20</AF>
     <RF>80</RF>
     <PWR>50</PWR>
@@ -6978,7 +6978,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[4]</Key>
-    <Value>F7</Value>
+    <Value>F5</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[5]</Key>
@@ -7570,11 +7570,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>txtNewVFOBand</Key>
-    <Value>20M RTTY</Value>
+    <Value>20M SSB</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOAnew</Key>
-    <Value>14.090400</Value>
+    <Value>14.254500</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOBnew</Key>
@@ -7646,7 +7646,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>Version</Key>
-    <Value>LimeSDR# v0.2 BETA YT7PWR 32bit</Value>
+    <Value>LimeSDR# v0.3 BETA YT7PWR 32bit  LMS7002 temperature: 40.5C</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>vfob_dsp_mode</Key>

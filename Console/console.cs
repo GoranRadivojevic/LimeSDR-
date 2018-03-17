@@ -481,10 +481,10 @@ namespace PowerSDR
         private Button btnHidden;
 
 #if(WIN32)
-        const string LimeSDR_version = "LimeSDR# v0.2 BETA YT7PWR 32bit";
+        const string LimeSDR_version = "LimeSDR# v0.3 BETA YT7PWR 32bit";
 #endif
 #if(WIN64)
-        const string LimeSDR_version = "LimeSDR# v0.2 BETA YT7PWR 64bit";
+        const string LimeSDR_version = "LimeSDR# v0.3 BETA YT7PWR 64bit";
 #endif
 
         #region DLL import
@@ -12886,11 +12886,13 @@ namespace PowerSDR
                                         break;
                                 }
 
-                                limeSDR.SetLOSC((Int32)(Math.Round(losc_freq * 1e6, 6)));
+                                if (!limeSDR.SetLOSC((Int32)(Math.Round(losc_freq * 1e6, 6))))
+                                    chkPower.Checked = false;
                             }
                             else
                             {
-                                limeSDR.SetLOSC((Int32)(Math.Round(losc_freq * 1e6, 6)));
+                                if(!limeSDR.SetLOSC((Int32)(Math.Round(losc_freq * 1e6, 6))))
+                                    chkPower.Checked = false;
                             }
                         }
 
@@ -19763,7 +19765,9 @@ namespace PowerSDR
                                 limeSDR.SetRXgain((ushort)ptbLimeSDR_Gain.Value);
                                 SetTXOscFreqs(true, true);
                                 SetTXOscFreqs(false, true);
-                                limeSDR.SetLOSC((Int32)(Math.Round(LOSCFreq * 1e6, 6)));
+
+                                if(!limeSDR.SetLOSC((Int32)(Math.Round(LOSCFreq * 1e6, 6))))
+                                    chkPower.Checked = false;
                             }
                             else
                                 btnUSB.BackColor = Color.Red;
@@ -21996,7 +22000,8 @@ namespace PowerSDR
                                     SendMessage(debug.rtbDebugMsg.Handle, WM_VSCROLL, SB_BOTTOM, 0);
                                 }
 
-                                limeSDR.SetLOSC((int)tmpFreq);
+                                if(!limeSDR.SetLOSC((int)tmpFreq))
+                                    chkPower.Checked = false;
 
                             }
                         }
@@ -22078,7 +22083,8 @@ namespace PowerSDR
                                     return;
                                 }
 
-                                limeSDR.SetLOSC((int)(tmpFreq));
+                                if(!limeSDR.SetLOSC((int)(tmpFreq)))
+                                    chkPower.Checked = false;
                             }
                         }
                     }
