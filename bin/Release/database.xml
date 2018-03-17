@@ -801,7 +801,7 @@
     <VFOA>144</VFOA>
     <VFOB>144</VFOB>
     <LOSC>144</LOSC>
-    <AF>15</AF>
+    <AF>20</AF>
     <RF>80</RF>
     <PWR>8</PWR>
     <SQL1>50</SQL1>
@@ -7646,7 +7646,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>Version</Key>
-    <Value>LimeSDR# v0.2 BETA YT7PWR 32bit  LMS7002 temperature: 45.0C</Value>
+    <Value>LimeSDR# v0.2 BETA YT7PWR 32bit</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>vfob_dsp_mode</Key>
@@ -9030,7 +9030,7 @@
   </State>
   <State>
     <Key>SpectrumLowLevel</Key>
-    <Value>-130|-145|-145|-145|-145|-120|-145|-120|-145|-145|-145|-145|-145|-130|-145|-125|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145</Value>
+    <Value>-120|-145|-145|-145|-145|-120|-145|-120|-145|-145|-145|-145|-145|-130|-145|-125|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145</Value>
   </State>
   <State>
     <Key>tbDataLineAlpha</Key>

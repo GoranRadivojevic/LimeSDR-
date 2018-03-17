@@ -1,0 +1,10 @@
+﻿cl : Command line warning D9002: ignoring unknown option '/arch:SSE'
+  IirFilter.c
+c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
+c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
+c:\projekti\limesdr--master\dttsp\iirfilter.c(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\projekti\limesdr--master\dttsp\iirfilter.c(46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     Creating library x64\Debug\DttSP.lib and object x64\Debug\DttSP.exp
+  DttSP.vcxproj -> C:\Projekti\LimeSDR--master\DttSP\x64\Debug\DttSP.dll
