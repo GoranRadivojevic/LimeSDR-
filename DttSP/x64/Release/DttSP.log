@@ -1,281 +1,281 @@
 ﻿cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
 cl : Command line warning D9002: ignoring unknown option '/arch:SSE2'
   am_demod.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   banal.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\banal.c(88): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\banal.c(88): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
-c:\projekti\limesdr--master\dttsp\banal.c(100): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\banal.c(100): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(242): note: see declaration of 'freopen'
-c:\projekti\limesdr--master\dttsp\banal.c(175): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\banal.c(175): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1959): note: see declaration of '_snprintf'
-c:\projekti\limesdr--master\dttsp\banal.c(216): warning C4267: 'function': conversion from 'size_t' to 'unsigned int', possible loss of data
-c:\projekti\limesdr--master\dttsp\banal.c(224): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\banal.c(216): warning C4267: 'function': conversion from 'size_t' to 'unsigned int', possible loss of data
+c:\projekti\limesdr-\dttsp\banal.c(224): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
-c:\projekti\limesdr--master\dttsp\banal.c(225): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\banal.c(225): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
-c:\projekti\limesdr--master\dttsp\banal.c(229): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\banal.c(229): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdlib.h(1199): note: see declaration of 'getenv'
-c:\projekti\limesdr--master\dttsp\banal.c(232): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\banal.c(232): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
-c:\projekti\limesdr--master\dttsp\banal.c(233): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\banal.c(233): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
   bufvec.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   correctIQ.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\correctiq.c(111): warning C4013: 'isNaN' undefined; assuming extern returning int
+c:\projekti\limesdr-\dttsp\correctiq.c(111): warning C4013: 'isNaN' undefined; assuming extern returning int
   cwtones.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   cxops.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   dcblock.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   diversity.c
   dttspagc.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\dttspagc.c(87): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\dttspagc.c(87): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   filter.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   fm_demod.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\fm_demod.c(38): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\projekti\limesdr--master\dttsp\fm_demod.c(39): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\projekti\limesdr--master\dttsp\fm_demod.c(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\projekti\limesdr--master\dttsp\fm_demod.c(139): warning C4013: 'delStereDecoder' undefined; assuming extern returning int
+c:\projekti\limesdr-\dttsp\fm_demod.c(38): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\projekti\limesdr-\dttsp\fm_demod.c(39): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\projekti\limesdr-\dttsp\fm_demod.c(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\projekti\limesdr-\dttsp\fm_demod.c(139): warning C4013: 'delStereDecoder' undefined; assuming extern returning int
   fm_stereo_decoder.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(68): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(126): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(128): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(129): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(130): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(146): warning C4244: 'function': conversion from 'double' to 'REAL', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(147): warning C4244: 'function': conversion from 'double' to 'REAL', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(115): warning C4101: 'coefficients': unreferenced local variable
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(198): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(199): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(200): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(196): warning C4047: 'initializing': 'StereoPll' differs in levels of indirection from 'StereoPll *'
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(223): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(224): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
-c:\projekti\limesdr--master\dttsp\fm_stereo_decoder.c(226): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(68): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(126): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(128): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(129): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(130): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(146): warning C4244: 'function': conversion from 'double' to 'REAL', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(147): warning C4244: 'function': conversion from 'double' to 'REAL', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(115): warning C4101: 'coefficients': unreferenced local variable
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(198): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(199): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(200): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(196): warning C4047: 'initializing': 'StereoPll' differs in levels of indirection from 'StereoPll *'
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(223): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(224): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
+c:\projekti\limesdr-\dttsp\fm_stereo_decoder.c(226): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   graphiceq.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   hilbert.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   IirFilter.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\iirfilter.c(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\projekti\limesdr--master\dttsp\iirfilter.c(46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\iirfilter.c(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\iirfilter.c(46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   isoband.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   keyd.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\keyd.c(96): warning C4101: 'numsamps': unreferenced local variable
-c:\projekti\limesdr--master\dttsp\keyd.c(129): warning C4101: 'numsamps': unreferenced local variable
-c:\projekti\limesdr--master\dttsp\keyd.c(188): warning C4101: 'numsamps': unreferenced local variable
-c:\projekti\limesdr--master\dttsp\keyd.c(236): warning C4101: 'numsamps': unreferenced local variable
-c:\projekti\limesdr--master\dttsp\keyd.c(683): warning C4311: 'type cast': pointer truncation from 'void *' to 'MMRESULT'
+c:\projekti\limesdr-\dttsp\keyd.c(96): warning C4101: 'numsamps': unreferenced local variable
+c:\projekti\limesdr-\dttsp\keyd.c(129): warning C4101: 'numsamps': unreferenced local variable
+c:\projekti\limesdr-\dttsp\keyd.c(188): warning C4101: 'numsamps': unreferenced local variable
+c:\projekti\limesdr-\dttsp\keyd.c(236): warning C4101: 'numsamps': unreferenced local variable
+c:\projekti\limesdr-\dttsp\keyd.c(683): warning C4311: 'type cast': pointer truncation from 'void *' to 'MMRESULT'
   keyer.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   keyerio.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   lmadf.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   Compiling...
   meter.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   noiseblanker.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   oscillator.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\oscillator.c(71): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
-c:\projekti\limesdr--master\dttsp\oscillator.c(72): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
+c:\projekti\limesdr-\dttsp\oscillator.c(71): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
+c:\projekti\limesdr-\dttsp\oscillator.c(72): warning C4244: '=': conversion from 'double' to 'REAL', possible loss of data
   ovsv.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\ovsv.c(44): warning C4101: 'k': unreferenced local variable
-c:\projekti\limesdr--master\dttsp\ovsv.c(43): warning C4101: 'tmp': unreferenced local variable
-c:\projekti\limesdr--master\dttsp\ovsv.c(44): warning C4101: 'j': unreferenced local variable
+c:\projekti\limesdr-\dttsp\ovsv.c(44): warning C4101: 'k': unreferenced local variable
+c:\projekti\limesdr-\dttsp\ovsv.c(43): warning C4101: 'tmp': unreferenced local variable
+c:\projekti\limesdr-\dttsp\ovsv.c(44): warning C4101: 'j': unreferenced local variable
   resample.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   resampleF.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   ringb.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\ringb.c(36): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
-c:\projekti\limesdr--master\dttsp\ringb.c(49): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+c:\projekti\limesdr-\dttsp\ringb.c(36): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+c:\projekti\limesdr-\dttsp\ringb.c(49): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
   sdr.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\sdr.c(92): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\sdr.c(92): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
-c:\projekti\limesdr--master\dttsp\sdr.c(162): warning C4047: '=': 'fftwf_complex (*)' differs in levels of indirection from 'COMPLEX *'
-c:\projekti\limesdr--master\dttsp\sdr.c(193): warning C4047: '=': 'fftwf_complex (*)' differs in levels of indirection from 'COMPLEX *'
-c:\projekti\limesdr--master\dttsp\sdr.c(213): warning C4047: '=': 'fftwf_complex (*)' differs in levels of indirection from 'COMPLEX *'
-c:\projekti\limesdr--master\dttsp\sdr.c(351): warning C4244: '=': conversion from 'REAL' to 'int', possible loss of data
-c:\projekti\limesdr--master\dttsp\sdr.c(352): warning C4244: '=': conversion from 'REAL' to 'int', possible loss of data
-c:\projekti\limesdr--master\dttsp\sdr.c(548): warning C4047: 'function': 'COMPLEX *' differs in levels of indirection from 'fftwf_complex (*)'
-c:\projekti\limesdr--master\dttsp\sdr.c(548): warning C4024: 'delvec_COMPLEX': different types for formal and actual parameter 1
-c:\projekti\limesdr--master\dttsp\sdr.c(556): warning C4013: 'delPolyPhaseFIRF' undefined; assuming extern returning int
-c:\projekti\limesdr--master\dttsp\sdr.c(1344): warning C4244: 'function': conversion from 'double' to 'REAL', possible loss of data
-c:\projekti\limesdr--master\dttsp\sdr.c(1401): warning C4101: 'i': unreferenced local variable
+c:\projekti\limesdr-\dttsp\sdr.c(162): warning C4047: '=': 'fftwf_complex (*)' differs in levels of indirection from 'COMPLEX *'
+c:\projekti\limesdr-\dttsp\sdr.c(193): warning C4047: '=': 'fftwf_complex (*)' differs in levels of indirection from 'COMPLEX *'
+c:\projekti\limesdr-\dttsp\sdr.c(213): warning C4047: '=': 'fftwf_complex (*)' differs in levels of indirection from 'COMPLEX *'
+c:\projekti\limesdr-\dttsp\sdr.c(351): warning C4244: '=': conversion from 'REAL' to 'int', possible loss of data
+c:\projekti\limesdr-\dttsp\sdr.c(352): warning C4244: '=': conversion from 'REAL' to 'int', possible loss of data
+c:\projekti\limesdr-\dttsp\sdr.c(548): warning C4047: 'function': 'COMPLEX *' differs in levels of indirection from 'fftwf_complex (*)'
+c:\projekti\limesdr-\dttsp\sdr.c(548): warning C4024: 'delvec_COMPLEX': different types for formal and actual parameter 1
+c:\projekti\limesdr-\dttsp\sdr.c(556): warning C4013: 'delPolyPhaseFIRF' undefined; assuming extern returning int
+c:\projekti\limesdr-\dttsp\sdr.c(1344): warning C4244: 'function': conversion from 'double' to 'REAL', possible loss of data
+c:\projekti\limesdr-\dttsp\sdr.c(1401): warning C4101: 'i': unreferenced local variable
   sdrexport.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   spectrum.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   speechproc.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   splitfields.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\splitfields.c(73): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\splitfields.c(73): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(439): note: see declaration of 'strtok'
-c:\projekti\limesdr--master\dttsp\splitfields.c(79): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\splitfields.c(79): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(439): note: see declaration of 'strtok'
   spottone.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   update.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\update.c(243): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-c:\projekti\limesdr--master\dttsp\update.c(413): warning C4101: 'i': unreferenced local variable
-c:\projekti\limesdr--master\dttsp\update.c(1840): warning C4098: 'SetResamplerF': 'void' function returning a value
+c:\projekti\limesdr-\dttsp\update.c(243): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+c:\projekti\limesdr-\dttsp\update.c(413): warning C4101: 'i': unreferenced local variable
+c:\projekti\limesdr-\dttsp\update.c(1840): warning C4098: 'SetResamplerF': 'void' function returning a value
   window.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
   winmain.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
-c:\projekti\limesdr--master\dttsp\winmain.c(790): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\winmain.c(790): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
-c:\projekti\limesdr--master\dttsp\winmain.c(828): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\winmain.c(828): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
-c:\projekti\limesdr--master\dttsp\winmain.c(829): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\winmain.c(829): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
-c:\projekti\limesdr--master\dttsp\winmain.c(830): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\winmain.c(830): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
-c:\projekti\limesdr--master\dttsp\winmain.c(831): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\winmain.c(831): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
-c:\projekti\limesdr--master\dttsp\winmain.c(832): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\winmain.c(832): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
-c:\projekti\limesdr--master\dttsp\winmain.c(872): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\winmain.c(872): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   wscompand.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
 cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
 cl : Command line warning D9002: ignoring unknown option '/arch:SSE2'
   fastrig.c
-c:\projekti\limesdr--master\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(98): warning C4996: '__timezone': This function or variable may be unsafe. Consider using _get_timezone instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(73): note: see declaration of '__timezone'
-c:\projekti\limesdr--master\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\projekti\limesdr-\dttsp\fromsys.h(99): warning C4996: '__daylight': This function or variable may be unsafe. Consider using _get_daylight instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(61): note: see declaration of '__daylight'
      Creating library x64\Release\DttSP.lib and object x64\Release\DttSP.exp
   Generating code
-c:\projekti\limesdr--master\dttsp\update.c(252): warning C4716: 'FMenableStereo': must return a value
-c:\projekti\limesdr--master\dttsp\update.c(245): warning C4716: 'FMreload': must return a value
+c:\projekti\limesdr-\dttsp\update.c(252): warning C4716: 'FMenableStereo': must return a value
+c:\projekti\limesdr-\dttsp\update.c(245): warning C4716: 'FMreload': must return a value
   Finished generating code
-  DttSP.vcxproj -> C:\Projekti\LimeSDR--master\DttSP\x64\Release\DttSP.dll
+  DttSP.vcxproj -> C:\Projekti\LimeSDR-\DttSP\x64\Release\DttSP.dll

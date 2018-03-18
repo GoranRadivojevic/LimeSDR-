@@ -13568,9 +13568,9 @@ namespace PowerSDR
             this.radGenModelLimeSDR.Image = null;
             this.radGenModelLimeSDR.Location = new System.Drawing.Point(22, 115);
             this.radGenModelLimeSDR.Name = "radGenModelLimeSDR";
-            this.radGenModelLimeSDR.Size = new System.Drawing.Size(89, 20);
+            this.radGenModelLimeSDR.Size = new System.Drawing.Size(110, 20);
             this.radGenModelLimeSDR.TabIndex = 9;
-            this.radGenModelLimeSDR.Text = "LimeSDR";
+            this.radGenModelLimeSDR.Text = "LimeSDR-USB";
             this.radGenModelLimeSDR.UseVisualStyleBackColor = true;
             this.radGenModelLimeSDR.CheckedChanged += new System.EventHandler(this.radGenModelLimeSDR_CheckedChanged);
             // 
@@ -23651,8 +23651,8 @@ namespace PowerSDR
         {
             try
             {
-                console.limeSDR.SetLNA_gain((ushort)tbLimeSDR_LNAGain.Value);
                 lblLimeSDR_LNAGain.Text = tbLimeSDR_LNAGain.Value.ToString() + "dB";
+                console.limeSDR.SetLNA_gain((ushort)tbLimeSDR_LNAGain.Value);
             }
             catch (Exception ex)
             {
@@ -23664,8 +23664,8 @@ namespace PowerSDR
         {
             try
             {
-                console.limeSDR.SetTIA_gain((ushort)tbLimeSDR_TIAGain.Value);
                 lblLimeSDR_TIAGain.Text = tbLimeSDR_TIAGain.Value.ToString() + "dB";
+                console.limeSDR.SetTIA_gain((ushort)tbLimeSDR_TIAGain.Value);
             }
             catch (Exception ex)
             {
@@ -23677,8 +23677,8 @@ namespace PowerSDR
         {
             try
             {
-                console.limeSDR.SetPGA_gain((ushort)tbLimeSDR_PGAGain.Value);
                 lblLimeSDR_PGAGain.Text = tbLimeSDR_PGAGain.Value.ToString() + "dB";
+                console.limeSDR.SetPGA_gain((ushort)tbLimeSDR_PGAGain.Value);
             }
             catch (Exception ex)
             {
@@ -23692,8 +23692,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_RX0.Checked)
                 {
-                    console.limeSDR.SetRXChannel(0);
                     console.RX_channel = 0;
+                    console.limeSDR.SetRXChannel(0);
                 }
             }
             catch (Exception ex)
@@ -23708,8 +23708,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_RX1.Checked)
                 {
-                    console.limeSDR.SetRXChannel(1);
                     console.RX_channel = 1;
+                    console.limeSDR.SetRXChannel(1);
                 }
             }
             catch (Exception ex)
@@ -23724,8 +23724,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_LNA_H.Checked)
                 {
-                    console.limeSDR.SetRXAntenna(1);
                     console.RX_antenna = 1;
+                    console.limeSDR.SetRXAntenna(1);
                 }
             }
             catch (Exception ex)
@@ -23740,8 +23740,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_LNA_L.Checked)
                 {
-                    console.limeSDR.SetRXAntenna(2);
                     console.RX_antenna = 2;
+                    console.limeSDR.SetRXAntenna(2);
                 }
             }
             catch (Exception ex)
@@ -23756,8 +23756,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_LNA_W.Checked)
                 {
-                    console.limeSDR.SetRXAntenna(3);
                     console.RX_antenna = 3;
+                    console.limeSDR.SetRXAntenna(3);
                 }
             }
             catch (Exception ex)
@@ -23772,8 +23772,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_TX0.Checked)
                 {
-                    console.limeSDR.SetTXChannel(1);
-                    console.TX_channel = 1;
+                    console.TX_channel = 0;
+                    console.limeSDR.SetTXChannel(0);
                 }
             }
             catch (Exception ex)
@@ -23788,8 +23788,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_TX1.Checked)
                 {
-                    console.limeSDR.SetTXChannel(2);
-                    console.TX_channel = 2;
+                    console.TX_channel = 1;
+                    console.limeSDR.SetTXChannel(1);
                 }
             }
             catch (Exception ex)
@@ -23804,8 +23804,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_Antenna0.Checked)
                 {
-                    console.limeSDR.SetTXAntenna(1);
                     console.TX_antenna = 1;
+                    console.limeSDR.SetTXAntenna(1);
                 }
             }
             catch (Exception ex)
@@ -23820,8 +23820,8 @@ namespace PowerSDR
             {
                 if (radLimeSDR_Antenna1.Checked)
                 {
-                    console.limeSDR.SetTXAntenna(2);
                     console.TX_antenna = 2;
+                    console.limeSDR.SetTXAntenna(2);
                 }
             }
             catch (Exception ex)

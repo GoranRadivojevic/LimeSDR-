@@ -45,7 +45,6 @@ C:\Projekti\LimeSDR-\bin\Debug\LimeSDR#.exe.manifest
 C:\Projekti\LimeSDR-\bin\Debug\LimeSDR#.application
 C:\Projekti\LimeSDR-\bin\Debug\LimeSDR#.exe
 C:\Projekti\LimeSDR-\bin\Debug\LimeSDR#.pdb
-C:\Projekti\LimeSDR-\Console\obj\x86\Debug\PowerSDR.csprojResolveAssemblyReference.cache
 C:\Projekti\LimeSDR-\Console\obj\x86\Debug\PowerSDR.About.resources
 C:\Projekti\LimeSDR-\Console\obj\x86\Debug\PowerSDR.Console.resources
 C:\Projekti\LimeSDR-\Console\obj\x86\Debug\PowerSDR.cwedit.resources
@@ -72,3 +71,4 @@ C:\Projekti\LimeSDR-\Console\obj\x86\Debug\LimeSDR#.application
 C:\Projekti\LimeSDR-\Console\obj\x86\Debug\PowerSDR.csproj.CopyComplete
 C:\Projekti\LimeSDR-\Console\obj\x86\Debug\LimeSDR#.exe
 C:\Projekti\LimeSDR-\Console\obj\x86\Debug\LimeSDR#.pdb
+C:\Projekti\LimeSDR-\Console\obj\x86\Debug\PowerSDR.csprojResolveAssemblyReference.cache

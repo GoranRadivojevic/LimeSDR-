@@ -481,10 +481,10 @@ namespace PowerSDR
         private Button btnHidden;
 
 #if(WIN32)
-        const string LimeSDR_version = "LimeSDR# v0.3 BETA YT7PWR 32bit";
+        const string LimeSDR_version = "LimeSDR# v0.4 BETA YT7PWR 32bit";
 #endif
 #if(WIN64)
-        const string LimeSDR_version = "LimeSDR# v0.3 BETA YT7PWR 64bit";
+        const string LimeSDR_version = "LimeSDR# v0.4 BETA YT7PWR 64bit";
 #endif
 
         #region DLL import

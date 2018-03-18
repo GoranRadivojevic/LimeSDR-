@@ -488,16 +488,16 @@
   </BandStack>
   <BandStack>
     <BandName>20M</BandName>
-    <ModeMainRX>USB</ModeMainRX>
+    <ModeMainRX>AM</ModeMainRX>
     <ModeSubRX>CWU</ModeSubRX>
-    <FilterMainRX>F7</FilterMainRX>
+    <FilterMainRX>VAR1</FilterMainRX>
     <FilterSubRX>F7</FilterSubRX>
-    <VFOA>14.304</VFOA>
-    <VFOB>15.217999</VFOB>
-    <LOSC>14.45</LOSC>
+    <VFOA>14.045766</VFOA>
+    <VFOB>15.367999</VFOB>
+    <LOSC>14.6</LOSC>
     <AF>15</AF>
-    <RF>80</RF>
-    <PWR>8</PWR>
+    <RF>60</RF>
+    <PWR>10</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
     <SQL2>50</SQL2>
@@ -811,16 +811,16 @@
   </BandStack>
   <BandStack>
     <BandName>2M</BandName>
-    <ModeMainRX>USB</ModeMainRX>
-    <ModeSubRX>USB</ModeSubRX>
-    <FilterMainRX>F7</FilterMainRX>
-    <FilterSubRX>F7</FilterSubRX>
-    <VFOA>144.619746</VFOA>
-    <VFOB>144.2</VFOB>
-    <LOSC>144.2</LOSC>
+    <ModeMainRX>CWU</ModeMainRX>
+    <ModeSubRX>CWU</ModeSubRX>
+    <FilterMainRX>F5</FilterMainRX>
+    <FilterSubRX>F5</FilterSubRX>
+    <VFOA>144</VFOA>
+    <VFOB>144</VFOB>
+    <LOSC>144</LOSC>
     <AF>15</AF>
     <RF>60</RF>
-    <PWR>50</PWR>
+    <PWR>10</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
     <SQL2>50</SQL2>
@@ -5582,11 +5582,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>console_left</Key>
-    <Value>15</Value>
+    <Value>12</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>console_top</Key>
-    <Value>3</Value>
+    <Value>14</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>console_width</Key>
@@ -6978,7 +6978,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[4]</Key>
-    <Value>F8</Value>
+    <Value>VAR1</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[5]</Key>
@@ -6986,7 +6986,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[6]</Key>
-    <Value>VAR1</Value>
+    <Value>F7</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[7]</Key>
@@ -7058,11 +7058,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbAF</Key>
-    <Value>15</Value>
+    <Value>20</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbAF1</Key>
-    <Value>15</Value>
+    <Value>20</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbCOMP</Key>
@@ -7098,7 +7098,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbLimeSDR_Gain</Key>
-    <Value>40</Value>
+    <Value>43</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbMIC</Key>
@@ -7126,15 +7126,15 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbPWR</Key>
-    <Value>8</Value>
+    <Value>10</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbPWR1</Key>
-    <Value>8</Value>
+    <Value>10</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbRF</Key>
-    <Value>80</Value>
+    <Value>60</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbRF1</Key>
@@ -7562,7 +7562,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>txtLOSCnew</Key>
-    <Value>14.450000</Value>
+    <Value>14.400000</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtMemory</Key>
@@ -7570,19 +7570,19 @@
   </ConsoleState>
   <ConsoleState>
     <Key>txtNewVFOBand</Key>
-    <Value>20M SSB</Value>
+    <Value>20M Ext/Adv SSB</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOAnew</Key>
-    <Value>14.304000</Value>
+    <Value>14.208177</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOBnew</Key>
-    <Value>15.217999</Value>
+    <Value>15.167999</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>udAF1</Key>
-    <Value>15</Value>
+    <Value>20</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>udCOMP</Key>
@@ -7610,7 +7610,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>udPWR1</Key>
-    <Value>8</Value>
+    <Value>10</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>udRF1</Key>
@@ -7646,7 +7646,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>Version</Key>
-    <Value>LimeSDR# v0.2 BETA YT7PWR 32bit  LMS7002 temperature: 40.5C</Value>
+    <Value>LimeSDR# v0.3 BETA YT7PWR 32bit  LMS7002 temperature: 42.3C</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>vfob_dsp_mode</Key>
@@ -8214,7 +8214,7 @@
   </State>
   <State>
     <Key>chkCWMonitorVAC</Key>
-    <Value>False</Value>
+    <Value>True</Value>
   </State>
   <State>
     <Key>chkDataLineFill</Key>
@@ -9026,11 +9026,11 @@
   </State>
   <State>
     <Key>SpectrumHighLevel</Key>
-    <Value>-55|-70|-70|-70|-70|-50|-70|-70|-70|-70|-70|-70|-70|-45|-70|-55|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70</Value>
+    <Value>-70|-70|-70|-70|-70|-50|-70|-70|-70|-70|-70|-70|-70|-45|-70|-55|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70</Value>
   </State>
   <State>
     <Key>SpectrumLowLevel</Key>
-    <Value>-125|-145|-145|-145|-145|-120|-145|-130|-145|-145|-145|-145|-145|-130|-145|-125|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145</Value>
+    <Value>-125|-145|-145|-145|-145|-120|-145|-125|-145|-145|-145|-145|-145|-130|-145|-125|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145</Value>
   </State>
   <State>
     <Key>tbDataLineAlpha</Key>
@@ -9066,11 +9066,11 @@
   </State>
   <State>
     <Key>tbLimeSDR_LNAGain</Key>
-    <Value>9</Value>
+    <Value>2</Value>
   </State>
   <State>
     <Key>tbLimeSDR_PGAGain</Key>
-    <Value>13</Value>
+    <Value>17</Value>
   </State>
   <State>
     <Key>tbLimeSDR_TIAGain</Key>
@@ -9234,7 +9234,7 @@
   </State>
   <State>
     <Key>udDisplayGridMin</Key>
-    <Value>-130</Value>
+    <Value>-125</Value>
   </State>
   <State>
     <Key>udDisplayGridStep</Key>
@@ -9302,7 +9302,7 @@
   </State>
   <State>
     <Key>udDSPAGCMaxGaindB</Key>
-    <Value>80</Value>
+    <Value>60</Value>
   </State>
   <State>
     <Key>udDSPAGCSlope</Key>
@@ -9522,7 +9522,7 @@
   </State>
   <State>
     <Key>udPACalPower</Key>
-    <Value>8</Value>
+    <Value>10</Value>
   </State>
   <State>
     <Key>udPAGain10</Key>

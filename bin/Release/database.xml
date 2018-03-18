@@ -391,11 +391,11 @@
     <FilterMainRX>F8</FilterMainRX>
     <FilterSubRX>F8</FilterSubRX>
     <VFOA>7.02715</VFOA>
-    <VFOB>7.04</VFOB>
+    <VFOB>7.807999</VFOB>
     <LOSC>7.04</LOSC>
-    <AF>20</AF>
+    <AF>15</AF>
     <RF>80</RF>
-    <PWR>50</PWR>
+    <PWR>8</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
     <SQL2>50</SQL2>
@@ -491,13 +491,13 @@
     <ModeMainRX>USB</ModeMainRX>
     <ModeSubRX>CWU</ModeSubRX>
     <FilterMainRX>F7</FilterMainRX>
-    <FilterSubRX>F8</FilterSubRX>
-    <VFOA>14.2545</VFOA>
-    <VFOB>15.407999</VFOB>
-    <LOSC>14.64</LOSC>
+    <FilterSubRX>F7</FilterSubRX>
+    <VFOA>14.197</VFOA>
+    <VFOB>15.267999</VFOB>
+    <LOSC>14.5</LOSC>
     <AF>20</AF>
-    <RF>80</RF>
-    <PWR>8</PWR>
+    <RF>60</RF>
+    <PWR>10</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
     <SQL2>50</SQL2>
@@ -794,15 +794,15 @@
   </BandStack>
   <BandStack>
     <BandName>2M</BandName>
-    <ModeMainRX>CWU</ModeMainRX>
+    <ModeMainRX>USB</ModeMainRX>
     <ModeSubRX>CWU</ModeSubRX>
-    <FilterMainRX>F5</FilterMainRX>
+    <FilterMainRX>F7</FilterMainRX>
     <FilterSubRX>F5</FilterSubRX>
-    <VFOA>144</VFOA>
+    <VFOA>144.4087</VFOA>
     <VFOB>144</VFOB>
     <LOSC>144</LOSC>
-    <AF>20</AF>
-    <RF>80</RF>
+    <AF>15</AF>
+    <RF>60</RF>
     <PWR>8</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
@@ -811,16 +811,16 @@
   </BandStack>
   <BandStack>
     <BandName>2M</BandName>
-    <ModeMainRX>USB</ModeMainRX>
-    <ModeSubRX>USB</ModeSubRX>
-    <FilterMainRX>F7</FilterMainRX>
-    <FilterSubRX>F7</FilterSubRX>
-    <VFOA>144.2</VFOA>
-    <VFOB>144.2</VFOB>
-    <LOSC>144.2</LOSC>
+    <ModeMainRX>CWU</ModeMainRX>
+    <ModeSubRX>CWU</ModeSubRX>
+    <FilterMainRX>F5</FilterMainRX>
+    <FilterSubRX>F5</FilterSubRX>
+    <VFOA>144</VFOA>
+    <VFOB>144</VFOB>
+    <LOSC>144</LOSC>
     <AF>20</AF>
-    <RF>80</RF>
-    <PWR>50</PWR>
+    <RF>60</RF>
+    <PWR>10</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
     <SQL2>50</SQL2>
@@ -930,16 +930,16 @@
   </BandStack>
   <BandStack>
     <BandName>GEN</BandName>
-    <ModeMainRX>AM</ModeMainRX>
+    <ModeMainRX>CWU</ModeMainRX>
     <ModeSubRX>CWU</ModeSubRX>
-    <FilterMainRX>VAR1</FilterMainRX>
+    <FilterMainRX>F8</FilterMainRX>
     <FilterSubRX>F8</FilterSubRX>
-    <VFOA>153.632</VFOA>
-    <VFOB>153.632001</VFOB>
-    <LOSC>154.4</LOSC>
-    <AF>20</AF>
+    <VFOA>14.981132</VFOA>
+    <VFOB>15.168</VFOB>
+    <LOSC>14.4</LOSC>
+    <AF>15</AF>
     <RF>80</RF>
-    <PWR>50</PWR>
+    <PWR>8</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
     <SQL2>50</SQL2>
@@ -5310,7 +5310,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>band_2m_index</Key>
-    <Value>0</Value>
+    <Value>1</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>band_30m_index</Key>
@@ -5582,15 +5582,15 @@
   </ConsoleState>
   <ConsoleState>
     <Key>console_left</Key>
-    <Value>17</Value>
+    <Value>15</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>console_top</Key>
-    <Value>5</Value>
+    <Value>3</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>console_width</Key>
-    <Value>1404</Value>
+    <Value>1402</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>display_cal_offset</Key>
@@ -6986,7 +6986,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[6]</Key>
-    <Value>VAR1</Value>
+    <Value>F7</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[7]</Key>
@@ -7098,7 +7098,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbLimeSDR_Gain</Key>
-    <Value>40</Value>
+    <Value>43</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbMIC</Key>
@@ -7126,19 +7126,19 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbPWR</Key>
-    <Value>8</Value>
+    <Value>10</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbPWR1</Key>
-    <Value>8</Value>
+    <Value>10</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbRF</Key>
-    <Value>80</Value>
+    <Value>60</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbRF1</Key>
-    <Value>90</Value>
+    <Value>60</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbRX0Gain</Key>
@@ -7162,11 +7162,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbSubRXFilterWidth</Key>
-    <Value>16</Value>
+    <Value>40</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbVACRXGain</Key>
-    <Value>0</Value>
+    <Value>15</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbVACTXGain</Key>
@@ -7458,11 +7458,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>radSubRXFilter7</Key>
-    <Value>False</Value>
+    <Value>True</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>radSubRXFilter8</Key>
-    <Value>True</Value>
+    <Value>False</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>radSubRXFilter9</Key>
@@ -7542,11 +7542,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>setup_left</Key>
-    <Value>950</Value>
+    <Value>1021</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>setup_top</Key>
-    <Value>560</Value>
+    <Value>562</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>tx_image_imag_table</Key>
@@ -7562,7 +7562,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>txtLOSCnew</Key>
-    <Value>14.640000</Value>
+    <Value>14.500000</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtMemory</Key>
@@ -7570,15 +7570,15 @@
   </ConsoleState>
   <ConsoleState>
     <Key>txtNewVFOBand</Key>
-    <Value>20M SSB</Value>
+    <Value>20M RTTY</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOAnew</Key>
-    <Value>14.254500</Value>
+    <Value>14.084100</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOBnew</Key>
-    <Value>15.407999</Value>
+    <Value>15.267999</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>udAF1</Key>
@@ -7610,11 +7610,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>udPWR1</Key>
-    <Value>8</Value>
+    <Value>10</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>udRF1</Key>
-    <Value>90</Value>
+    <Value>60</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>udRIT</Key>
@@ -7630,7 +7630,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>udVACRXGain</Key>
-    <Value>0</Value>
+    <Value>15</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>udVACTXGain</Key>
@@ -7646,7 +7646,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>Version</Key>
-    <Value>LimeSDR# v0.3 BETA YT7PWR 32bit  LMS7002 temperature: 40.5C</Value>
+    <Value>LimeSDR# v0.4 BETA YT7PWR 32bit  LMS7002 temperature: 41.4C</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>vfob_dsp_mode</Key>
@@ -7662,7 +7662,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>wheel_tune_index_subRX</Key>
-    <Value>6</Value>
+    <Value>3</Value>
   </ConsoleState>
   <XTRVsettings>
     <Key>chkBandX10RXonly</Key>
@@ -8214,7 +8214,7 @@
   </State>
   <State>
     <Key>chkCWMonitorVAC</Key>
-    <Value>False</Value>
+    <Value>True</Value>
   </State>
   <State>
     <Key>chkDataLineFill</Key>
@@ -8810,7 +8810,7 @@
   </State>
   <State>
     <Key>comboLimeSDR_LPFBW</Key>
-    <Value>50.0MHz</Value>
+    <Value>30.0MHz</Value>
   </State>
   <State>
     <Key>comboLimeSDR_RXSampleRate</Key>
@@ -9030,7 +9030,7 @@
   </State>
   <State>
     <Key>SpectrumLowLevel</Key>
-    <Value>-120|-145|-145|-145|-145|-120|-145|-120|-145|-145|-145|-145|-145|-130|-145|-125|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145</Value>
+    <Value>-125|-145|-145|-145|-145|-120|-145|-125|-145|-145|-145|-145|-145|-130|-145|-125|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145</Value>
   </State>
   <State>
     <Key>tbDataLineAlpha</Key>
@@ -9038,7 +9038,7 @@
   </State>
   <State>
     <Key>tbDisplayTxtAlpha</Key>
-    <Value>127</Value>
+    <Value>36</Value>
   </State>
   <State>
     <Key>tbDSPAGCHangThreshold</Key>
@@ -9066,11 +9066,11 @@
   </State>
   <State>
     <Key>tbLimeSDR_LNAGain</Key>
-    <Value>9</Value>
+    <Value>3</Value>
   </State>
   <State>
     <Key>tbLimeSDR_PGAGain</Key>
-    <Value>13</Value>
+    <Value>15</Value>
   </State>
   <State>
     <Key>tbLimeSDR_TIAGain</Key>
@@ -9174,7 +9174,7 @@
   </State>
   <State>
     <Key>udAudioVACGainRX</Key>
-    <Value>0</Value>
+    <Value>15</Value>
   </State>
   <State>
     <Key>udAudioVACGainTX</Key>
@@ -9234,7 +9234,7 @@
   </State>
   <State>
     <Key>udDisplayGridMin</Key>
-    <Value>-120</Value>
+    <Value>-125</Value>
   </State>
   <State>
     <Key>udDisplayGridStep</Key>
@@ -9302,7 +9302,7 @@
   </State>
   <State>
     <Key>udDSPAGCMaxGaindB</Key>
-    <Value>80</Value>
+    <Value>60</Value>
   </State>
   <State>
     <Key>udDSPAGCSlope</Key>
@@ -9522,7 +9522,7 @@
   </State>
   <State>
     <Key>udPACalPower</Key>
-    <Value>8</Value>
+    <Value>10</Value>
   </State>
   <State>
     <Key>udPAGain10</Key>

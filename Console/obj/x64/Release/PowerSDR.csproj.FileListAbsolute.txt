@@ -27,3 +27,33 @@ C:\Projekti\LimeSDR--master\Console\obj\x64\Release\LimeSDR#.exe.manifest
 C:\Projekti\LimeSDR--master\Console\obj\x64\Release\LimeSDR#.application
 C:\Projekti\LimeSDR--master\Console\obj\x64\Release\PowerSDR.csproj.CopyComplete
 C:\Projekti\LimeSDR--master\Console\obj\x64\Release\LimeSDR#.exe
+C:\Projekti\LimeSDR-\bin\Release x64\LimeSDR#.exe.config
+C:\Projekti\LimeSDR-\bin\Release x64\LimeSDR#.exe.manifest
+C:\Projekti\LimeSDR-\bin\Release x64\LimeSDR#.application
+C:\Projekti\LimeSDR-\bin\Release x64\LimeSDR#.exe
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.About.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.Console.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.cwedit.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.CWX.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.EQForm.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.FilterForm.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\System.Windows.Forms.ButtonTS.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.Progress.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.Properties.Resources.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.Setup.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\Splash_Screen.Splash.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.WaveControl.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.WaveOptions.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.ClusterSetup.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.DebugForm.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.Invoke.SMeter2.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.Invoke.SMeter1.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.VoiceMessages.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.XTRV.resources
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.csproj.GenerateResource.cache
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.csproj.CoreCompileInputs.cache
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\LimeSDR#.exe.manifest
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\LimeSDR#.application
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.csproj.CopyComplete
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\LimeSDR#.exe
+C:\Projekti\LimeSDR-\Console\obj\x64\Release\PowerSDR.csprojResolveAssemblyReference.cache

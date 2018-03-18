@@ -1448,9 +1448,10 @@ namespace PowerSDR
                         else
                         {
                             // get new data
-                            fixed (void* rptr = &new_display_data[0])
+                            /*fixed (void* rptr = &new_display_data[0])
                             fixed (void* wptr = &current_display_data[0])
-                                Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
+                                Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));*/
+                            Array.Copy(new_display_data, current_display_data, BUFFER_SIZE);
                         }
 
                         data_ready = false;
@@ -1606,9 +1607,10 @@ namespace PowerSDR
                         else
                         {
                             // get new data
-                            fixed (void* rptr = &new_waterfall_data[0])
+                            /*fixed (void* rptr = &new_waterfall_data[0])
                             fixed (void* wptr = &current_waterfall_data[0])
-                                Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
+                                Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));*/
+                            Array.Copy(new_waterfall_data, current_waterfall_data, BUFFER_SIZE);
                         }
                     }
 
@@ -1666,11 +1668,15 @@ namespace PowerSDR
                     {
                         if (reverse_waterfall)
                         {
+                            //IntPtr rptr = (IntPtr)bitmapData.Scan0.ToPointer();
+                            //IntPtr wptr = (IntPtr)((int)bitmapData.Scan0 + bitmapData.Stride);
                             // first scroll image up
                             int total_size = bitmapData.Stride * bitmapData.Height;		// find buffer size
                             Win32.memcpy(bitmapData.Scan0.ToPointer(),
                                 new IntPtr((int)bitmapData.Scan0 + bitmapData.Stride).ToPointer(),
                                 (uint)(total_size - bitmapData.Stride));
+
+                            //Array.Copy(new_waterfall_data, current_waterfall_data, BUFFER_SIZE);
 
                             row = (byte*)(bitmapData.Scan0.ToInt32() + total_size - bitmapData.Stride);
                         }
@@ -2368,9 +2374,10 @@ namespace PowerSDR
             if (data_ready)
             {
                 // get new data
-                fixed (void* rptr = &new_display_data[0])
+                /*fixed (void* rptr = &new_display_data[0])
                 fixed (void* wptr = &current_display_data[0])
-                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
+                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));*/
+                Array.Copy(new_display_data, current_display_data, BUFFER_SIZE);
 
                 data_ready = false;
             }
@@ -2410,9 +2417,10 @@ namespace PowerSDR
             if (data_ready)
             {
                 // get new data
-                fixed (void* rptr = &new_display_data[0])
+                /*fixed (void* rptr = &new_display_data[0])
                 fixed (void* wptr = &current_display_data[0])
-                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
+                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));*/
+                Array.Copy(new_display_data, current_display_data, BUFFER_SIZE);
 
                 data_ready = false;
             }
@@ -2477,9 +2485,10 @@ namespace PowerSDR
             if (data_ready)
             {
                 // get new data
-                fixed (void* rptr = &new_display_data[0])
+                /*fixed (void* rptr = &new_display_data[0])
                 fixed (void* wptr = &current_display_data[0])
-                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
+                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));*/
+                Array.Copy(new_display_data, current_display_data, BUFFER_SIZE);
 
                 data_ready = false;
             }
@@ -2863,9 +2872,10 @@ namespace PowerSDR
             if (data_ready)
             {
                 // get new data
-                fixed (void* rptr = &new_display_data[0])
+                /*fixed (void* rptr = &new_display_data[0])
                 fixed (void* wptr = &current_display_data[0])
-                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));
+                    Win32.memcpy(wptr, rptr, (uint)(BUFFER_SIZE * sizeof(float)));*/
+                Array.Copy(new_display_data, current_display_data, BUFFER_SIZE);
 
                 data_ready = false;
             }

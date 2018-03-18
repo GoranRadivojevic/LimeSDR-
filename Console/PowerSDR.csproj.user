@@ -81,11 +81,11 @@
     <StartWithIE>true</StartWithIE>
     <RemoteDebugEnabled>true</RemoteDebugEnabled>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <StartWorkingDirectory>C:\Projekti\LimeSDR--master\bin\Debug x64\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Projekti\LimeSDR-\bin\Debug x64\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <StartAction>Project</StartAction>
-    <StartWorkingDirectory>C:\Projekti\LimeSDR--master\bin\Release\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Projekti\LimeSDR-\bin\Release\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>
