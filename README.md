@@ -4,6 +4,7 @@
 # LimeSDR# is C# program for LimeSDR-USB board.
 - 04-03-2018 initial commit.
 - 17-03-2018 update
+- 18-03-2018 update
 
 --------------------------------------------------------------
 - Prerequisites
