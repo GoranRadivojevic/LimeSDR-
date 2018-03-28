@@ -20,7 +20,8 @@ https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/
 --------------------------------------------------------------
 - Built on Windows 10 Home x64 with Visual Studio Comunity 2017 (tested on Windows  x64).
 - In folder ./bin/Release exists two programs with different video drivers: limeSDR# GDI.exe is built
-with only GDI+ driver and LimeSDR# DirectX.exe with additional - For custom built band pass filters use LimeSDR# Database Editor.exe and in LimeSDRBandFilters table change your band edges.
+with only GDI+ driver and LimeSDR# DirectX.exe with additional DirectX video driver - For custom built band pass filters 
+use LimeSDR# Database Editor.exe and in LimeSDRBandFilters table change your band edges.
 
 --------------------------------------------------------------
 - J12 connector
