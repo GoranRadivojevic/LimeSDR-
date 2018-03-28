@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LimeSDR#.exe" size="2177024">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LimeSDR#.exe" size="2217472">
       <assemblyIdentity name="LimeSDR#" version="0.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dJsYMq/lVpYL6/2b3hFONkemunqHnkSVZpLfFhsm6dM=</dsig:DigestValue>
+        <dsig:DigestValue>XbS5EMXR7MKPqKbEy+G2BHcecR8y/QfNFzr6FVMxiG4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

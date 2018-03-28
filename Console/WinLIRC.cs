@@ -123,6 +123,7 @@ namespace PowerSDR
                     case WindowsVersion.WindowsVista:
                     case WindowsVersion.Windows7:
                     case WindowsVersion.Windows8:
+                    case WindowsVersion.Windows10:
                         {
                             if (IPv6_enabled && ipAddress.AddressFamily == AddressFamily.InterNetworkV6)
                             {

@@ -492,12 +492,12 @@
     <ModeSubRX>CWU</ModeSubRX>
     <FilterMainRX>F7</FilterMainRX>
     <FilterSubRX>F7</FilterSubRX>
-    <VFOA>14.226219</VFOA>
-    <VFOB>15.167999</VFOB>
-    <LOSC>14.4</LOSC>
+    <VFOA>14.1073</VFOA>
+    <VFOB>15.217999</VFOB>
+    <LOSC>14.450001</LOSC>
     <AF>15</AF>
-    <RF>70</RF>
-    <PWR>10</PWR>
+    <RF>60</RF>
+    <PWR>8</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
     <SQL2>50</SQL2>
@@ -819,8 +819,8 @@
     <VFOB>144</VFOB>
     <LOSC>144</LOSC>
     <AF>15</AF>
-    <RF>70</RF>
-    <PWR>10</PWR>
+    <RF>60</RF>
+    <PWR>8</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
     <SQL2>50</SQL2>
@@ -934,9 +934,9 @@
     <ModeSubRX>CWU</ModeSubRX>
     <FilterMainRX>F8</FilterMainRX>
     <FilterSubRX>F8</FilterSubRX>
-    <VFOA>6.108</VFOA>
-    <VFOB>6.108</VFOB>
-    <LOSC>5.34</LOSC>
+    <VFOA>153.632</VFOA>
+    <VFOB>153.632001</VFOB>
+    <LOSC>154.4</LOSC>
     <AF>15</AF>
     <RF>80</RF>
     <PWR>8</PWR>
@@ -5582,15 +5582,15 @@
   </ConsoleState>
   <ConsoleState>
     <Key>console_left</Key>
-    <Value>15</Value>
+    <Value>53</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>console_top</Key>
-    <Value>3</Value>
+    <Value>26</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>console_width</Key>
-    <Value>1413</Value>
+    <Value>1402</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>display_cal_offset</Key>
@@ -6978,11 +6978,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[4]</Key>
-    <Value>F5</Value>
+    <Value>F7</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[5]</Key>
-    <Value>F5</Value>
+    <Value>F2</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>last_filter[6]</Key>
@@ -7098,7 +7098,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbLimeSDR_Gain</Key>
-    <Value>24</Value>
+    <Value>11</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbMIC</Key>
@@ -7126,19 +7126,19 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbPWR</Key>
-    <Value>10</Value>
+    <Value>1</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbPWR1</Key>
-    <Value>10</Value>
+    <Value>1</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbRF</Key>
-    <Value>70</Value>
+    <Value>60</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbRF1</Key>
-    <Value>70</Value>
+    <Value>60</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbRX0Gain</Key>
@@ -7562,7 +7562,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>txtLOSCnew</Key>
-    <Value>144.000000</Value>
+    <Value>144.600000</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtMemory</Key>
@@ -7570,11 +7570,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>txtNewVFOBand</Key>
-    <Value>2M SSB</Value>
+    <Value>2M Satellite</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOAnew</Key>
-    <Value>144.389600</Value>
+    <Value>144.410400</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOBnew</Key>
@@ -7610,11 +7610,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>udPWR1</Key>
-    <Value>10</Value>
+    <Value>1</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>udRF1</Key>
-    <Value>70</Value>
+    <Value>60</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>udRIT</Key>
@@ -7646,7 +7646,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>Version</Key>
-    <Value>LimeSDR# v0.4 BETA YT7PWR 64bit  LMS7002 temperature: 50.7C</Value>
+    <Value>LimeSDR# v0.4 BETA YT7PWR 64bit  LMS7002 temperature: 43.2C</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>vfob_dsp_mode</Key>
@@ -8374,7 +8374,7 @@
   </State>
   <State>
     <Key>chkReverseWaterfall</Key>
-    <Value>True</Value>
+    <Value>False</Value>
   </State>
   <State>
     <Key>chkRXIQswap</Key>
@@ -8410,10 +8410,6 @@
   </State>
   <State>
     <Key>chkVACDirectI_Q</Key>
-    <Value>False</Value>
-  </State>
-  <State>
-    <Key>chkVACExclusive</Key>
     <Value>False</Value>
   </State>
   <State>
@@ -8814,11 +8810,11 @@
   </State>
   <State>
     <Key>comboLimeSDR_RXSampleRate</Key>
-    <Value>1536000</Value>
+    <Value>2304000</Value>
   </State>
   <State>
     <Key>comboLimeSDR_TXSampleRate</Key>
-    <Value>1536000</Value>
+    <Value>2304000</Value>
   </State>
   <State>
     <Key>comboNewVFOSMeterSignal</Key>
@@ -8834,7 +8830,7 @@
   </State>
   <State>
     <Key>comboRXSampleRate</Key>
-    <Value>1536000</Value>
+    <Value>2304000</Value>
   </State>
   <State>
     <Key>comboSMeterRXMode</Key>
@@ -8858,7 +8854,7 @@
   </State>
   <State>
     <Key>comboTXSampleRate</Key>
-    <Value>1536000</Value>
+    <Value>2304000</Value>
   </State>
   <State>
     <Key>comboVoiceMsg1</Key>
@@ -9026,11 +9022,11 @@
   </State>
   <State>
     <Key>SpectrumHighLevel</Key>
-    <Value>-70|-70|-70|-70|-70|-50|-70|-70|-70|-70|-70|-70|-70|-45|-70|-55|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70</Value>
+    <Value>-45|-70|-70|-70|-70|-50|-70|-70|-70|-70|-70|-70|-70|-45|-70|-55|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70|-70</Value>
   </State>
   <State>
     <Key>SpectrumLowLevel</Key>
-    <Value>-125|-145|-145|-145|-145|-120|-145|-125|-145|-145|-145|-145|-145|-130|-145|-125|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145</Value>
+    <Value>-130|-145|-145|-145|-145|-120|-145|-125|-145|-145|-145|-145|-145|-130|-145|-125|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145|-145</Value>
   </State>
   <State>
     <Key>tbDataLineAlpha</Key>
@@ -9066,11 +9062,11 @@
   </State>
   <State>
     <Key>tbLimeSDR_LNAGain</Key>
-    <Value>3</Value>
+    <Value>9</Value>
   </State>
   <State>
     <Key>tbLimeSDR_PGAGain</Key>
-    <Value>18</Value>
+    <Value>16</Value>
   </State>
   <State>
     <Key>tbLimeSDR_TIAGain</Key>
@@ -9302,7 +9298,7 @@
   </State>
   <State>
     <Key>udDSPAGCMaxGaindB</Key>
-    <Value>70</Value>
+    <Value>60</Value>
   </State>
   <State>
     <Key>udDSPAGCSlope</Key>
@@ -9521,10 +9517,6 @@
     <Value>60</Value>
   </State>
   <State>
-    <Key>udPACalPower</Key>
-    <Value>10</Value>
-  </State>
-  <State>
     <Key>udPAGain10</Key>
     <Value>43.0</Value>
   </State>
@@ -9546,7 +9538,7 @@
   </State>
   <State>
     <Key>udPAGain2</Key>
-    <Value>43.0</Value>
+    <Value>54.4</Value>
   </State>
   <State>
     <Key>udPAGain20</Key>

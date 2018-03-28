@@ -7318,7 +7318,7 @@ namespace PowerSDR
                                 WinVer = WindowsVersion.Windows7;
                                 break;
                             case 2:
-                                WinVer = WindowsVersion.Windows8;
+                                WinVer = WindowsVersion.Windows10;
                                 break;
                             case 3:
                                 WinVer = WindowsVersion.Windows8_1;
@@ -11106,20 +11106,6 @@ namespace PowerSDR
             }
             else
             {
-                switch (WinVer)
-                {
-                    case WindowsVersion.Windows7:
-                    case WindowsVersion.Windows8:
-                    case WindowsVersion.WindowsVista:
-                        break;
-
-                    default:
-                        {
-
-                        }
-                        break;
-                }
-
                 Audio.MonitorVolumeLeft = 1.0;
                 Audio.MonitorVolumeRight = 1.0;
             }
@@ -19555,7 +19541,6 @@ namespace PowerSDR
                     return;
 
                 cat_ptt = false;
-                Audio.MOX = false;
 
                 if (Audio.voice_message_record && VoiceMsgForm != null)
                 {
@@ -19567,6 +19552,8 @@ namespace PowerSDR
 
                 if (chkPower.Checked)
                 {
+                    Audio.InitVAC();
+                    Audio.MOX = false;
                     DttSP.AudioReset();
                     DttSP.SetTRX(0, false);     // RX mode
 
@@ -19847,7 +19834,7 @@ namespace PowerSDR
 
                     Audio.VAC_callback_return = 2;      // abort VAC callback
                     Audio.callback_return = 2;          // abort audio callback
-                    //Thread.Sleep(100);
+                    Thread.Sleep(100);
 
                     if (!skins_enabled)
                         chkPower.Text = "Standby";
@@ -19889,8 +19876,6 @@ namespace PowerSDR
 
                     if (chkRecordWav.Checked)
                         chkRecordWav.Checked = false;
-
-                    Audio.StopAudio1();
 
                     //if (multimeter_thread != null)
                     //multimeter_thread.Abort();
@@ -20356,11 +20341,6 @@ namespace PowerSDR
         {
             try
             {
-                if (SetupForm == null)
-                    return;
-                else
-                    SetupForm.PAPower = ptbPWR.Value;
-
                 float val = (float)ptbPWR.Value;
 
                 if (ptbPWR.Value > ptbPWR.Maximum)
@@ -20395,7 +20375,7 @@ namespace PowerSDR
 
                     double target_volts = Math.Sqrt(Math.Pow(10, target_dbm * 0.1) * 0.05);		// E = Sqrt(P * R) 
                     Audio.RadioVolume = target_volts / audio_volts1;
-                    limeSDR.SetTXgain((ushort)((val * 70.0) / 100.0));
+                    limeSDR.SetTXgain((ushort)((val * 52.0) / 100.0));
                 }
                 else
                 {
@@ -20901,31 +20881,13 @@ namespace PowerSDR
             Audio.RadioVolume = 0;
             Audio.MonitorVolumeLeft = 0;
             Audio.MonitorVolumeRight = 0;
-            Audio.VACRBReset = true;
+            //Audio.VACRBReset = true;
 
             /////////////////////////  TX  /////////////////////////////////////
 
             if (tx)
             {
                 Audio.MOX = true;
-
-                switch (WinVer)
-                {
-                    case WindowsVersion.Windows2000:
-                    case WindowsVersion.WindowsXP:
-                        {
-
-                        }
-                        break;
-
-                    case WindowsVersion.WindowsVista:
-                    case WindowsVersion.Windows7:
-                    case WindowsVersion.Windows8:
-                        {
-
-                        }
-                        break;
-                }
 
                 if (!cw_key_mode)
                 {
@@ -20952,28 +20914,10 @@ namespace PowerSDR
                     DttSP.SetTRX(thread_no, true);  // does this need to be here??	
                 }
 
-                switch (WinVer)
-                {
-                    case WindowsVersion.Windows2000:
-                    case WindowsVersion.WindowsXP:
-                        {
-
-                        }
-                        break;
-
-                    case WindowsVersion.Windows8:
-                    case WindowsVersion.Windows7:
-                    case WindowsVersion.WindowsVista:
-                        {
-
-                        }
-                        break;
-                }
-
                 ptbAF.Value = txaf;
             }
 
-/////////////////////////  RX  /////////////////////////////////////
+            /////////////////////////  RX  /////////////////////////////////////
 
             else
             {
@@ -21013,24 +20957,6 @@ namespace PowerSDR
                     Audio.NextAudioState1 = Audio.AudioState.DTTSP;
                     Audio.CurrentAudioState1 = Audio.AudioState.SWITCH;
                     DttSP.SetTRX(thread_no, false);
-                }
-
-                switch (WinVer)
-                {
-                    case WindowsVersion.Windows2000:
-                    case WindowsVersion.WindowsXP:
-                        {
-
-                        }
-                        break;
-
-                    case WindowsVersion.Windows7:
-                    case WindowsVersion.Windows8:
-                    case WindowsVersion.WindowsVista:
-                        {
-
-                        }
-                        break;
                 }
 
                 ptbAF.Value = rxaf;

@@ -104,7 +104,6 @@ namespace PowerSDR
 
         #region PowerSDR Specific Variables
 
-        unsafe private static PA19.PaStreamCallback callback1 = new PA19.PaStreamCallback(Callback1);
         unsafe private static PA19.PaStreamCallback callbackVAC = new PA19.PaStreamCallback(CallbackVAC);
 
         public static int callback_return = 0;
@@ -116,11 +115,6 @@ namespace PowerSDR
         public static byte[] iq_data_r;
         public static Console console = null;
         unsafe private static void* stream1;    // input
-        unsafe private static void* stream2;    // 
-        unsafe private static void* stream3;    // output
-        unsafe private static void* stream4;
-        unsafe private static void* stream5;    // input VAC
-        unsafe private static void* stream6;    // output VAC
         private static int block_size2 = 2048;
         public static float[] phase_buf_l;
         public static float[] phase_buf_r;
@@ -154,6 +148,7 @@ namespace PowerSDR
         public static bool CTCSS = false;
         public static MuteChannels vac_mute_ch = MuteChannels.None;
         public static MuteChannels mute_ch = MuteChannels.None;
+        public static Mutex mox_mutex = new Mutex();
 
         private static float echo_gain = 0.0f;
         public static float EchoGain
@@ -487,20 +482,6 @@ namespace PowerSDR
             set { vac_correct_iq = value; }
         }
 
-        private static bool VAC_audio_exclusive = false;       // yt7pwr
-        public static bool VACAudioExclusive
-        {
-            get { return VAC_audio_exclusive; }
-            set { VAC_audio_exclusive = value; }
-        }
-
-        private static bool audio_exclusive = false;       // yt7pwr
-        public static bool AudioExclusive
-        {
-            get { return audio_exclusive; }
-            set { audio_exclusive = value; }
-        }
-
         private static int thread_no = 0;                       // yt7pwr
         private static bool mox = false;
         unsafe public static bool MOX
@@ -547,15 +528,7 @@ namespace PowerSDR
         private static bool vac_enabled = false;
         public static bool VACEnabled
         {
-            set
-            {
-                vac_enabled = value;
-
-                if (vac_enabled)
-                    InitVAC();
-                else
-                    CleanUpVAC();
-            }
+            set { vac_enabled = value; }
             get { return vac_enabled; }
         }
 
@@ -628,7 +601,6 @@ namespace PowerSDR
             set
             {
                 sample_rateVAC = value;
-                if (vac_enabled) InitVAC();
             }
         }
 
@@ -754,771 +726,6 @@ namespace PowerSDR
 
         #region classic callback
 
-        unsafe public static int Callback1(void* input, void* output, int frameCount,           // changes yt7pwr
-            PA19.PaStreamCallbackTimeInfo* timeInfo, int statusFlags, void* userData)
-        {
-            try
-            {
-                if (console.CurrentModel == Model.LimeSDR || audio_stop)
-                    return callback_return;
-
-                //audio_run.WaitOne(100);
-#if(WIN64)
-                Int64* array_ptr = (Int64*)input;
-                float* in_l_ptr1 = (float*)array_ptr[0];
-                float* in_r_ptr1 = (float*)array_ptr[1];
-                double* VAC_in = (double*)input;
-                array_ptr = (Int64*)output;
-                float* out_l_ptr1 = (float*)array_ptr[1];
-                float* out_r_ptr1 = (float*)array_ptr[0];
-#endif
-
-#if(WIN32)
-                int* array_ptr = (int*)input;
-                float* in_l_ptr1 = (float*)array_ptr[0];
-                float* in_r_ptr1 = (float*)array_ptr[1];
-                double* VAC_in = (double*)input;
-                array_ptr = (int*)output;
-                float* out_l_ptr1 = (float*)array_ptr[1];
-                float* out_r_ptr1 = (float*)array_ptr[0];
-#endif
-
-                if (wave_playback)
-                    wave_file_reader.GetPlayBuffer(in_l_ptr1, in_r_ptr1);
-                else if (wave_record && !mox && record_rx_preprocessed)
-                    wave_file_writer.AddWriteBuffer(in_l_ptr1, in_r_ptr1);
-                else if (wave_record && mox && !vac_primary_audiodev && record_tx_preprocessed)
-                    wave_file_writer.AddWriteBuffer(in_l_ptr1, in_r_ptr1);
-
-                if (phase)
-                {
-                    //phase_mutex.WaitOne();
-                    Marshal.Copy(new IntPtr(in_l_ptr1), phase_buf_l, 0, frameCount);
-                    Marshal.Copy(new IntPtr(in_r_ptr1), phase_buf_r, 0, frameCount);
-                    //phase_mutex.ReleaseMutex();
-                }
-
-                float* in_l = null, in_l_VAC = null, in_r = null, in_r_VAC = null, out_l = null, out_r = null;
-
-                if (!mox && !voice_message_record)   // rx
-                {
-                    if (!console.RX_IQ_channel_swap)
-                    {
-                        in_l = in_l_ptr1;
-                        in_r = in_r_ptr1;
-
-                        out_l = out_l_ptr1;
-                        out_r = out_r_ptr1;
-                    }
-                    else
-                    {
-                        in_l = in_r_ptr1;
-                        in_r = in_l_ptr1;
-
-                        out_l = out_r_ptr1;
-                        out_r = out_l_ptr1;
-                    }
-                }
-                else if (mox && !voice_message_record)
-                {       // tx
-                    if (!console.TX_IQ_channel_swap)
-                    {
-                        in_r = in_l_ptr1;
-                        in_l = in_r_ptr1;
-
-                        out_r = out_l_ptr1;
-                        out_l = out_r_ptr1;
-                    }
-                    else
-                    {
-                        in_r = in_l_ptr1;
-                        in_l = in_r_ptr1;
-
-                        out_l = out_l_ptr1;
-                        out_r = out_r_ptr1;
-                    }
-
-                    if (voice_message_playback)
-                    {
-                        voice_msg_file_reader.GetPlayBuffer(in_l, in_r);
-                    }
-                }
-                else if (voice_message_record)
-                {
-                    in_l = in_l_ptr1;
-                    in_r = in_r_ptr1;
-                    out_l = out_l_ptr1;
-                    out_r = out_r_ptr1;
-                }
-
-                if (voice_message_record)
-                {
-                    try
-                    {
-                        if (vac_enabled)
-                        {
-                            if (rb_vacIN_l.ReadSpace() >= frameCount &&
-                                rb_vacIN_r.ReadSpace() >= frameCount)
-                            {
-                                Win32.EnterCriticalSection(cs_vac);
-                                rb_vacIN_l.ReadPtr(in_l_ptr1, frameCount);
-                                rb_vacIN_r.ReadPtr(in_r_ptr1, frameCount);
-                                Win32.LeaveCriticalSection(cs_vac);
-                            }
-                            else
-                            {
-                                ClearBuffer(in_l_ptr1, frameCount);
-                                ClearBuffer(in_r_ptr1, frameCount);
-                                VACDebug("rb_vacIN underflow VoiceMsg record");
-                            }
-                        }
-
-                        ScaleBuffer(in_l, in_l, frameCount, (float)mic_preamp);
-                        ScaleBuffer(in_r, in_r, frameCount, (float)mic_preamp);
-                        voice_msg_file_writer.AddWriteBuffer(in_l, in_r);
-                    }
-                    catch (Exception ex)
-                    {
-                        VACDebug("Audio: " + ex.ToString());
-                    }
-                }
-
-                switch (current_audio_state1)
-                {
-                    case AudioState.DTTSP:
-                        // scale input with mic preamp
-                        if ((mox || voice_message_record) && !vac_enabled &&
-                            (dsp_mode == DSPMode.LSB ||
-                            dsp_mode == DSPMode.USB ||
-                            dsp_mode == DSPMode.DSB ||
-                            dsp_mode == DSPMode.AM ||
-                            dsp_mode == DSPMode.SAM ||
-                            dsp_mode == DSPMode.FMN))
-                        {
-                            if (wave_playback)
-                            {
-                                ScaleBuffer(in_l, in_l, frameCount, (float)wave_preamp);
-                                ScaleBuffer(in_r, in_r, frameCount, (float)wave_preamp);
-                            }
-                            else
-                            {
-                                ScaleBuffer(in_l, in_l, frameCount, (float)mic_preamp);
-                                ScaleBuffer(in_r, in_r, frameCount, (float)mic_preamp);
-                            }
-                        }
-
-                        #region Input Signal Source
-
-                        switch (current_input_signal)
-                        {
-                            case SignalSource.SOUNDCARD:
-                                break;
-                            case SignalSource.SINE:
-                                if (console.RX_IQ_channel_swap)
-                                {
-                                    SineWave(in_r, frameCount, phase_accumulator1, sine_freq1);
-                                    phase_accumulator1 = CosineWave(in_l, frameCount, phase_accumulator1, sine_freq1);
-                                }
-                                else
-                                {
-                                    SineWave(in_l, frameCount, phase_accumulator1, sine_freq1);
-                                    phase_accumulator1 = CosineWave(in_r, frameCount, phase_accumulator1 + 0.0001f, sine_freq1);
-                                }
-                                ScaleBuffer(in_l, in_l, frameCount, (float)input_source_scale);
-                                ScaleBuffer(in_r, in_r, frameCount, (float)input_source_scale);
-                                break;
-                            case SignalSource.NOISE:
-                                Noise(in_l, frameCount);
-                                Noise(in_r, frameCount);
-                                break;
-                            case SignalSource.TRIANGLE:
-                                Triangle(in_l, frameCount, sine_freq1);
-                                CopyBuffer(in_l, in_r, frameCount);
-                                break;
-                            case SignalSource.SAWTOOTH:
-                                Sawtooth(in_l, frameCount, sine_freq1);
-                                CopyBuffer(in_l, in_r, frameCount);
-                                break;
-                        }
-
-                        #endregion
-
-                        if (vac_enabled &&
-                            rb_vacIN_l != null && rb_vacIN_r != null &&
-                            rb_vacOUT_l != null && rb_vacOUT_r != null
-                             && !voice_message_playback)
-                        {
-                            if (mox && !voice_message_record)
-                            {
-                                if (rb_vacIN_l.ReadSpace() >= frameCount &&
-                                    rb_vacIN_r.ReadSpace() >= frameCount)
-                                {
-                                    Win32.EnterCriticalSection(cs_vac);
-                                    rb_vacIN_l.ReadPtr(in_l, frameCount);
-                                    rb_vacIN_r.ReadPtr(in_r, frameCount);
-                                    Win32.LeaveCriticalSection(cs_vac);
-                                }
-                                else
-                                {
-                                    ClearBuffer(in_l, frameCount);
-                                    ClearBuffer(in_r, frameCount);
-                                    VACDebug("rb_vacIN underflow CB1");
-                                }
-
-                                ScaleBuffer(in_l, in_l, frameCount, (float)vac_preamp);
-                                ScaleBuffer(in_r, in_r, frameCount, (float)vac_preamp);
-                            }
-                            else if (voice_message_record)
-                            {
-
-                            }
-                        }
-
-                        DttSP.ExchangeSamples(thread_no, in_l, in_r, out_l, out_r, frameCount);
-
-                        #region Output Signal Source
-
-                        switch (current_output_signal)
-                        {
-                            case SignalSource.SOUNDCARD:
-                                break;
-                            case SignalSource.SINE:
-                                switch (ChannelTest)
-                                {
-                                    case TestChannels.Left:
-                                        SineWave(out_l_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                                        phase_accumulator1 = CosineWave(out_l_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                                        break;
-                                    case TestChannels.Right:
-                                        SineWave(out_r_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                                        phase_accumulator1 = CosineWave(out_r_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                                        break;
-                                    case TestChannels.Both:
-                                        SineWave(out_l_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                                        phase_accumulator1 = CosineWave(out_l_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                                        SineWave(out_r_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                                        phase_accumulator2 = CosineWave(out_r_ptr1, frameCount, phase_accumulator2, sine_freq1);
-                                        break;
-                                }
-                                break;
-                            case SignalSource.NOISE:
-                                switch (ChannelTest)
-                                {
-                                    case TestChannels.Both:
-                                        Noise(out_l_ptr1, frameCount);
-                                        Noise(out_r_ptr1, frameCount);
-                                        break;
-                                    case TestChannels.Left:
-                                        Noise(out_l_ptr1, frameCount);
-                                        break;
-                                    case TestChannels.Right:
-                                        Noise(out_r_ptr1, frameCount);
-                                        break;
-                                }
-                                break;
-                            case SignalSource.TRIANGLE:
-                                switch (ChannelTest)
-                                {
-                                    case TestChannels.Both:
-                                        Triangle(out_l_ptr1, frameCount, sine_freq1);
-                                        CopyBuffer(out_l_ptr1, out_r_ptr1, frameCount);
-                                        break;
-                                    case TestChannels.Left:
-                                        Triangle(out_l_ptr1, frameCount, sine_freq1);
-                                        break;
-                                    case TestChannels.Right:
-                                        Triangle(out_r_ptr1, frameCount, sine_freq1);
-                                        break;
-                                }
-                                break;
-                            case SignalSource.SAWTOOTH:
-                                switch (ChannelTest)
-                                {
-                                    case TestChannels.Both:
-                                        Sawtooth(out_l_ptr1, frameCount, sine_freq1);
-                                        CopyBuffer(out_l_ptr1, out_r_ptr1, frameCount);
-                                        break;
-                                    case TestChannels.Left:
-                                        Sawtooth(out_l_ptr1, frameCount, sine_freq1);
-                                        break;
-                                    case TestChannels.Right:
-                                        Sawtooth(out_r_ptr1, frameCount, sine_freq1);
-                                        break;
-                                }
-                                break;
-                        }
-
-                        #endregion
-
-                        break;
-                    case AudioState.CW:
-                        if (next_audio_state1 == AudioState.SWITCH)
-                        {
-                            Win32.memset(in_l_ptr1, 0, frameCount * sizeof(float));
-                            Win32.memset(in_r_ptr1, 0, frameCount * sizeof(float));
-
-                            if (vac_enabled)
-                            {
-                                if ((rb_vacIN_l.ReadSpace() >= frameCount) && (rb_vacIN_r.ReadSpace() >= frameCount))
-                                {
-                                    Win32.EnterCriticalSection(cs_vac);
-                                    rb_vacIN_l.ReadPtr(in_l_ptr1, frameCount);
-                                    rb_vacIN_r.ReadPtr(in_r_ptr1, frameCount);
-                                    Win32.LeaveCriticalSection(cs_vac);
-                                }
-                                else
-                                {
-                                    //VACDebug("rb_vacIN underflow Switch time CB1!");
-                                }
-                            }
-
-                            ClearBuffer(out_l, frameCount);
-                            ClearBuffer(out_r, frameCount);
-
-                            if (switch_count == 0) next_audio_state1 = AudioState.CW;
-                            switch_count--;
-                        }
-                        else
-                            DttSP.CWtoneExchange(out_l, out_r, frameCount);
-
-                        break;
-                    case AudioState.SINL_COSR:
-                        if (two_tone)
-                        {
-                            double dump;
-
-                            SineWave2Tone(out_l_ptr1, frameCount,
-                                phase_accumulator1, phase_accumulator2,
-                                sine_freq1, sine_freq2,
-                                out dump, out dump);
-
-                            CosineWave2Tone(out_r_ptr1, frameCount,
-                                phase_accumulator1, phase_accumulator2,
-                                sine_freq1, sine_freq2,
-                                out phase_accumulator1, out phase_accumulator2);
-                        }
-                        else
-                        {
-                            SineWave(out_l_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                            phase_accumulator1 = CosineWave(out_r_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                        }
-                        break;
-                    case AudioState.SINL_SINR:
-                        if (two_tone)
-                        {
-                            SineWave2Tone(out_l_ptr1, frameCount,
-                                phase_accumulator1, phase_accumulator2,
-                                sine_freq1, sine_freq2,
-                                out phase_accumulator1, out phase_accumulator2);
-
-                            CopyBuffer(out_l_ptr1, out_r_ptr1, frameCount);
-                        }
-                        else
-                        {
-                            phase_accumulator1 = SineWave(out_l_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                            CopyBuffer(out_l_ptr1, out_r_ptr1, frameCount);
-                        }
-                        break;
-                    case AudioState.SINL_NOR:
-                        if (two_tone)
-                        {
-                            SineWave2Tone(out_l_ptr1, frameCount,
-                                phase_accumulator1, phase_accumulator2,
-                                sine_freq1, sine_freq2,
-                                out phase_accumulator1, out phase_accumulator2);
-                            ClearBuffer(out_r_ptr1, frameCount);
-                        }
-                        else
-                        {
-                            phase_accumulator1 = SineWave(out_l_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                            ClearBuffer(out_r_ptr1, frameCount);
-                        }
-                        break;
-                    case AudioState.CW_COSL_SINR:
-                        if (mox)
-                        {
-                            if (two_tone)
-                            {
-                                double dump;
-
-                                if (console.tx_IF)
-                                {
-                                    CosineWave2Tone(out_r, frameCount,
-                                        phase_accumulator1, phase_accumulator2,
-                                        sine_freq1 + console.TX_IF_shift * 1e5, sine_freq2 + console.TX_IF_shift * 1e5,
-                                        out dump, out dump);
-
-                                    SineWave2Tone(out_l, frameCount,
-                                        phase_accumulator1, phase_accumulator2,
-                                        sine_freq1 + console.TX_IF_shift * 1e5, sine_freq2 + console.TX_IF_shift * 1e5,
-                                        out phase_accumulator1, out phase_accumulator2);
-                                }
-                                else
-                                {
-                                    double osc = (console.VFOAFreq - console.LOSCFreq) * 1e6;
-
-                                    CosineWave2Tone(out_r, frameCount,
-                                        phase_accumulator1, phase_accumulator2,
-                                        sine_freq1 + osc, sine_freq2 + osc,
-                                        out dump, out dump);
-
-                                    SineWave2Tone(out_l, frameCount,
-                                        phase_accumulator1, phase_accumulator2,
-                                        sine_freq1 + osc, sine_freq2 + osc,
-                                        out phase_accumulator1, out phase_accumulator2);
-                                }
-                            }
-                            else
-                            {
-                                if (console.tx_IF)
-                                {
-                                    CosineWave(out_r, frameCount, phase_accumulator1, sine_freq1 + console.TX_IF_shift * 1e5);
-                                    phase_accumulator1 = SineWave(out_l, frameCount, phase_accumulator1, sine_freq1 +
-                                        console.TX_IF_shift * 1e5);
-                                }
-                                else
-                                {
-                                    double osc = (console.VFOAFreq - console.LOSCFreq) * 1e6;
-                                    CosineWave(out_r, frameCount, phase_accumulator1, sine_freq1 + osc);
-                                    phase_accumulator1 = SineWave(out_l, frameCount, phase_accumulator1, sine_freq1 + osc);
-                                }
-                            }
-
-                            float iq_gain = 1.0f + (1.0f - (1.0f + 0.001f * (float)console.SetupForm.udDSPImageGainTX.Value));
-                            float iq_phase = 0.001f * (float)console.SetupForm.udDSPImagePhaseTX.Value;
-
-                            CorrectIQBuffer(out_l, out_r, iq_gain, iq_phase, frameCount);
-                        }
-                        break;
-                    case AudioState.COSL_SINR:
-                        if (two_tone)
-                        {
-                            double dump;
-
-                            CosineWave2Tone(out_l_ptr1, frameCount,
-                                phase_accumulator1, phase_accumulator2,
-                                sine_freq1, sine_freq2,
-                                out dump, out dump);
-
-                            SineWave2Tone(out_r_ptr1, frameCount,
-                                phase_accumulator1, phase_accumulator2,
-                                sine_freq1, sine_freq2,
-                                out phase_accumulator1, out phase_accumulator2);
-                        }
-                        else
-                        {
-                            CosineWave(out_l_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                            phase_accumulator1 = SineWave(out_r_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                        }
-
-
-                        break;
-                    case AudioState.NOL_SINR:
-                        if (two_tone)
-                        {
-                            ClearBuffer(out_l_ptr1, frameCount);
-                            SineWave2Tone(out_r_ptr1, frameCount,
-                                phase_accumulator1, phase_accumulator2,
-                                sine_freq1, sine_freq2,
-                                out phase_accumulator1, out phase_accumulator2);
-                        }
-                        else
-                        {
-                            ClearBuffer(out_l_ptr1, frameCount);
-                            phase_accumulator1 = SineWave(out_r_ptr1, frameCount, phase_accumulator1, sine_freq1);
-                        }
-                        break;
-                    case AudioState.NOL_NOR:
-                        ClearBuffer(out_l_ptr1, frameCount);
-                        ClearBuffer(out_r_ptr1, frameCount);
-                        break;
-                    case AudioState.PIPE:
-                        CopyBuffer(in_l_ptr1, out_l_ptr1, frameCount);
-                        CopyBuffer(in_r_ptr1, out_r_ptr1, frameCount);
-                        break;
-                    case AudioState.SWITCH:
-                        if (!ramp_down && !ramp_up)
-                        {
-                            ClearBuffer(in_l, frameCount);
-                            ClearBuffer(in_r, frameCount);
-                            if (mox != next_mox) mox = next_mox;
-                        }
-                        if (vac_enabled)
-                        {
-                            if ((rb_vacIN_l.ReadSpace() >= frameCount) && (rb_vacIN_r.ReadSpace() >= frameCount))
-                            {
-                                Win32.EnterCriticalSection(cs_vac);
-                                rb_vacIN_l.ReadPtr(in_l_ptr1, frameCount);
-                                rb_vacIN_r.ReadPtr(in_r_ptr1, frameCount);
-                                Win32.LeaveCriticalSection(cs_vac);
-                            }
-                            else
-                            {
-                                //VACDebug("rb_vacIN underflow switch time CB1!");
-                            }
-                        }
-
-                        DttSP.ExchangeSamples(thread_no, in_l, in_r, out_l, out_r, frameCount);
-
-                        if (ramp_down)
-                        {
-                            int i;
-                            for (i = 0; i < frameCount; i++)
-                            {
-                                float w = (float)Math.Sin(ramp_val * Math.PI / 2.0);
-                                out_l_ptr1[i] *= w;
-                                out_r_ptr1[i] *= w;
-                                ramp_val += ramp_step;
-                                if (++ramp_count >= ramp_samples)
-                                {
-                                    ramp_down = false;
-                                    break;
-                                }
-                            }
-
-                            if (ramp_down)
-                            {
-                                for (; i < frameCount; i++)
-                                {
-                                    out_l[i] = 0.0f;
-                                    out_r[i] = 0.0f;
-                                }
-                            }
-                        }
-                        else if (ramp_up)
-                        {
-                            for (int i = 0; i < frameCount; i++)
-                            {
-                                float w = (float)Math.Sin(ramp_val * Math.PI / 2.0);
-                                out_l[i] *= w;
-                                out_r[i] *= w;
-                                ramp_val += ramp_step;
-                                if (++ramp_count >= ramp_samples)
-                                {
-                                    ramp_up = false;
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            ClearBuffer(out_l, frameCount);
-                            ClearBuffer(out_r, frameCount);
-                        }
-
-                        if (next_audio_state1 == AudioState.CW)
-                        {
-                            //cw_delay = 1;
-                            DttSP.CWtoneExchange(out_l, out_r, frameCount);
-                        }
-                        else if (switch_count == 1)
-                            DttSP.CWRingRestart();
-
-                        switch_count--;
-                        if (switch_count == ramp_up_num) RampUp = true;
-                        if (switch_count == 0)
-                            current_audio_state1 = next_audio_state1;
-                        break;
-                }
-
-                if (vac_enabled && 
-                    rb_vacIN_l != null && rb_vacIN_r != null &&
-                    rb_vacOUT_l != null && rb_vacOUT_r != null)
-                {
-                    fixed (float* outl_ptr = &(vac_outl[0]))
-                    fixed (float* outr_ptr = &(vac_outr[0]))
-                    {
-                        if (!mox)
-                        {
-                            ScaleBuffer(out_l, outl_ptr, frameCount, (float)vac_rx_scale);
-                            ScaleBuffer(out_r, outr_ptr, frameCount, (float)vac_rx_scale);
-                        }
-                        else if (mox && vac_mon && (dsp_mode == DSPMode.CWU || dsp_mode == DSPMode.CWL))
-                        {
-                            ScaleBuffer(out_l, outl_ptr, frameCount, 0.0f);
-                            ScaleBuffer(out_r, outr_ptr, frameCount, 0.0f);
-                        }
-                        else // zero samples going back to VAC since TX monitor is off
-                        {
-                            ScaleBuffer(out_l, outl_ptr, frameCount, 0.0f);
-                            ScaleBuffer(out_r, outr_ptr, frameCount, 0.0f);
-                        }
-
-                        int count = 0;
-
-                        while (!(rb_vacOUT_l.WriteSpace() >= frameCount && rb_vacOUT_r.WriteSpace() >= frameCount))
-                        {
-                            Thread.Sleep(1);
-                            count++;
-
-                            if (count > latency1)
-                                break;
-                        }
-
-                        if (count > 0 && debug)
-                            VACDebug("VAC WriteSpace count: " + count.ToString());
-
-                        if (!mox)
-                        {
-                            if (sample_rateVAC == RXsample_rate)
-                            {
-                                if ((rb_vacOUT_l.WriteSpace() >= frameCount) && (rb_vacOUT_r.WriteSpace() >= frameCount))
-                                {
-                                    if (VACDirectI_Q)
-                                    {
-                                        if (vac_correct_iq)
-                                            CorrectIQBuffer(in_l, in_r, vac_iq_gain, vac_iq_phase, frameCount);
-
-                                        Win32.EnterCriticalSection(cs_vac);
-                                        rb_vacOUT_l.WritePtr(in_l, frameCount);
-                                        rb_vacOUT_r.WritePtr(in_r, frameCount);
-                                        Win32.LeaveCriticalSection(cs_vac);
-                                    }
-                                    else
-                                    {
-                                        Win32.EnterCriticalSection(cs_vac);
-                                        rb_vacOUT_l.WritePtr(outl_ptr, frameCount);
-                                        rb_vacOUT_r.WritePtr(outr_ptr, frameCount);
-                                        Win32.LeaveCriticalSection(cs_vac);
-                                    }
-                                }
-                                else
-                                {
-                                    VACDebug("rb_vacOUT overflow CB1");
-                                }
-                            }
-                            else
-                            {
-                                fixed (float* res_outl_ptr = &(res_outl[0]))
-                                fixed (float* res_outr_ptr = &(res_outr[0]))
-                                {
-                                    int outsamps;
-
-                                    if (VACDirectI_Q)
-                                    {
-                                        DttSP.DoResamplerF(in_l_ptr1, res_outl_ptr, frameCount, &outsamps, resampPtrOut_l);
-                                        DttSP.DoResamplerF(in_r_ptr1, res_outr_ptr, frameCount, &outsamps, resampPtrOut_r);
-
-                                        if ((rb_vacOUT_l.WriteSpace() >= outsamps) && (rb_vacOUT_r.WriteSpace() >= outsamps))
-                                        {
-                                            if (vac_correct_iq)
-                                                CorrectIQBuffer(res_outl_ptr, res_outr_ptr, vac_iq_gain, vac_iq_phase, frameCount);
-
-                                            Win32.EnterCriticalSection(cs_vac);
-                                            rb_vacOUT_l.WritePtr(res_outl_ptr, outsamps);
-                                            rb_vacOUT_r.WritePtr(res_outr_ptr, outsamps);
-                                            Win32.LeaveCriticalSection(cs_vac);
-                                        }
-                                        else
-                                        {
-                                            VACDebug("rb_vacOUT overflow CB1");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        DttSP.DoResamplerF(outl_ptr, res_outl_ptr, frameCount, &outsamps, resampPtrOut_l);
-                                        DttSP.DoResamplerF(outr_ptr, res_outr_ptr, frameCount, &outsamps, resampPtrOut_r);
-
-                                        if ((rb_vacOUT_l.WriteSpace() >= outsamps) && (rb_vacOUT_r.WriteSpace() >= outsamps))
-                                        {
-                                            Win32.EnterCriticalSection(cs_vac);
-                                            rb_vacOUT_l.WritePtr(res_outl_ptr, outsamps);
-                                            rb_vacOUT_r.WritePtr(res_outr_ptr, outsamps);
-                                            Win32.LeaveCriticalSection(cs_vac);
-                                        }
-                                        else
-                                        {
-                                            VACDebug("rb_vacOUT overflow CB1");
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (console.CurrentDisplayMode == DisplayMode.SCOPE ||
-                    console.CurrentDisplayMode == DisplayMode.PANASCOPE)
-                    DoScope(out_l, frameCount);
-
-                double vol_l = monitor_volume_left;
-                double vol_r = monitor_volume_right;
-
-                if (mox)
-                {
-                    vol_l = TXScale;
-                    vol_r = TXScale;
-
-                    if (high_pwr_am)
-                    {
-                        if (dsp_mode == DSPMode.AM ||
-                            dsp_mode == DSPMode.SAM)
-                        {
-                            vol_l *= 1.414;
-                            vol_r *= 1.414;
-                        }
-                    }
-                }
-
-                if (wave_record && !mox && !record_rx_preprocessed)
-                    wave_file_writer.AddWriteBuffer(out_r_ptr1, out_l_ptr1);
-                else if(wave_record && mox && !record_tx_preprocessed)
-                    wave_file_writer.AddWriteBuffer(out_r_ptr1, out_l_ptr1);
-
-                if (PrimaryDirectI_Q && !mox)
-                {
-                    if (primary_correct_iq)
-                    {
-                        CorrectIQBuffer(in_l, in_r, primary_iq_gain, primary_iq_phase, frameCount);
-                    }
-
-                    ScaleBuffer(in_l, out_r, frameCount, (float)vol_l);
-                    ScaleBuffer(in_r, out_l, frameCount, (float)vol_r);
-                }
-                else
-                {
-                    if (mox)
-                    {
-                        ScaleBuffer(out_l, out_l, frameCount, (float)vol_l);
-                        ScaleBuffer(out_r, out_r, frameCount, (float)vol_r);
-                    }
-                    else
-                    {
-                        switch (mute_ch)
-                        {
-                            case MuteChannels.Left:
-                                ScaleBuffer(out_r, out_r, frameCount, (float)vol_r);
-                                ScaleBuffer(out_r, out_l, frameCount, 1.0f);
-                                break;
-
-                            case MuteChannels.Right:
-                                ScaleBuffer(out_l, out_l, frameCount, (float)vol_l);
-                                ScaleBuffer(out_l, out_r, frameCount, 1.0f);
-                                break;
-
-
-                            case MuteChannels.Both:
-                                ClearBuffer(out_l, frameCount);
-                                ClearBuffer(out_r, frameCount);
-                                break;
-
-                            case MuteChannels.None:
-                                ScaleBuffer(out_l, out_l, frameCount, (float)vol_l);
-                                ScaleBuffer(out_r, out_r, frameCount, (float)vol_r);
-                                break;
-                        }
-                    }
-                }
-
-                return callback_return;
-            }
-            catch (Exception ex)
-            {
-                Debug.Write(ex.ToString());
-                return 0;
-            }
-        }
-
         unsafe public static int CallbackVAC(void* input, void* output, int frameCount,         // changes yt7pwr
             PA19.PaStreamCallbackTimeInfo* timeInfo, int statusFlags, void* userData)
         {
@@ -1526,7 +733,7 @@ namespace PowerSDR
             {
                 if (audio_stop)
                     return callback_return;
-#if(WIN64)
+#if (WIN64)
                 Int64* array_ptr = (Int64*)input;
                 float* in_l_ptr1 = (float*)array_ptr[0];
                 float* in_r_ptr1 = (float*)array_ptr[1];
@@ -1535,7 +742,7 @@ namespace PowerSDR
                 float* out_r_ptr1 = (float*)array_ptr[1];
 #endif
 
-#if(WIN32)
+#if (WIN32)
                 int* array_ptr = (int*)input;
                 float* in_l_ptr1 = (float*)array_ptr[0];
                 float* in_r_ptr1 = null;
@@ -1600,7 +807,8 @@ namespace PowerSDR
                     {
                         if (dsp_mode == DSPMode.CWU || dsp_mode == DSPMode.CWL)
                         {
-                            if ((rb_vacOUT_l.ReadSpace() >= frameCount) && (rb_vacOUT_r.ReadSpace() >= frameCount))
+                            if ((rb_vacOUT_l.ReadSpace() >= frameCount) && 
+                                (rb_vacOUT_r.ReadSpace() >= frameCount))
                             {
                                 Win32.EnterCriticalSection(cs_vac);
                                 rb_vacOUT_l.ReadPtr(out_l_ptr1, frameCount);
@@ -1621,7 +829,7 @@ namespace PowerSDR
                         }
                         else
                         {
-                            int outsamps;
+                            int outsamps = 0;
                             fixed (float* res_inl_ptr = &(res_inl[0]))
                             fixed (float* res_inr_ptr = &(res_inr[0]))
                             {
@@ -2108,12 +1316,12 @@ namespace PowerSDR
                 console.Invoke(new DebugCallbackFunction(console.DebugCallback), "Audio:" + s);
         }
 
-        unsafe private static void InitVAC()
+        unsafe public static void InitVAC()
         {
             try
             {
                 int lcm = 61440000;
-                int buf_size = Math.Max(4097, console.RXBlockSize * 8 + 2);
+                int buf_size = Math.Max(16384, (RXsample_rate / sample_rateVAC) * console.BlockSize2 + 2);
 
                 rb_vacOUT_l = new RingBufferFloat(buf_size);
                 rb_vacOUT_l.Restart(buf_size);
@@ -2159,14 +1367,14 @@ namespace PowerSDR
 
                     vac_RXresample = true;
 
-                    res_inl = new float[2 * buf_size];
-                    res_inr = new float[2 * buf_size];
+                    res_inl = new float[4 * buf_size];
+                    res_inr = new float[4 * buf_size];
 
                     resampPtrIn_l = DttSP.NewResamplerF_LimeSDR(lcm, sample_rateVAC, RXsample_rate);
                     resampPtrIn_r = DttSP.NewResamplerF_LimeSDR(lcm, sample_rateVAC, RXsample_rate);
 
-                    res_outl = new float[buf_size];
-                    res_outr = new float[buf_size];
+                    res_outl = new float[4 * buf_size];
+                    res_outr = new float[4 * buf_size];
 
                     resampPtrOut_l = DttSP.NewResamplerF_LimeSDR(lcm, RXsample_rate, sample_rateVAC);
                     resampPtrOut_r = DttSP.NewResamplerF_LimeSDR(lcm, RXsample_rate, sample_rateVAC);
@@ -2209,7 +1417,7 @@ namespace PowerSDR
             }
         }
 
-        unsafe private static void CleanUpVAC()
+        /*unsafe private static void CleanUpVAC()
         {
             try
             {
@@ -2238,7 +1446,7 @@ namespace PowerSDR
                 if (debug)
                     VACDebug(ex.ToString());
             }
-        }
+        }*/
 
         public static ArrayList GetPAHosts() // returns a text list of driver types
         {
@@ -2318,43 +1526,24 @@ namespace PowerSDR
             phase_buf_l = new float[rx_block_size];
             phase_buf_r = new float[rx_block_size];
 
-            if (vac_enabled)
-            {
-                InitVAC();
-                Thread.Sleep(10);
-            }
-            else
+            if (!vac_enabled)
                 DttSP.EnableResamplerF(0, 0, 0);   //disable resampler
 
             if (console.CurrentModel == Model.LimeSDR)
             {
                 retval = true;
-                buf_l = new float[console.limeSDR.inputBufferSize * 8];
-                buf_r = new float[console.limeSDR.inputBufferSize * 8];
-                out_buf_l = new float[console.limeSDR.inputBufferSize * 8];
-                out_buf_r = new float[console.limeSDR.inputBufferSize * 8];
-                res_outl = new float[65536];
-                res_outr = new float[65536];
-                res_inl = new float[65536];
-                res_inr = new float[65536];
-                vac_outl = new float[65536];
-                vac_outr = new float[65536];
-                vac_inl = new float[65536];
-                vac_inr = new float[65536];
+                buf_l = new float[console.RXBlockSize * 8];
+                buf_r = new float[console.RXBlockSize * 8];
+                out_buf_l = new float[console.RXBlockSize * 8];
+                out_buf_r = new float[console.RXBlockSize * 8];
+                vac_outl = new float[console.RXBlockSize * 8];
+                vac_outr = new float[console.RXBlockSize * 8];
+                vac_inl = new float[console.RXBlockSize * 8];
+                vac_inr = new float[console.RXBlockSize * 8];
             }
-            else
+            else if (console.CurrentModel == Model.MiniLimeSDR)
             {
-                retval = true;
 
-                if (iq_data_l == null)
-                    iq_data_l = new byte[32768];
-                if (iq_data_r == null)
-                    iq_data_r = new byte[32768];
-
-                retval = StartAudio(ref callback1, (uint)rx_block_size,
-                    RXsample_rate, host1, input_dev1, output_dev1, num_channels, 0, latency1);
-
-                if (!retval) return retval;
             }
 
             #region VAC
@@ -2398,7 +1587,7 @@ namespace PowerSDR
 
                 if (host_api_index == PA19.PA_HostApiTypeIdToHostApiIndex(PA19.PaHostApiTypeId.paWASAPI) &&
                     (console.WinVer == WindowsVersion.Windows7 || console.WinVer == WindowsVersion.Windows8 ||
-                    console.WinVer == WindowsVersion.WindowsVista))
+                    console.WinVer == WindowsVersion.WindowsVista || console.WinVer == WindowsVersion.Windows10))
                 {
                     PA19.PaWasapiStreamInfo stream_info = new PA19.PaWasapiStreamInfo();
                     stream_info.hostApiType = PA19.PaHostApiTypeId.paWASAPI;
@@ -2410,7 +1599,7 @@ namespace PowerSDR
                     outparam.hostApiSpecificStreamInfo = &stream_info;
                 }
 
-                int error = PA19.PA_OpenStream(out stream5, &inparam, &outparam, sample_rate, block_size, 0, callback, 0, 4);
+                int error = PA19.PA_OpenStream(out stream1, &inparam, &outparam, sample_rate, block_size, 0, callback, 0, 0);
 
                 if (error != 0)
                 {
@@ -2429,7 +1618,7 @@ namespace PowerSDR
                     return false;
                 }
 
-                error = PA19.PA_StartStream(stream5);
+                error = PA19.PA_StartStream(stream1);
 
                 if (error != 0)
                 {
@@ -2457,657 +1646,16 @@ namespace PowerSDR
             }
         }
 
-        public unsafe static bool StartAudio(ref PA19.PaStreamCallback callback,
-            uint block_size, double sample_rate, int host_api_index, int input_dev_index,
-            int output_dev_index, int num_channels, int callback_num, int latency_ms)         // changes yt7pwr
-        {
-            try
-            {
-                if (res_outl == null) res_outl = new float[65536];
-                if (res_outr == null) res_outr = new float[65536];
-                if (res_inl == null) res_inl = new float[65536];
-                if (res_inr == null) res_inr = new float[65536];
-                if (vac_outl == null) vac_outl = new float[65536];
-                if (vac_outr == null) vac_outr = new float[65536];
-                if (vac_inl == null) vac_inl = new float[65536];
-                if (vac_inr == null) vac_inr = new float[65536];
-
-                int in_dev = PA19.PA_HostApiDeviceIndexToDeviceIndex(host_api_index, input_dev_index);
-                int out_dev = PA19.PA_HostApiDeviceIndexToDeviceIndex(host_api_index, output_dev_index);
-
-                PA19.PaStreamParameters inparam = new PA19.PaStreamParameters();
-                PA19.PaStreamParameters outparam = new PA19.PaStreamParameters();
-
-                inparam.device = in_dev;
-                inparam.channelCount = num_channels;
-                inparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                inparam.suggestedLatency = ((float)latency_ms / 1000);
-
-                outparam.device = out_dev;
-                outparam.channelCount = num_channels;
-                outparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                outparam.suggestedLatency = ((float)latency_ms / 1000);
-
-                if (host_api_index == PA19.PA_HostApiTypeIdToHostApiIndex(PA19.PaHostApiTypeId.paWASAPI) &&
-                    (console.WinVer == WindowsVersion.Windows7 || console.WinVer == WindowsVersion.Windows8 ||
-                    console.WinVer == WindowsVersion.WindowsVista))
-                {
-                    PA19.PaWasapiStreamInfo stream_info = new PA19.PaWasapiStreamInfo();
-                    stream_info.hostApiType = PA19.PaHostApiTypeId.paWASAPI;
-                    stream_info.version = 1;
-                    stream_info.flags = 0;
-                    stream_info.threadPriority = PA19.PaWasapiThreadPriority.eThreadPriorityNone;
-                    stream_info.size = (UInt32)sizeof(PA19.PaWasapiStreamInfo);
-                    inparam.hostApiSpecificStreamInfo = &stream_info;
-                    outparam.hostApiSpecificStreamInfo = &stream_info;
-                }
-
-                int error = 0;
-                if (callback_num == 0)
-                    error = PA19.PA_OpenStream(out stream3, &inparam, &outparam, sample_rate, block_size, 0, callback, 0, 2);
-                else
-                    error = PA19.PA_OpenStream(out stream5, &inparam, &outparam, sample_rate, block_size, 0, callback, 0, 4);   // VAC
-
-                if (error != 0)
-                {
-#if(WIN32)
-                    MessageBox.Show(PA19.PA_GetErrorText(error), "PortAudio Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                        string err = PA19.PA_GetErrorText(error);
-                        byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                        string text = Encoding.UTF8.GetString(berr);
-                        MessageBox.Show(text, "PortAudio Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-
-                    return false;
-                }
-
-                if (callback_num == 0)
-                    error = PA19.PA_StartStream(stream3);
-                else
-                    error = PA19.PA_StartStream(stream5);
-
-                if (error != 0)
-                {
-#if(WIN32)
-                    MessageBox.Show(PA19.PA_GetErrorText(error), "PortAudio Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                        string err = PA19.PA_GetErrorText(error);
-                        byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                        string text = Encoding.UTF8.GetString(berr);
-                        MessageBox.Show(text, "PortAudio Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(ex.ToString());
-                return false;
-            }
-        }
-
-        public unsafe static bool StartAudioExclusiveWinXP(ref PA19.PaStreamCallback callback,
-            uint block_size, double sample_rate, int host_api_index, int input_dev_index,
-            int output_dev_index, int callback_id, int callback_num, int latency_ms)         // yt7pwr
-        {
-            try
-            {
-                int error = 0;
-                if (res_outl == null) res_outl = new float[65536];
-                if (res_inl == null) res_inl = new float[65536];
-                if (vac_outl == null) vac_outl = new float[65536];
-                if (vac_outr == null) vac_outr = new float[65536];
-                if (vac_inl == null) vac_inl = new float[65536];
-                if (vac_inr == null) vac_inr = new float[65536];
-
-                int in_dev = PA19.PA_HostApiDeviceIndexToDeviceIndex(host_api_index, input_dev_index);
-                int out_dev = PA19.PA_HostApiDeviceIndexToDeviceIndex(host_api_index, output_dev_index);
-
-                PA19.PaStreamParameters inparam = new PA19.PaStreamParameters();
-                PA19.PaStreamParameters outparam = new PA19.PaStreamParameters();
-
-                if (output_dev_index == 0xffff)
-                {
-                    inparam.device = in_dev;
-                    inparam.channelCount = 2;
-                    inparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                    inparam.suggestedLatency = ((float)latency_ms / 1000);
-                    error = 0;
-
-                    if (callback_num == 0)
-                        error = PA19.PA_OpenStream(out stream1, &inparam, null,
-                            sample_rate, block_size, 0, callback, 0, callback_id);
-                    else
-                        error = PA19.PA_OpenStream(out stream5, &inparam, null,
-                            sample_rate, block_size, 0, callback, 0, callback_id);  // input for excl. VAC
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Opening input fails!\n\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                        string err = PA19.PA_GetErrorText(error);
-                        byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                        string text = Encoding.UTF8.GetString(berr);
-                        MessageBox.Show("Opening inputs fails!\n\n" + text, "PortAudio Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                    if (callback_num == 0)
-                        error = PA19.PA_StartStream(stream1);
-                    else
-                        error = PA19.PA_StartStream(stream5);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Starting input fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Starting input fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                }
-                else if (output_dev_index == 0xf0f0)
-                {
-                    inparam.device = in_dev;
-                    inparam.channelCount = 2;
-                    inparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                    inparam.suggestedLatency = ((float)latency_ms / 1000);
-                    error = 0;
-
-                    error = PA19.PA_OpenStream(out stream2, &inparam, null,
-                        sample_rate, block_size, 0, callback, 0, callback_id);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Opening input fails!\n\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Opening input fails!\n\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                    error = PA19.PA_StartStream(stream2);
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Starting input fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Starting input fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                }
-                else if (input_dev_index == 0xffff)
-                {
-                    outparam.device = out_dev;
-                    outparam.channelCount = 2;
-                    outparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                    outparam.suggestedLatency = ((float)latency_ms / 1000);
-                    error = 0;
-
-                    if (callback_num == 0)
-                        error = PA19.PA_OpenStream(out stream3, null, &outparam,
-                            sample_rate, block_size, 0, callback, 0, callback_id);
-                    else
-                        error = PA19.PA_OpenStream(out stream6, null, &outparam,
-                            sample_rate, block_size, 0, callback, 0, callback_id);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Opening output fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Opening output fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                    if (callback_num == 0)
-                        error = PA19.PA_StartStream(stream3);
-                    else
-                        error = PA19.PA_StartStream(stream6);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Starting output fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Starting output fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-                }
-                else if (input_dev_index == 0xf0f0)
-                {
-                    outparam.device = out_dev;
-                    outparam.channelCount = 2;
-                    outparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                    outparam.suggestedLatency = ((float)latency_ms / 1000);
-                    error = 0;
-
-                    error = PA19.PA_OpenStream(out stream4, null, &outparam,
-                        sample_rate, block_size, 0, callback, 0, callback_id);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Opening output fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Opening output fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                    error = PA19.PA_StartStream(stream4);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Starting output fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Starting output fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(ex.ToString());
-                return false;
-            }
-        }
-
-        public unsafe static bool StartAudioExclusiveWin7(ref PA19.PaStreamCallback callback,
-            uint block_size, double sample_rate, int host_api_index, int input_dev_index,
-            int output_dev_index, int callback_id, int callback_num, int latency_ms)         // yt7pwr
-        {
-            try
-            {
-                int error = 0;
-                if (res_outl == null) res_outl = new float[65536];
-                if (res_outr == null) res_outr = new float[65536];
-                if (res_inl == null) res_inl = new float[65536];
-                if (res_inr == null) res_inr = new float[65536];
-                if (vac_outl == null) vac_outl = new float[65536];
-                if (vac_outr == null) vac_outr = new float[65536];
-                if (vac_inl == null) vac_inl = new float[65536];
-                if (vac_inr == null) vac_inr = new float[65536];
-
-                int in_dev = PA19.PA_HostApiDeviceIndexToDeviceIndex(host_api_index, input_dev_index);
-                int out_dev = PA19.PA_HostApiDeviceIndexToDeviceIndex(host_api_index, output_dev_index);
-
-                PA19.PaStreamParameters inparam = new PA19.PaStreamParameters();
-                PA19.PaStreamParameters outparam = new PA19.PaStreamParameters();
-
-                if (output_dev_index == 0xffff)
-                {
-                    inparam.device = in_dev;
-                    inparam.channelCount = 2;
-                    inparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                    inparam.suggestedLatency = ((float)latency_ms / 1000);
-
-                    if (host_api_index == PA19.PA_HostApiTypeIdToHostApiIndex(PA19.PaHostApiTypeId.paWASAPI) &&
-                        audio_exclusive && (console.WinVer == WindowsVersion.Windows7 | console.WinVer == WindowsVersion.Windows8 ||
-                        console.WinVer == WindowsVersion.WindowsVista))
-                    {
-                        PA19.PaWasapiStreamInfo input_stream_info = new PA19.PaWasapiStreamInfo();
-                        input_stream_info.hostApiType = PA19.PaHostApiTypeId.paWASAPI;
-                        input_stream_info.threadPriority = PA19.PaWasapiThreadPriority.eThreadPriorityProAudio;
-                        input_stream_info.version = 1;
-                        input_stream_info.size = (UInt32)sizeof(PA19.PaWasapiStreamInfo);
-                        input_stream_info.flags = (UInt32)PA19.PaWasapiFlags.paWinWasapiExclusive |
-                            PA19.AUDCLNT_STREAMFLAGS_EVENTCALLBACK;
-                        inparam.hostApiSpecificStreamInfo = &input_stream_info;
-                    }
-
-                    error = 0;
-
-                    if (callback_num == 0)
-                        error = PA19.PA_OpenStream(out stream1, &inparam, null,
-                            sample_rate, block_size, 0, callback, 0, callback_id);
-                    else
-                        error = PA19.PA_OpenStream(out stream5, &inparam, null,
-                            sample_rate, block_size, 0, callback, 0, callback_id);  // input for excl. VAC
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Opening input fails!\n\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Opening input fails!\n\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                    if (callback_num == 0)
-                        error = PA19.PA_StartStream(stream1);
-                    else
-                        error = PA19.PA_StartStream(stream5);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Starting input fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Starting input fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                }
-                else if (output_dev_index == 0xf0f0)
-                {
-                    inparam.device = in_dev;
-                    inparam.channelCount = 2;
-                    inparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                    inparam.suggestedLatency = ((float)latency_ms / 1000);
-
-                    if (host_api_index == PA19.PA_HostApiTypeIdToHostApiIndex(PA19.PaHostApiTypeId.paWASAPI) &&
-                        audio_exclusive && (console.WinVer == WindowsVersion.Windows7 || console.WinVer == WindowsVersion.Windows8 ||
-                        console.WinVer == WindowsVersion.WindowsVista))
-                    {
-                        PA19.PaWasapiStreamInfo input_stream_info = new PA19.PaWasapiStreamInfo();
-                        input_stream_info.hostApiType = PA19.PaHostApiTypeId.paWASAPI;
-                        input_stream_info.threadPriority = PA19.PaWasapiThreadPriority.eThreadPriorityProAudio;
-                        input_stream_info.version = 1;
-                        input_stream_info.size = (UInt32)sizeof(PA19.PaWasapiStreamInfo);
-                        input_stream_info.flags = (UInt32)PA19.PaWasapiFlags.paWinWasapiExclusive |
-                            PA19.AUDCLNT_STREAMFLAGS_EVENTCALLBACK;
-                        inparam.hostApiSpecificStreamInfo = &input_stream_info;
-                    }
-
-                    error = 0;
-                    error = PA19.PA_OpenStream(out stream2, &inparam, null,
-                        sample_rate, block_size, 0, callback, 0, callback_id);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Opening input fails!\n\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Opening input fails!\n\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                    error = PA19.PA_StartStream(stream2);
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Starting input fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Starting input fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                }
-                else if (input_dev_index == 0xffff)
-                {
-                    outparam.device = out_dev;
-                    outparam.channelCount = 2;
-                    outparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                    outparam.suggestedLatency = ((float)latency_ms / 1000);
-
-                    if (host_api_index == PA19.PA_HostApiTypeIdToHostApiIndex(PA19.PaHostApiTypeId.paWASAPI) &&
-                        (console.WinVer == WindowsVersion.Windows7 || console.WinVer == WindowsVersion.Windows8 ||
-                        console.WinVer == WindowsVersion.WindowsVista))
-                    {
-                        PA19.PaWasapiStreamInfo output_stream_info = new PA19.PaWasapiStreamInfo();
-                        output_stream_info.hostApiType = PA19.PaHostApiTypeId.paWASAPI;
-                        output_stream_info.threadPriority = PA19.PaWasapiThreadPriority.eThreadPriorityProAudio;
-                        output_stream_info.version = 1;
-                        output_stream_info.size = (UInt32)sizeof(PA19.PaWasapiStreamInfo);
-                        output_stream_info.flags = (UInt32)PA19.PaWasapiFlags.paWinWasapiExclusive |
-                            PA19.AUDCLNT_STREAMFLAGS_EVENTCALLBACK;
-                        outparam.hostApiSpecificStreamInfo = &output_stream_info;
-                    }
-
-                    if (callback_num == 0)
-                        error = PA19.PA_OpenStream(out stream3, null, &outparam,
-                            sample_rate, block_size, 0, callback, 0, callback_id);
-                    else
-                        error = PA19.PA_OpenStream(out stream6, null, &outparam,
-                            sample_rate, block_size, 0, callback, 0, callback_id);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Opening output fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Opening output fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                    if (callback_num == 0)
-                        error = PA19.PA_StartStream(stream3);
-                    else
-                        error = PA19.PA_StartStream(stream6);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Starting output fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Starting output fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-                }
-                else if (input_dev_index == 0xf0f0)
-                {
-                    outparam.device = out_dev;
-                    outparam.channelCount = 2;
-                    outparam.sampleFormat = PA19.paFloat32 | PA19.paNonInterleaved;
-                    outparam.suggestedLatency = ((float)latency_ms / 1000);
-
-                    if (host_api_index == PA19.PA_HostApiTypeIdToHostApiIndex(PA19.PaHostApiTypeId.paWASAPI) &&
-                        (console.WinVer == WindowsVersion.Windows7 || console.WinVer == WindowsVersion.Windows8 ||
-                        console.WinVer == WindowsVersion.WindowsVista))
-                    {
-                        PA19.PaWasapiStreamInfo output_stream_info = new PA19.PaWasapiStreamInfo();
-                        output_stream_info.hostApiType = PA19.PaHostApiTypeId.paWASAPI;
-                        output_stream_info.threadPriority = PA19.PaWasapiThreadPriority.eThreadPriorityProAudio;
-                        output_stream_info.version = 1;
-                        output_stream_info.size = (UInt32)sizeof(PA19.PaWasapiStreamInfo);
-                        output_stream_info.flags = (UInt32)PA19.PaWasapiFlags.paWinWasapiExclusive |
-                            PA19.AUDCLNT_STREAMFLAGS_EVENTCALLBACK;
-                        outparam.hostApiSpecificStreamInfo = &output_stream_info;
-                    }
-
-                    error = PA19.PA_OpenStream(out stream4, null, &outparam,
-                        sample_rate, block_size, 0, callback, 0, callback_id);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Opening output fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Opening output fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-
-                    error = PA19.PA_StartStream(stream4);
-
-                    if (error != 0)
-                    {
-#if(WIN32)
-                        MessageBox.Show("Starting output fails!\n" + PA19.PA_GetErrorText(error).ToString(),
-                            "PortAudio Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-#if(WIN64)
-                            string err = PA19.PA_GetErrorText(error);
-                            byte[] berr = System.Text.Encoding.Unicode.GetBytes(err);
-                            string text = Encoding.UTF8.GetString(berr);
-                            MessageBox.Show("Starting output fails!\n" + text, "PortAudio Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-#endif
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(ex.ToString());
-                return false;
-            }
-        }
-
-        public unsafe static void StopAudio1()
-        {
-            int error = 0;
-
-            try
-            {
-                audio_stop = true;
-                Thread.Sleep(100);
-
-                error = PA19.PA_StopStream(stream1);
-                PA19.PA_AbortStream(stream1);
-                PA19.PA_CloseStream(stream1);
-                error = PA19.PA_StopStream(stream2);
-                PA19.PA_AbortStream(stream2);
-                PA19.PA_CloseStream(stream2);
-                error = PA19.PA_StopStream(stream3);
-                PA19.PA_AbortStream(stream3);
-                PA19.PA_CloseStream(stream3);
-                error = PA19.PA_StopStream(stream4);
-                PA19.PA_AbortStream(stream4);
-                PA19.PA_CloseStream(stream4);
-                audio_stop = false;
-                Debug.Write("Exit StopAudio!\n");
-            }
-            catch (Exception ex)
-            {
-                Debug.Write(ex.ToString());
-
-                if (debug && !console.ConsoleClosing)
-                    VACDebug(ex.ToString());
-
-                audio_stop = false;
-            }
-        }
-
         public unsafe static void StopAudioVAC()
         {
             try
             {
                 VAC_audio_stop = true;
                 Thread.Sleep(100);
-
-                PA19.PA_AbortStream(stream5);
-                PA19.PA_CloseStream(stream5);
-                PA19.PA_AbortStream(stream6);
-                PA19.PA_CloseStream(stream6);
-
+                PA19.PA_AbortStream(stream1);
+                PA19.PA_CloseStream(stream1);
                 VAC_audio_stop = false;
+                Win32.DestroyCriticalSection(cs_vac);
             }
             catch (Exception ex)
             {
@@ -3122,16 +1670,7 @@ namespace PowerSDR
         {
             PA19.PaStreamInfo stream_info = new PA19.PaStreamInfo();
             PA19.PaStreamInfo stream_info5;
-
-            if (audio_exclusive)
-            {
-                stream_info5 = PA19.PA_GetStreamInfo(stream5);
-                stream_info.inputLatency = stream_info5.inputLatency;
-                stream_info.outputLatency = stream_info5.outputLatency;
-                stream_info.sampleRate = stream_info5.sampleRate;
-            }
-            else
-                stream_info = PA19.PA_GetStreamInfo(stream5);
+            stream_info = PA19.PA_GetStreamInfo(stream1);
 
             return stream_info;
         }
@@ -3252,33 +1791,11 @@ namespace PowerSDR
         static float[] out_buf_l;
         static float[] out_buf_r;
 
-        unsafe public static void LimeSDR_Callback_RX0(int thread, float* in_l_ptr1, float* in_r_ptr1, float* output, int frameCount)
+        unsafe public static void LimeSDR_Callback_RX0(int thread, float* in_l_ptr1, float* in_r_ptr1, float* output,
+            int frameCount, bool mox)
         {
             try
             {
-#if(WIN64)
-                /*Int64* array_ptr = (Int64*)input;
-                float* in_l_ptr1 = (float*)array_ptr[0];
-                float* in_r_ptr1 = (float*)array_ptr[1];
-                double* VAC_in = (double*)input;
-                array_ptr = (Int64*)output;
-                float* out_l_ptr1 = (float*)array_ptr[1];
-                float* out_r_ptr1 = (float*)array_ptr[0];*/
-#endif
-
-#if(WIN32)
-                /*int j=0;
-
-                for (int i = 0; i < frameCount; i++)
-                {
-                    buf_l[j] = input[i * 2];
-                    buf_r[j] = input[i * 2 + 1];
-                    j++;
-                    //i++;
-                }*/
-#endif
-                //fixed (float* in_l_ptr1 = &buf_l[0])
-                //fixed (float* in_r_ptr1 = &buf_r[0])
                 fixed (float* out_l_ptr1 = &out_buf_l[0])
                 fixed (float* out_r_ptr1 = &out_buf_r[0])
                 {
@@ -3291,10 +1808,8 @@ namespace PowerSDR
 
                     if (phase)
                     {
-                        //phase_mutex.WaitOne();
                         Marshal.Copy(new IntPtr(in_l_ptr1), phase_buf_l, 0, frameCount);
                         Marshal.Copy(new IntPtr(in_r_ptr1), phase_buf_r, 0, frameCount);
-                        //phase_mutex.ReleaseMutex();
                     }
 
                     float* in_l = null, in_l_VAC = null, in_r = null, in_r_VAC = null, out_l = null, out_r = null;
@@ -3442,8 +1957,7 @@ namespace PowerSDR
 
                             #endregion
 
-                            if (vac_enabled &&
-                                rb_vacIN_l != null && rb_vacIN_r != null &&
+                            if (vac_enabled && rb_vacIN_l != null && rb_vacIN_r != null &&
                                 rb_vacOUT_l != null && rb_vacOUT_r != null
                                  && !voice_message_playback)
                             {
@@ -3463,7 +1977,7 @@ namespace PowerSDR
                                         rb_vacIN_l.ReadPtr(in_l, console.RXBlockSize);
                                         rb_vacIN_r.ReadPtr(in_r, console.RXBlockSize);
                                         Win32.LeaveCriticalSection(cs_vac);
-                                        VACDebug("rb_vacIN underflow CB1");
+                                        VACDebug("LimeSDR rb_vacIN underflow");
                                     }
 
                                     ScaleBuffer(in_l, in_l, frameCount, (float)vac_preamp);
@@ -3476,8 +1990,10 @@ namespace PowerSDR
 
                                 }
                                 //else
-                                    DttSP.ExchangeSamples(0, in_l, in_r, out_l, out_r, frameCount);
+                                DttSP.ExchangeSamples(0, in_l, in_r, out_l, out_r, frameCount);
                             }
+                            else
+                                DttSP.ExchangeSamples(0, in_l, in_r, out_l, out_r, frameCount);
 
                             #region Output Signal Source
 
@@ -3562,7 +2078,8 @@ namespace PowerSDR
 
                                 if (vac_enabled)
                                 {
-                                    if ((rb_vacIN_l.ReadSpace() >= frameCount) && (rb_vacIN_r.ReadSpace() >= frameCount))
+                                    if ((rb_vacIN_l.ReadSpace() >= frameCount) &&
+                                        (rb_vacIN_r.ReadSpace() >= frameCount))
                                     {
                                         Win32.EnterCriticalSection(cs_vac);
                                         rb_vacIN_l.ReadPtr(in_l_ptr1, frameCount);
@@ -3748,7 +2265,8 @@ namespace PowerSDR
                             }
                             if (vac_enabled)
                             {
-                                if ((rb_vacIN_l.ReadSpace() >= frameCount) && (rb_vacIN_r.ReadSpace() >= frameCount))
+                                if ((rb_vacIN_l.ReadSpace() >= frameCount) && 
+                                    (rb_vacIN_r.ReadSpace() >= frameCount))
                                 {
                                     Win32.EnterCriticalSection(cs_vac);
                                     rb_vacIN_l.ReadPtr(in_l_ptr1, frameCount);
@@ -3757,7 +2275,11 @@ namespace PowerSDR
                                 }
                                 else
                                 {
-                                    //VACDebug("rb_vacIN underflow switch time CB1!");
+                                    VACDebug("LimeSDR rb_vacIN underflow switch time!");
+                                    Win32.EnterCriticalSection(cs_vac);
+                                    rb_vacIN_l.ReadPtr(in_l_ptr1, frameCount);
+                                    rb_vacIN_r.ReadPtr(in_r_ptr1, frameCount);
+                                    Win32.LeaveCriticalSection(cs_vac);
                                 }
                             }
 
@@ -3824,7 +2346,7 @@ namespace PowerSDR
                             break;
                     }
 
-                    if (vac_enabled && 
+                    if (vac_enabled &&
                         rb_vacIN_l != null && rb_vacIN_r != null &&
                         rb_vacOUT_l != null && rb_vacOUT_r != null)
                     {
@@ -3847,25 +2369,12 @@ namespace PowerSDR
                                 ScaleBuffer(out_r, outr_ptr, frameCount, 0.0f);
                             }
 
-                            int count = 0;
-
-                            while (!(rb_vacOUT_l.WriteSpace() >= frameCount && rb_vacOUT_r.WriteSpace() >= frameCount))
-                            {
-                                Thread.Sleep(1);
-                                count++;
-
-                                if (count > latency1)
-                                    break;
-                            }
-
-                            if (count > 0 && debug)
-                                VACDebug("VAC WriteSpace count: " + count.ToString());
-
                             if (!mox)
                             {
                                 if (sample_rateVAC == RXsample_rate)
                                 {
-                                    if ((rb_vacOUT_l.WriteSpace() >= frameCount) && (rb_vacOUT_r.WriteSpace() >= frameCount))
+                                    if ((rb_vacOUT_l.WriteSpace() >= frameCount) &&
+                                        (rb_vacOUT_r.WriteSpace() >= frameCount))
                                     {
                                         if (VACDirectI_Q)
                                         {
@@ -3887,7 +2396,11 @@ namespace PowerSDR
                                     }
                                     else
                                     {
-                                        VACDebug("rb_vacOUT overflow CB1");
+                                        VACDebug("LimeSDR rb_vacOUT overflow!");
+                                        Win32.EnterCriticalSection(cs_vac);
+                                        rb_vacOUT_l.WritePtr(outl_ptr, frameCount);
+                                        rb_vacOUT_r.WritePtr(outr_ptr, frameCount);
+                                        Win32.LeaveCriticalSection(cs_vac);
                                     }
                                 }
                                 else
@@ -3914,7 +2427,12 @@ namespace PowerSDR
                                             }
                                             else
                                             {
-                                                VACDebug("rb_vacOUT overflow CB1");
+                                                VACDebug("LimeSDR rb_vacOUT overflow!");
+
+                                                Win32.EnterCriticalSection(cs_vac);
+                                                rb_vacOUT_l.WritePtr(res_outl_ptr, outsamps);
+                                                rb_vacOUT_r.WritePtr(res_outr_ptr, outsamps);
+                                                Win32.LeaveCriticalSection(cs_vac);
                                             }
                                         }
                                         else
@@ -3922,7 +2440,8 @@ namespace PowerSDR
                                             DttSP.DoResamplerF(outl_ptr, res_outl_ptr, frameCount, &outsamps, resampPtrOut_l);
                                             DttSP.DoResamplerF(outr_ptr, res_outr_ptr, frameCount, &outsamps, resampPtrOut_r);
 
-                                            if ((rb_vacOUT_l.WriteSpace() >= outsamps) && (rb_vacOUT_r.WriteSpace() >= outsamps))
+                                            if ((rb_vacOUT_l.WriteSpace() >= outsamps) && 
+                                                (rb_vacOUT_r.WriteSpace() >= outsamps))
                                             {
                                                 Win32.EnterCriticalSection(cs_vac);
                                                 rb_vacOUT_l.WritePtr(res_outl_ptr, outsamps);
@@ -3931,29 +2450,12 @@ namespace PowerSDR
                                             }
                                             else
                                             {
-                                                VACDebug("rb_vacOUT overflow CB1");
-                                            }
-
-                                            /*console.limeSDR.device.baseBandDecimator.Process(out_l, out_r, (int)frameCount);
-                                            j = 0;
-                                            for (int i = 0; i < 32; i++)
-                                            {
-                                                res_outl[i] = out_l[j];
-                                                res_outr[i] = out_r[j];
-                                                j += 2;
-                                            }
-
-                                            if ((rb_vacOUT_l.WriteSpace() >= 32) && (rb_vacOUT_r.WriteSpace() >= 32))
-                                            {
+                                                VACDebug("LimeSDR rb_vacOUT overflow!");
                                                 Win32.EnterCriticalSection(cs_vac);
-                                                rb_vacOUT_l.WritePtr(res_outl_ptr, 32);
-                                                rb_vacOUT_r.WritePtr(res_outr_ptr, 32);
+                                                rb_vacOUT_l.WritePtr(res_outl_ptr, outsamps);
+                                                rb_vacOUT_r.WritePtr(res_outr_ptr, outsamps);
                                                 Win32.LeaveCriticalSection(cs_vac);
                                             }
-                                            else
-                                            {
-                                                VACDebug("rb_vacOUT overflow CB1");
-                                            }*/
                                         }
                                     }
                                 }

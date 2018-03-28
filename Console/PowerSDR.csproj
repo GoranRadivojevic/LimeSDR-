@@ -132,7 +132,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <OutputPath>..\bin\Release x64\</OutputPath>
-    <DefineConstants>TRACE;WIN64;</DefineConstants>
+    <DefineConstants>TRACE;WIN64;DirectX</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
@@ -159,7 +159,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="ProgressODoom, Version=1.0.5078.30575, Culture=neutral, PublicKeyToken=8bfb6e9704bc56d8, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\bin\Release\ProgressODoom.dll</HintPath>
+      <HintPath>..\bin\Debug\ProgressODoom.dll</HintPath>
     </Reference>
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>

@@ -153,33 +153,41 @@ namespace PowerSDR
         /// <returns>The actual number of elements read.</returns>
         public int ReadPtr(float* dest, int cnt)
         {
-            int free_cnt = ReadSpace();
-            if (free_cnt == 0) return 0;
-
-            int to_read = cnt > free_cnt ? free_cnt : cnt;
-            int cnt2 = rptr + to_read;
-            int n1 = 0, n2 = 0;
-
-            if (cnt2 > size)
+            try
             {
-                n1 = size - rptr;
-                n2 = cnt2 & mask;
-            }
-            else
-            {
-                n1 = to_read;
-                n2 = 0;
-            }
+                int free_cnt = ReadSpace();
+                if (free_cnt == 0) return 0;
 
-            Marshal.Copy(buf, rptr, new IntPtr(dest), n1);
-            rptr = (rptr + n1) & mask;
+                int to_read = cnt > free_cnt ? free_cnt : cnt;
+                int cnt2 = rptr + to_read;
+                int n1 = 0, n2 = 0;
 
-            if (n2 != 0)
-            {
-                Marshal.Copy(buf, 0, new IntPtr(&dest[n1]), n2);
-                rptr = (rptr + n2) & mask;
+                if (cnt2 > size)
+                {
+                    n1 = size - rptr;
+                    n2 = cnt2 & mask;
+                }
+                else
+                {
+                    n1 = to_read;
+                    n2 = 0;
+                }
+
+                Marshal.Copy(buf, rptr, new IntPtr(dest), n1);
+                rptr = (rptr + n1) & mask;
+
+                if (n2 != 0)
+                {
+                    Marshal.Copy(buf, 0, new IntPtr(&dest[n1]), n2);
+                    rptr = (rptr + n2) & mask;
+                }
+                return to_read;
             }
-            return to_read;
+            catch (Exception ex)
+            {
+                Debug.Write(ex.ToString());
+                return 0;
+            }
         }
 
         /// <summary>
@@ -227,57 +235,42 @@ namespace PowerSDR
         /// <returns>Actual number of elements written.</returns>
         public int WritePtr(float* src, int cnt)
         {
-            int free_cnt = WriteSpace();
-            if (free_cnt == 0) return 0;
-
-            int to_write = cnt > free_cnt ? free_cnt : cnt;
-            int cnt2 = wptr + to_write;
-            int n1 = 0, n2 = 0;
-
-            if (cnt2 > size)
+            try
             {
-                n1 = size - wptr;
-                n2 = cnt2 & mask;
+                int free_cnt = WriteSpace();
+                if (free_cnt == 0) return 0;
+
+                int to_write = cnt > free_cnt ? free_cnt : cnt;
+                int cnt2 = wptr + to_write;
+                int n1 = 0, n2 = 0;
+
+                if (cnt2 > size)
+                {
+                    n1 = size - wptr;
+                    n2 = cnt2 & mask;
+                }
+                else
+                {
+                    n1 = to_write;
+                    n2 = 0;
+                }
+
+                Marshal.Copy(new IntPtr(src), buf, wptr, n1);
+                wptr = (wptr + n1) & mask;
+
+                if (n2 != 0)
+                {
+                    Marshal.Copy(new IntPtr(&src[n1]), buf, wptr, n2);
+                    wptr = (wptr + n2) & mask;
+                }
+
+                return to_write;
             }
-            else
+            catch (Exception ex)
             {
-                n1 = to_write;
-                n2 = 0;
+                Debug.Write(ex.ToString());
+                return 0;
             }
-
-            Marshal.Copy(new IntPtr(src), buf, wptr, n1);
-            wptr = (wptr + n1) & mask;
-
-            if (n2 != 0)
-            {
-                Marshal.Copy(new IntPtr(&src[n1]), buf, wptr, n2);
-                wptr = (wptr + n2) & mask;
-            }
-
-            return to_write;
-        }
-
-        /// <summary>
-        /// Write in advance by ptr
-        /// </summary>
-        /// <param name="ptr">pointer</param>
-        /// <param name="src">source off data</param>
-        /// <param name="cnt">count</param>
-        /// <returns></returns>
-        public int WritePtr(int ptr, float* src, int cnt)   // yt7pwr
-        {
-            int tmp_ptr = wptr;
-
-            if (wptr < cnt)
-                wptr = size - (cnt - wptr);
-            else
-                wptr = (wptr + ptr) % mask;
-
-            wptr = Math.Max(0, wptr);
-            int count = WritePtr(src, cnt);
-            wptr = tmp_ptr;
-
-            return count;
         }
 
         /// <summary>
@@ -323,62 +316,6 @@ namespace PowerSDR
         {
             Clear(nfloats);
             Reset();
-        }
-
-        public int Peek(float[] dest, int cnt)
-        {
-            int free_cnt = ReadSpace();
-            if (free_cnt == 0) return 0;
-
-            int to_read = cnt > free_cnt ? free_cnt : cnt;
-            int cnt2 = rptr + to_read;
-            int n1 = 0, n2 = 0;
-
-            if (cnt2 > size)
-            {
-                n1 = size - rptr;
-                n2 = cnt2 & mask;
-            }
-            else
-            {
-                n1 = to_read;
-                n2 = 0;
-            }
-
-            Array.Copy(buf, rptr, dest, 0, n1);
-
-            if (n2 != 0)
-                Array.Copy(buf, 0, dest, n1, n2);
-
-            return to_read;
-        }
-
-        public int Peek(float* dest, int cnt)
-        {
-            int free_cnt = ReadSpace();
-            if (free_cnt == 0) return 0;
-
-            int to_read = cnt > free_cnt ? free_cnt : cnt;
-            int cnt2 = rptr + to_read;
-            int n1 = 0, n2 = 0;
-
-            if (cnt2 > size)
-            {
-                n1 = size - rptr;
-                n2 = cnt2 & mask;
-            }
-            else
-            {
-                n1 = to_read;
-                n2 = 0;
-            }
-
-            Marshal.Copy(buf, rptr, new IntPtr(dest), n1);
-
-            if (n2 != 0)
-                Marshal.Copy(buf, 0, new IntPtr(&dest[n1]), n2);
-
-            return to_read;
         }
 
         public void ReadAdvance(int cnt)

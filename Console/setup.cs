@@ -272,7 +272,6 @@ namespace PowerSDR
         private LabelTS lblPAGainByBand160;
         private NumericUpDownTS udPAGain160;
         private LabelTS lblPACalPower;
-        private NumericUpDownTS udPACalPower;
         private TabPage tpTransmit;
         private Custom_controls.CustomGroupBox grpTXAM;
         private LabelTS lblTXAMCarrierLevel;
@@ -743,7 +742,6 @@ namespace PowerSDR
         private ButtonTS btnWBIRRead;
         private LabelTS lblGridLineAlpha;
         private TrackBarTS tbGridLineAlpha;
-        private CheckBoxTS chkVACExclusive;
         private ComboBoxTS comboDSPBufSizeDigital;
         private ComboBoxTS comboDSPBufSizeCW;
         private LabelTS labelTS13;
@@ -1178,7 +1176,6 @@ namespace PowerSDR
             this.radVACMuteBoth = new System.Windows.Forms.RadioButtonTS();
             this.radVACMuteRight = new System.Windows.Forms.RadioButtonTS();
             this.radVACMuteLeft = new System.Windows.Forms.RadioButtonTS();
-            this.chkVACExclusive = new System.Windows.Forms.CheckBoxTS();
             this.udAudioLatencyVAC = new System.Windows.Forms.NumericUpDownTS();
             this.chkCWMonitorVAC = new System.Windows.Forms.CheckBoxTS();
             this.udAudioVACGainTX = new System.Windows.Forms.NumericUpDownTS();
@@ -1298,7 +1295,6 @@ namespace PowerSDR
             this.chkPA10_17m = new System.Windows.Forms.CheckBoxTS();
             this.chkPA10_80m = new System.Windows.Forms.CheckBoxTS();
             this.chkPA10_160m = new System.Windows.Forms.CheckBoxTS();
-            this.udPACalPower = new System.Windows.Forms.NumericUpDownTS();
             this.chkExtATU = new System.Windows.Forms.CheckBoxTS();
             this.chkATUquickTUN = new System.Windows.Forms.CheckBoxTS();
             this.udATUCarrierTime = new System.Windows.Forms.NumericUpDownTS();
@@ -2034,7 +2030,6 @@ namespace PowerSDR
             ((System.ComponentModel.ISupportInitialize)(this.udTXFilterLow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udTXFilterHigh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udAudioVoltage1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.udPACalPower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udATUCarrierTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udATUBypass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udATUMemoryTune)).BeginInit();
@@ -3037,6 +3032,7 @@ namespace PowerSDR
             this.comboTXBuffer.Name = "comboTXBuffer";
             this.comboTXBuffer.Size = new System.Drawing.Size(73, 21);
             this.comboTXBuffer.TabIndex = 81;
+            this.comboTXBuffer.Enabled = false;
             this.comboTXBuffer.Text = "16384";
             this.toolTip1.SetToolTip(this.comboTXBuffer, "Samples per audio buffer.  Smaller settings give less latency, more CPU load.");
             this.comboTXBuffer.SelectedIndexChanged += new System.EventHandler(this.comboTXBuffer_SelectedIndexChanged);
@@ -3062,6 +3058,7 @@ namespace PowerSDR
             this.comboTXSampleRate.Name = "comboTXSampleRate";
             this.comboTXSampleRate.Size = new System.Drawing.Size(73, 21);
             this.comboTXSampleRate.TabIndex = 79;
+            this.comboTXSampleRate.Enabled = false;
             this.toolTip1.SetToolTip(this.comboTXSampleRate, "Sample Rate -- Range is dependent on selected sound card! ");
             this.comboTXSampleRate.SelectedIndexChanged += new System.EventHandler(this.comboTXSampleRate_SelectedIndexChanged);
             // 
@@ -3293,6 +3290,7 @@ namespace PowerSDR
             this.comboRXSampleRate.Name = "comboRXSampleRate";
             this.comboRXSampleRate.Size = new System.Drawing.Size(73, 21);
             this.comboRXSampleRate.TabIndex = 4;
+            this.comboRXSampleRate.Enabled = false;
             this.toolTip1.SetToolTip(this.comboRXSampleRate, "Sample Rate -- Range is dependent on selected sound card! ");
             this.comboRXSampleRate.SelectedIndexChanged += new System.EventHandler(this.comboRXSampleRate_SelectedIndexChanged);
             // 
@@ -3309,6 +3307,7 @@ namespace PowerSDR
             this.comboRXBuffer.Name = "comboRXBuffer";
             this.comboRXBuffer.Size = new System.Drawing.Size(73, 21);
             this.comboRXBuffer.TabIndex = 0;
+            this.comboRXBuffer.Enabled = false;
             this.toolTip1.SetToolTip(this.comboRXBuffer, "Samples per audio buffer.  Smaller settings give less latency, more CPU load.");
             this.comboRXBuffer.SelectedIndexChanged += new System.EventHandler(this.comboAudioBuffer1_SelectedIndexChanged);
             // 
@@ -3551,19 +3550,6 @@ namespace PowerSDR
             this.toolTip1.SetToolTip(this.radVACMuteLeft, "Volume control for left channel Main Sound card");
             this.radVACMuteLeft.UseVisualStyleBackColor = true;
             this.radVACMuteLeft.CheckedChanged += new System.EventHandler(this.radVACMuteLeft_CheckedChanged);
-            // 
-            // chkVACExclusive
-            // 
-            this.chkVACExclusive.AutoSize = true;
-            this.chkVACExclusive.Image = null;
-            this.chkVACExclusive.Location = new System.Drawing.Point(39, 116);
-            this.chkVACExclusive.Name = "chkVACExclusive";
-            this.chkVACExclusive.Size = new System.Drawing.Size(86, 17);
-            this.chkVACExclusive.TabIndex = 37;
-            this.chkVACExclusive.Text = "Excl. access";
-            this.toolTip1.SetToolTip(this.chkVACExclusive, "Win7 WASAPI exclusive access.");
-            this.chkVACExclusive.UseVisualStyleBackColor = true;
-            this.chkVACExclusive.CheckedChanged += new System.EventHandler(this.chkVACExclusive_CheckedChanged);
             // 
             // udAudioLatencyVAC
             // 
@@ -4453,7 +4439,7 @@ namespace PowerSDR
             this.comboDSPBufSizeDigital.TabIndex = 18;
             this.toolTip1.SetToolTip(this.comboDSPBufSizeDigital, "Sets DSP internal Buffer Size for Digital modes -- larger yields sharper filters," +
                     " more latency");
-            this.comboDSPBufSizeDigital.ValueMember = "32768";
+            this.comboDSPBufSizeDigital.ValueMember = "4096";
             this.comboDSPBufSizeDigital.SelectedIndexChanged += new System.EventHandler(this.comboDSPBufSizeDigital_SelectedIndexChanged);
             // 
             // comboDSPBufSizeCW
@@ -4477,7 +4463,7 @@ namespace PowerSDR
             this.comboDSPBufSizeCW.TabIndex = 19;
             this.toolTip1.SetToolTip(this.comboDSPBufSizeCW, "Sets DSP internal Buffer Size for CW mode -- larger yields sharper filters, more " +
                     "latency");
-            this.comboDSPBufSizeCW.ValueMember = "32768";
+            this.comboDSPBufSizeCW.ValueMember = "4096";
             this.comboDSPBufSizeCW.SelectedIndexChanged += new System.EventHandler(this.comboDSPBufSizeCW_SelectedIndexChanged);
             // 
             // comboDSPBufSizePhone
@@ -4500,7 +4486,7 @@ namespace PowerSDR
             this.comboDSPBufSizePhone.Size = new System.Drawing.Size(64, 21);
             this.comboDSPBufSizePhone.TabIndex = 18;
             this.toolTip1.SetToolTip(this.comboDSPBufSizePhone, "Sets DSP internal Buffer Size -- larger yields sharper filters, more latency");
-            this.comboDSPBufSizePhone.ValueMember = "32768";
+            this.comboDSPBufSizePhone.ValueMember = "4096";
             this.comboDSPBufSizePhone.SelectedIndexChanged += new System.EventHandler(this.comboDSPBufSizePhone_SelectedIndexChanged);
             // 
             // udDSPNB
@@ -6059,38 +6045,6 @@ namespace PowerSDR
             this.chkPA10_160m.TabIndex = 26;
             this.toolTip1.SetToolTip(this.chkPA10_160m, "Check if you wish to perform automatic calibration process.");
             this.chkPA10_160m.UseVisualStyleBackColor = true;
-            // 
-            // udPACalPower
-            // 
-            this.udPACalPower.DecimalPlaces = 1;
-            this.udPACalPower.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.udPACalPower.Location = new System.Drawing.Point(464, 254);
-            this.udPACalPower.Maximum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.udPACalPower.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.udPACalPower.Name = "udPACalPower";
-            this.udPACalPower.Size = new System.Drawing.Size(69, 20);
-            this.udPACalPower.TabIndex = 22;
-            this.udPACalPower.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.udPACalPower, "The target power used for the PA Calibration.");
-            this.udPACalPower.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.udPACalPower.ValueChanged += new System.EventHandler(this.udPACalPower_ValueChanged);
-            this.udPACalPower.LostFocus += new System.EventHandler(this.udPACalPower_LostFocus);
             // 
             // chkExtATU
             // 
@@ -9614,7 +9568,6 @@ namespace PowerSDR
             this.tpPowerAmplifier.Controls.Add(this.grpPABandOffset);
             this.tpPowerAmplifier.Controls.Add(this.grpPAGainByBand);
             this.tpPowerAmplifier.Controls.Add(this.lblPACalPower);
-            this.tpPowerAmplifier.Controls.Add(this.udPACalPower);
             this.tpPowerAmplifier.Location = new System.Drawing.Point(4, 22);
             this.tpPowerAmplifier.Name = "tpPowerAmplifier";
             this.tpPowerAmplifier.Size = new System.Drawing.Size(584, 331);
@@ -13325,7 +13278,6 @@ namespace PowerSDR
             this.grpAudioVAC.Controls.Add(this.radVACMuteBoth);
             this.grpAudioVAC.Controls.Add(this.radVACMuteRight);
             this.grpAudioVAC.Controls.Add(this.radVACMuteLeft);
-            this.grpAudioVAC.Controls.Add(this.chkVACExclusive);
             this.grpAudioVAC.Controls.Add(this.labelTS19);
             this.grpAudioVAC.Controls.Add(this.grpAudioLatencyVAC);
             this.grpAudioVAC.Controls.Add(this.labelTS18);
@@ -13639,6 +13591,7 @@ namespace PowerSDR
             this.comboSpectrumSize.Size = new System.Drawing.Size(82, 21);
             this.comboSpectrumSize.TabIndex = 19;
             this.comboSpectrumSize.Text = "32768";
+            this.comboSpectrumSize.Enabled = false;
             this.comboSpectrumSize.SelectedIndexChanged += new System.EventHandler(this.comboSpectrumSize_SelectedIndexChanged);
             // 
             // groupBox3
@@ -13748,6 +13701,7 @@ namespace PowerSDR
             this.comboLimeSDR_TXSampleRate.Size = new System.Drawing.Size(82, 21);
             this.comboLimeSDR_TXSampleRate.TabIndex = 17;
             this.comboLimeSDR_TXSampleRate.Text = "768000";
+            this.comboLimeSDR_TXSampleRate.Enabled = false;
             this.comboLimeSDR_TXSampleRate.SelectedIndexChanged += new System.EventHandler(this.comboLimeSDR_TXSampleRate_SelectedIndexChanged);
             // 
             // label2
@@ -13797,19 +13751,17 @@ namespace PowerSDR
             // 
             this.comboLimeSDR_BufferSize.FormattingEnabled = true;
             this.comboLimeSDR_BufferSize.Items.AddRange(new object[] {
-            "512",
-            "1024",
             "2048",
             "4096",
             "8192",
             "16384",
-            "32768",
-            "65536"});
+            "32768"});
             this.comboLimeSDR_BufferSize.Location = new System.Drawing.Point(116, 81);
             this.comboLimeSDR_BufferSize.Name = "comboLimeSDR_BufferSize";
             this.comboLimeSDR_BufferSize.Size = new System.Drawing.Size(82, 21);
             this.comboLimeSDR_BufferSize.TabIndex = 13;
             this.comboLimeSDR_BufferSize.Text = "16384";
+            this.comboLimeSDR_BufferSize.SelectedIndexChanged += new System.EventHandler(this.comboLimeSDR_BufferSize_SelectedIndexChanged);
             // 
             // tbLimeSDR_PGAGain
             // 
@@ -13849,7 +13801,7 @@ namespace PowerSDR
             this.tbLimeSDR_TIAGain.AutoSize = false;
             this.tbLimeSDR_TIAGain.LargeChange = 1;
             this.tbLimeSDR_TIAGain.Location = new System.Drawing.Point(224, 101);
-            this.tbLimeSDR_TIAGain.Maximum = 3;
+            this.tbLimeSDR_TIAGain.Maximum = 12;
             this.tbLimeSDR_TIAGain.Name = "tbLimeSDR_TIAGain";
             this.tbLimeSDR_TIAGain.Size = new System.Drawing.Size(165, 20);
             this.tbLimeSDR_TIAGain.TabIndex = 9;
@@ -13985,7 +13937,7 @@ namespace PowerSDR
             this.tbLimeSDR_LNAGain.AutoSize = false;
             this.tbLimeSDR_LNAGain.LargeChange = 1;
             this.tbLimeSDR_LNAGain.Location = new System.Drawing.Point(224, 47);
-            this.tbLimeSDR_LNAGain.Maximum = 15;
+            this.tbLimeSDR_LNAGain.Maximum = 27;
             this.tbLimeSDR_LNAGain.Name = "tbLimeSDR_LNAGain";
             this.tbLimeSDR_LNAGain.Size = new System.Drawing.Size(165, 20);
             this.tbLimeSDR_LNAGain.SmallChange = 5;
@@ -15762,7 +15714,6 @@ namespace PowerSDR
             ((System.ComponentModel.ISupportInitialize)(this.udTXFilterLow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udTXFilterHigh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udAudioVoltage1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.udPACalPower)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udATUCarrierTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udATUBypass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udATUMemoryTune)).EndInit();
@@ -18307,12 +18258,6 @@ namespace PowerSDR
 			get { return udTXTunePower.Value; }
 			set { udTXTunePower.Value = value; }
 		}
-
-        public decimal PAPower
-        {
-            get { return udPACalPower.Value; }
-            set { udPACalPower.Value = value; }
-        }
 
 		// Added 06/21/05 BT for CAT commands
 
@@ -21683,11 +21628,6 @@ namespace PowerSDR
 			udPAGain160.Value = udPAGain160.Value;
 		}
 
-		private void udPACalPower_LostFocus(object sender, EventArgs e)
-		{
-			udPACalPower.Value = udPACalPower.Value;
-		}
-
 		private void udDisplayLineWidth_LostFocus(object sender, EventArgs e)
 		{
 			udDisplayLineWidth.Value = udDisplayLineWidth.Value;
@@ -22243,11 +22183,6 @@ namespace PowerSDR
                 udRXShift.Enabled = false;
                 Audio.VAC_RXshift_enabled = false;
             }
-        }
-
-        private void udPACalPower_ValueChanged(object sender, EventArgs e)
-        {
-            console.PWR = (double)udPACalPower.Value;
         }
 
         private void udtTX_IF_SHIFT_ValueChanged(object sender, EventArgs e)
@@ -23202,63 +23137,6 @@ namespace PowerSDR
 
         #endregion
 
-        #region Audio options      // yt7pwr
-
-        private void rad1_2RXIn_CheckedChanged(object sender, EventArgs e)
-        {
-            Audio.RX_input_1_2 = true;
-        }
-
-        private void rad3_4RXIn_CheckedChanged(object sender, EventArgs e)
-        {
-            Audio.RX_input_1_2 = false;
-        }
-
-        private void rad1_2TXOut_CheckedChanged(object sender, EventArgs e)
-        {
-            Audio.TX_out_1_2 = true;
-        }
-        
-        private void rad3_4TXOut_CheckedChanged(object sender, EventArgs e)
-        {
-            Audio.TX_out_1_2 = false;
-        }
-
-        private void chkVACExclusive_CheckedChanged(object sender, EventArgs e)
-        {
-            bool pwr = console.chkPower.Checked;
-
-            switch (console.WinVer)
-            {
-                case WindowsVersion.Windows2000:
-                case WindowsVersion.WindowsXP:
-                    {
-                    }
-                    break;
-                case WindowsVersion.WindowsVista:
-                case WindowsVersion.Windows7:
-                case WindowsVersion.Windows8:
-                    {
-                        if (pwr)
-                        {
-                            console.chkPower.Checked = false;
-                            Thread.Sleep(100);
-                        }
-
-                        if (chkVACExclusive.Checked &&
-                            current_sound_card == SoundCard.LimeSDR)
-                            Audio.VACAudioExclusive = true;
-                        else
-                            Audio.VACAudioExclusive = false;
-                    }
-
-                    console.chkPower.Checked = pwr;
-                    break;
-            }
-        }
-
-        #endregion
-
         #region VFOB extended  // yt7pwr
 
         private void chkVFOB_extend_CheckedChanged(object sender, EventArgs e)
@@ -23590,6 +23468,7 @@ namespace PowerSDR
             {
                 comboRXSampleRate.Text = comboLimeSDR_RXSampleRate.Text;
                 console.limeSDR.SetRXSampleRate(double.Parse(comboLimeSDR_RXSampleRate.Text.Replace(",", "."), CultureInfo.InvariantCulture));
+                comboLimeSDR_TXSampleRate.Text = comboLimeSDR_RXSampleRate.Text;
 
                 /*int inputBufferSize = (int)(console.AudioLatency2 * console.limeSDR.device.SampleRate / 1000);
                 int stageCount = console.limeSDR.GetDecimationStageCount(console.limeSDR.device.SampleRate);
@@ -23823,6 +23702,19 @@ namespace PowerSDR
                     console.TX_antenna = 2;
                     console.limeSDR.SetTXAntenna(2);
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex.ToString());
+            }
+        }
+
+        private void comboLimeSDR_BufferSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                comboRXBuffer.Text = comboLimeSDR_BufferSize.Text;
+                comboTXBuffer.Text = comboLimeSDR_BufferSize.Text;
             }
             catch (Exception ex)
             {

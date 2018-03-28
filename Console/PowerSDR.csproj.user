@@ -79,8 +79,8 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <StartWithIE>true</StartWithIE>
-    <RemoteDebugEnabled>true</RemoteDebugEnabled>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
     <StartWorkingDirectory>C:\Projekti\LimeSDR-\bin\Debug x64\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">

@@ -46,7 +46,7 @@ newPolyPhaseFIRF (int filterMemoryBuffLength,
   tmp->interpFactor = interpFactor;
   tmp->filterPhaseNum = filterPhaseNum;
   tmp->deciFactor = deciFactor;
-  tmp->numFiltTaps = 19839; // 19839;
+  tmp->numFiltTaps = 2048; // 19839;
   tmp->filterMemoryBuffLength =
     nblock2 (max (filterMemoryBuffLength, tmp->numFiltTaps));
   tmp->MASK = tmp->filterMemoryBuffLength - 1;

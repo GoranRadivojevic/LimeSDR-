@@ -43,10 +43,12 @@ namespace PowerSDR
     {
         #region variables
 
-        public unsafe delegate void SamplesAvailableDelegate(int thread, float *in_l, float* in_r, float *out_data, int len);
+        public unsafe delegate void SamplesAvailableDelegate(int thread, float *in_l, float* in_r, float *out_data, 
+            int len, bool mox);
         public Console console;
         public bool connected = false;
-        public delegate void AudioCallbackFunction(float* in_l, float* in_r, float* out_l, float* out_r, int count);
+        public delegate void AudioCallbackFunction(float* in_l, float* in_r, float* out_l, float* out_r,
+            int count, bool mox);
         public delegate void DebugCallbackFunction(string msg);
         public bool debug = false;
         public LimeSDRDevice device;
@@ -125,13 +127,13 @@ namespace PowerSDR
         private unsafe void LimeDevice_SamplesAvailable_RX0(int thread, float *input_left, float* input_right, 
             float *output_samples, int length)
         {
-            _callback(thread, input_left, input_right, output_samples, length);
+            _callback(thread, input_left, input_right, output_samples, length, mox);
         }
 
         private unsafe void LimeDevice_SamplesAvailable_RX1(int thread, float* input_left, float* input_right,
             float* output_samples, int length)
         {
-            _callback(thread, input_left, input_right, output_samples, length);
+            _callback(thread, input_left, input_right, output_samples, length, mox);
         }
 
         #endregion
@@ -254,7 +256,7 @@ namespace PowerSDR
                     }
 
                     device.Start(lpfbw * 1e6, RXsr, TXsr);
-                    Audio.VACRBReset = true;
+                    //Audio.VACRBReset = true;
                     return true;
                 }
                 else
@@ -617,6 +619,30 @@ namespace PowerSDR
         internal dataFmt dataFmt;
     }
 
+    /**Streaming status structure*/
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe struct lms_stream_status_t
+    {
+        ///Indicates whether the stream is currently active
+        bool active;
+        ///Number of samples in FIFO buffer
+        public uint fifoFilledCount;
+        ///Size of FIFO buffer
+        public uint fifoSize;
+        ///FIFO underrun count
+        public uint underrun;
+        ///FIFO overrun count
+        public uint overrun;
+        ///Number of dropped packets by HW
+        public uint droppedPackets;
+        ///Sampling rate of the stream
+        public double sampleRate;
+        ///Combined data rate of all stream of the same direction (TX or RX)
+        public double linkRate;
+        ///Current HW timestamp
+        public UInt64 timestamp;
+    }
+
     [StructLayout(LayoutKind.Sequential)]
 
     /**Metadata structure used in sample transfers*/
@@ -648,20 +674,25 @@ namespace PowerSDR
         LMS_LOOPBACK_NONE   /**<Return to normal operation (disable loopback)*/
     }
 
-    public enum lms_testsig_t
-    {
-        LMS_TESTSIG_NONE = 0,     /**<Disable test signals. Return to normal operation*/
-        LMS_TESTSIG_NCODIV8,    /**<Test signal from NCO half scale*/
-        LMS_TESTSIG_NCODIV4,    /**<Test signal from NCO half scale*/
-        LMS_TESTSIG_NCODIV8F,   /**<Test signal from NCO full scale*/
-        LMS_TESTSIG_NCODIV4F,   /**<Test signal from NCO full scale*/
-        LMS_TESTSIG_DC          /**<DC test signal*/
-    }
-
     #endregion
 
     public class LimeSDRDevice
     {
+        #region enum
+
+        /**Enumeration of LMS7 TEST signal types*/
+        public enum lms_testsig_t
+        {
+            LMS_TESTSIG_NONE = 0,     ///<Disable test signals. Return to normal operation
+            LMS_TESTSIG_NCODIV8,    ///<Test signal from NCO half scale
+            LMS_TESTSIG_NCODIV4,    ///<Test signal from NCO half scale
+            LMS_TESTSIG_NCODIV8F,   ///<Test signal from NCO full scale
+            LMS_TESTSIG_NCODIV4F,   ///<Test signal from NCO full scale
+            LMS_TESTSIG_DC          ///<DC test signal
+        }
+
+        #endregion
+
         #region Dll import
 
         [DllImport("LimeSuite#", EntryPoint = "LMS_GetDeviceList", CallingConvention = CallingConvention.Cdecl)]
@@ -772,7 +803,7 @@ namespace PowerSDR
         public unsafe static extern int LMS_GetGaindB(IntPtr device, bool dir_tx, uint chan, uint* gain);
 
         [DllImport("LimeSuite#", EntryPoint = "LMS_SetNormalizedGain", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int LMS_SetNormalizedGain(IntPtr device, bool dir_tx, uint chan, float gain);
+        public static extern int LMS_SetNormalizedGain(IntPtr device, bool dir_tx, uint chan, double gain);
 
         [DllImport("LimeSuite#", EntryPoint = "LMS_GetNormalizedGain", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GetNormalizedGain(IntPtr device, bool dir_tx, uint chan, double* gain);
@@ -828,6 +859,10 @@ namespace PowerSDR
         [DllImport("LimeSuite#", EntryPoint = "LMS_GPIODirRead", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GPIODirRead(IntPtr device, uint* buffer, uint length);
 
+        //API_EXPORT int CALL_CONV LMS_GetStreamStatus(lms_stream_t* stream, lms_stream_status_t* status)
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetStreamStatus", CallingConvention = CallingConvention.Cdecl)]
+        public unsafe static extern int LMS_GetStreamStatus(IntPtr stream, ref lms_stream_status_t status);
+
         #endregion
 
         #region variable
@@ -858,7 +893,7 @@ namespace PowerSDR
         public double TX1_centerFrequency = 144400000.0;
         private uint rx0_gain = 40;
         private uint rx1_gain = 40;
-        private uint tx0_gain = 20;
+        private uint tx0_gain = 0;
         private uint tx1_gain = 0;
         private ushort pga_gain = 11;
         private ushort tia_gain = 3;
@@ -891,6 +926,7 @@ namespace PowerSDR
         unsafe public void* resampPtrIn_r;
         unsafe public void* resampPtrOut_l;
         unsafe public void* resampPtrOut_r;
+        Mutex tx_Mutex = new Mutex();
 
         #endregion
 
@@ -902,6 +938,7 @@ namespace PowerSDR
             get { return mox; }
             set 
             {
+                tx_Mutex.WaitOne();
                 mox = value;
                 uint[] buffer = new uint[1];
                 buffer[0] = (uint)band_Filter;
@@ -914,6 +951,7 @@ namespace PowerSDR
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
+                tx_Mutex.ReleaseMutex();
             }
         }
 
@@ -926,11 +964,12 @@ namespace PowerSDR
             try
             {
                 int j = 0, count = (int)_frameLength;
-                int outsamps;
+                //int outsamps;
                 lms_stream_meta_t rx_meta = new lms_stream_meta_t();
                 //lms_stream_meta_t rx_meta_1 = new lms_stream_meta_t();
                 lms_stream_meta_t tx_meta = new lms_stream_meta_t();
                 //lms_stream_meta_t tx_meta_1 = new lms_stream_meta_t();
+                //lms_stream_status_t status = new lms_stream_status_t();
 
                 fixed (float* in_l = &bufferIn_L[0])
                 fixed (float* in_r = &bufferIn_R[0])
@@ -945,16 +984,16 @@ namespace PowerSDR
                     rx_meta.waitForTimestamp = false;
                     //rx_meta_1.timestamp = 0;
                     //rx_meta_1.flushPartialPacket = true;
-                    tx_meta.flushPartialPacket = true;
-                    tx_meta.waitForTimestamp = false;
-                    tx_meta.timestamp = 0;
+                    tx_meta.flushPartialPacket = false;
+                    tx_meta.waitForTimestamp = true;
+                    //tx_meta.timestamp = 0;
 
                     while (isStreaming)
                     {
-                        count = LMS_RecvStream(_streamRX_0, input_data, _frameLength, ref rx_meta, SampleTimeoutMs);
+                        LMS_RecvStream(_streamRX_0, input_data, _frameLength, ref rx_meta, SampleTimeoutMs);
                         j = 0;
 
-                        for (int i = 0; i < count; i++)
+                        for (int i = 0; i < _frameLength; i++)
                         {
                             bufferIn_L[j] = input_data[i * 2];
                             bufferIn_R[j] = input_data[i * 2 + 1];
@@ -966,23 +1005,30 @@ namespace PowerSDR
                         //DttSP.DoResamplerF(in_r, res_inr_ptr, count, &outsamps, resampPtrIn_r);
 
                         ExchangeSamples_RX0(0, in_l, in_r, output_data, (int)_frameLength);
-
+                        //tx_meta.timestamp = rx_meta.timestamp + 1024 * 256;
                         //LMS_RecvStream(_streamRX_1, input_data_1, _frameLength, ref rx_meta_1, SampleTimeoutMs);
                         //ExchangeSamples_RX1(1, input_data_1, output_data_1, (int)_frameLength);
 
                         if (mox)
                         {
                             //ExchangeSamples(input_data_1, output_data_1, (int)_frameLength * 2);
-                            //tx_meta.timestamp = rx_meta.timestamp;
+                            tx_meta.timestamp = rx_meta.timestamp + 1024 * 256;
                             //tx_meta_1.timestamp = rx_meta.timestamp;
                             //tx_meta_1.flushPartialPacket = true;
+                            tx_Mutex.WaitOne();
                             LMS_SendStream(_streamTX_0, output_data, _frameLength, ref tx_meta, SampleTimeoutMs);
+                            tx_Mutex.ReleaseMutex();
                             //LMS_SendStream(_streamTX_1, output_data_1, _frameLength, ref tx_meta_1, SampleTimeoutMs);
                         }
-                        /*else
+                        else
                         {
-                            LMS_SendStream(_streamTX_0, empty_data, (uint)count, ref tx_meta, SampleTimeoutMs);
-                        }*/
+                            //tx_meta.timestamp = rx_meta.timestamp + 1024 * 256;
+                            //LMS_SendStream(_streamTX_0, empty_data, _frameLength, ref tx_meta, SampleTimeoutMs);
+                        }
+
+                        /*LMS_GetStreamStatus(_streamRX_0, ref status); //Obtain RX stream stats
+                        Debug.Write("TX rate: " + (status.linkRate / 1e6).ToString() + "\n");
+                        Debug.Write("TX 0 FIFO: " + (100 * status.fifoFilledCount / status.fifoSize).ToString() + "\n");*/
                     }
                 }
             }
@@ -1090,14 +1136,6 @@ namespace PowerSDR
 
             isStreaming = false;
             Thread.Sleep(1000);
-
-            /*if (_sampleThread != null)
-            {
-                if (_sampleThread.ThreadState == System.Threading.ThreadState.Running)
-                    _sampleThread.Join();
-                _sampleThread = null;
-            }*/
-
             LMS_StopStream(_streamRX_0);
             LMS_StopStream(_streamTX_0);
             //LMS_StopStream(_streamRX_1);
@@ -1168,9 +1206,6 @@ namespace PowerSDR
 
                 LMS_Init(_device);
 
-                /*int n = LMS_GetNumChannels(_device, LMS_CH_TX);
-                n = LMS_GetNumChannels(_device, LMS_CH_RX);*/
-
                 uint[] buffer = new uint[1];
                 buffer[0] = 0x1f;               // 0-5 output GPIO (band filters, mox)
 
@@ -1222,11 +1257,6 @@ namespace PowerSDR
                     throw new ApplicationException(limesdr_strerror());
                 }
 
-                /*if (LMS_SetSampleRate(_device, RXSampleRate, 32) != 0)
-                {
-                    throw new ApplicationException(limesdr_strerror());
-                }*/
-
                 if (TXSampleRate <= 384000)
                 {
                     if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 32) != 0)
@@ -1243,26 +1273,26 @@ namespace PowerSDR
                 }
                 else if (TXSampleRate > 16000000)
                 {
-                    if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 16) != 0)
+                    if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 4) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
                 }
-                else if (RXsampleRate > 8000000)
+                else if (TXSampleRate > 8000000)
                 {
                     if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 8) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
                 }
-                else if (RXsampleRate > 4000000)
+                else if (TXSampleRate > 4000000)
                 {
                     if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 16) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
                 }
-                else if (RXsampleRate > 2000000)
+                else if (TXSampleRate > 2000000)
                 {
                     if (LMS_SetSampleRateDir(_device, LMS_CH_TX, TXSampleRate, 32) != 0)
                     {
@@ -1382,8 +1412,8 @@ namespace PowerSDR
 
                 lms_stream_t streamRX = new lms_stream_t();
                 streamRX.handle = 0;
-                streamRX.channel = RX_channel;                 //channel number
-                streamRX.fifoSize = 1024 * 1024;                  //fifo size in samples
+                streamRX.channel = RX_channel;                  //channel number
+                streamRX.fifoSize = 1024 * 1024;                //fifo size in samples
                 streamRX.throughputVsLatency = 0.5f;            //optimize for max throughput
                 streamRX.isTx = false;                          //RX channel
                 streamRX.dataFmt = dataFmt.LMS_FMT_F32;
@@ -1399,7 +1429,7 @@ namespace PowerSDR
                 lms_stream_t streamTX = new lms_stream_t();
                 streamTX.handle = 0;
                 streamTX.channel = TX0_channel;                 //channel number
-                streamTX.fifoSize = 1024 * 1024;                  //fifo size in samples
+                streamTX.fifoSize = 1024 * 1024;                //fifo size in samples
                 streamTX.throughputVsLatency = 0.5f;            //optimize for max throughput
                 streamTX.isTx = true;                           //TX channel
                 streamTX.dataFmt = dataFmt.LMS_FMT_F32;
@@ -1496,69 +1526,59 @@ namespace PowerSDR
             set
             {
                 RX0_centerFrequency = value;
-
-                if (_device != IntPtr.Zero)
+                tx_Mutex.WaitOne();
+                if (value >= 30 * 1e6)
                 {
-                    if (value >= 30 * 1e6)
+                    if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 15, true) != 0)   // 0.0 NCO
                     {
-                        if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 15, true) != 0)   // 0.0 NCO
-                        {
-                            throw new ApplicationException(limesdr_strerror());
-                        }
-
-                        if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, RX0_centerFrequency) != 0)
-                        {
-                            throw new ApplicationException(limesdr_strerror());
-                        }
-
-                        if (LMS_WriteParam(_device, CMIX_BYP_RXTSP, 1) < 0)
-                        {
-                            throw new ApplicationException(limesdr_strerror());
-                        }
+                        throw new ApplicationException(limesdr_strerror());
                     }
-                    else
+
+                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, RX0_centerFrequency) != 0)
                     {
-                        if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, 30.0 * 1e6) != 0)
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+
+                    if (LMS_WriteParam(_device, CMIX_BYP_RXTSP, 1) < 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+                }
+                else
+                {
+                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, 30.0 * 1e6) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+
+                    double[] losc_freq = new double[16];
+                    double[] pho = new double[1];
+
+                    fixed (double* freq = &losc_freq[0])
+                    fixed (double* pho_ptr = &pho[0])
+                    {
+                        losc_freq[0] = 30.0 * 1e6 - RX0_centerFrequency;
+                        losc_freq[15] = 0.0;
+
+                        if (LMS_SetNCOFrequency(_device, LMS_CH_RX, RX_channel, freq, 0.0) != 0)
                         {
+                            Debug.Write("Wrong RX0 NCO frequency value!" + freq[0].ToString("f3") + "\n");
                             throw new ApplicationException(limesdr_strerror());
                         }
 
-                        double[] losc_freq = new double[16];
-                        double[] pho = new double[1];
-
-                        fixed (double* freq = &losc_freq[0])
-                        fixed (double* pho_ptr = &pho[0])
+                        if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 0, true) != 0)
                         {
-                            losc_freq[0] = 30.0 * 1e6 - RX0_centerFrequency;
-                            losc_freq[15] = 0.0;
+                            Debug.Write("Wrong RX0 NCO index value!\n");
+                            throw new ApplicationException(limesdr_strerror());
+                        }
 
-                            if (LMS_SetNCOFrequency(_device, LMS_CH_RX, RX_channel, freq, 0.0) != 0)
-                            {
-                                Debug.Write("Wrong RX0 NCO frequency value!" + freq[0].ToString("f3") + "\n");
-                                throw new ApplicationException(limesdr_strerror());
-                            }
-#if WIN32
-                            if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 0, true) != 0)
-                            {
-                                Debug.Write("Wrong RX0 NCO index value!\n");
-                                throw new ApplicationException(limesdr_strerror());
-                            }
-#endif
-#if WIN64
-                            if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 0, false) != 0)
-                            {
-                                Debug.Write("Wrong RX0 NCO index value!\n");
-                                throw new ApplicationException(limesdr_strerror());
-                            }
-#endif
-
-                            if (LMS_WriteParam(_device, CMIX_BYP_RXTSP, 0) < 0)
-                            {
-                                throw new ApplicationException(limesdr_strerror());
-                            }
+                        if (LMS_WriteParam(_device, CMIX_BYP_RXTSP, 0) < 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
                         }
                     }
                 }
+                tx_Mutex.ReleaseMutex();
             }
         }
 
@@ -1579,7 +1599,7 @@ namespace PowerSDR
             set
             {
                 RX1_centerFrequency = value;
-
+                tx_Mutex.WaitOne();
                 if (value >= 30 * 1e6)
                 {
                     if (_device != IntPtr.Zero)
@@ -1622,13 +1642,9 @@ namespace PowerSDR
                             //throw new ApplicationException(limesdr_strerror());
                             Debug.Write("Wrong RX1 NCO index value!" + freq[0].ToString("f3") + "\n");
                         }
-
-                        /*if (LMS_GetNCOFrequency(_device, LMS_CH_RX, RX0_channel, freq, pho_ptr) != 0)
-                        {
-                            //throw new ApplicationException(limesdr_strerror());
-                        }*/
                     }
                 }
+                tx_Mutex.ReleaseMutex();
             }
         }
 
@@ -1649,7 +1665,7 @@ namespace PowerSDR
             set
             {
                 TX0_centerFrequency = value;
-
+                tx_Mutex.WaitOne();
                 if (value >= 30 * 1e6)
                 {
                     if (_device != IntPtr.Zero)
@@ -1683,17 +1699,18 @@ namespace PowerSDR
 
                         if (LMS_SetNCOFrequency(_device, LMS_CH_TX, TX0_channel, freq, 0.0) != 0)
                         {
-                            Debug.Write("Wrong TX0 NCO frequency value!" + freq[0].ToString("f3") + "\n");
+                            //Debug.Write("Wrong TX0 NCO frequency value!" + freq[0].ToString("f3") + "\n");
                             throw new ApplicationException(limesdr_strerror());
                         }
 
                         if (LMS_SetNCOIndex(_device, LMS_CH_TX, TX0_channel, 0, true) != 0)
                         {
-                            Debug.Write("Wrong TX0 NCO index value!" + freq[0].ToString("f3") + "\n");
+                            //Debug.Write("Wrong TX0 NCO index value!" + freq[0].ToString("f3") + "\n");
                             throw new ApplicationException(limesdr_strerror());
                         }
                     }
                 }
+                tx_Mutex.ReleaseMutex();
             }
         }
 
@@ -1714,7 +1731,7 @@ namespace PowerSDR
             set
             {
                 TX1_centerFrequency = value;
-
+                tx_Mutex.WaitOne();
                 if (value >= 30 * 1e6)
                 {
                     if (_device != IntPtr.Zero)
@@ -1748,22 +1765,18 @@ namespace PowerSDR
 
                         if (LMS_SetNCOFrequency(_device, LMS_CH_TX, TX1_channel, freq, 0.0) != 0)
                         {
-                            //throw new ApplicationException(limesdr_strerror());
-                            Debug.Write("Wrong TX1 NCO frequency value!" + freq[0].ToString("f3") + "\n");
+                            throw new ApplicationException(limesdr_strerror());
+                            //Debug.Write("Wrong TX1 NCO frequency value!" + freq[0].ToString("f3") + "\n");
                         }
 
                         if (LMS_SetNCOIndex(_device, LMS_CH_TX, TX1_channel, 0, false) != 0)
                         {
-                            //throw new ApplicationException(limesdr_strerror());
-                            Debug.Write("Wrong TX 1NCO index value!" + freq[0].ToString("f3") + "\n");
+                            throw new ApplicationException(limesdr_strerror());
+                            //Debug.Write("Wrong TX 1NCO index value!" + freq[0].ToString("f3") + "\n");
                         }
-
-                        /*if (LMS_GetNCOFrequency(_device, LMS_CH_RX, RX0_channel, freq, pho_ptr) != 0)
-                        {
-                            //throw new ApplicationException(limesdr_strerror());
-                        }*/
                     }
                 }
+                tx_Mutex.ReleaseMutex();
             }
         }
 
@@ -1805,22 +1818,6 @@ namespace PowerSDR
                 {
                     throw new ApplicationException(limesdr_strerror());
                 }
-
-                /*uint[] buffer = new uint[10];
-
-                buffer[0] = 15;
-                fixed (uint* buf = &buffer[0])
-                    if (LMS_GPIODirWrite(_device, buf, 1) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }
-
-                buffer[0] = 64;
-                fixed (uint* buf = &buffer[0])
-                    if (LMS_GPIOWrite(_device, buf, 1) != 0)
-                    {
-                        throw new ApplicationException(limesdr_strerror());
-                    }*/
             }
         }
 
@@ -1864,10 +1861,12 @@ namespace PowerSDR
 
             if (isStreaming)
             {
+                tx_Mutex.WaitOne();
                 if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, LPFBW) != 0)
                 {
                     throw new ApplicationException(limesdr_strerror());
                 }
+                tx_Mutex.ReleaseMutex();
             }
         }
 
@@ -1911,6 +1910,7 @@ namespace PowerSDR
             {
                 rx0_gain = (uint)value;
 
+                tx_Mutex.WaitOne();
                 if (_device != IntPtr.Zero)
                 {
                     if (LMS_SetGaindB(_device, LMS_CH_RX, RX_channel, rx0_gain) != 0)
@@ -1918,6 +1918,7 @@ namespace PowerSDR
                         throw new ApplicationException(limesdr_strerror());
                     }
                 }
+                tx_Mutex.ReleaseMutex();
             }
         }
 
@@ -1929,6 +1930,7 @@ namespace PowerSDR
             {
                 rx1_gain = (uint)value;
 
+                tx_Mutex.WaitOne();
                 if (_device != IntPtr.Zero)
                 {
                     if (LMS_SetGaindB(_device, LMS_CH_RX, RX_channel, rx1_gain) != 0)
@@ -1936,6 +1938,7 @@ namespace PowerSDR
                         throw new ApplicationException(limesdr_strerror());
                     }
                 }
+                tx_Mutex.ReleaseMutex();
             }
         }
 
@@ -1947,6 +1950,7 @@ namespace PowerSDR
             {
                 tx0_gain = (uint)value;
 
+                tx_Mutex.WaitOne();
                 if (_device != IntPtr.Zero)
                 {
                     if (LMS_SetGaindB(_device, LMS_CH_TX, TX0_channel, tx0_gain) != 0)
@@ -1954,6 +1958,7 @@ namespace PowerSDR
                         throw new ApplicationException(limesdr_strerror());
                     }
                 }
+                tx_Mutex.ReleaseMutex();
             }
         }
 
@@ -1965,6 +1970,7 @@ namespace PowerSDR
             {
                 tx1_gain = (uint)value;
 
+                tx_Mutex.WaitOne();
                 if (_device != IntPtr.Zero)
                 {
                     if (LMS_SetGaindB(_device, LMS_CH_TX, TX1_channel, tx1_gain) != 0)
@@ -1972,6 +1978,7 @@ namespace PowerSDR
                         throw new ApplicationException(limesdr_strerror());
                     }
                 }
+                tx_Mutex.ReleaseMutex();
             }
         }
 

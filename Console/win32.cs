@@ -51,10 +51,10 @@ namespace PowerSDR
 		[DllImport("kernel32.dll", EntryPoint="DeleteCriticalSection", CallingConvention = CallingConvention.Winapi)]
 		public static extern byte DeleteCriticalSection(void *cs_ptr);
 
-		[DllImport("DttSP.dll", EntryPoint="NewCriticalSection", CallingConvention = CallingConvention.Winapi)]
+		[DllImport("DttSP.dll", EntryPoint="NewCriticalSection", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void *NewCriticalSection();
 
-		[DllImport("DttSP.dll", EntryPoint="DestroyCriticalSection", CallingConvention = CallingConvention.Winapi)]
+		[DllImport("DttSP.dll", EntryPoint="DestroyCriticalSection", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void DestroyCriticalSection(void *cs_ptr);
 
 		[DllImport("msvcrt.dll", EntryPoint="memset", CallingConvention = CallingConvention.Cdecl)]
