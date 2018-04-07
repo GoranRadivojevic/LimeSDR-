@@ -481,10 +481,10 @@ namespace PowerSDR
         private Button btnHidden;
 
 #if(WIN32)
-        const string LimeSDR_version = "LimeSDR# v0.4 BETA YT7PWR 32bit";
+        const string LimeSDR_version = "LimeSDR# v0.5 BETA YT7PWR 32bit";
 #endif
 #if(WIN64)
-        const string LimeSDR_version = "LimeSDR# v0.4 BETA YT7PWR 64bit";
+        const string LimeSDR_version = "LimeSDR# v0.5 BETA YT7PWR 64bit";
 #endif
 
         #region DLL import
@@ -1843,7 +1843,7 @@ namespace PowerSDR
             this.ptbPWR.SmallChange = 1;
             this.ptbPWR.TabStop = false;
             this.toolTip1.SetToolTip(this.ptbPWR, resources.GetString("ptbPWR.ToolTip"));
-            this.ptbPWR.Value = 50;
+            this.ptbPWR.Value = 10;
             this.ptbPWR.Scroll += new PowerSDR.PrettyTrackBar.ScrollHandler(this.ptbPWR_Scroll);
             this.ptbPWR.OnWheel += new PowerSDR.PrettyTrackBar.WheelHandler(this.ptbPWR_Wheel);
             // 
@@ -6248,7 +6248,11 @@ namespace PowerSDR
                 if (!booting)
                 {
                     // The OnDeviceChange routine processes WM_DEVICECHANGE messages.
+#if (WIN32)
                     if (m.WParam.ToInt32() == DBT_DEVICEARRIVAL || m.WParam.ToInt32() == 0x0007)            // device arrival
+#elif(WIN64)
+                    if (m.WParam.ToInt64() == DBT_DEVICEARRIVAL || m.WParam.ToInt64() == 0x0007)            // device arrival
+#endif
                     {
                         switch (current_model)
                         {
@@ -6273,7 +6277,11 @@ namespace PowerSDR
                                 break;
                         }
                     }
+#if(WIN32)
                     else if (m.WParam.ToInt32() == DBT_DEVICEREMOVECOMPLETE)         // removal
+#elif (WIN64)
+                    else if (m.WParam.ToInt64() == DBT_DEVICEREMOVECOMPLETE)         // removal
+#endif
                     {
                         switch (current_model)
                         {
@@ -6575,7 +6583,7 @@ namespace PowerSDR
 
                         pause_DisplayThread = true;
 
-                        #region compact screen
+#region compact screen
 
                         if (minimal_screen && (this.Width >= 1024 && this.Height >= 600))
                         {
@@ -6810,9 +6818,9 @@ namespace PowerSDR
                             txtDisplayPeakFreq.Location = grp_position;
                         }
 
-                        #endregion
+#endregion
 
-                        #region normal screen
+#region normal screen
 
                         else if (!minimal_screen)
                         {
@@ -7225,7 +7233,7 @@ namespace PowerSDR
                             }
                         }
 
-                        #endregion
+#endregion
 
                         pause_DisplayThread = false;
                         meter_data_ready = false;
@@ -7243,9 +7251,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Misc Routines
+#region Misc Routines
         // ======================================================
         // Misc Routines
         // ======================================================
@@ -7349,7 +7357,7 @@ namespace PowerSDR
             Audio.console = this;
             chkDSPNB2.Enabled = true;
             Display_GDI.console = this;     // for GDI+
-#if(DirectX)
+#if (DirectX)
             try
             {
                 Display_DirectX.console = this; // for DirectX
@@ -7521,7 +7529,7 @@ namespace PowerSDR
 
             CheckSkins();
 
-#if(DirectX)
+#if (DirectX)
             if (CurrentDisplayEngine == DisplayEngine.DIRECT_X)
             {
                 CurrentDisplayEngine = current_display_engine;
@@ -7605,7 +7613,7 @@ namespace PowerSDR
             try
             {
                 pause_multimeter_thread = true;
-#if(DirectX)
+#if (DirectX)
                 pause_DisplayThread = true;
                 Display_DirectX.DirectXRelease();
                 AnalogSignalGauge.DirectXRelease();
@@ -7689,7 +7697,7 @@ namespace PowerSDR
                                 }
                                 else if (c2.GetType() == typeof(TrackBarTS))
                                     a.Add(c2.Name + "/" + ((TrackBarTS)c2).Value.ToString());
-#if(DEBUG)
+#if (DEBUG)
                                 else if (c2.GetType() == typeof(GroupBox) ||
                                     c2.GetType() == typeof(CheckBoxTS) ||
                                     c2.GetType() == typeof(ComboBoxTS) ||
@@ -7726,7 +7734,7 @@ namespace PowerSDR
                             }
                             else if (c.GetType() == typeof(TrackBarTS))
                                 a.Add(c.Name + "/" + ((TrackBarTS)c).Value.ToString());
-#if(DEBUG)
+#if (DEBUG)
                             else if (c.GetType() == typeof(Custom_controls.CustomGroupBox) ||
                                 c.GetType() == typeof(CheckBox) ||
                                 c.GetType() == typeof(ComboBox) ||
@@ -10720,9 +10728,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Test and Calibration Routines
+#region Test and Calibration Routines
 
         public bool CalibrateLevel(float level, float freq) // changes yt7pwr
         {
@@ -10865,7 +10873,7 @@ namespace PowerSDR
                             }
                         }
                         break;
-#if(DirectX)
+#if (DirectX)
                     case DisplayEngine.DIRECT_X:
                         {
                             fixed (float* ptr = &Display_DirectX.new_display_data[0])
@@ -10956,7 +10964,7 @@ namespace PowerSDR
                                     if (Display_GDI.new_display_data[j] > max) max = Display_GDI.new_display_data[j];
                             }
                             break;
-#if(DirectX)
+#if (DirectX)
                         case DisplayEngine.DIRECT_X:
                             {
                                 fixed (float* ptr = &Display_DirectX.new_display_data[0])
@@ -11134,14 +11142,14 @@ namespace PowerSDR
             return true;
         }
 
-        #endregion
+#endregion
 
-        #region Properties
+#region Properties
         // ======================================================
         // Properties
         // ======================================================
 
-        #region Genesis
+#region Genesis
         public bool wbir_run = false;
         public bool ConsoleClosing = false;
         public double G3020Xtal1 = 10.125;
@@ -11851,7 +11859,7 @@ namespace PowerSDR
             set { g11_callback_enabled = value; }
         }
 
-        #endregion
+#endregion
 
         public DisplayMode CAT_CurrentDisplayMode
         {
@@ -11911,7 +11919,7 @@ namespace PowerSDR
                 {
                     current_display_mode = value;
                     Display_GDI.CurrentDisplayMode = value;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.CurrentDisplayMode = value;
 #endif
                 }
@@ -11919,7 +11927,7 @@ namespace PowerSDR
                 {
                     current_display_mode = value;
                     Display_GDI.CurrentDisplayMode = value;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.CurrentDisplayMode = value;
 
                     if (current_display_engine == DisplayEngine.DIRECT_X)
@@ -12532,7 +12540,7 @@ namespace PowerSDR
             {
                 display_cal_offset = value;
                 Display_GDI.DisplayCalOffset = value;
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.DisplayCalOffset = value;
 #endif
             }
@@ -12546,7 +12554,7 @@ namespace PowerSDR
             {
                 display_cursor_x = value;
                 Display_GDI.DisplayCursorX = value;
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.DisplayCursorX = value;
 #endif
             }
@@ -12560,7 +12568,7 @@ namespace PowerSDR
             {
                 display_cursor_y = value;
                 Display_GDI.DisplayCursorY = value;
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.DisplayCursorY = value;
 #endif
             }
@@ -12574,13 +12582,13 @@ namespace PowerSDR
             {
                 current_click_tune_mode = value;
                 Display_GDI.CurrentClickTuneMode = value;
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.CurrentClickTuneMode = value;
 #endif
             }
         }
 
-#if(DirectX)
+#if (DirectX)
         private DisplayEngine current_display_engine = DisplayEngine.DIRECT_X;
 #else
         private DisplayEngine current_display_engine = DisplayEngine.GDI_PLUS;
@@ -12609,7 +12617,7 @@ namespace PowerSDR
                                 pause_DisplayThread = true;
                                 pause_multimeter_thread = true;
                                 AnalogSignalGauge.displayEngine = DisplayEngine.GDI_PLUS;
-#if(DirectX)
+#if (DirectX)
                                 AnalogSignalGauge.DirectXRelease();
                                 NewVFOSignalGauge.DirectXRelease();
                                 Display_DirectX.DirectXRelease();
@@ -12624,7 +12632,7 @@ namespace PowerSDR
                                 pause_multimeter_thread = false;
                             }
                             break;
-#if(DirectX)
+#if (DirectX)
                         case DisplayEngine.DIRECT_X:
                             {
                                 AnalogSignalGauge.displayEngine = DisplayEngine.DIRECT_X;
@@ -12716,7 +12724,7 @@ namespace PowerSDR
                 Model saved_model = current_model;
                 current_model = value;
                 Display_GDI.CurrentModel = value;
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.CurrentModel = value;
 #endif
 
@@ -12802,7 +12810,7 @@ namespace PowerSDR
                         saved_losc_freq = (float)loscFreq;
 
                         Display_GDI.LOSC = (long)(loscFreq * 1e6);
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.LOSC = (long)(loscFreq * 1e6);
                         Display_DirectX.RefreshGrid = true;
 
@@ -12816,15 +12824,10 @@ namespace PowerSDR
                         txtLOSCnew.Text = loscFreq.ToString("f6");
                         txtLOSCnew.Invalidate();
 
-                            MinFreq = Math.Round(loscFreq - DttSP.RXSampleRate / 2 * 1e-6, 6);
-                            MaxFreq = Math.Round(loscFreq + DttSP.RXSampleRate / 2 * 1e-6, 6);
+                        MinFreq = Math.Round(loscFreq - DttSP.RXSampleRate / 2 * 1e-6, 6);
+                        MaxFreq = Math.Round(loscFreq + DttSP.RXSampleRate / 2 * 1e-6, 6);
 
                         first = false;
-
-                        if (current_model == Model.LimeSDR)
-                        {
-
-                        }
 
                         double losc_freq = loscFreq;
 
@@ -12872,12 +12875,14 @@ namespace PowerSDR
                                         break;
                                 }
 
-                                if (!limeSDR.SetLOSC((Int32)(Math.Round(losc_freq * 1e6, 6))))
+                                if (!limeSDR.Set_RX0_LOSC((UInt32)(Math.Round(losc_freq * 1e6, 6))) ||
+                                    !limeSDR.Set_TX0_LOSC((UInt32)(Math.Round(losc_freq * 1e6, 6))))
                                     chkPower.Checked = false;
                             }
                             else
                             {
-                                if(!limeSDR.SetLOSC((Int32)(Math.Round(losc_freq * 1e6, 6))))
+                                if (!limeSDR.Set_RX0_LOSC((UInt32)(Math.Round(losc_freq * 1e6, 6))) ||
+                                    !limeSDR.Set_TX0_LOSC((UInt32)(Math.Round(losc_freq * 1e6, 6))))
                                     chkPower.Checked = false;
                             }
                         }
@@ -13299,7 +13304,7 @@ namespace PowerSDR
             set { previous_pwr = value; }
         }
 
-        #region CAT Properties
+#region CAT Properties
 
         private Band current_band;
         //BT 06/15/05 Made public for CAT commands
@@ -13678,7 +13683,7 @@ namespace PowerSDR
 
         //*************end of 8 functions.
 
-        #endregion
+#endregion
 
         private DSPMode old_dsp_mode_subRX = DSPMode.FIRST;
         private DSPMode current_dsp_mode_subRX = DSPMode.FIRST;
@@ -14096,7 +14101,7 @@ namespace PowerSDR
                 Audio.SineFreq1 = value;
                 udCWPitch.Value = value;
                 Display_GDI.CWPitch = value;
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.CWPitch = value;
 #endif
 
@@ -14256,7 +14261,7 @@ namespace PowerSDR
                         vfoAFreq = vfoA_Freq;
                         UpdateVFOAFreq(vfoA_Freq);
                         Display_GDI.VFOA = (long)(vfoA_Freq * 1e6);
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.VFOA = (long)(vfoA_Freq * 1e6);
                         //Display_DirectX.RefreshPanadapterGrid = true;
 #endif
@@ -14428,7 +14433,7 @@ namespace PowerSDR
                         }
 
                         if (Display_GDI.PeakOn) Display_GDI.ResetDisplayPeak();
-#if(DirectX)
+#if (DirectX)
                         if (Display_DirectX.PeakOn) Display_DirectX.ResetDisplayPeak();
 #endif
 
@@ -14603,7 +14608,7 @@ namespace PowerSDR
 
                         UpdateVFOBFreq(vfoBFreq);
                         Display_GDI.VFOB = (long)(vfoBFreq * 1e6);
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.VFOB = (long)(vfoBFreq * 1e6);
                         //Display_DirectX.RefreshPanadapterGrid = true;
 #endif
@@ -14722,7 +14727,7 @@ namespace PowerSDR
                         double freq = vfoBFreq;
                         UpdateVFOBFreq(vfoBFreq);
                         Display_GDI.VFOB = (long)(vfoBFreq * 1e6);
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.VFOB = (long)(vfoBFreq * 1e6);
                         Display_DirectX.RefreshPanadapterGrid = true;
 #endif
@@ -14894,7 +14899,7 @@ namespace PowerSDR
                 chkMOX.Checked = value;
 
                 Display_GDI.MOX = chkMOX.Checked;
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.MOX = chkMOX.Checked;
 #endif
             }
@@ -15186,7 +15191,7 @@ namespace PowerSDR
             {
                 high_swr = value;
                 Display_GDI.HighSWR = value;
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.HighSWR = value;
 #endif
             }
@@ -15343,7 +15348,7 @@ namespace PowerSDR
                     DttSP.SampleRate = value / 8;
                     Audio.SampleRate1 = value / 8;
                     Display_GDI.SampleRate = value;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.SampleRate = value;
 #endif
                 }
@@ -15353,7 +15358,7 @@ namespace PowerSDR
                     DttSP.RXSampleRate = value;
                     Audio.RXSampleRate = value;
                     Display_GDI.SampleRate = value;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.SampleRate = value;
 #endif
                 }
@@ -15382,7 +15387,7 @@ namespace PowerSDR
                     DttSP.SampleRate = value / 8;
                     Audio.SampleRate1 = value / 8;
                     Display_GDI.SampleRate = value;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.SampleRate = value;
 #endif
                 }
@@ -15392,7 +15397,7 @@ namespace PowerSDR
                     DttSP.TXSampleRate = value;
                     Audio.TXSampleRate = value;
                     //Display_GDI.SampleRate = value;
-#if(DirectX)
+#if (DirectX)
                     //Display_DirectX.SampleRate = value;
 #endif
                 }
@@ -15676,7 +15681,7 @@ namespace PowerSDR
             }
         }
 
-        #region Voice Msg Keys
+#region Voice Msg Keys
 
         private Keys voice_msg1 = Keys.F1;
         public Keys VoiceMsg1
@@ -15751,9 +15756,9 @@ namespace PowerSDR
             set { voice_msg12 = value; }
         }
 
-        #endregion
+#endregion
 
-        #region CWX Keys
+#region CWX Keys
 
         private Keys cwx_msg1 = Keys.F1;
         public Keys CWXMsg1
@@ -15828,7 +15833,7 @@ namespace PowerSDR
             set { cwx_msg12 = value; }
         }
 
-        #endregion
+#endregion
 
         private Keys key_show_hide_gui = Keys.Insert;       // yt7pwr
         public Keys KeyShowHideGUI                          // GUI for Si570 external osillator
@@ -16061,9 +16066,9 @@ namespace PowerSDR
 
         private int scope_time = 50;
 
-        #endregion
+#endregion
 
-        #region Display Routines
+#region Display Routines
 
         private void UpdateDisplay()
         {
@@ -16103,7 +16108,7 @@ namespace PowerSDR
                                     break;
                             }
                             break;
-#if(DirectX)
+#if (DirectX)
                         case DisplayEngine.DIRECT_X:
                             if (current_display_mode != DisplayMode.OFF)
                             {
@@ -16162,7 +16167,7 @@ namespace PowerSDR
                     case DisplayEngine.GDI_PLUS:
                         NewVFOSignalGauge.PaintGauge(e);
                         break;
-#if(DirectX)
+#if (DirectX)
                     case DisplayEngine.DIRECT_X:
                         if (PowerOn)
                         {
@@ -16192,7 +16197,7 @@ namespace PowerSDR
                     case DisplayEngine.GDI_PLUS:
                         AnalogSignalGauge.PaintGauge(e);
                         break;
-#if(DirectX)
+#if (DirectX)
                     case DisplayEngine.DIRECT_X:
 
                         if (!PowerOn)
@@ -16213,7 +16218,7 @@ namespace PowerSDR
         }
 
 
-#if(DirectX)
+#if (DirectX)
 
         private void ReinitDirectX(string s)                    // yt7pwr
         {
@@ -16303,7 +16308,7 @@ namespace PowerSDR
                                 break;
                         }
                         break;
-#if(DirectX)
+#if (DirectX)
                     case DisplayEngine.DIRECT_X:
                         switch (Display_DirectX.CurrentDisplayMode)
                         {
@@ -16332,25 +16337,25 @@ namespace PowerSDR
                     case DisplayMode.PANAFALL:
                     case DisplayMode.PANAFALL_INV:
                         Display_GDI.MaxY = picWaterfall.Height / 2;
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.MaxY = picWaterfall.Height / 2;
 #endif
                         break;
                     case DisplayMode.PANADAPTER:
                         Display_GDI.MaxY = picDisplay.Height;
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.MaxY = picDisplay.Height;
 #endif
                         break;
                     case DisplayMode.PANASCOPE:
                     case DisplayMode.WATERFALL:
                         Display_GDI.MaxY = picWaterfall.Height;
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.MaxY = picWaterfall.Height;
 #endif
                         break;
                     default:
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.MaxY = picDisplay.Height;
 #endif
                         break;
@@ -16416,7 +16421,7 @@ namespace PowerSDR
                 case DisplayEngine.GDI_PLUS:
                     f = (float)(Display_GDI.SpectrumGridMax - y * (double)(Display_GDI.SpectrumGridMax - Display_GDI.SpectrumGridMin) / picDisplay.Height);
                     break;
-#if(DirectX)
+#if (DirectX)
                 case DisplayEngine.DIRECT_X:
                     f = (float)(Display_DirectX.SpectrumGridMax - y * (double)(Display_DirectX.SpectrumGridMax - Display_DirectX.SpectrumGridMin) / picDisplay.Height);
                     break;
@@ -16424,9 +16429,9 @@ namespace PowerSDR
             }
             return f;
         }
-        #endregion
+#endregion
 
-        #region Paint Event Handlers
+#region Paint Event Handlers
         // ======================================================
         // Paint Event Handlers
         // ======================================================
@@ -16439,7 +16444,7 @@ namespace PowerSDR
                     if (!Display_GDI.RenderGDIPlus(ref e))
                         this.Invoke(new GDICallbackFunction(ReinitGDI), "picDisplay");
                     break;
-#if(DirectX)
+#if (DirectX)
                 case DisplayEngine.DIRECT_X:
                     /*try
                     {
@@ -16463,7 +16468,7 @@ namespace PowerSDR
             avg_num = -200.0f;
         }
 
-#if(DirectX)
+#if (DirectX)
         public void UpdateDirectXDisplayWaterfallAverage()
         {
             try
@@ -16495,13 +16500,13 @@ namespace PowerSDR
         }
 #endif
 
-        #endregion
+#endregion
 
-        #region Thread and Timer Routines
+#region Thread and Timer Routines
         // ======================================================
         // Thread Routines
         // ======================================================
-#if(DirectX)
+#if (DirectX)
         private void RunDisplay_DirectX()
         {
             try
@@ -18066,9 +18071,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Event Handlers
+#region Event Handlers
         // ======================================================
         // Event Handlers
         // ======================================================
@@ -19568,7 +19573,7 @@ namespace PowerSDR
                     meter_data_ready = false;
 
                     Display_GDI.DataReady = false;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.DataReady = false;
 #endif
 
@@ -19739,7 +19744,7 @@ namespace PowerSDR
                         if (limeSDR.connected)
                         {
                             ReInit_USB();
-
+                            //limeSDR.device.SetLPFBW(double.Parse(SetupForm.comboLimeSDR_LPFBW.Text.Replace("MHz", "")) * 1e6);
                             //limeSDR.SetSampleRate((double)sample_rate1);
                             //SetupForm.comboLimeSDR_SampleRate.Text = (string)sample_rate1.ToString();
 
@@ -19753,8 +19758,11 @@ namespace PowerSDR
                                 SetTXOscFreqs(true, true);
                                 SetTXOscFreqs(false, true);
 
-                                if(!limeSDR.SetLOSC((Int32)(Math.Round(LOSCFreq * 1e6, 6))))
+                                if(!limeSDR.Set_RX0_LOSC((UInt32)(Math.Round(LOSCFreq * 1e6, 6))) ||
+                                    !limeSDR.Set_TX0_LOSC((UInt32)(Math.Round(LOSCFreq * 1e6, 6))))
                                     chkPower.Checked = false;
+
+                                limeSDR.device.SetLPFBW(double.Parse(SetupForm.comboLimeSDR_LPFBW.Text.Replace("MHz", "")) * 1e6);
                             }
                             else
                                 btnUSB.BackColor = Color.Red;
@@ -19779,7 +19787,7 @@ namespace PowerSDR
                             draw_display_thread.IsBackground = true;
                             draw_display_thread.Start();
                             break;
-#if(DirectX)
+#if (DirectX)
                         case DisplayEngine.DIRECT_X:
                             Thread.Sleep(1);
                             draw_display_thread = new Thread(new ThreadStart(RunDisplay_DirectX));
@@ -19930,7 +19938,7 @@ namespace PowerSDR
             }
             Display_GDI.RXDisplayLow = low;
             Display_GDI.RXDisplayHigh = high;
-#if(DirectX)
+#if (DirectX)
             Display_DirectX.RXDisplayLow = low;
             Display_DirectX.RXDisplayHigh = high;
 #endif
@@ -20375,7 +20383,7 @@ namespace PowerSDR
 
                     double target_volts = Math.Sqrt(Math.Pow(10, target_dbm * 0.1) * 0.05);		// E = Sqrt(P * R) 
                     Audio.RadioVolume = target_volts / audio_volts1;
-                    limeSDR.SetTXgain((ushort)((val * 52.0) / 100.0));
+                    limeSDR.SetTXgain((ushort)((val * 70.0) / 100.0));
                 }
                 else
                 {
@@ -20402,6 +20410,7 @@ namespace PowerSDR
         private void ptbPWR_Scroll(object sender, System.EventArgs e)
         {
             udPWR1.Value = ptbPWR.Value;
+
             if (ptbPWR.Focused)
                 btnHidden.Focus();
         }
@@ -21134,7 +21143,7 @@ namespace PowerSDR
                     {
                         Display_GDI.SpectrumGridMax = 0;
 
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.SpectrumGridMax = 0;
 #endif
                     }
@@ -21157,7 +21166,7 @@ namespace PowerSDR
                     }
 
                     Display_GDI.CurrentDSPModeSubRX = current_dsp_mode_subRX;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.CurrentDSPModeSubRX = current_dsp_mode_subRX;
 #endif
                     switch (current_dsp_mode_subRX)
@@ -21195,7 +21204,7 @@ namespace PowerSDR
                     {
                         Display_GDI.SpectrumGridMax = 0;
 
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.SpectrumGridMax = 0;
 #endif
                     }
@@ -21209,7 +21218,7 @@ namespace PowerSDR
                         MessageBox.Show("Error in DttSP.SetTXMode: " + i);
 
                     Display_GDI.CurrentDSPMode = current_dsp_mode;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.CurrentDSPModeSubRX = current_dsp_mode_subRX;
 #endif
                     switch (current_dsp_mode)
@@ -21370,7 +21379,7 @@ namespace PowerSDR
                         break;
                 }
 
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.RefreshPanadapterGrid = true;
 #endif
             }
@@ -21416,7 +21425,7 @@ namespace PowerSDR
                 {
                     Display_GDI.SpectrumGridMax = saved_spectrum_grid_max;
 
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.SpectrumGridMax = saved_spectrum_grid_max;
 #endif
                 }
@@ -21512,7 +21521,7 @@ namespace PowerSDR
                     {
                         Display_GDI.SpectrumGridMax = saved_spectrum_grid_max;
 
-#if(DirectX)
+#if (DirectX)
                         Display_DirectX.SpectrumGridMax = saved_spectrum_grid_max;
 #endif
                     }
@@ -21600,7 +21609,7 @@ namespace PowerSDR
         private void chkDisplayAVG_CheckedChanged(object sender, System.EventArgs e)
         {
             Display_GDI.AverageOn = chkDisplayAVG.Checked;
-#if(DirectX)
+#if (DirectX)
             Display_DirectX.AverageOn = chkDisplayAVG.Checked;
 #endif
             if (chkDisplayAVG.Checked)
@@ -21926,7 +21935,7 @@ namespace PowerSDR
                                     SendMessage(debug.rtbDebugMsg.Handle, WM_VSCROLL, SB_BOTTOM, 0);
                                 }
 
-                                if(!limeSDR.SetLOSC((int)tmpFreq))
+                                if(!limeSDR.Set_RX0_LOSC((UInt32)tmpFreq) || !limeSDR.Set_TX0_LOSC((UInt32)tmpFreq))
                                     chkPower.Checked = false;
 
                             }
@@ -22009,7 +22018,7 @@ namespace PowerSDR
                                     return;
                                 }
 
-                                if(!limeSDR.SetLOSC((int)(tmpFreq)))
+                                if(!limeSDR.Set_RX0_LOSC((UInt32)(tmpFreq)) || !limeSDR.Set_TX0_LOSC((UInt32)(tmpFreq)))
                                     chkPower.Checked = false;
                             }
                         }
@@ -22253,15 +22262,15 @@ namespace PowerSDR
         private void chkShowTXCWFreq_CheckedChanged(object sender, System.EventArgs e)
         {
             Display_GDI.DrawTXCWFreq = chkShowTXCWFreq.Checked;
-#if(DirectX)
+#if (DirectX)
             Display_DirectX.DrawTXCWFreq = chkShowTXCWFreq.Checked;
             Display_DirectX.RefreshPanadapterGrid = true;
 #endif
         }
 
-        #endregion
+#endregion
 
-        #region VFO Events
+#region VFO Events
 
         private void Console_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e) // changes yt7pwr
         {
@@ -22394,7 +22403,7 @@ namespace PowerSDR
                                         UpdateVFOBFreq(freq);
                                         vfob_lock = false;
                                         Display_GDI.VFOB = (long)(freq * 1e6);
-#if(DirectX)
+#if (DirectX)
                                         Display_DirectX.VFOB = (long)(freq * 1e6);
 #endif
                                     }
@@ -22414,7 +22423,7 @@ namespace PowerSDR
                                         UpdateVFOAFreq(freq);
                                         vfob_lock = false;
                                         Display_GDI.VFOA = (long)(freq * 1e6);
-#if(DirectX)
+#if (DirectX)
                                         Display_DirectX.VFOA = (long)(freq * 1e6);
 #endif
                                     }
@@ -22428,7 +22437,7 @@ namespace PowerSDR
                                         UpdateVFOAFreq(freq);
                                         vfoa_lock = false;
                                         Display_GDI.VFOA = (long)(freq * 1e6);
-#if(DirectX)
+#if (DirectX)
                                         Display_DirectX.VFOA = (long)(freq * 1e6);
 #endif
                                     }
@@ -22484,7 +22493,7 @@ namespace PowerSDR
                                         }
 
                                         Display_GDI.LOSC = (long)(freq * 1e6);
-#if(DirectX)
+#if (DirectX)
                                         Display_DirectX.LOSC = (long)(freq * 1e6);
 #endif
 
@@ -22788,9 +22797,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Display Events
+#region Display Events
 
         private bool vfoa_notch_low_drag = false;
         private bool vfoa_notch_high_drag = false;
@@ -24263,7 +24272,7 @@ namespace PowerSDR
                             picDisplay.Invalidate();
                         }
                         break;
-#if(DirectX)
+#if (DirectX)
                     case (DisplayEngine.DIRECT_X):
                         ReinitDirectX("");
                         break;
@@ -24278,9 +24287,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        # region Display zoom yt7pwr
+#region Display zoom yt7pwr
 
         private void radDisplayZoom1x_Click(object sender, System.EventArgs e)
         {
@@ -24521,9 +24530,9 @@ namespace PowerSDR
             if (ptbDisplayPan.Focused) btnHidden.Focus();
         }
 
-        #endregion
+#endregion
 
-        #region Band Button Events
+#region Band Button Events
         // ======================================================
         // Band Button Events
         // ======================================================
@@ -25605,9 +25614,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Mode Button Events
+#region Mode Button Events
         // ======================================================
         // Mode Button Events
         // ======================================================
@@ -26071,7 +26080,7 @@ namespace PowerSDR
 
             tbFilterWidthScroll_newMode();      // wjt
 
-#if(DirectX)
+#if (DirectX)
             Display_DirectX.CurrentDSPMode = new_mode;
 
             switch (new_mode)
@@ -26212,9 +26221,9 @@ namespace PowerSDR
                 old_dsp_mode = DSPMode.DRM;
         }
 
-        #endregion
+#endregion
 
-        #region Filter Button Events
+#region Filter Button Events
         // ======================================================
         // Filter Button Events
         // ======================================================
@@ -26901,9 +26910,9 @@ namespace PowerSDR
                     break;
             }
         }
-        #endregion
+#endregion
 
-        #region VFO Button Events
+#region VFO Button Events
 
         // Added 6/20/05 BT for CAT commands
         public void CATVFOSwap(string pChangec)
@@ -27008,7 +27017,7 @@ namespace PowerSDR
                 chkVFOsinc.Checked = false;
                 VFO_SINC = false;
                 Display_GDI.SplitEnabled = chkVFOSplit.Checked;
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.SplitEnabled = chkVFOSplit.Checked;
 #endif
                 if (chkVFOSplit.Checked)
@@ -27083,7 +27092,7 @@ namespace PowerSDR
                 {
                     chkXIT.BackColor = button_selected_color;
                     Display_GDI.XIT = (int)udXIT.Value;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.XIT = (int)udXIT.Value;
 #endif
                 }
@@ -27091,7 +27100,7 @@ namespace PowerSDR
                 {
                     chkXIT.BackColor = SystemColors.Control;
                     Display_GDI.XIT = 0;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.XIT = 0;
 #endif
                 }
@@ -27113,7 +27122,7 @@ namespace PowerSDR
                 {
                     chkRIT.BackColor = button_selected_color;
                     Display_GDI.RIT = (int)udRIT.Value;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.RIT = (int)udRIT.Value;
 #endif
                 }
@@ -27121,7 +27130,7 @@ namespace PowerSDR
                 {
                     chkRIT.BackColor = SystemColors.Control;
                     Display_GDI.RIT = 0;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.RIT = 0;
 #endif
                 }
@@ -27147,7 +27156,7 @@ namespace PowerSDR
                 if (chkRIT.Checked)
                 {
                     Display_GDI.RIT = (int)udRIT.Value;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.RIT = (int)udRIT.Value;
 #endif
                 }
@@ -27172,7 +27181,7 @@ namespace PowerSDR
                 if (chkXIT.Checked)
                 {
                     Display_GDI.XIT = (int)udXIT.Value;
-#if(DirectX)
+#if (DirectX)
                     Display_DirectX.XIT = (int)udXIT.Value;
 #endif
                 }
@@ -27276,9 +27285,9 @@ namespace PowerSDR
             return peak_hz;
         }
 
-        #endregion
+#endregion
 
-        #region DSP Button Events
+#region DSP Button Events
 
         private void chkNR_CheckedChanged(object sender, System.EventArgs e)
         {
@@ -27378,9 +27387,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Menu Events
+#region Menu Events
 
         private void menu_setup_Click(object sender, System.EventArgs e)
         {
@@ -27484,9 +27493,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region SUB RX
+#region SUB RX
 
         private void tbPanMainRX_Scroll(object sender, System.EventArgs e) // changes yt7pwr
         {
@@ -27572,7 +27581,7 @@ namespace PowerSDR
                 }
             }
             Display_GDI.SubRXEnabled = chkEnableSubRX.Checked;
-#if(DirectX)
+#if (DirectX)
             Display_DirectX.SubRXEnabled = chkEnableSubRX.Checked;
 #endif
 
@@ -27607,9 +27616,9 @@ namespace PowerSDR
                 ptbRX1Gain.Focus();
         }
 
-        #endregion
+#endregion
 
-        #region Waterfall yt7pwr
+#region Waterfall yt7pwr
 
         private void picWaterfall_MouseDown(object sender, MouseEventArgs e)
         {
@@ -28177,7 +28186,7 @@ namespace PowerSDR
                                 break;
                         }
                         break;
-#if(DirectX)
+#if (DirectX)
                     case DisplayEngine.DIRECT_X:
                         if (current_display_mode == DisplayMode.WATERFALL)
                         {
@@ -28223,7 +28232,7 @@ namespace PowerSDR
                         }
                         break;
 
-#if(DirectX)
+#if (DirectX)
                     case (DisplayEngine.DIRECT_X):
                         if (current_display_mode == DisplayMode.WATERFALL)
                         {
@@ -28240,9 +28249,9 @@ namespace PowerSDR
 
         }
 
-        #endregion
+#endregion
 
-        #region USB button  yt7pwr
+#region USB button  yt7pwr
 
         public void btnUSB_Click(object sender, EventArgs e)
         {
@@ -28299,25 +28308,34 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region About yt7pwr
+#region About yt7pwr
         private void mnuAbout_Click(object sender, EventArgs e) // yt7pwr
         {
-            if (AboutForm == null || AboutForm.IsDisposed)
+            try
             {
-                AboutForm = new About(this);
-                AboutForm.StartPosition = FormStartPosition.Manual;
+                string info = limeSDR.device.GetLimeSDRDeviceInfo();
+
+                if (AboutForm == null || AboutForm.IsDisposed)
+                {
+                    AboutForm = new About(this, info);
+                    AboutForm.StartPosition = FormStartPosition.Manual;
+                }
+
+                AboutForm.Show();
+                AboutForm.Focus();
+                Win32.SetWindowPos(AboutForm.Handle.ToInt32(),
+                    -1, this.Left, this.Top, AboutForm.Width, AboutForm.Height, 0);
             }
-
-            AboutForm.Show();
-            AboutForm.Focus();
-            Win32.SetWindowPos(AboutForm.Handle.ToInt32(),
-                -1, this.Left, this.Top, AboutForm.Width, AboutForm.Height, 0);
+            catch(Exception ex)
+            {
+                Debug.Write(ex.ToString());
+            }
         }
-        #endregion
+#endregion
 
-        #region Genesis buttons yt7pwr
+#region Genesis buttons yt7pwr
 
         private void btnVFOA_Click(object sender, EventArgs e)
         {
@@ -28355,9 +28373,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Skins  yt7pwr
+#region Skins  yt7pwr
 
         public void CheckSkins()
         {
@@ -28393,9 +28411,9 @@ namespace PowerSDR
                 lblVFOATX.ForeColor = Color.White;
             }
         }
-        #endregion
+#endregion
 
-        #region Memory Events yt7pwr
+#region Memory Events yt7pwr
         // ======================================================
         // Memory Events
         // ======================================================
@@ -28613,9 +28631,9 @@ namespace PowerSDR
             btnZAP.Checked = false;
         }
 
-        #endregion
+#endregion
 
-        #region CWX  yt7pwr
+#region CWX  yt7pwr
 
         public void btnCWX1_Click(object sender, EventArgs e)
         {
@@ -29302,9 +29320,9 @@ namespace PowerSDR
                 toolTip1.SetToolTip(btnCWX12, CWXForm.txt12.Text);
         }
 
-        #endregion
+#endregion
 
-        #region Play/Record Wav file  yt7pwr
+#region Play/Record Wav file  yt7pwr
 
         private void chkPlayWav_CheckedChanged(object sender, EventArgs e)
         {
@@ -29375,9 +29393,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Voice Messages   yt7pwr
+#region Voice Messages   yt7pwr
 
         public void btnMsg1_Click(object sender, EventArgs e)
         {
@@ -29772,9 +29790,9 @@ namespace PowerSDR
                 toolTip1.SetToolTip(btnMsg12, VoiceMsgForm.txtMsg12.Text);
         }
 
-        #endregion
+#endregion
 
-        #region New VFO  yt7pwr
+#region New VFO  yt7pwr
 
 
         private void panelVFOBnewHover_Paint(object sender, PaintEventArgs e)
@@ -30213,7 +30231,7 @@ namespace PowerSDR
                 UpdateLOSCFreq(loscfreq.ToString("f6"));
 
                 Display_GDI.LOSC = (long)(loscfreq * 1e6);
-#if(DirectX)
+#if (DirectX)
                 Display_DirectX.LOSC = (long)(loscfreq * 1e6);
 #endif
 
@@ -30682,9 +30700,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region SUB RX DSP   yt7pwr
+#region SUB RX DSP   yt7pwr
 
         private void SetModeSubRX(DSPMode new_mode) // changes yt7pwr
         {
@@ -30692,7 +30710,7 @@ namespace PowerSDR
 
             DttSP.CurrentModeSubRX = (DSPMode)new_mode;				// set new DSP mode for Sub RX
             Display_GDI.CurrentDSPModeSubRX = new_mode;
-#if(DirectX)
+#if (DirectX)
             Display_DirectX.CurrentDSPModeSubRX = new_mode;
 
             if (chkVFOSplit.Checked)
@@ -31901,9 +31919,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region WBIR
+#region WBIR
 
         public WBIR_State WBIR_state = WBIR_State.FastAdapt;
         private bool wbir_tuned = true;
@@ -32038,9 +32056,9 @@ namespace PowerSDR
                 }
             }
         }
-        #endregion
+#endregion
 
-        #region SmallSoundControl group     yt7pwr
+#region SmallSoundControl group     yt7pwr
 
         private void udAF1_ValueChanged_1(object sender, EventArgs e)
         {
@@ -32097,9 +32115,9 @@ namespace PowerSDR
                 ptbPWR1.Focus();
         }
 
-        #endregion
+#endregion
 
-        #region band button zoom   yt7pwr
+#region band button zoom   yt7pwr
 
         private int band_button_width = 48;
         private int band_button_height = 18;
@@ -32532,9 +32550,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Manual NOTCH filter selection  yt7pwr
+#region Manual NOTCH filter selection  yt7pwr
 
         private int notch_low_value = 100;
         public int NotchLow
@@ -32911,9 +32929,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region DX Cluster    yt7pwr
+#region DX Cluster    yt7pwr
 
         private void dXToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -32934,9 +32952,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region More Bands    yt7pwr
+#region More Bands    yt7pwr
 
         private void radBandHF_Click(object sender, EventArgs e)
         {
@@ -34279,9 +34297,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region XTRV   yt7pwr
+#region XTRV   yt7pwr
 
         private void xTRVToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -34436,9 +34454,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region DebugMsg  yt7pwr
+#region DebugMsg  yt7pwr
 
         private void debugToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -34480,9 +34498,9 @@ namespace PowerSDR
             this.Invoke(new DebugCallbackFunction(DebugCallback), msg);
         }
 
-        #endregion
+#endregion
 
-        #region FM group   yt7pwr
+#region FM group   yt7pwr
 
         private void chkCTCSS_CheckedChanged(object sender, EventArgs e)
         {
@@ -35022,9 +35040,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region Audio MUTE    yt7pwr
+#region Audio MUTE    yt7pwr
 
         private void chkVACMute_CheckedChanged(object sender, EventArgs e)
         {
@@ -35130,9 +35148,9 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
 
-        #region LimeSDR    yt7pwr
+#region LimeSDR    yt7pwr
 
         private void ptbLimeSDR_Gain_Scroll(object sender, EventArgs e)
         {
@@ -35149,10 +35167,10 @@ namespace PowerSDR
             }
         }
 
-        #endregion
+#endregion
     }
 
-    #region DttSP
+#region DttSP
 
     public class ProcessSampleThreadController
     {
@@ -35168,5 +35186,5 @@ namespace PowerSDR
         }
     }
 
-    #endregion
+#endregion
 }

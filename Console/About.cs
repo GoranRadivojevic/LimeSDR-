@@ -21,6 +21,12 @@
 //
 //=================================================================
 
+/*
+ * LimeSDR#  
+ * Copyright (C)2018 YT7PWR Goran Radivojevic
+ * contact via email at: yt7pwr@mts.rs
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +36,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
 
 namespace PowerSDR
 {
@@ -37,19 +44,37 @@ namespace PowerSDR
     {
         Console console;
 
-        public About(Console c)
+        public About(Console c, string radioInfo)
         {
-            console = c;
-            this.AutoScaleMode = AutoScaleMode.Inherit;
-            InitializeComponent();
-            float dpi = this.CreateGraphics().DpiX;
-            float ratio = dpi / 96.0f;
-            string font_name = this.Font.Name;
-            float size = (float)(8.25 / ratio);
-            System.Drawing.Font new_font = new System.Drawing.Font(font_name, size);
-            this.Font = new_font;
-            this.PerformAutoScale();
-            this.PerformLayout();
+            try
+            {
+                console = c;
+                this.AutoScaleMode = AutoScaleMode.Inherit;
+                InitializeComponent();
+                float dpi = this.CreateGraphics().DpiX;
+                float ratio = dpi / 96.0f;
+                string font_name = this.Font.Name;
+                float size = (float)(8.25 / ratio);
+                System.Drawing.Font new_font = new System.Drawing.Font(font_name, size);
+                this.Font = new_font;
+                this.PerformAutoScale();
+                this.PerformLayout();
+
+                string[] data = radioInfo.Split('/');
+
+                if(data != null && data.Length == 5)
+                {
+                    lblRadioModel.Text = data[0];
+                    lblFirm_version.Text = data[1];
+                    lblSerialNumber.Text = data[2];
+                    lblGatewareVersion.Text = data[3];
+                    lblLimeSuiteVersion.Text = data[4];
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex.ToString());
+            }
         }
 
         private void buttonOK_Click(object sender, EventArgs e)

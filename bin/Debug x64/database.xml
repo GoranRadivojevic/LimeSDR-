@@ -492,9 +492,9 @@
     <ModeSubRX>CWU</ModeSubRX>
     <FilterMainRX>F7</FilterMainRX>
     <FilterSubRX>F7</FilterSubRX>
-    <VFOA>14.175006</VFOA>
-    <VFOB>15.601999</VFOB>
-    <LOSC>14.45</LOSC>
+    <VFOA>14.073686</VFOA>
+    <VFOB>15.701999</VFOB>
+    <LOSC>14.55</LOSC>
     <AF>15</AF>
     <RF>60</RF>
     <PWR>2</PWR>
@@ -930,16 +930,16 @@
   </BandStack>
   <BandStack>
     <BandName>GEN</BandName>
-    <ModeMainRX>CWU</ModeMainRX>
+    <ModeMainRX>AM</ModeMainRX>
     <ModeSubRX>CWU</ModeSubRX>
-    <FilterMainRX>F8</FilterMainRX>
-    <FilterSubRX>F8</FilterSubRX>
-    <VFOA>153.632</VFOA>
-    <VFOB>153.632001</VFOB>
-    <LOSC>154.4</LOSC>
+    <FilterMainRX>VAR1</FilterMainRX>
+    <FilterSubRX>F7</FilterSubRX>
+    <VFOA>15.38</VFOA>
+    <VFOB>15.601999</VFOB>
+    <LOSC>14.85</LOSC>
     <AF>15</AF>
-    <RF>80</RF>
-    <PWR>8</PWR>
+    <RF>60</RF>
+    <PWR>2</PWR>
     <SQL1>50</SQL1>
     <SQL1_ON>false</SQL1_ON>
     <SQL2>50</SQL2>
@@ -5582,11 +5582,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>console_left</Key>
-    <Value>53</Value>
+    <Value>2</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>console_top</Key>
-    <Value>26</Value>
+    <Value>2</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>console_width</Key>
@@ -7082,7 +7082,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbDisplayZoom</Key>
-    <Value>64</Value>
+    <Value>4</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbFilterShift</Key>
@@ -7090,7 +7090,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbFilterWidth</Key>
-    <Value>384</Value>
+    <Value>80</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbFMMicGain</Key>
@@ -7098,7 +7098,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>ptbLimeSDR_Gain</Key>
-    <Value>9</Value>
+    <Value>32</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>ptbMIC</Key>
@@ -7294,11 +7294,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>radDisplayZoom16x</Key>
-    <Value>True</Value>
+    <Value>False</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>radDisplayZoom1x</Key>
-    <Value>False</Value>
+    <Value>True</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>radDisplayZoom2x</Key>
@@ -7338,7 +7338,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>radFilter5</Key>
-    <Value>False</Value>
+    <Value>True</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>radFilter6</Key>
@@ -7346,7 +7346,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>radFilter7</Key>
-    <Value>True</Value>
+    <Value>False</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>radFilter8</Key>
@@ -7382,7 +7382,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>radModeCWU</Key>
-    <Value>False</Value>
+    <Value>True</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>radModeDIGL</Key>
@@ -7418,7 +7418,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>radModeUSB</Key>
-    <Value>True</Value>
+    <Value>False</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>radModeWFM</Key>
@@ -7562,7 +7562,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>txtLOSCnew</Key>
-    <Value>144.600000</Value>
+    <Value>144.000000</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtMemory</Key>
@@ -7570,11 +7570,11 @@
   </ConsoleState>
   <ConsoleState>
     <Key>txtNewVFOBand</Key>
-    <Value>2M Satellite</Value>
+    <Value>2M CW</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOAnew</Key>
-    <Value>144.410400</Value>
+    <Value>144.000000</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>txtVFOBnew</Key>
@@ -7646,7 +7646,7 @@
   </ConsoleState>
   <ConsoleState>
     <Key>Version</Key>
-    <Value>LimeSDR# v0.4 BETA YT7PWR 64bit  LMS7002 temperature: 40.5C</Value>
+    <Value>LimeSDR# v0.5 BETA YT7PWR 64bit</Value>
   </ConsoleState>
   <ConsoleState>
     <Key>vfob_dsp_mode</Key>
@@ -8806,7 +8806,7 @@
   </State>
   <State>
     <Key>comboLimeSDR_LPFBW</Key>
-    <Value>30.0MHz</Value>
+    <Value>40.0MHz</Value>
   </State>
   <State>
     <Key>comboLimeSDR_RXSampleRate</Key>

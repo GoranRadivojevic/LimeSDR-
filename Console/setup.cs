@@ -23469,43 +23469,6 @@ namespace PowerSDR
                 comboRXSampleRate.Text = comboLimeSDR_RXSampleRate.Text;
                 console.limeSDR.SetRXSampleRate(double.Parse(comboLimeSDR_RXSampleRate.Text.Replace(",", "."), CultureInfo.InvariantCulture));
                 comboLimeSDR_TXSampleRate.Text = comboLimeSDR_RXSampleRate.Text;
-
-                /*int inputBufferSize = (int)(console.AudioLatency2 * console.limeSDR.device.SampleRate / 1000);
-                int stageCount = console.limeSDR.GetDecimationStageCount(console.limeSDR.device.SampleRate);
-                int decimation = (int)Math.Pow(2.0, stageCount);
-                inputBufferSize = inputBufferSize / decimation * decimation;
-                inputBufferSize = inputBufferSize / console._processorCount * console._processorCount;
-                int _bufferSizeInMs = (int)Math.Round(inputBufferSize / console.limeSDR.device.SampleRate * 1000);
-                double outputSampleRate = console.limeSDR.device.SampleRate / decimation;
-                int outputBufferSize = inputBufferSize / decimation * 2;
-                console.limeSDR.inputBufferSize = inputBufferSize;
-                console.limeSDR.outputBufferSize = outputBufferSize;
-                console.limeSDR.decimation = stageCount;
-
-                if (!comboAudioSampleRateVAC.Items.Contains(outputSampleRate))
-                    comboAudioSampleRateVAC.Items.Add(outputSampleRate);
-
-                comboAudioSampleRateVAC.Text = outputSampleRate.ToString();
-
-                if (!comboAudioBufferVAC.Items.Contains(outputBufferSize / 2))
-                    comboAudioBufferVAC.Items.Add(outputBufferSize / 2);
-
-                comboAudioBufferVAC.Text = (outputBufferSize / 2).ToString();
-
-                if (!comboLimeSDR_BufferSize.Items.Contains(inputBufferSize))
-                    comboLimeSDR_BufferSize.Items.Add(inputBufferSize);
-
-                comboLimeSDR_BufferSize.Text = inputBufferSize.ToString();
-
-                if (!comboAudioBuffer1.Items.Contains(outputBufferSize / 2))
-                    comboAudioBuffer1.Items.Add(outputBufferSize / 2);
-
-                comboAudioBuffer1.Text = (outputBufferSize / 2).ToString();
-
-                if (!comboAudioSampleRate1.Items.Contains(outputSampleRate))
-                    comboAudioSampleRate1.Items.Add(outputSampleRate);
-
-                comboAudioSampleRate1.Text = outputSampleRate.ToString();*/
             }
             catch (Exception ex)
             {

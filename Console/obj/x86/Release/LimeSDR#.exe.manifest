@@ -42,38 +42,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LimeSDR#.exe" size="2216960">
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="ProgressODoom" version="1.0.5078.30575" publicKeyToken="8BFB6E9704BC56D8" language="neutral" processorArchitecture="x86" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="SlimDX" version="4.0.13.43" publicKeyToken="B1B0C32FD1FFE4F9" language="neutral" processorArchitecture="amd64" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LimeSDR#.exe" size="2167808">
       <assemblyIdentity name="LimeSDR#" version="0.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kzL2983yAVDCq1z0Ginw/8BqmEWEl7gyX+8PBFDG/dA=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProgressODoom.dll" size="65024">
-      <assemblyIdentity name="ProgressODoom" version="1.0.5078.30575" publicKeyToken="8BFB6E9704BC56D8" language="neutral" processorArchitecture="x86" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3viSZHbbk18lpjr6lO/wpQ11vKNGDKmp+sC9wvArkr0=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SlimDX.dll" size="3718656">
-      <assemblyIdentity name="SlimDX" version="4.0.13.43" publicKeyToken="B1B0C32FD1FFE4F9" language="neutral" processorArchitecture="amd64" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uo+AyrE6h+EOz2Weaz+YxWxRwKeSwQTntoGoH7hvQ/o=</dsig:DigestValue>
+        <dsig:DigestValue>Jv3o5mi3jWh3mM4UqwoZlyyICKyD6wnh9DwZ/36gFcE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

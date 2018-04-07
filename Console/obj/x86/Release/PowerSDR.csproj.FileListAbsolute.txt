@@ -55,6 +55,4 @@ C:\Projekti\LimeSDR-\Console\obj\x86\Release\PowerSDR.csproj.GenerateResource.ca
 C:\Projekti\LimeSDR-\Console\obj\x86\Release\PowerSDR.csproj.CoreCompileInputs.cache
 C:\Projekti\LimeSDR-\Console\obj\x86\Release\LimeSDR#.exe.manifest
 C:\Projekti\LimeSDR-\Console\obj\x86\Release\LimeSDR#.application
-C:\Projekti\LimeSDR-\Console\obj\x86\Release\PowerSDR.csproj.CopyComplete
 C:\Projekti\LimeSDR-\Console\obj\x86\Release\LimeSDR#.exe
-C:\Projekti\LimeSDR-\Console\obj\x86\Release\PowerSDR.csprojResolveAssemblyReference.cache

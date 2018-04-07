@@ -225,7 +225,7 @@ namespace PowerSDR
                     device.Antenna_TX0 = (uint)TXantenna;
                     device.RX0_centerFrequency = RX0_center_freq;
                     device.TX0_centerFrequency = TX0_center_freq;
-                    device.RX_channel = (uint)RX_channel;
+                    device.RX0_channel = (uint)RX_channel;
                     device.TX0_channel = (uint)TX_channel;
                     buf_l = new float[inputBufferSize*2];
                     buf_r = new float[inputBufferSize*2];
@@ -272,7 +272,7 @@ namespace PowerSDR
             }
         }
 
-        public bool SetLOSC(Int32 freq)
+        public bool Set_RX0_LOSC(UInt32 freq)
         {
             try
             {
@@ -280,29 +280,10 @@ namespace PowerSDR
                 {
                     if (freq < 30 * 1e6 && RX0_center_freq >= 30 * 1e6 && device.isStreaming)
                     {
-                        /*Stop();
-                        Thread.Sleep(200);
-                        Close();
-                        Open();
-                        device.RX0_centerFrequency = freq;
-                        device.TX0_centerFrequency = freq;
-                        Start(_callback, inputBufferSize, RXantenna, TXantenna, RX_channel, TX_channel, LPFBW, RXsampleRate, TXsampleRate);
-                        Thread.Sleep(200);
-                        device.RX0_Frequency = freq;
-                        device.TX0_Frequency = freq;*/
                         return false;
                     }
                     else if (freq > 30 * 1e6 && RX0_center_freq <= 30 * 1e6 && device.isStreaming)
                     {
-                        /*Stop();
-                        Thread.Sleep(200);
-                        Close();
-                        Open();
-                        device.RX0_centerFrequency = freq;
-                        device.TX0_centerFrequency = freq;
-                        Start(_callback, inputBufferSize, RXantenna, RX_channel, TX_channel, TXantenna, LPFBW, RXsampleRate, TXsampleRate);
-                        device.RX0_Frequency = freq;
-                        device.TX0_Frequency = freq;*/
                         return false;
                     }
                     else
@@ -310,23 +291,65 @@ namespace PowerSDR
                         if (device != null && device.isStreaming)
                         {
                             device.RX0_Frequency = freq;
-                            device.TX0_Frequency = freq;
+                            //device.RX1_Frequency = freq;
                         }
                         else if (device != null)
                         {
                             device.RX0_centerFrequency = freq;
-                            device.TX0_centerFrequency = freq;
+                            //device.RX1_centerFrequency = freq;
                         }
                     }
 
                     RX0_center_freq = freq;
-                    TX0_center_freq = freq;
+                    //RX1_center_freq = freq;
                     return true;
                 }
                 else
                     return false;
             }
             catch(Exception ex)
+            {
+                Debug.Write(ex.ToString());
+                return false;
+            }
+        }
+
+        public bool Set_TX0_LOSC(UInt32 freq)
+        {
+            try
+            {
+                if (device != null)
+                {
+                    if (freq < 30 * 1e6 && TX0_center_freq >= 30 * 1e6 && device.isStreaming)
+                    {
+                        return false;
+                    }
+                    else if (freq > 30 * 1e6 && TX0_center_freq <= 30 * 1e6 && device.isStreaming)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        if (device != null && device.isStreaming)
+                        {
+                            device.TX0_Frequency = freq;
+                            //device.TX1_Frequency = freq;
+                        }
+                        else if (device != null)
+                        {
+                            device.TX0_centerFrequency = freq;
+                            //device.TX1_centerFrequency = freq;
+                        }
+                    }
+
+                    TX0_center_freq = freq;
+                    //TX1_center_freq = freq;
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex)
             {
                 Debug.Write(ex.ToString());
                 return false;
@@ -340,7 +363,7 @@ namespace PowerSDR
                 if (device != null && connected)
                 {
                     device.RX0_gain = value;
-                    //device.RX1_gain = value;
+                    device.RX1_gain = value;
                 }
             }
             catch (Exception ex)
@@ -666,7 +689,31 @@ namespace PowerSDR
          * @todo force send samples to HW (ignore transfer size) when selected
          */
         public bool flushPartialPacket;
+    }
 
+    [StructLayout(LayoutKind.Sequential)]
+    /**Device information structure*/
+    public struct lms_dev_info_t
+    {
+        public char[] deviceName;            ///<The display name of the device
+        public char[] expansionName;         ///<The display name of the expansion card
+        public char[] firmwareVersion;       ///<The firmware version as a string
+        public char[] hardwareVersion;       ///<The hardware version as a string
+        public char[] protocolVersion;       ///<The protocol version as a string
+        public UInt64 boardSerialNumber;     ///<A unique board serial number
+        public char[] gatewareVersion;       ///<Gateware version as a string
+        public char[] gatewareTargetBoard;   ///<Which board should use this gateware
+
+        /*public void Init()
+        {
+            deviceName = new char[32];
+            expansionName = new char[32];
+            firmwareVersion = new char[16];
+            hardwareVersion = new char[16];
+            protocolVersion = new char[16];
+            gatewareVersion = new char[16];
+            gatewareTargetBoard = new char[32];
+        }*/
     }
 
     public enum lms_loopback_t
@@ -859,9 +906,15 @@ namespace PowerSDR
         [DllImport("LimeSuite#", EntryPoint = "LMS_GPIODirRead", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GPIODirRead(IntPtr device, uint* buffer, uint length);
 
-        //API_EXPORT int CALL_CONV LMS_GetStreamStatus(lms_stream_t* stream, lms_stream_status_t* status)
         [DllImport("LimeSuite#", EntryPoint = "LMS_GetStreamStatus", CallingConvention = CallingConvention.Cdecl)]
         public unsafe static extern int LMS_GetStreamStatus(IntPtr stream, ref lms_stream_status_t status);
+
+        //API_EXPORT const char* LMS_GetLibraryVersion()
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetLibraryVersion", CallingConvention = CallingConvention.Cdecl)]
+        public unsafe static extern char* LMS_GetLibraryVersion();
+
+        [DllImport("LimeSuite#", EntryPoint = "LMS_GetDeviceInfo", CallingConvention = CallingConvention.Cdecl)]
+        public unsafe static extern void* LMS_GetDeviceInfo(IntPtr device);
 
         #endregion
 
@@ -878,12 +931,14 @@ namespace PowerSDR
         private GCHandle _gcHandle;
         public bool isStreaming;
         private Thread _sampleThread = null;
-        public uint RX_channel = 0;
+        public uint RX0_channel = 0;
+        public uint RX1_channel = 1;
         public uint TX0_channel = 0;
-        public uint TX1_channel = 0;
+        public uint TX1_channel = 1;
         private uint RX0_ant = 2;              // Low input
         private uint RX1_ant = 2;              // Low input
         private uint TX0_ant = 0;
+        private uint TX1_ant = 0;
         public uint _frameLength = 2048;
         public double RXsampleRate = 768000.0;
         public double TXsampleRate = 768000.0;
@@ -927,6 +982,8 @@ namespace PowerSDR
         unsafe public void* resampPtrOut_l;
         unsafe public void* resampPtrOut_r;
         Mutex tx_Mutex = new Mutex();
+
+        int kanal = 1;
 
         #endregion
 
@@ -990,7 +1047,9 @@ namespace PowerSDR
 
                     while (isStreaming)
                     {
+                        //LMS_RecvStream(_streamRX_1, input_data, _frameLength, ref rx_meta, SampleTimeoutMs);
                         LMS_RecvStream(_streamRX_0, input_data, _frameLength, ref rx_meta, SampleTimeoutMs);
+
                         j = 0;
 
                         for (int i = 0; i < _frameLength; i++)
@@ -1017,6 +1076,7 @@ namespace PowerSDR
                             //tx_meta_1.flushPartialPacket = true;
                             tx_Mutex.WaitOne();
                             LMS_SendStream(_streamTX_0, output_data, _frameLength, ref tx_meta, SampleTimeoutMs);
+                            //LMS_SendStream(_streamTX_1, output_data, _frameLength, ref tx_meta, SampleTimeoutMs);
                             tx_Mutex.ReleaseMutex();
                             //LMS_SendStream(_streamTX_1, output_data_1, _frameLength, ref tx_meta_1, SampleTimeoutMs);
                         }
@@ -1035,27 +1095,6 @@ namespace PowerSDR
             catch(Exception ex)
             {
                 Debug.Write(ex.ToString());
-            }
-        }
-
-        public unsafe void Transmit_async(float* out_l, float* out_r, int frameLength)
-        {
-            int j = 0;
-            lms_stream_meta_t tx_meta = new lms_stream_meta_t();
-
-            fixed (float* output_data = &bufferOut_1[0])
-            {
-                for (int i = 0; i < frameLength; i++)
-                {
-                    output_data[j] = out_l[i];
-                    output_data[j+1] = out_r[i];
-                    j += 2;
-                }
-
-                if (isStreaming)
-                {
-                    LMS_SendStream(_streamTX_0, output_data, (uint)frameLength*2, ref tx_meta, SampleTimeoutMs);
-                }
             }
         }
 
@@ -1183,6 +1222,11 @@ namespace PowerSDR
             return true;
         }
 
+        public unsafe IntPtr GetDeviceInfo()
+        {
+            return (IntPtr)LMS_GetDeviceInfo(_device);
+        }
+
         public unsafe bool Start(double lpfbw, double RXsr, double TXsr)
         {
             try
@@ -1190,8 +1234,6 @@ namespace PowerSDR
                 LPFBW = lpfbw;
                 RXsampleRate = RXsr;
                 TXsampleRate = TXsr;
-                //resampPtrIn_l = DttSP.NewResamplerF((int)RXsampleRate, (int)RXsampleRate / 2);
-                //resampPtrIn_r = DttSP.NewResamplerF((int)RXsampleRate, (int)RXsampleRate / 2);
 
                 if (LMS_GetDeviceList(null) < 1)
                 {
@@ -1222,7 +1264,7 @@ namespace PowerSDR
                         throw new ApplicationException(limesdr_strerror());
                     }
 
-                if (LMS_EnableChannel(_device, LMS_CH_RX, RX_channel, true) != 0)
+                if (LMS_EnableChannel(_device, LMS_CH_RX, RX0_channel, true) != 0)
                 {
                     throw new ApplicationException(limesdr_strerror());
                 }
@@ -1242,7 +1284,7 @@ namespace PowerSDR
                     throw new ApplicationException(limesdr_strerror());
                 }*/
 
-                if (LMS_SetAntenna(_device, LMS_CH_RX, RX_channel, RX0_ant) != 0)
+                if (LMS_SetAntenna(_device, LMS_CH_RX, RX0_channel, RX0_ant) != 0)
                 {
                     throw new ApplicationException(limesdr_strerror());
                 }
@@ -1256,6 +1298,11 @@ namespace PowerSDR
                 {
                     throw new ApplicationException(limesdr_strerror());
                 }
+
+                /*if (LMS_SetAntenna(_device, LMS_CH_TX, TX1_channel, TX1_ant) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }*/
 
                 if (TXSampleRate <= 384000)
                 {
@@ -1363,25 +1410,25 @@ namespace PowerSDR
                 RX0_Frequency = (long)RX0_centerFrequency;
                 //RX1_Frequency = (long)RX1_centerFrequency;
                 TX0_Frequency = (long)TX0_centerFrequency;
-                //TX1_Frequency = (long)TX1_centerFrequency;
+                //TX1_Frequency = (long)TX0_centerFrequency;
 
                 RX0_gain = RX0_gain;
                 TX0_gain = TX0_gain;
-                //RX1_gain = rx1_gain;
-                //TX1_gain = tx1_gain;
+                //RX1_gain = RX1_gain;
+                //TX1_gain = TX1_gain;
 
                 if (RX0_centerFrequency >= 30 * 1e6)
                 {
                     if (RXSampleRate < 1.5 * 1e6)
                     {
-                        if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, 1500000.0) != 0)
+                        if (LMS_SetLPFBW(_device, LMS_CH_RX, RX0_channel, 1500000.0) != 0)
                         {
                             throw new ApplicationException(limesdr_strerror());
                         }
                     }
                     else
                     {
-                        if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, RXSampleRate + RXSampleRate * 0.2) != 0)
+                        if (LMS_SetLPFBW(_device, LMS_CH_RX, RX0_channel, LPFBW) != 0)
                         {
                             throw new ApplicationException(limesdr_strerror());
                         }
@@ -1389,31 +1436,41 @@ namespace PowerSDR
                 }
                 else
                 {
-                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, LPFBW) != 0)
+                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX0_channel, LPFBW) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
                 }
 
-                /*if (RX1_centerFrequency >= 30 * 1e6)
+                if (RX1_centerFrequency >= 30 * 1e6)
                 {
-                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX1_channel, 1500000.0) != 0)
+                    if (RXSampleRate < 1.5 * 1e6)
                     {
-                        throw new ApplicationException(limesdr_strerror());
+                        if (LMS_SetLPFBW(_device, LMS_CH_RX, RX1_channel, 1500000.0) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
+                    }
+                    else
+                    {
+                        if (LMS_SetLPFBW(_device, LMS_CH_RX, RX1_channel, LPFBW) != 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }
                     }
                 }
                 else
                 {
-                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX1_channel, 60000000.0) != 0)
+                    if (LMS_SetLPFBW(_device, LMS_CH_RX, RX1_channel, LPFBW) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
-                }*/
+                }
 
                 lms_stream_t streamRX = new lms_stream_t();
-                streamRX.handle = 0;
-                streamRX.channel = RX_channel;                  //channel number
-                streamRX.fifoSize = 1024 * 1024;                //fifo size in samples
+                //streamRX.handle = 0;
+                streamRX.channel = RX0_channel;                  //channel number
+                streamRX.fifoSize = 16*1024 * 1024;                //fifo size in samples
                 streamRX.throughputVsLatency = 0.5f;            //optimize for max throughput
                 streamRX.isTx = false;                          //RX channel
                 streamRX.dataFmt = dataFmt.LMS_FMT_F32;
@@ -1427,9 +1484,9 @@ namespace PowerSDR
                 }
 
                 lms_stream_t streamTX = new lms_stream_t();
-                streamTX.handle = 0;
+                //streamTX.handle = 0;
                 streamTX.channel = TX0_channel;                 //channel number
-                streamTX.fifoSize = 1024 * 1024;                //fifo size in samples
+                streamTX.fifoSize = 16*1024 * 1024;                //fifo size in samples
                 streamTX.throughputVsLatency = 0.5f;            //optimize for max throughput
                 streamTX.isTx = true;                           //TX channel
                 streamTX.dataFmt = dataFmt.LMS_FMT_F32;
@@ -1443,10 +1500,10 @@ namespace PowerSDR
                 }
 
                 /*lms_stream_t streamRX_1 = new lms_stream_t();
-                streamRX_1.handle = 0;
+                //streamRX_1.handle = 0;
                 streamRX_1.channel = RX1_channel;                 //channel number
-                streamRX_1.fifoSize = 16 * 1024;                  //fifo size in samples
-                streamRX_1.throughputVsLatency = 0.1f;            //optimize for max throughput
+                streamRX_1.fifoSize = 1024 * 1024;                  //fifo size in samples
+                streamRX_1.throughputVsLatency = 0.5f;            //optimize for max throughput
                 streamRX_1.isTx = false;                          //RX channel
                 streamRX_1.dataFmt = dataFmt.LMS_FMT_F32;
                 _streamRX_1 = Marshal.AllocHGlobal(Marshal.SizeOf(streamRX_1));
@@ -1459,10 +1516,10 @@ namespace PowerSDR
                 }
 
                 lms_stream_t streamTX_1 = new lms_stream_t();
-                streamTX_1.handle = 0;
+                //streamTX_1.handle = 0;
                 streamTX_1.channel = TX1_channel;                 //channel number
-                streamTX_1.fifoSize = 16 * 1024;                  //fifo size in samples
-                streamTX_1.throughputVsLatency = 0.1f;            //optimize for max throughput
+                streamTX_1.fifoSize = 1024 * 1024;                  //fifo size in samples
+                streamTX_1.throughputVsLatency = 0.5f;            //optimize for max throughput
                 streamTX_1.isTx = true;                           //TX channel
                 streamTX_1.dataFmt = dataFmt.LMS_FMT_F32;
                 _streamTX_1 = Marshal.AllocHGlobal(Marshal.SizeOf(streamTX_1));
@@ -1515,7 +1572,7 @@ namespace PowerSDR
             {
                 if (_device != IntPtr.Zero)
                 {
-                    if (LMS_GetLOFrequency(_device, LMS_CH_RX, RX_channel, ref RX0_centerFrequency) != 0)
+                    if (LMS_GetLOFrequency(_device, LMS_CH_RX, RX0_channel, ref RX0_centerFrequency) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1529,12 +1586,12 @@ namespace PowerSDR
                 tx_Mutex.WaitOne();
                 if (value >= 30 * 1e6)
                 {
-                    if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 15, true) != 0)   // 0.0 NCO
+                    if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX0_channel, 15, true) != 0)   // 0.0 NCO
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
 
-                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, RX0_centerFrequency) != 0)
+                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX0_channel, RX0_centerFrequency) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1546,7 +1603,7 @@ namespace PowerSDR
                 }
                 else
                 {
-                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, 30.0 * 1e6) != 0)
+                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX0_channel, 30.0 * 1e6) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1560,13 +1617,13 @@ namespace PowerSDR
                         losc_freq[0] = 30.0 * 1e6 - RX0_centerFrequency;
                         losc_freq[15] = 0.0;
 
-                        if (LMS_SetNCOFrequency(_device, LMS_CH_RX, RX_channel, freq, 0.0) != 0)
+                        if (LMS_SetNCOFrequency(_device, LMS_CH_RX, RX0_channel, freq, 0.0) != 0)
                         {
                             Debug.Write("Wrong RX0 NCO frequency value!" + freq[0].ToString("f3") + "\n");
                             throw new ApplicationException(limesdr_strerror());
                         }
 
-                        if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 0, true) != 0)
+                        if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX0_channel, 0, false) != 0)
                         {
                             Debug.Write("Wrong RX0 NCO index value!\n");
                             throw new ApplicationException(limesdr_strerror());
@@ -1588,7 +1645,7 @@ namespace PowerSDR
             {
                 if (_device != IntPtr.Zero)
                 {
-                    if (LMS_GetLOFrequency(_device, LMS_CH_RX, RX_channel, ref RX1_centerFrequency) != 0)
+                    if (LMS_GetLOFrequency(_device, LMS_CH_RX, RX0_channel, ref RX1_centerFrequency) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1604,12 +1661,12 @@ namespace PowerSDR
                 {
                     if (_device != IntPtr.Zero)
                     {
-                        if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 15, false) != 0)   // 0.0 NCO
+                        if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX1_channel, 15, false) != 0)   // 0.0 NCO
                         {
                             throw new ApplicationException(limesdr_strerror());
                         }
 
-                        if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, RX1_centerFrequency) != 0)
+                        if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX1_channel, RX1_centerFrequency) != 0)
                         {
                             throw new ApplicationException(limesdr_strerror());
                         }
@@ -1617,7 +1674,7 @@ namespace PowerSDR
                 }
                 else
                 {
-                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX_channel, 30.0 * 1e6) != 0)
+                    if (LMS_SetLOFrequency(_device, LMS_CH_RX, RX0_channel, 30.0 * 1e6) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1631,17 +1688,22 @@ namespace PowerSDR
                         losc_freq[0] = 30.0 * 1e6 - RX1_centerFrequency;
                         losc_freq[15] = 0.0;
 
-                        if (LMS_SetNCOFrequency(_device, LMS_CH_RX, RX_channel, freq, 0.0) != 0)
+                        if (LMS_SetNCOFrequency(_device, LMS_CH_RX, RX0_channel, freq, 0.0) != 0)
                         {
-                            //throw new ApplicationException(limesdr_strerror());
                             Debug.Write("Wrong RX1 NCO frequency value!" + freq[0].ToString("f3") + "\n");
+                            throw new ApplicationException(limesdr_strerror());
                         }
 
-                        if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX_channel, 0, false) != 0)
+                        if (LMS_SetNCOIndex(_device, LMS_CH_RX, RX0_channel, 0, false) != 0)
                         {
-                            //throw new ApplicationException(limesdr_strerror());
                             Debug.Write("Wrong RX1 NCO index value!" + freq[0].ToString("f3") + "\n");
+                            throw new ApplicationException(limesdr_strerror());
                         }
+
+                        /*if (LMS_WriteParam(_device, CMIX_BYP_RXTSP, 0) < 0)
+                        {
+                            throw new ApplicationException(limesdr_strerror());
+                        }*/
                     }
                 }
                 tx_Mutex.ReleaseMutex();
@@ -1784,11 +1846,11 @@ namespace PowerSDR
         {
             get
             {
-                return RX_channel;
+                return RX0_channel;
             }
             set
             {
-                RX_channel = value;
+                RX0_channel = value;
             }
         }
 
@@ -1814,7 +1876,7 @@ namespace PowerSDR
             {
                 RX0_ant = value;
 
-                if (LMS_SetAntenna(_device, LMS_CH_RX, RX_channel, RX0_ant) != 0)
+                if (LMS_SetAntenna(_device, LMS_CH_RX, RX0_channel, RX0_ant) != 0)
                 {
                     throw new ApplicationException(limesdr_strerror());
                 }
@@ -1831,7 +1893,7 @@ namespace PowerSDR
             {
                 RX1_ant = value;
 
-                if (LMS_SetAntenna(_device, LMS_CH_RX, RX_channel, RX1_ant) != 0)
+                if (LMS_SetAntenna(_device, LMS_CH_RX, RX1_channel, RX1_ant) != 0)
                 {
                     throw new ApplicationException(limesdr_strerror());
                 }
@@ -1855,6 +1917,23 @@ namespace PowerSDR
             }
         }
 
+        public unsafe uint Antenna_TX1
+        {
+            get
+            {
+                return TX1_ant;
+            }
+            set
+            {
+                TX1_ant = value;
+
+                if (LMS_SetAntenna(_device, LMS_CH_TX, TX1_channel, TX1_ant) != 0)
+                {
+                    throw new ApplicationException(limesdr_strerror());
+                }
+            }
+        }
+
         public void SetLPFBW(double lpfbw)
         {
             LPFBW = lpfbw;
@@ -1862,7 +1941,7 @@ namespace PowerSDR
             if (isStreaming)
             {
                 tx_Mutex.WaitOne();
-                if (LMS_SetLPFBW(_device, LMS_CH_RX, RX_channel, LPFBW) != 0)
+                if (LMS_SetLPFBW(_device, LMS_CH_RX, RX0_channel, LPFBW) != 0)
                 {
                     throw new ApplicationException(limesdr_strerror());
                 }
@@ -1913,7 +1992,12 @@ namespace PowerSDR
                 tx_Mutex.WaitOne();
                 if (_device != IntPtr.Zero)
                 {
-                    if (LMS_SetGaindB(_device, LMS_CH_RX, RX_channel, rx0_gain) != 0)
+                    if (LMS_SetGaindB(_device, LMS_CH_RX, RX0_channel, rx0_gain) != 0)
+                    {
+                        throw new ApplicationException(limesdr_strerror());
+                    }
+
+                    if (LMS_WriteParam(_device, CMIX_BYP_RXTSP, 0) < 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1933,7 +2017,7 @@ namespace PowerSDR
                 tx_Mutex.WaitOne();
                 if (_device != IntPtr.Zero)
                 {
-                    if (LMS_SetGaindB(_device, LMS_CH_RX, RX_channel, rx1_gain) != 0)
+                    if (LMS_SetGaindB(_device, LMS_CH_RX, RX1_channel, rx1_gain) != 0)
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
@@ -1996,7 +2080,6 @@ namespace PowerSDR
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
-
                 }
             }
         }
@@ -2015,7 +2098,6 @@ namespace PowerSDR
                     {
                         throw new ApplicationException(limesdr_strerror());
                     }
-
                 }
             }
         }
@@ -2131,6 +2213,59 @@ namespace PowerSDR
             {
                 Debug.Write(ex.ToString());
                 return 0.0;
+            }
+        }
+
+        public unsafe string GetLimeSDRDeviceInfo()
+        {
+            try
+            {
+                lms_dev_info_t info = new lms_dev_info_t();
+
+                info.deviceName = new char[32];
+                info.expansionName = new char[32];
+                info.firmwareVersion = new char[16];
+                info.hardwareVersion = new char[16];
+                info.protocolVersion = new char[16];
+                info.boardSerialNumber = 0;
+                info.gatewareVersion = new char[16];
+                info.gatewareTargetBoard = new char[32];
+                IntPtr deviceInfo;
+
+                deviceInfo = (IntPtr)LMS_GetDeviceInfo(_device);
+                byte[] buff = new byte[168];
+                Marshal.Copy(deviceInfo, buff, 0, 168);
+                ASCIIEncoding ascii = new ASCIIEncoding();
+                string s = ascii.GetString(buff);
+                string deviceName = ascii.GetString(buff, 0, 32).Trim('\0');
+                string expansionName = ascii.GetString(buff, 32, 32).Trim('\0');
+                string firmwareVersion = ascii.GetString(buff, 64, 16).Trim('\0');
+                string hardwareVersion = ascii.GetString(buff, 80, 16).Trim('\0');
+                string protocolVersion = ascii.GetString(buff, 96, 16).Trim('\0');
+                UInt64 serial = 0;
+
+                for (int i = 8; i > 0; i--)
+                {
+                    serial += buff[111 + i];
+
+                    if(i>1)
+                        serial = serial << 8;
+                }
+
+                string boardSerialNumber = serial.ToString("X");
+                string gatewareVersion = ascii.GetString(buff, 120, 16).Trim('\0');
+                string gatewareTargetBoard = ascii.GetString(buff, 136, 32).Trim('\0');
+
+                IntPtr libVersion;
+                libVersion = (IntPtr)LMS_GetLibraryVersion();
+                string limeSuiteVersion = Marshal.PtrToStringAnsi(libVersion);
+
+                return deviceName + "/" + firmwareVersion + "/" + boardSerialNumber + "/" + gatewareVersion + "/" + limeSuiteVersion;
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex.ToString());
+                return "not connected/not connected/not connected/not connected/not connected";
             }
         }
     }

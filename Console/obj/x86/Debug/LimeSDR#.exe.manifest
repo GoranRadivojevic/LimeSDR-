@@ -42,14 +42,19 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LimeSDR#.exe" size="2392576">
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="SlimDX" version="4.0.13.43" publicKeyToken="B1B0C32FD1FFE4F9" language="neutral" processorArchitecture="amd64" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LimeSDR#.exe" size="2395648">
       <assemblyIdentity name="LimeSDR#" version="0.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>I03HfwbmwZcVu5AXGihpIdN05XJjzFXpsRWNOxYKjJw=</dsig:DigestValue>
+        <dsig:DigestValue>ZqMcEg4Fxie43HPfg9ZzxGLBt11c6SEPpiirQWCwVBA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -62,18 +67,6 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>3viSZHbbk18lpjr6lO/wpQ11vKNGDKmp+sC9wvArkr0=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SlimDX.dll" size="3718656">
-      <assemblyIdentity name="SlimDX" version="4.0.13.43" publicKeyToken="B1B0C32FD1FFE4F9" language="neutral" processorArchitecture="amd64" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uo+AyrE6h+EOz2Weaz+YxWxRwKeSwQTntoGoH7hvQ/o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
